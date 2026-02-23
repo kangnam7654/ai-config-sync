@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "plugins": {
+    "ralph-loop@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/kangnam/.claude/plugins/cache/claude-plugins-official/ralph-loop/aa296ec81e8c",
+        "version": "aa296ec81e8c",
+        "installedAt": "2026-02-09T06:51:16.673Z",
+        "lastUpdated": "2026-02-22T02:39:48.912Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "typescript-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/kangnam/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-16T21:54:44.388Z",
+        "lastUpdated": "2026-02-16T21:54:44.388Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ]
+  }
+}

@@ -42,7 +42,8 @@ rm -rf workspace/.git
 if [ ! -d ".git" ]; then
     git init
     # GitHub 리포지토리가 없으면 생성 (private 권장)
-    gh repo create openclaw-config-sync --private --source=. --remote=origin || git remote add origin "https://$(gh auth token)@github.com/kangnam7654/openclaw-config-sync.git"
+    gh repo create openclaw-config-sync --private --source=. --remote=origin || true
+    git remote set-url origin "https://$(gh auth token)@github.com/kangnam7654/openclaw-config-sync.git"
 fi
 
 git add .

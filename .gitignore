@@ -1,10 +1,13 @@
-# OpenClaw Sync Ignore
-# --------------------
-# 절대 공유되면 안 되는 보안 파일들
+# 절대 공유하면 안 되는 보안 파일
 credentials/
+auth-profiles.json
 *.db
 *.sqlite
 sessions/
 logs/
 .DS_Store
 *.tgz
+*.log
+# 민감한 토큰 포함 가능
+notion_data_*.json
+tmp_*.json

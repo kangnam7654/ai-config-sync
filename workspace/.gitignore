@@ -1,0 +1,11 @@
+# 대화 기록 (용량 크고 민감)
+*.jsonl
+
+# 임시 파일
+*.tmp
+*.log
+__pycache__/
+.DS_Store
+
+# 노션 API 키 등 민감 정보 (openclaw.json은 별도 관리)
+secrets.*

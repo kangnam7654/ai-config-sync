@@ -1,0 +1,9 @@
+[
+  {
+    "from": "backend-dev",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"1\",\"subject\":\"Phase 1: Backend changes (models, schemas, services, routers)\",\"description\":\"Modify all backend files for the ad-based BM transition:\\n\\n1-1. `backend/app/models/subscription.py`: Remove BASIC/PREMIUM from SubscriptionTier, keep FREE/PRO only\\n1-2. `backend/app/models/usage.py`: Add bonus_count and reward_ads_watched columns to UsageRecord\\n1-3. `backend/app/services/quota_service.py`: Full rewrite - DAILY_LIMIT=200, BONUS_PER_AD=10, MAX_REWARD_ADS_PER_DAY=5, new decrement logic (base→bonus), grant_reward_bonus(), updated get_quota_info()\\n1-4. `backend/app/schemas/subscription.py`: Update QuotaResponse (remove tier, add bonus fields), add RewardClaimResponse\\n1-5. `backend/app/routers/quota.py`: Add POST /api/quota/reward endpoint\\n1-6. `backend/app/routers/llm.py`: Change 429 error message to \\\"Watch a reward ad for extra requests.\\\"\\n1-7. `backend/app/services/receipt_validator.py`: Simplify PRODUCT_TIER_MAP to single pro.monthly entry\\n1-8. `backend/app/schemas/auth.py`: Add is_pro field to AuthUserInfo\\n1-9. `backend/app/routers/auth.py`: Compute is_pro in _build_user_info()\",\"assignedBy\":\"backend-dev\",\"timestamp\":\"2026-02-23T10:56:22.577Z\"}",
+    "timestamp": "2026-02-23T10:56:22.577Z",
+    "color": "blue",
+    "read": true
+  }
+]

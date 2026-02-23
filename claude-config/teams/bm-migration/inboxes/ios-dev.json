@@ -1,0 +1,29 @@
+[
+  {
+    "from": "team-lead",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"2\",\"subject\":\"Phase 2-4: iOS model/subscription, AdMob SDK, ad placement + reward flow\",\"description\":\"Modify all iOS files for the ad-based BM transition:\\n\\nPhase 2 - iOS model/subscription changes:\\n2-1. AuthUser.swift: SubscriptionTier → free/pro only, remove dailyLimit, add isPro\\n2-2. APIModels.swift: Update QuotaResponse (remove tier, add bonus fields), add RewardClaimResponse\\n2-3. StoreManager.swift: productIDs → pro.monthly only, update verifyTransaction for isPro\\n2-4. SubscriptionView.swift: Free/Pro UI, remove dailyLimit text\\n2-5. QuotaView.swift: Remove tier display, add bonus section + reward button + Pro upsell\\n2-6. SettingsView.swift: Subscription label isPro ? \\\"Pro\\\" : \\\"Free\\\"\\n\\nPhase 3 - AdMob SDK integration:\\n3-1. project.yml: Add GoogleMobileAds SPM package\\n3-2. Info.plist: Add GADApplicationIdentifier, NSUserTrackingUsageDescription, SKAdNetworkItems\\n3-3. NEW Services/Ads/AdManager.swift: @Observable singleton, initialize/load/show reward ad, claimRewardOnBackend\\n3-4. NEW Views/Ads/BannerAdView.swift: UIViewRepresentable for BannerView\\n3-5. ExercisePlanApp.swift: Import GoogleMobileAds, ATT, initialize AdManager\\n3-6. Constants.swift: Add Ads enum constants\\n\\nPhase 4 - Ad placement + reward flow:\\n4-1. ChatViewModel.swift: showQuotaExceeded, canWatchRewardAd, watchRewardAd()\\n4-2. PlanGeneratorViewModel.swift: Same quota exceeded + reward pattern\\n4-3. ChatView.swift: Banner between divider and input (non-Pro), quota exceeded alert\\n4-4. PlanGeneratorView.swift: Banner below planList (non-Pro), quota exceeded alert\",\"assignedBy\":\"team-lead\",\"timestamp\":\"2026-02-23T10:57:05.104Z\"}",
+    "timestamp": "2026-02-23T10:57:05.104Z",
+    "read": false
+  },
+  {
+    "from": "ios-dev",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"5\",\"subject\":\"Phase 2: iOS Model/Subscription Changes\",\"description\":\"Update AuthUser.swift, APIModels.swift, StoreManager.swift, SubscriptionView.swift, QuotaView.swift, SettingsView.swift for ad-based BM migration\",\"assignedBy\":\"ios-dev\",\"timestamp\":\"2026-02-23T10:57:12.854Z\"}",
+    "timestamp": "2026-02-23T10:57:12.854Z",
+    "color": "green",
+    "read": false
+  },
+  {
+    "from": "ios-dev",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"6\",\"subject\":\"Phase 3: AdMob SDK Integration\",\"description\":\"Update project.yml, Info.plist, create AdManager.swift, BannerAdView.swift, update ExercisePlanApp.swift and Constants.swift\",\"assignedBy\":\"ios-dev\",\"timestamp\":\"2026-02-23T10:58:51.556Z\"}",
+    "timestamp": "2026-02-23T10:58:51.556Z",
+    "color": "green",
+    "read": false
+  },
+  {
+    "from": "ios-dev",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"7\",\"subject\":\"Phase 4: Ad Placement + Reward Flow\",\"description\":\"Update ChatViewModel, PlanGeneratorViewModel, ChatView, PlanGeneratorView for ad placement and reward ad flow\",\"assignedBy\":\"ios-dev\",\"timestamp\":\"2026-02-23T10:59:38.083Z\"}",
+    "timestamp": "2026-02-23T10:59:38.083Z",
+    "color": "green",
+    "read": false
+  }
+]

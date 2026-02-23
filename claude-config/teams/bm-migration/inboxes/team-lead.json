@@ -1,0 +1,24 @@
+[
+  {
+    "from": "backend-dev",
+    "text": "All 9 backend changes are done and verified. Summary:\n\n1. `backend/app/models/subscription.py` — SubscriptionTier: FREE + PRO only\n2. `backend/app/models/usage.py` — Added `bonus_count` and `reward_ads_watched` columns\n3. `backend/app/services/quota_service.py` — Full rewrite: DAILY_LIMIT=200, BONUS_PER_AD=10, MAX_REWARD_ADS_PER_DAY=5, new `grant_reward_bonus()`, base-first decrement logic\n4. `backend/app/schemas/subscription.py` — QuotaResponse: removed `tier`, added `bonus_remaining`/`reward_ads_watched`/`max_reward_ads`; new `RewardClaimResponse`\n5. `backend/app/routers/quota.py` — Added `POST /api/quota/reward` endpoint\n6. `backend/app/routers/llm.py` — 429 message changed to \"Watch a reward ad for extra requests.\"\n7. `backend/app/services/receipt_validator.py` — PRODUCT_TIER_MAP simplified to single PRO entry\n8. `backend/app/schemas/auth.py` — Added `is_pro: bool = False` to AuthUserInfo\n9. `backend/app/routers/auth.py` — `_build_user_info()` computes `is_pro` based on PRO tier + expiry check\n\nAll imports verified clean. A DB migration will be needed for the two new `usage_records` columns (`bonus_count`, `reward_ads_watched`) before deploying.",
+    "summary": "All 9 backend BM migration changes complete",
+    "timestamp": "2026-02-23T10:57:38.721Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "backend-dev",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-dev\",\"timestamp\":\"2026-02-23T10:57:45.892Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-02-23T10:57:45.892Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "backend-dev",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-dev\",\"timestamp\":\"2026-02-23T10:57:48.212Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-02-23T10:57:48.212Z",
+    "color": "blue",
+    "read": true
+  }
+]

@@ -1,52 +1,57 @@
 # OpenClaw Config Sync
 
-Ubuntu ↔ MacBook Pro 간 OpenClaw 설정 동기화 저장소.
+Ubuntu ↔ MacBook Pro 간 OpenClaw 설정 양방향 동기화 저장소.
 
-> **보안 주의:** API 키, 토큰 등 민감 정보는 이 레포에 포함되지 않습니다. `.gitignore` 참고.
+> **보안 주의:** API 키, 토큰 등 민감 정보는 이 레포에 포함되지 않습니다.
 
 ---
 
 ## 📁 구조
 
 ```
-├── workspace/          # MEMORY.md, USER.md, SOUL.md 등 에이전트 워크스페이스
-├── openclaw.template.json  # 설정 템플릿 (민감 값 제거됨)
-├── setup-mac.sh        # 맥북 초기 설정 자동화 스크립트
-└── sync-openclaw.sh    # Ubuntu에서 동기화 push 스크립트
+├── workspace/               # MEMORY.md, USER.md, SOUL.md 등 에이전트 워크스페이스
+├── openclaw.template.json   # 설정 템플릿 (민감 값 제거됨)
+├── setup-mac.sh             # 맥북 초기 설정 자동화 스크립트 (최초 1회)
+└── sync-openclaw.sh         # 양방향 동기화 스크립트
 ```
 
 ---
 
-## 🖥️ MacBook에서 처음 설정하는 법
+## 🖥️ MacBook에서 처음 설정할 때 (최초 1회)
 
 ```bash
-# 1. 이 레포 클론
 git clone https://github.com/kangnam7654/openclaw-config-sync.git ~/openclaw-sync
-
-# 2. 셋업 스크립트 실행 (Node.js 필요)
 cd ~/openclaw-sync
 bash setup-mac.sh
 
-# 3. Anthropic 인증 (API Key 또는 Claude 구독)
+# Anthropic 인증
 openclaw onboard --anthropic-api-key 'sk-ant-...'
-# 또는
-openclaw models auth paste-token --provider anthropic
 ```
 
 ---
 
-## 🔄 Ubuntu에서 설정 업데이트 후 동기화
+## 🔄 일상적인 동기화
 
+### 현재 기기 변경사항 → GitHub (push)
 ```bash
-bash ~/openclaw-sync/sync-openclaw.sh
+# Ubuntu 또는 MacBook 어디서든
+sh sync-openclaw.sh
+# 또는 명시적으로
+sh sync-openclaw.sh push
 ```
 
-## ⬇️ MacBook에서 최신 설정 가져오기
-
+### GitHub 최신 내용 → 현재 기기 (pull)
 ```bash
-cd ~/openclaw-sync && git pull
-# workspace 파일들을 ~/.openclaw/workspace 에 복사
-rsync -av ~/openclaw-sync/workspace/ ~/.openclaw/workspace/
+sh sync-openclaw.sh pull
+```
+
+### 흐름 예시
+```
+[MacBook에서 MEMORY.md 수정]
+  sh sync-openclaw.sh        # Mac → GitHub
+
+[Ubuntu에서 변경 내용 받기]
+  sh sync-openclaw.sh pull   # GitHub → Ubuntu
 ```
 
 ---

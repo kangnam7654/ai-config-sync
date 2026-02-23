@@ -4,7 +4,7 @@
 set -e
 
 WORKSPACE_DIR="$HOME/.openclaw/workspace"
-SYNC_DIR="$HOME/openclaw-sync"
+SYNC_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 cd "$SYNC_DIR"
 

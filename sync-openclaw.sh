@@ -161,14 +161,20 @@ rm -rf claude-config/cache claude-config/debug claude-config/backups \
 # ── 3. 현재 기기 상태 기록 ────────────────────────────────────────
 generate_state
 
-# ── 4. 변경사항 push ──────────────────────────────────────────────
+# ── 4. 변경사항 push (충돌 시 rebase 후 재시도) ────────────────────
 git add .
 
 if git diff --cached --quiet; then
   echo "  → 변경사항 없음"
 else
   git commit -m "sync [$HOSTNAME]: $(date '+%Y-%m-%d %H:%M')"
-  git push origin main
+
+  # push 실패 시 rebase 후 1회 재시도
+  if ! git push origin main 2>&1; then
+    echo "  → push 충돌 감지. rebase 후 재시도..."
+    git pull --rebase origin main
+    git push origin main
+  fi
   echo "  ✅ Push 완료"
 fi
 

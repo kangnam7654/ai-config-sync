@@ -55,3 +55,5 @@
   3) **QC:** 결과물 1~5점 평가, 기준 미달이면 retry/discard
 
 (구 opencode 프롬프트는 필요 시 `memory/2026-02-05.md` 및 프로젝트 `POSTMORTEM.md`를 참고)
+
+## 테스트 항목 (sync 확인용 - 삭제 예정)

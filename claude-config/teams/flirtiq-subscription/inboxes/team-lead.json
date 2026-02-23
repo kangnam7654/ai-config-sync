@@ -1,0 +1,32 @@
+[
+  {
+    "from": "backend-dev",
+    "text": "FlirtIQ Phase 1 백엔드 구독 인프라 구현 완료했습니다.\n\n## 완료 항목\n\n### Task 1.1: Subscription DB Model + Migration\n- `/home/kangnam/projects/ai-products/02-flirtiq/backend/app/models/subscription.py` 생성\n  - `subscriptions` 테이블: id(UUID PK), user_id(FK), plan, status, checkout_id(unique), price_krw(int), current_period_start/end, cancel_at_period_end, canceled_at, created_at/updated_at\n- `models/__init__.py` — Subscription 등록\n- `models/user.py` — `subscriptions` relationship 추가\n- `db/migrations/env.py` — Subscription import 추가\n- Alembic migration `403af9f4fdb5_add_subscriptions.py` 생성\n- `uv run alembic upgrade head` 성공 확인\n\n### Task 1.2: Subscription Service + Mock Payment\n- `/home/kangnam/projects/ai-products/02-flirtiq/backend/app/services/payment_service.py`\n  - 인메모리 `_pending_checkouts` dict\n  - `create_checkout()`, `confirm_payment()` (항상 True), `get_checkout()`\n- `/home/kangnam/projects/ai-products/02-flirtiq/backend/app/services/subscription_service.py`\n  - `get_status()`, `create_subscription()` (409 중복 구독 방지), `cancel_subscription()` (소프트 취소), `expire_subscription()`, `check_expired_subscriptions()`\n  - Single Writer 원칙: `users.is_premium`은 이 파일에서만 수정\n\n### Task 1.3: Subscription API Endpoints + Schemas\n- `/home/kangnam/projects/ai-products/02-flirtiq/backend/app/schemas/subscription.py` — 계획서 API Contract 그대로 구현\n- `/home/kangnam/projects/ai-products/02-flirtiq/backend/app/api/subscription.py` — 5개 엔드포인트\n  - `GET /api/subscription/status`\n  - `POST /api/subscription/checkout`\n  - `POST /api/subscription/confirm`\n  - `POST /api/subscription/cancel`\n  - `POST /api/subscription/webhook`\n- `config.py` — `PAYMENT_MOCK_MODE=True`, `PREMIUM_PRICE_KRW=9900` 추가\n- `main.py` — lifespan 패턴으로 전환, subscription router 등록\n\n### Task 1.4: Premium Priority Matching (+3 boost)\n- `/home/kangnam/projects/ai-products/02-flirtiq/backend/app/services/matching_service.py`\n  - `score = len(common) + (3 if user.is_premium else 0)`\n\n### Task 1.5: Subscription Expiry Background Task\n- `/home/kangnam/projects/ai-products/02-flirtiq/backend/app/tasks/subscription_tasks.py`\n  - 1시간마다 `check_expired_subscriptions()` 실행\n  - 만료 시 `is_premium=False`, `status=\"expired\"` 처리\n- `main.py` — lifespan에서 asyncio.create_task로 실행, 종료 시 graceful cancel\n\n## 검증 결과\n```\nuv run alembic upgrade head → 성공 (005acfae829e -> 403af9f4fdb5)\nuv run python -c \"from app.main import app\" → App loaded OK\nsubscription 5개 엔드포인트 전부 등록 확인\n```\n\nIDE LSP 오류(Cannot resolve imported module)는 venv 경로 문제로, 런타임에는 영향 없습니다.",
+    "summary": "Backend subscription infrastructure complete",
+    "timestamp": "2026-02-19T08:16:37.391Z",
+    "color": "blue",
+    "read": false
+  },
+  {
+    "from": "backend-dev",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-dev\",\"timestamp\":\"2026-02-19T08:16:46.210Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-02-19T08:16:46.210Z",
+    "color": "blue",
+    "read": false
+  },
+  {
+    "from": "frontend-dev",
+    "text": "FlirtIQ Phase 1 구독 모델 프론트엔드 구현 완료했습니다. `npm run build` 성공 확인했습니다.\n\n## 완료 태스크 요약\n\n### Task 2.1: 타입 + API 함수\n- `frontend/src/types/index.ts`: `CheckoutRequest`, `CheckoutResponse`, `ConfirmRequest`, `SubscriptionResponse`, `SubscriptionStatusResponse`, `CancelResponse` 추가 (계획서 API Contract 100% 일치)\n- `frontend/src/lib/api.ts`: `api.subscription.{status, checkout, confirm, cancel}` 네임스페이스 추가\n\n### Task 2.2: 업그레이드 페이지 전면 리뉴얼\n- **NEW** `frontend/src/components/subscription/PricingTable.tsx`: Free vs Premium 2열 비교표 + 기능별 상세 비교 테이블, \"추천\" 배지, 가격은 API에서 받은 `price_krw` 사용\n- **NEW** `frontend/src/components/subscription/CheckoutFlow.tsx`: 4단계 결제 플로우 (confirm → processing → success → error), 축하 애니메이션 포함\n- **REWRITE** `frontend/src/app/upgrade/page.tsx`: 구독 상태에 따라 pricing/checkout/manage 3가지 화면 전환, 취소 확인 다이얼로그 포함\n\n### Task 2.3: PremiumGate 업그레이드\n- `frontend/src/components/shared/PremiumGate.tsx`: 이메일 수집 폼 제거, `/upgrade` 링크 CTA로 교체. 기능별 맞춤 혜택 목록 (ghosting/reply_coach/default)\n\n### Task 2.4: 프리미엄 배지 + 인디케이터\n- **NEW** `frontend/src/components/shared/PremiumBadge.tsx`: `sm`/`md` 2가지 사이즈, pink-to-purple 그라데이션\n- `frontend/src/components/profile/ProfileView.tsx`: `isPremium?: boolean` prop 추가, 이름 옆 PRO 배지\n- `frontend/src/components/discover/ProfileCard.tsx`: `isPremium?: boolean` prop 추가, 이름 옆 PRO 배지\n- `frontend/src/components/shared/BottomNav.tsx`: premium 상태 API 조회, 프로필 아이콘에 인디케이터 점 추가\n\n### Task 3.1: Ghosting 프리미엄 게이팅\n- `frontend/src/app/ghosting/page.tsx`: \n  - Free: indicators/coaching 섹션을 블러 처리 + 프리미엄 전용 잠금 오버레이\n  - Free: upgrade_prompt + \"/upgrade\" 링크 CTA 버튼 표시\n  - Premium: 기존과 동일하게 전체 분석 표시\n\n### Task 3.3: 구독 관리 UI\n- **NEW** `frontend/src/components/subscription/SubscriptionCard.tsx`: 플랜별 상태 표시 (Free/Active/Canceled), 취소 확인 다이얼로그, 재구독 버튼\n- `frontend/src/app/profile/page.tsx`: SubscriptionCard 추가, `/api/auth/me`에서 `UserResponse` 조회하여 `isPremium` ProfileView에 전달\n\n## 핵심 규칙 준수\n- `is_premium` 서버 권위: 프론트엔드에서 직접 설정 안 함, API 응답에서만 읽음\n- 가격 하드코딩 없음: `price_krw`는 API에서 받음 (기본값 9900은 API 실패 시 fallback)\n- 다크모드: 전체 `dark:` variant 포함\n- 모바일 우선: `max-w-md`, 터치 친화적 버튼 크기\n",
+    "summary": "프론트엔드 구독 UI 전 태스크 완료, 빌드 성공",
+    "timestamp": "2026-02-19T08:21:58.267Z",
+    "color": "green",
+    "read": false
+  },
+  {
+    "from": "frontend-dev",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"frontend-dev\",\"timestamp\":\"2026-02-19T08:22:06.236Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-02-19T08:22:06.236Z",
+    "color": "green",
+    "read": false
+  }
+]

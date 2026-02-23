@@ -1,0 +1,47 @@
+{
+  "name": "flirtiq-subscription",
+  "description": "FlirtIQ Phase 1 Subscription Model Implementation",
+  "createdAt": 1771488748658,
+  "leadAgentId": "team-lead@flirtiq-subscription",
+  "leadSessionId": "d2016759-b108-4065-87d6-79a29c53f160",
+  "members": [
+    {
+      "agentId": "team-lead@flirtiq-subscription",
+      "name": "team-lead",
+      "agentType": "team-lead",
+      "model": "claude-opus-4-6",
+      "joinedAt": 1771488748658,
+      "tmuxPaneId": "",
+      "cwd": "/home/kangnam/projects/ai-products",
+      "subscriptions": []
+    },
+    {
+      "agentId": "backend-dev@flirtiq-subscription",
+      "name": "backend-dev",
+      "agentType": "backend-dev",
+      "model": "sonnet",
+      "prompt": "FlirtIQ Phase 1 구독 모델의 백엔드를 구현해주세요.\n\n## 전체 계획서\n`/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN_PHASE1_SUBSCRIPTION.md`를 반드시 먼저 읽고 API Contract, DB 스키마, 서비스 로직을 정확히 따라주세요.\n\n## 담당 태스크 (순서대로)\n\n### Task 1.1: Subscription DB Model + Migration\n- NEW: `backend/app/models/subscription.py` — Subscription 모델 (계획서의 스키마 참조)\n- EDIT: `backend/app/models/__init__.py` — 새 모델 등록\n- EDIT: `backend/app/models/user.py` — Subscription relationship 추가\n- Alembic migration 생성: `uv run alembic revision --autogenerate -m \"add_subscriptions\"`\n\n### Task 1.2: Subscription Service + Mock Payment\n- NEW: `backend/app/services/payment_service.py` — Mock PG (in-memory, 항상 성공)\n- NEW: `backend/app/services/subscription_service.py` — get_status, create, cancel, expire, check_expired\n\n### Task 1.3: Subscription API Endpoints\n- NEW: `backend/app/schemas/subscription.py` — Pydantic schemas (계획서의 API Contract 그대로)\n- NEW: `backend/app/api/subscription.py` — 5개 엔드포인트 (checkout/confirm/cancel/status/webhook)\n- EDIT: `backend/app/main.py` — router 등록\n- EDIT: `backend/app/config.py` — PAYMENT_MOCK_MODE, PREMIUM_PRICE_KRW 추가\n\n### Task 1.4: Premium Priority Matching\n- EDIT: `backend/app/services/matching_service.py` — 프리미엄 유저 score +3 부스트\n\n### Task 1.5: Subscription Expiry Background Task\n- NEW: `backend/app/tasks/subscription_tasks.py` — 매시간 만료 체크\n- EDIT: `backend/app/main.py` — lifespan에 background task 추가\n\n## 핵심 규칙\n1. **Single Writer**: `users.is_premium` 수정은 오직 `subscription_service.py`만\n2. **가격은 int**: 9900 (KRW), float 금지\n3. **Soft Cancel**: 취소 시 즉시 프리미엄 해제 금지, `current_period_end`까지 유지\n4. **Python**: `uv run python`, `uv run alembic`\n5. **기존 코드 재활용**: UsageService의 is_premium 분기, GhostingService의 Free/Premium 분기 이미 존재\n\n## 검증\n모든 태스크 완료 후: `cd /home/kangnam/projects/ai-products/02-flirtiq/backend && uv run alembic upgrade head` 성공 확인\n\n프로젝트 경로: /home/kangnam/projects/ai-products/02-flirtiq/\n한국어로 응답해주세요.",
+      "color": "blue",
+      "planModeRequired": false,
+      "joinedAt": 1771488773429,
+      "tmuxPaneId": "in-process",
+      "cwd": "/home/kangnam/projects/ai-products",
+      "subscriptions": [],
+      "backendType": "in-process"
+    },
+    {
+      "agentId": "frontend-dev@flirtiq-subscription",
+      "name": "frontend-dev",
+      "agentType": "frontend-dev",
+      "model": "sonnet",
+      "prompt": "FlirtIQ Phase 1 구독 모델의 프론트엔드를 구현해주세요.\n\n## 전체 계획서\n`/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN_PHASE1_SUBSCRIPTION.md`를 반드시 먼저 읽고 타입 정의, API Contract, UI 디자인을 정확히 따라주세요.\n\n## 담당 태스크 (순서대로)\n\n### Task 2.1: Subscription Types + API Functions\n- EDIT: `frontend/src/types/index.ts` — 구독 관련 타입 추가 (계획서의 API Contract 그대로)\n- EDIT: `frontend/src/lib/api.ts` — subscription API 함수 추가 (status/checkout/confirm/cancel)\n\n### Task 2.2: Upgrade Page Overhaul\n- REWRITE: `frontend/src/app/upgrade/page.tsx` — 전면 리뉴얼\n- NEW: `frontend/src/components/subscription/PricingTable.tsx` — Free vs Premium 비교표\n- NEW: `frontend/src/components/subscription/CheckoutFlow.tsx` — Mock 결제 플로우 (checkout → confirm → 축하)\n- 이미 구독 중이면: 구독 정보 + 취소 버튼 표시\n\n### Task 2.3: PremiumGate Component Upgrade\n- EDIT: `frontend/src/components/shared/PremiumGate.tsx` — 이메일 수집 → `/upgrade` 링크 CTA로 변경\n\n### Task 2.4: Premium Badge + Indicators\n- NEW: `frontend/src/components/shared/PremiumBadge.tsx` — \"PRO\" 배지 (sm/md 사이즈)\n- EDIT: `frontend/src/components/profile/ProfileView.tsx` — 배지 추가\n- EDIT: `frontend/src/components/discover/ProfileCard.tsx` — 배지 추가\n\n### Task 3.1: Ghosting Predictor Premium Gating\n- EDIT: `frontend/src/app/ghosting/page.tsx` — Free는 level/summary만, Premium은 indicators+coaching 전체 표시\n\n### Task 3.3: Subscription Management UI (Profile Page)\n- NEW: `frontend/src/components/subscription/SubscriptionCard.tsx` — 구독 상태/관리 카드\n- EDIT: `frontend/src/app/profile/page.tsx` — SubscriptionCard 추가\n\n## 핵심 규칙\n1. **타입 정합성**: `types/index.ts`의 타입은 계획서의 API Contract와 100% 일치\n2. **is_premium은 서버 권위**: 프론트엔드에서 is_premium을 직접 설정하지 않음 (API 응답에서만 읽음)\n3. **가격 하드코딩 금지**: API에서 받은 `price_krw` 사용\n4. **다크모드**: 모든 컴포넌트 dark: variant 포함\n5. **모바일 우선**: Tailwind CSS, max-w-md, 터치 친화적 버튼\n6. **기존 스타일 준수**: 기존 FlirtIQ의 pink-to-purple 그라데이션, rounded-2xl 패턴 유지\n\n## 기존 코드 참조\n- 기존 PremiumGate: `frontend/src/components/shared/PremiumGate.tsx`\n- 기존 Upgrade 페이지: `frontend/src/app/upgrade/page.tsx`\n- 기존 ProfileView: `frontend/src/components/profile/ProfileView.tsx`\n- 기존 ProfileCard: `frontend/src/components/discover/ProfileCard.tsx`\n- Ghosting 페이지: `frontend/src/app/ghosting/page.tsx`\n- Profile 페이지: `frontend/src/app/profile/page.tsx`\n\n## 검증\n모든 태스크 완료 후: `cd /home/kangnam/projects/ai-products/02-flirtiq/frontend && npm run build` 성공 확인\n\n프로젝트 경로: /home/kangnam/projects/ai-products/02-flirtiq/\n한국어로 응답해주세요.",
+      "color": "green",
+      "planModeRequired": false,
+      "joinedAt": 1771488791712,
+      "tmuxPaneId": "in-process",
+      "cwd": "/home/kangnam/projects/ai-products",
+      "subscriptions": [],
+      "backendType": "in-process"
+    }
+  ]
+}

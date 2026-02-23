@@ -1,0 +1,10 @@
+# OpenClaw Sync Ignore
+# --------------------
+# 절대 공유되면 안 되는 보안 파일들
+credentials/
+*.db
+*.sqlite
+sessions/
+logs/
+.DS_Store
+*.tgz

@@ -1,17 +1,17 @@
 # State: kangnam-Desktop-Ubuntu
-> 마지막 업데이트: 2026-02-23 18:45 KST
+> 마지막 업데이트: 2026-02-23 19:00 KST
 
 ## 환경
 - **OS:** Ubuntu 24.04.4 LTS (x86_64)
 - **Hostname:** kangnam-Desktop-Ubuntu
 
 ## OpenClaw
-- **버전:** 2026.2.22-2
-- **기본 모델:** anthropic/claude-sonnet-4-6
+- **버전:** N/A
+- **기본 모델:** N/A
 - **활성 채널:** 없음
 
 ## Claude Code
-- **버전:** 2.1.50 (Claude Code)
+- **버전:** N/A
 
 ## Cron 목록
 ```

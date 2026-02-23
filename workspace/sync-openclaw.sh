@@ -38,16 +38,19 @@ cp -r "$WORKSPACE_DIR" .
 # 워크스페이스 내의 .git 폴더 제거 (서브모듈 충돌 방지)
 rm -rf workspace/.git
 
+TOKEN=$(gh auth token)
+REMOTE_URL="https://kangnam7654:${TOKEN}@github.com/kangnam7654/openclaw-config-sync.git"
+
 # 4. Git 작업
 if [ ! -d ".git" ]; then
     git init
     # GitHub 리포지토리가 없으면 생성 (private 권장)
     gh repo create openclaw-config-sync --private --source=. --remote=origin || true
-    git remote set-url origin "https://$(gh auth token)@github.com/kangnam7654/openclaw-config-sync.git"
 fi
 
+git remote set-url origin "$REMOTE_URL"
 git add .
 git commit -m "Sync OpenClaw settings: $(date)"
-git push origin main
+git push -u origin main
 
 echo "Sync complete! Now you can clone this on your MacBook."

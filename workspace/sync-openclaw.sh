@@ -42,11 +42,13 @@ rm -rf workspace/.git
 if [ ! -d ".git" ]; then
     git init
     # GitHub 리포지토리가 없으면 생성 (private 권장)
-    gh repo create openclaw-config-sync --private --source=. --remote=origin || echo "Repo might already exist."
+    gh repo create openclaw-config-sync --private --source=. --remote=origin || git remote add origin https://github.com/kangnam7654/openclaw-config-sync.git
 fi
 
+# SSH 대신 gh auth를 이용한 push 시도
 git add .
 git commit -m "Sync OpenClaw settings: $(date)"
-git push origin main
+# gh auth token을 사용하여 push (혹은 gh repo push 활용)
+gh repo push || git push origin main
 
 echo "Sync complete! Now you can clone this on your MacBook."

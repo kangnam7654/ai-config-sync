@@ -9,10 +9,90 @@ WORKSPACE_DIR="$HOME/.openclaw/workspace"
 CLAUDE_DIR="$HOME/.claude"
 SYNC_DIR="$(cd "$(dirname "$0")" && pwd)"
 HOSTNAME=$(hostname -s)
+STATE_DIR="$SYNC_DIR/state"
 
 cd "$SYNC_DIR"
 
 echo "🔄 [$HOSTNAME] 동기화 시작..."
+
+# ══════════════════════════════════════════════════
+# 함수: 현재 기기 상태를 state/{hostname}.md에 기록
+# ══════════════════════════════════════════════════
+generate_state() {
+  mkdir -p "$STATE_DIR"
+  STATE_FILE="$STATE_DIR/$HOSTNAME.md"
+
+  # OS 정보
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    OS_INFO="macOS $(sw_vers -productVersion) ($(uname -m))"
+  else
+    OS_INFO="$(lsb_release -ds 2>/dev/null || uname -s) ($(uname -m))"
+  fi
+
+  # OpenClaw 상태
+  OC_VERSION=$(openclaw --version 2>/dev/null || echo "N/A")
+  OC_MODEL=$(openclaw config get agents.defaults.model.primary 2>/dev/null || echo "N/A")
+  OC_CHANNELS=$(openclaw channels list --json 2>/dev/null \
+    | grep -o '"name":"[^"]*"' | sed 's/"name":"//;s/"//' | tr '\n' ', ' | sed 's/, $//' \
+    || echo "N/A")
+
+  # Claude Code 상태
+  CLAUDE_VERSION=$(claude --version 2>/dev/null || echo "N/A")
+
+  # Cron 목록
+  CRON_JOBS=$(crontab -l 2>/dev/null | grep -v '^#' | grep -v '^$' || echo "(없음)")
+
+  # 최근 변경된 워크스페이스 파일 (5일 이내)
+  RECENT_FILES=$(find "$WORKSPACE_DIR" -type f -newer "$WORKSPACE_DIR/MEMORY.md" \
+    -not -path '*/.git/*' 2>/dev/null \
+    | sed "s|$WORKSPACE_DIR/||" | head -10 || echo "(없음)")
+
+  cat > "$STATE_FILE" <<EOF
+# State: $HOSTNAME
+> 마지막 업데이트: $(date '+%Y-%m-%d %H:%M %Z')
+
+## 환경
+- **OS:** $OS_INFO
+- **Hostname:** $HOSTNAME
+
+## OpenClaw
+- **버전:** $OC_VERSION
+- **기본 모델:** $OC_MODEL
+- **활성 채널:** ${OC_CHANNELS:-없음}
+
+## Claude Code
+- **버전:** $CLAUDE_VERSION
+
+## Cron 목록
+\`\`\`
+$CRON_JOBS
+\`\`\`
+
+## 최근 변경된 워크스페이스 파일
+\`\`\`
+$RECENT_FILES
+\`\`\`
+EOF
+
+  echo "  → 상태 기록 완료: state/$HOSTNAME.md"
+}
+
+# ══════════════════════════════════════════════════
+# 함수: 상대방 기기 상태 요약 출력
+# ══════════════════════════════════════════════════
+read_peer_state() {
+  for f in "$STATE_DIR"/*.md; do
+    PEER=$(basename "$f" .md)
+    [ "$PEER" = "$HOSTNAME" ] && continue
+    [ -f "$f" ] || continue
+
+    echo ""
+    echo "  📋 [$PEER] 상태:"
+    # 주요 항목만 추출해서 출력
+    grep -E "^\-\s\*\*|^>\s마지막" "$f" | sed 's/^/     /' || true
+    echo ""
+  done
+}
 
 # ── 1. 원격 변경사항 먼저 pull ────────────────────────────────────
 echo "⬇️  원격 변경사항 가져오는 중..."
@@ -40,6 +120,9 @@ if [ "$LOCAL" != "$REMOTE" ]; then
   fi
 
   echo "  ✅ 원격 변경사항 반영 완료"
+
+  # 상대방 기기 상태 출력
+  read_peer_state
 else
   echo "  → 원격 이미 최신"
 fi
@@ -68,16 +151,17 @@ rsync -a \
   --include='teams/***' \
   --exclude='*' \
   "$CLAUDE_DIR/" claude-config/
-# 심볼릭 링크 제거 (claude-code-hud 의존)
 find claude-config -type l -delete 2>/dev/null || true
-# 민감/임시 파일 제거
 rm -f claude-config/history.jsonl claude-config/usage-log.jsonl
 rm -rf claude-config/cache claude-config/debug claude-config/backups \
        claude-config/file-history claude-config/telemetry \
        claude-config/session-env claude-config/shell-snapshots \
        claude-config/ide claude-config/downloads
 
-# ── 3. 변경사항 push ──────────────────────────────────────────────
+# ── 3. 현재 기기 상태 기록 ────────────────────────────────────────
+generate_state
+
+# ── 4. 변경사항 push ──────────────────────────────────────────────
 git add .
 
 if git diff --cached --quiet; then

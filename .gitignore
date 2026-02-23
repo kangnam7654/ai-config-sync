@@ -11,3 +11,4 @@ logs/
 # 민감한 토큰 포함 가능
 notion_data_*.json
 tmp_*.json
+claude-config/plugins/marketplaces/

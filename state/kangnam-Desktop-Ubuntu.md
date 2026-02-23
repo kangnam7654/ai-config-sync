@@ -1,5 +1,5 @@
 # State: kangnam-Desktop-Ubuntu
-> 마지막 업데이트: 2026-02-23 21:00 KST
+> 마지막 업데이트: 2026-02-23 21:30 KST
 
 ## 환경
 - **OS:** Ubuntu 24.04.4 LTS (x86_64)
@@ -19,5 +19,14 @@
 
 ## 최근 변경된 워크스페이스 파일
 ```
-
+SOUL.md
+tools/flutter/docs/roadmap/[Archive]-Old-Roadmaps.md
+TOOLS.md
+restore-openclaw.sh
+idea-lab/jd-analyzer_pm/PLAN.md
+idea-lab/jd-analyzer_pm/SPEC.md
+USER.md
+analyze_notion.py
+memory/2026-02-23.md
+memory/2026-02-01.md
 ```

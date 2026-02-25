@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> 마지막 업데이트: 2026-02-25 17:37 KST
+> 마지막 업데이트: 2026-02-25 18:07 KST
 
 ## 환경
 - **OS:** macOS 26.3 (arm64)

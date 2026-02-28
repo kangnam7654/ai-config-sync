@@ -1,5 +1,29 @@
 # Backend Dev Agent Memory
 
+## Saju MVP Project (/Users/kangnam/projects/saju)
+
+### Stack
+- Framework: Hono + @hono/node-server (Node.js ESM, TypeScript)
+- AI: @anthropic-ai/sdk — use `anthropic.messages.stream()` for SSE
+- Saju calc: @fullstackfamily/manseryeok (getGapja, getPillarByHangul)
+- Validation: zod + @hono/zod-validator
+
+### Backend Structure
+- Entry: `backend/src/index.ts` — Hono app, mounts /api/interpret and /api/fortune
+- Routes: `backend/src/routes/interpretation.ts` (SSE streaming), `fortune.ts` (today-pillar JSON)
+- Services: `backend/src/services/claude.ts` — wraps anthropic stream → ReadableStream SSE
+- Prompts: `backend/src/prompts/saju.ts`, `gunghap.ts`, `daily.ts`
+- Middleware: `cors.ts` (ALLOWED_ORIGINS env), `rate-limit.ts` (30 req/min in-memory)
+
+### SSE Pattern (Hono)
+- Use `c.header()` + `c.body(stream)` — NOT `new Response(stream, ...)` (type error)
+- Content-Type: text/event-stream, each chunk: `data: {"text": "..."}\n\n`, final: `data: [DONE]\n\n`
+
+### manseryeok API
+- `getGapja(year, month, day)` → `{ yearPillar, yearPillarHanja, monthPillar, monthPillarHanja, dayPillar, dayPillarHanja }`
+- `getPillarByHangul(hangul)` → `{ tiangan: { hangul, hanja, element }, dizhi: { hangul, hanja, element }, element, yinYang }`
+- Port: 3000
+
 ## FlirtIQ Project (02-flirtiq)
 
 ### Infrastructure

@@ -1,5 +1,47 @@
 # Frontend-Dev Agent Memory
 
+## Saju MVP Project Patterns
+
+### Tech Stack
+- Expo SDK 55 + Expo Router (file-based) + TypeScript
+- NativeWind v4 (Tailwind for RN): use `className` on RN components — no cssInterop needed
+- Zustand v5 for state, React Native Reanimated v4, MMKV available
+- Path alias: `@/` maps to project root, so `@/src/lib/saju/types` = `./src/lib/saju/types`
+- API base: `EXPO_PUBLIC_API_URL` env var (default `http://localhost:3000`)
+
+### Design System (Dark Theme)
+- **Main bg**: `bg-slate-950` (#020617)
+- **Card**: `bg-slate-900 rounded-2xl border border-slate-800 p-4`
+- **Header bg**: `#0f172a`, header text: `#fef3c7`
+- **Primary text**: `text-amber-100`, secondary: `text-slate-300`, muted: `text-slate-400`
+- **Button primary**: `bg-amber-500 rounded-xl py-4 px-6`, text: `text-slate-950 font-bold`
+- **Button danger/rose**: `bg-rose-500 rounded-2xl`
+- **Input**: `bg-slate-800 text-slate-100 rounded-xl px-3 py-3 text-base`
+- **오행 colors**: wood=#10b981, fire=#f43f5e, earth=#f59e0b, metal=#e2e8f0, water=#3b82f6
+
+### Key File Paths
+- Types: `src/lib/saju/types.ts`
+- Calculator: `src/lib/saju/calculator.ts` → `calculateFullSaju(params)`
+- Compatibility: `src/lib/saju/compatibility.ts` → `calculateCompatibility(a, b)`
+- Daily fortune: `src/lib/saju/daily-fortune.ts` → `calculateDailyFortune(saju, date?)`
+- All exports: `src/lib/saju/index.ts`
+- API client: `src/lib/api/client.ts` → `fetchSSE()`, `fetchJSON()`
+- Stores: `src/stores/userStore.ts`, `src/stores/sajuStore.ts`
+- Hooks: `src/hooks/useSajuCalculation.ts`, `src/hooks/useInterpretation.ts`
+
+### NativeWind v4 Notes
+- All standard RN components (View, Text, TouchableOpacity, etc.) accept `className`
+- No StyleSheet needed — use className for all styles
+- Preset: `require('nativewind/preset')` in tailwind.config.ts
+- Import `global.css` in root layout
+
+### Expo Router Patterns
+- `useLocalSearchParams()` for URL params in stack screens
+- `router.push({ pathname, params })` for navigation with params
+- Tab screens: `app/(tabs)/name.tsx`, Stack screens: `app/category/screen.tsx`
+- `SafeAreaView` from `react-native-safe-area-context`, use `edges={['bottom']}` on modal-style screens
+- `KeyboardAvoidingView` for forms: `behavior={Platform.OS === 'ios' ? 'padding' : 'height'}`
+
 ## FlirtIQ Project Patterns
 
 ### Tech Stack

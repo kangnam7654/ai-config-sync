@@ -12,3 +12,6 @@ logs/
 notion_data_*.json
 tmp_*.json
 claude-code/plugins/marketplaces/
+
+# 로컬 실설정 (민감값 포함, 템플릿만 추적)
+openclaw/openclaw.json

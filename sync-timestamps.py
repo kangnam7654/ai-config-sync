@@ -11,6 +11,7 @@ from pathlib import Path
 EXCLUDES = {
     "workspace": [
         "notion_data_*.json", "tmp_*.json", "*.jsonl", ".git",
+        "tools/flutter", "tools/flutter/**",
     ],
     "claude-code": [
         "history.jsonl", "usage-log.jsonl", "cache", "debug",
@@ -88,6 +89,40 @@ def walk_files(base: Path, section: str) -> dict:
     return result
 
 
+def walk_all_files(base: Path) -> set[str]:
+    """base 하위 전체 파일의 상대경로 집합 반환 (.git 제외)"""
+    result: set[str] = set()
+    if not base.exists():
+        return result
+    for root, dirs, files in os.walk(base):
+        dirs[:] = [d for d in dirs if d != ".git"]
+        for f in files:
+            fp = Path(root) / f
+            result.add(fp.relative_to(base).as_posix())
+    return result
+
+
+def unlink_if_file(path: Path) -> None:
+    """파일/심볼릭링크만 삭제 (디렉토리는 건너뜀)"""
+    try:
+        if path.is_file() or path.is_symlink():
+            path.unlink()
+    except OSError:
+        pass
+
+
+def prune_empty_dirs(base: Path) -> None:
+    """비어있는 디렉토리를 하위부터 정리"""
+    if not base.exists():
+        return
+    dirs = [p for p in base.rglob("*") if p.is_dir()]
+    for d in sorted(dirs, key=lambda p: len(p.parts), reverse=True):
+        try:
+            d.rmdir()
+        except OSError:
+            pass
+
+
 def main():
     sync_dir = Path(sys.argv[1]).expanduser().resolve()
     hostname = sys.argv[2]
@@ -139,6 +174,7 @@ def main():
         repo_section.mkdir(parents=True, exist_ok=True)
 
         local_files = walk_files(local_dir, section)
+        repo_files = walk_all_files(repo_section)
         our_section_ts = our_ts.get(section, {})
 
         # 피어 중 파일별 최신 타임스탬프 추출
@@ -148,16 +184,28 @@ def main():
                 if fp not in peer_best or ts > peer_best[fp][0]:
                     peer_best[fp] = (ts, peer)
 
-        all_files = set(list(local_files.keys()) + list(peer_best.keys()))
+        # 삭제 전파/잔존 파일 정리를 위해 local, peer, 과거 타임스탬프, repo 현재 파일 전체를 합침
+        all_files = (
+            set(local_files.keys())
+            | set(peer_best.keys())
+            | set(our_section_ts.keys())
+            | repo_files
+        )
         applied_from_peer = []
         kept_local = []
+        removed_from_repo = 0
 
         for filepath in sorted(all_files):
-            if not should_include(filepath, section):
-                continue
-
             local_path = local_dir / filepath
             repo_path  = repo_section / filepath
+            included = should_include(filepath, section)
+
+            # 현재 규칙에서 제외된 파일은 repo에서 제거해 stale 누적 방지
+            if not included:
+                if repo_path.exists() or repo_path.is_symlink():
+                    unlink_if_file(repo_path)
+                    removed_from_repo += 1
+                continue
 
             # 우리 타임스탬프: 저장된 값 우선, 없으면 현재 mtime
             our_file_ts  = our_section_ts.get(filepath, local_files.get(filepath, 0.0))
@@ -180,9 +228,10 @@ def main():
                     repo_path.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(str(local_path), str(repo_path))
                     kept_local.append(filepath)
-                elif repo_path.exists():
+                elif repo_path.exists() or repo_path.is_symlink():
                     # 로컬에서 삭제된 파일 → repo에서도 제거
-                    repo_path.unlink()
+                    unlink_if_file(repo_path)
+                    removed_from_repo += 1
 
         # 심볼릭 링크 제거 (claude-code)
         if section == "claude-code":
@@ -190,12 +239,16 @@ def main():
                 if link.is_symlink():
                     link.unlink()
 
+        prune_empty_dirs(repo_section)
+
         if applied_from_peer:
             shown = ", ".join(applied_from_peer[:3])
             extra = f" 외 {len(applied_from_peer)-3}개" if len(applied_from_peer) > 3 else ""
-            print(f"  ← [{section}] 피어 최신 적용: {shown}{extra}")
+            removed_msg = f", repo 정리 {removed_from_repo}개" if removed_from_repo else ""
+            print(f"  ← [{section}] 피어 최신 적용: {shown}{extra}{removed_msg}")
         else:
-            print(f"  → [{section}] 로컬이 최신 ({len(kept_local)}개 파일)")
+            removed_msg = f", repo 정리 {removed_from_repo}개" if removed_from_repo else ""
+            print(f"  → [{section}] 로컬이 최신 ({len(kept_local)}개 파일{removed_msg})")
 
     # ── 현재 타임스탬프 저장 ─────────────────────────────────────
     new_ts = {}

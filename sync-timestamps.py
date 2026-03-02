@@ -22,7 +22,7 @@ EXCLUDES = {
 # claude-config는 화이트리스트 방식 (이 항목만 동기화)
 CLAUDE_INCLUDES = {
     "settings.json", "CLAUDE.md", "stop-hook-git-check.sh",
-    "agents", "plugins", "skills", "agent-memory", "todos", "teams",
+    "agents", "plugins", "skills", "agent-memory", "memory", "todos", "teams",
 }
 
 

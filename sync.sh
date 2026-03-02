@@ -110,7 +110,8 @@ $PYTHON_CMD "$SYNC_DIR/sync-timestamps.py" "$SYNC_DIR" "$HOSTNAME"
 generate_state
 
 # ── 4. 변경사항 push (충돌 시 rebase 후 재시도) ──────────────────
-git add .
+# 동기화 산출물 경로만 add (의도치 않은 파일 커밋 방지)
+git add -A openclaw/workspace claude-code timestamps state
 
 if git diff --cached --quiet; then
   echo "  → 변경사항 없음"
@@ -125,6 +126,10 @@ else
 fi
 
 # ── 5. 로컬 코드 최신화 (스크립트 자체 업데이트 포함) ─────────────
-git pull --rebase origin main 2>/dev/null || true
+if git pull --rebase origin main 2>/dev/null; then
+  echo "  → 코드 최신화 완료"
+else
+  echo "  ⚠️ 코드 최신화 실패 (다음 실행에서 재시도)"
+fi
 
 echo "✅ [$HOSTNAME] 동기화 완료!"

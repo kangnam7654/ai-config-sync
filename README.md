@@ -1,6 +1,6 @@
 # AI Config Sync
 
-Ubuntu ↔ MacBook Pro 간 OpenClaw + Claude Code 설정 양방향 동기화 저장소.
+Ubuntu ↔ MacBook ↔ Windows 간 OpenClaw + Claude Code 설정 양방향 동기화 저장소.
 
 > **보안 주의:** API 키, 토큰 등 민감 정보는 이 레포에 포함되지 않습니다.
 
@@ -23,37 +23,47 @@ Ubuntu ↔ MacBook Pro 간 OpenClaw + Claude Code 설정 양방향 동기화 저
 │   ├── skills/              # 커스텀 스킬
 │   ├── teams/               # 팀 설정
 │   └── todos/               # TODO 목록
-├── setup-mac.sh             # 맥북 초기 설정 자동화 스크립트 (최초 1회)
-└── sync.sh                  # 양방향 동기화 스크립트
+├── setup-mac.sh             # macOS 초기 설정 (최초 1회)
+├── setup-windows.sh         # Windows 초기 설정 (Git Bash, 최초 1회)
+└── sync.sh                  # 양방향 동기화 스크립트 (전 플랫폼)
 ```
 
 ---
 
-## 🖥️ MacBook에서 처음 설정할 때 (최초 1회)
+## 🖥️ 초기 설정 (최초 1회)
+
+### macOS / Ubuntu
 
 ```bash
 git clone https://github.com/kangnam7654/ai-config-sync.git ~/projects/ai-config-sync
 cd ~/projects/ai-config-sync
 bash setup-mac.sh
-
-# Anthropic 인증
-openclaw onboard --anthropic-api-key 'sk-ant-...'
 ```
+
+### Windows (Git Bash)
+
+> **필수:** [Git for Windows](https://gitforwindows.org/) + Python 설치
+
+```bash
+git clone https://github.com/kangnam7654/ai-config-sync.git ~/projects/ai-config-sync
+cd ~/projects/ai-config-sync
+bash setup-windows.sh
+```
+
+Task Scheduler가 자동 등록되며, 30분마다 동기화됩니다.
 
 ---
 
 ## 🔄 일상적인 동기화
 
 ```bash
-# Ubuntu 또는 MacBook 어디서든
+# 모든 플랫폼 공통
 bash sync.sh
 
 # 흐름 예시
-# [MacBook에서 설정 수정]
-#   bash sync.sh              # Mac → GitHub
-#
-# [Ubuntu에서 변경 내용 받기]
-#   bash sync.sh              # GitHub → Ubuntu (자동 newest-wins 병합)
+# [Mac에서 설정 수정]  →  bash sync.sh  →  GitHub
+# [Ubuntu에서 받기]    →  bash sync.sh  →  자동 newest-wins 병합
+# [Windows에서 받기]   →  bash sync.sh  →  자동 newest-wins 병합
 ```
 
 ---

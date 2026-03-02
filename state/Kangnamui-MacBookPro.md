@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> 마지막 업데이트: 2026-03-02 13:36 KST
+> 마지막 업데이트: 2026-03-02 16:06 KST
 
 ## 환경
 - **OS:** macOS 26.3 (arm64)
@@ -14,7 +14,7 @@
 
 ## Cron 목록
 ```
-*/30 * * * * cd ~/projects/ai-config-sync && bash sync-openclaw.sh >> /tmp/openclaw-sync.log 2>&1
+*/30 * * * * cd ~/projects/ai-config-sync && bash sync.sh >> /tmp/ai-config-sync.log 2>&1
 ```
 
 ## 최근 변경된 워크스페이스 파일

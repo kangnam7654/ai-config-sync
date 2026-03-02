@@ -19,11 +19,22 @@ EXCLUDES = {
     ],
 }
 
+# 타임스탬프 키 마이그레이션 (claude-config → claude-code)
+TS_KEY_MIGRATIONS = {"claude-config": "claude-code"}
+
 # claude-code는 화이트리스트 방식 (이 항목만 동기화)
 CLAUDE_INCLUDES = {
     "settings.json", "CLAUDE.md", "stop-hook-git-check.sh",
     "agents", "plugins", "skills", "agent-memory", "memory", "todos", "teams",
 }
+
+
+def migrate_ts_keys(ts: dict) -> dict:
+    """타임스탬프 키 마이그레이션 (예: claude-config → claude-code)"""
+    for old_key, new_key in TS_KEY_MIGRATIONS.items():
+        if old_key in ts and new_key not in ts:
+            ts[new_key] = ts.pop(old_key)
+    return ts
 
 
 def should_include(filepath: str, section: str) -> bool:
@@ -81,9 +92,10 @@ def main():
     sync_dir = Path(sys.argv[1]).expanduser().resolve()
     hostname = sys.argv[2]
 
+    # section key → (로컬 경로, repo 내 하위 경로)
     sections = {
-        "workspace": Path("~/.openclaw/workspace").expanduser(),
-        "claude-code": Path("~/.claude").expanduser(),
+        "workspace": (Path("~/.openclaw/workspace").expanduser(), "openclaw/workspace"),
+        "claude-code": (Path("~/.claude").expanduser(), "claude-code"),
     }
 
     ts_dir = sync_dir / "timestamps"
@@ -91,6 +103,7 @@ def main():
 
     our_ts_file = ts_dir / f"{hostname}.json"
     our_ts: dict = json.loads(our_ts_file.read_text()) if our_ts_file.exists() else {}
+    our_ts = migrate_ts_keys(our_ts)
 
     # ── FETCH_HEAD에서 피어 타임스탬프 읽기 ──────────────────────
     peer_ts_all: dict[str, dict] = {}
@@ -108,7 +121,7 @@ def main():
                 continue
             content, _ = git_cmd(["show", f"FETCH_HEAD:{fname}"], sync_dir)
             try:
-                peer_ts_all[peer] = json.loads(content)
+                peer_ts_all[peer] = migrate_ts_keys(json.loads(content))
             except Exception:
                 pass
 
@@ -118,12 +131,12 @@ def main():
         print("  피어 타임스탬프 없음 (첫 실행이거나 피어 미등록)")
 
     # ── 섹션별 처리 ──────────────────────────────────────────────
-    for section, local_dir in sections.items():
+    for section, (local_dir, repo_subdir) in sections.items():
         if not local_dir.exists():
             continue
 
-        repo_section = sync_dir / section
-        repo_section.mkdir(exist_ok=True)
+        repo_section = sync_dir / repo_subdir
+        repo_section.mkdir(parents=True, exist_ok=True)
 
         local_files = walk_files(local_dir, section)
         our_section_ts = our_ts.get(section, {})
@@ -153,7 +166,7 @@ def main():
             if peer_file_ts > our_file_ts:
                 # 피어가 더 최신 → FETCH_HEAD에서 내용 가져와 로컬 + repo 모두 갱신
                 content_bytes, rc2 = git_bytes(
-                    ["show", f"FETCH_HEAD:{section}/{filepath}"], sync_dir
+                    ["show", f"FETCH_HEAD:{repo_subdir}/{filepath}"], sync_dir
                 )
                 if rc2 == 0:
                     local_path.parent.mkdir(parents=True, exist_ok=True)
@@ -186,7 +199,7 @@ def main():
 
     # ── 현재 타임스탬프 저장 ─────────────────────────────────────
     new_ts = {}
-    for section, local_dir in sections.items():
+    for section, (local_dir, _) in sections.items():
         if local_dir.exists():
             new_ts[section] = walk_files(local_dir, section)
 

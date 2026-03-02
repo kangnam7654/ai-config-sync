@@ -12,14 +12,14 @@ EXCLUDES = {
     "workspace": [
         "notion_data_*.json", "tmp_*.json", "*.jsonl", ".git",
     ],
-    "claude-config": [
+    "claude-code": [
         "history.jsonl", "usage-log.jsonl", "cache", "debug",
         "backups", "file-history", "telemetry", "session-env",
         "shell-snapshots", "ide", "downloads", ".git",
     ],
 }
 
-# claude-config는 화이트리스트 방식 (이 항목만 동기화)
+# claude-code는 화이트리스트 방식 (이 항목만 동기화)
 CLAUDE_INCLUDES = {
     "settings.json", "CLAUDE.md", "stop-hook-git-check.sh",
     "agents", "plugins", "skills", "agent-memory", "memory", "todos", "teams",
@@ -36,8 +36,8 @@ def should_include(filepath: str, section: str) -> bool:
         if fnmatch.fnmatch(filepath, pattern):
             return False
 
-    # claude-config 화이트리스트
-    if section == "claude-config":
+    # claude-code 화이트리스트
+    if section == "claude-code":
         top = parts[0] if parts else ""
         return top in CLAUDE_INCLUDES
 
@@ -83,7 +83,7 @@ def main():
 
     sections = {
         "workspace": Path("~/.openclaw/workspace").expanduser(),
-        "claude-config": Path("~/.claude").expanduser(),
+        "claude-code": Path("~/.claude").expanduser(),
     }
 
     ts_dir = sync_dir / "timestamps"
@@ -171,8 +171,8 @@ def main():
                     # 로컬에서 삭제된 파일 → repo에서도 제거
                     repo_path.unlink()
 
-        # 심볼릭 링크 제거 (claude-config)
-        if section == "claude-config":
+        # 심볼릭 링크 제거 (claude-code)
+        if section == "claude-code":
             for link in repo_section.rglob("*"):
                 if link.is_symlink():
                     link.unlink()

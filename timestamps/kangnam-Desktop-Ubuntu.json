@@ -16541,7 +16541,7 @@
     "memory/2026-02-07.md": 1772323204.5446692,
     "memory/2026-02-05.md": 1772323204.5417259
   },
-  "claude-config": {
+  "claude-code": {
     "stop-hook-git-check.sh": 1772323211.189258,
     "settings.json": 1772323211.185575,
     "CLAUDE.md": 1772323210.7687376,

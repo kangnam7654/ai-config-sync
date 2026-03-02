@@ -32,7 +32,7 @@
     "skills/transport-search/SKILL.md": 1772376591.3135636,
     "skills/transport-search/references/iata-codes.md": 1772376608.5009925
   },
-  "claude-config": {
+  "claude-code": {
     "settings.json": 1772368578.285313,
     "stop-hook-git-check.sh": 1772368578.3522084,
     "CLAUDE.md": 1772368577.5477176,

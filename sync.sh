@@ -96,4 +96,7 @@ else
   echo "  ✅ Push 완료"
 fi
 
+# ── 5. 로컬 코드 최신화 (스크립트 자체 업데이트 포함) ─────────────
+git pull --rebase origin main 2>/dev/null || true
+
 echo "✅ [$HOSTNAME] 동기화 완료!"

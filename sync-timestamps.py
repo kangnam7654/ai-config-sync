@@ -82,7 +82,7 @@ def walk_files(base: Path, section: str) -> dict:
         dirs[:] = [d for d in dirs if d != ".git"]
         for f in files:
             fp = Path(root) / f
-            rel = str(fp.relative_to(base))
+            rel = fp.relative_to(base).as_posix()
             if should_include(rel, section):
                 result[rel] = mtime(fp)
     return result

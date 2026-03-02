@@ -1,16 +1,34 @@
 #!/bin/bash
-# sync.sh - 양방향 자동 동기화 (Mac ↔ Ubuntu)
+# sync.sh - 양방향 자동 동기화 (Mac ↔ Ubuntu ↔ Windows)
 # OpenClaw 워크스페이스 + Claude Code 설정 동기화 (newest-wins)
 # 사용법: bash sync.sh
 
 set -e
 
 SYNC_DIR="$(cd "$(dirname "$0")" && pwd)"
-HOSTNAME=$(hostname -s)
+HOSTNAME=$(hostname -s 2>/dev/null || hostname)
 
 cd "$SYNC_DIR"
 
-echo "🔄 [$HOSTNAME] 동기화 시작..."
+# ── 플랫폼 감지 ──────────────────────────────────────────────────
+detect_platform() {
+  case "$OSTYPE" in
+    darwin*)  PLATFORM="macos" ;;
+    msys*|mingw*|cygwin*) PLATFORM="windows" ;;
+    *)        PLATFORM="linux" ;;
+  esac
+}
+
+detect_platform
+
+# Python 명령어 (Windows: python, Unix: python3)
+if [ "$PLATFORM" = "windows" ]; then
+  PYTHON_CMD="python"
+else
+  PYTHON_CMD="python3"
+fi
+
+echo "🔄 [$HOSTNAME] ($PLATFORM) 동기화 시작..."
 
 # ══════════════════════════════════════════════════
 # 함수: 현재 기기 상태를 state/{hostname}.md에 기록
@@ -19,16 +37,26 @@ generate_state() {
   mkdir -p "$SYNC_DIR/state"
   STATE_FILE="$SYNC_DIR/state/$HOSTNAME.md"
 
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    OS_INFO="macOS $(sw_vers -productVersion) ($(uname -m))"
-  else
-    OS_INFO="$(lsb_release -ds 2>/dev/null || uname -s) ($(uname -m))"
-  fi
+  case "$PLATFORM" in
+    macos)
+      OS_INFO="macOS $(sw_vers -productVersion) ($(uname -m))" ;;
+    windows)
+      OS_INFO="Windows $(cmd //c ver 2>/dev/null | grep -oP '[\d.]+' | head -1 || echo 'unknown') ($(uname -m))" ;;
+    *)
+      OS_INFO="$(lsb_release -ds 2>/dev/null || uname -s) ($(uname -m))" ;;
+  esac
 
   OC_VERSION=$(openclaw --version 2>/dev/null || echo "N/A")
   OC_MODEL=$(openclaw config get agents.defaults.model.primary 2>/dev/null || echo "N/A")
   CLAUDE_VERSION=$(claude --version 2>/dev/null || echo "N/A")
-  CRON_JOBS=$(crontab -l 2>/dev/null | grep -v '^#' | grep -v '^$' || echo "(없음)")
+
+  # 스케줄러 목록 (Unix: cron, Windows: Task Scheduler)
+  if [ "$PLATFORM" = "windows" ]; then
+    SCHEDULED_JOBS=$(schtasks /query /fo LIST /tn "ai-config-sync" 2>/dev/null || echo "(없음)")
+  else
+    SCHEDULED_JOBS=$(crontab -l 2>/dev/null | grep -v '^#' | grep -v '^$' || echo "(없음)")
+  fi
+
   RECENT_FILES=$(find "$HOME/.openclaw/workspace" -type f \
     -not -path '*/.git/*' -newer "$HOME/.openclaw/workspace/MEMORY.md" 2>/dev/null \
     | sed "s|$HOME/.openclaw/workspace/||" | head -10 || echo "(없음)")
@@ -48,9 +76,9 @@ generate_state() {
 ## Claude Code
 - **버전:** $CLAUDE_VERSION
 
-## Cron 목록
+## 스케줄 목록
 \`\`\`
-$CRON_JOBS
+$SCHEDULED_JOBS
 \`\`\`
 
 ## 최근 변경된 워크스페이스 파일
@@ -76,7 +104,7 @@ fi
 
 # ── 2. 파일별 최신 버전 병합 (newest-wins) ───────────────────────
 echo "🔀 파일별 최신 버전 병합 중..."
-python3 "$SYNC_DIR/sync-timestamps.py" "$SYNC_DIR" "$HOSTNAME"
+$PYTHON_CMD "$SYNC_DIR/sync-timestamps.py" "$SYNC_DIR" "$HOSTNAME"
 
 # ── 3. 상태 파일 생성 ────────────────────────────────────────────
 generate_state

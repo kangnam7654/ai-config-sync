@@ -18,11 +18,11 @@ fi
 # 2. 워크스페이스 복원
 echo "📂 워크스페이스 복원 중: $WORKSPACE"
 mkdir -p "$WORKSPACE"
-rsync -av --exclude='*.sh' "$(dirname "$0")/workspace/" "$WORKSPACE/"
+rsync -av --exclude='*.sh' "$(dirname "$0")/openclaw/workspace/" "$WORKSPACE/"
 
 # 3. openclaw.json 생성 (템플릿에서)
 CONFIG_FILE="$CONFIG_DIR/openclaw.json"
-TEMPLATE="$(dirname "$0")/openclaw.template.json"
+TEMPLATE="$(dirname "$0")/openclaw/openclaw.template.json"
 
 if [ ! -f "$CONFIG_FILE" ]; then
   echo ""

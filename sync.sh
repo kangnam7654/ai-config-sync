@@ -1,7 +1,7 @@
 #!/bin/bash
-# sync-openclaw.sh - 양방향 자동 동기화 (Mac ↔ Ubuntu)
+# sync.sh - 양방향 자동 동기화 (Mac ↔ Ubuntu)
 # OpenClaw 워크스페이스 + Claude Code 설정 동기화 (newest-wins)
-# 사용법: bash sync-openclaw.sh
+# 사용법: bash sync.sh
 
 set -e
 

@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> 마지막 업데이트: 2026-03-02 16:35 KST
+> 마지막 업데이트: 2026-03-02 17:16 KST
 
 ## 환경
 - **OS:** macOS 26.3 (arm64)
@@ -12,7 +12,7 @@
 ## Claude Code
 - **버전:** N/A
 
-## Cron 목록
+## 스케줄 목록
 ```
 */30 * * * * cd ~/projects/ai-config-sync && bash sync.sh >> /tmp/ai-config-sync.log 2>&1
 ```

@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> 마지막 업데이트: 2026-03-03 08:00 KST
+> 마지막 업데이트: 2026-03-03 10:00 KST
 
 ## 환경
 - **OS:** macOS 26.3 (arm64)
@@ -23,10 +23,10 @@ idea-lab/jd-analyzer_pm/PLAN.md
 idea-lab/jd-analyzer_pm/SPEC.md
 analyze_notion.py
 todo.json
-tools/flutter/docs/roadmap/[Archive]-Old-Roadmaps.md
 memory/2026-02-03-0610.md
 memory/2026-02-06.md
 memory/2026-02-27.md
 memory/2026-02-07.md
 memory/2026-02-23.md
+memory/2026-02-05.md
 ```

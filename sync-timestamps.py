@@ -58,7 +58,7 @@ def should_include(filepath: str, section: str) -> bool:
 
 def git_cmd(args, cwd):
     r = subprocess.run(["git"] + args, cwd=str(cwd),
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8")
     return r.stdout.strip(), r.returncode
 
 
@@ -137,7 +137,7 @@ def main():
     ts_dir.mkdir(exist_ok=True)
 
     our_ts_file = ts_dir / f"{hostname}.json"
-    our_ts: dict = json.loads(our_ts_file.read_text()) if our_ts_file.exists() else {}
+    our_ts: dict = json.loads(our_ts_file.read_text(encoding="utf-8")) if our_ts_file.exists() else {}
     our_ts = migrate_ts_keys(our_ts)
 
     # ── FETCH_HEAD에서 피어 타임스탬프 읽기 ──────────────────────
@@ -256,7 +256,7 @@ def main():
         if local_dir.exists():
             new_ts[section] = walk_files(local_dir, section)
 
-    our_ts_file.write_text(json.dumps(new_ts, indent=2))
+    our_ts_file.write_text(json.dumps(new_ts, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  ✓ 타임스탬프 저장: timestamps/{hostname}.json")
 
 

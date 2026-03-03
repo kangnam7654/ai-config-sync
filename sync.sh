@@ -1,6 +1,7 @@
 #!/bin/bash
 # sync.sh - 양방향 자동 동기화 (Mac ↔ Ubuntu ↔ Windows)
 # OpenClaw 워크스페이스 + Claude Code 설정 동기화 (newest-wins)
+# Windows는 pull-only (수신만, 푸시 안 함)
 # 사용법: bash sync.sh
 
 set -e
@@ -24,6 +25,8 @@ detect_platform
 # Python 명령어 (Windows: python, Unix: python3)
 if [ "$PLATFORM" = "windows" ]; then
   PYTHON_CMD="python"
+  export PYTHONUTF8=1
+  export PYTHONIOENCODING=utf-8
 else
   PYTHON_CMD="python3"
 fi
@@ -41,7 +44,7 @@ generate_state() {
     macos)
       OS_INFO="macOS $(sw_vers -productVersion) ($(uname -m))" ;;
     windows)
-      OS_INFO="Windows $(cmd //c ver 2>/dev/null | grep -oP '[\d.]+' | head -1 || echo 'unknown') ($(uname -m))" ;;
+      OS_INFO="Windows ($(uname -m))" ;;
     *)
       OS_INFO="$(lsb_release -ds 2>/dev/null || uname -s) ($(uname -m))" ;;
   esac
@@ -52,84 +55,88 @@ generate_state() {
 
   # 스케줄러 목록 (Unix: cron, Windows: Task Scheduler)
   if [ "$PLATFORM" = "windows" ]; then
-    SCHEDULED_JOBS=$(schtasks /query /fo LIST /tn "ai-config-sync" 2>/dev/null || echo "(없음)")
+    SCHEDULED_JOBS=$(schtasks /query /fo LIST /tn "ai-config-sync" 2>/dev/null || echo "(none)")
   else
-    SCHEDULED_JOBS=$(crontab -l 2>/dev/null | grep -v '^#' | grep -v '^$' || echo "(없음)")
+    SCHEDULED_JOBS=$(crontab -l 2>/dev/null | grep -v '^#' | grep -v '^$' || echo "(none)")
   fi
 
   RECENT_FILES=$(find "$HOME/.openclaw/workspace" -type f \
     -not -path '*/.git/*' -newer "$HOME/.openclaw/workspace/MEMORY.md" 2>/dev/null \
-    | sed "s|$HOME/.openclaw/workspace/||" | head -10 || echo "(없음)")
+    | sed "s|$HOME/.openclaw/workspace/||" | head -10 || echo "(none)")
 
   cat > "$STATE_FILE" <<EOF
 # State: $HOSTNAME
-> 마지막 업데이트: $(date '+%Y-%m-%d %H:%M %Z')
+> Last updated: $(date '+%Y-%m-%d %H:%M %Z')
 
-## 환경
+## Environment
 - **OS:** $OS_INFO
 - **Hostname:** $HOSTNAME
 
 ## OpenClaw
-- **버전:** $OC_VERSION
-- **기본 모델:** $OC_MODEL
+- **Version:** $OC_VERSION
+- **Model:** $OC_MODEL
 
 ## Claude Code
-- **버전:** $CLAUDE_VERSION
+- **Version:** $CLAUDE_VERSION
 
-## 스케줄 목록
+## Scheduled Jobs
 \`\`\`
 $SCHEDULED_JOBS
 \`\`\`
 
-## 최근 변경된 워크스페이스 파일
+## Recent Workspace Changes
 \`\`\`
 $RECENT_FILES
 \`\`\`
 EOF
-  echo "  → 상태 기록: state/$HOSTNAME.md"
+  echo "  -> state/$HOSTNAME.md"
 }
 
-# ── 1. Fetch (아직 적용 안 함) ───────────────────────────────────
-echo "⬇️  원격 변경사항 확인 중..."
+# ── 1. Fetch ─────────────────────────────────────────────────────
+echo "  Fetching remote..."
 git fetch origin main
 
 LOCAL=$(git rev-parse HEAD)
 REMOTE=$(git rev-parse origin/main)
 
 if [ "$LOCAL" = "$REMOTE" ]; then
-  echo "  → 원격 이미 최신"
+  echo "  -> Already up to date"
 else
-  echo "  → 원격에 새 변경사항 있음"
+  echo "  -> Remote has new changes"
 fi
 
-# ── 2. 파일별 최신 버전 병합 (newest-wins) ───────────────────────
-echo "🔀 파일별 최신 버전 병합 중..."
+# ── 2. newest-wins merge ─────────────────────────────────────────
+echo "  Merging (newest-wins)..."
 $PYTHON_CMD "$SYNC_DIR/sync-timestamps.py" "$SYNC_DIR" "$HOSTNAME"
 
-# ── 3. 상태 파일 생성 ────────────────────────────────────────────
+# ── 3. Generate state ────────────────────────────────────────────
 generate_state
 
-# ── 4. 변경사항 push (충돌 시 rebase 후 재시도) ──────────────────
-# 동기화 산출물 경로만 add (의도치 않은 파일 커밋 방지)
-git add -A openclaw/workspace claude-code timestamps state
-
-if git diff --cached --quiet; then
-  echo "  → 변경사항 없음"
+# ── 4. Push (Windows는 pull-only → 스킵) ─────────────────────────
+if [ "$PLATFORM" = "windows" ]; then
+  echo "  -> Windows: pull-only mode (skip push)"
 else
-  git commit -m "sync [$HOSTNAME]: $(date '+%Y-%m-%d %H:%M')"
-  if ! git push origin main 2>/dev/null; then
-    echo "  → push 충돌. rebase 후 재시도..."
-    git pull --rebase origin main
-    git push origin main
+  # 동기화 산출물 경로만 add (의도치 않은 파일 커밋 방지)
+  git add -A openclaw/workspace claude-code timestamps state
+
+  if git diff --cached --quiet; then
+    echo "  -> No changes"
+  else
+    git commit -m "sync [$HOSTNAME]: $(date '+%Y-%m-%d %H:%M')"
+    if ! git push origin main 2>/dev/null; then
+      echo "  -> Push conflict, rebasing..."
+      git pull --rebase origin main
+      git push origin main
+    fi
+    echo "  Push OK"
   fi
-  echo "  ✅ Push 완료"
 fi
 
-# ── 5. 로컬 코드 최신화 (스크립트 자체 업데이트 포함) ─────────────
+# ── 5. Pull latest code ──────────────────────────────────────────
 if git pull --rebase origin main 2>/dev/null; then
-  echo "  → 코드 최신화 완료"
+  echo "  -> Code updated"
 else
-  echo "  ⚠️ 코드 최신화 실패 (다음 실행에서 재시도)"
+  echo "  [WARN] Code update failed (will retry next run)"
 fi
 
-echo "✅ [$HOSTNAME] 동기화 완료!"
+echo "Done [$HOSTNAME]"

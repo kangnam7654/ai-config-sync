@@ -1,0 +1,15 @@
+[
+  {
+    "from": "stage2-core",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"2\",\"subject\":\"Create core services: auth, network, persistence (Stage 2)\",\"description\":\"Create core service files for saju-flutter, porting from iOS Swift:\\n\\n1. `lib/core/persistence/secure_storage_service.dart` — flutter_secure_storage wrapper for tokens (accessToken, refreshToken keys). Port from KeychainService.swift.\\n\\n2. `lib/core/persistence/profile_storage.dart` — SharedPreferences wrapper for UserProfile JSON. Port from ProfileStorage.swift.\\n\\n3. `lib/core/auth/pkce_helper.dart` — PKCE code verifier (64 random bytes → base64url) and challenge (SHA256 → base64url). Port from PKCEHelper.swift. Use dart:crypto package.\\n\\n4. `lib/core/network/api_error.dart` — ApiError sealed class with invalidUrl, httpError(statusCode, message), decodingError, networkError, unknown. Korean error messages.\\n\\n5. `lib/core/network/api_client.dart` — Dio-based REST client. POST and GET with optional auth. 401 retry with token refresh. Convenience methods: calculateSaju, calculateCompatibility, calculateDailyFortune. Port from APIClient.swift.\\n\\n6. `lib/core/network/auth_interceptor.dart` — Dio interceptor that adds Bearer token and handles 401 refresh retry.\\n\\n7. `lib/core/network/sse_client.dart` — http package StreamedResponse SSE client. Parse `data: {\\\"text\\\":\\\"...\\\"}` lines, yield text chunks, finish on `data: [DONE]`. Include InterpretationSection model and parseSections() static method. Port from SSEClient.swift.\\n\\n8. `lib/core/auth/auth_state.dart` — AuthState enum: unauthenticated, authenticated, loading\\n\\n9. `lib/core/auth/auth_manager.dart` — Riverpod AsyncNotifier: restoreSession, loginWithChatGPT (url_launcher), exchangeCode, refreshTokens, logout. Port from AuthManager.swift.\\n\\nRead iOS source files at /Users/kangnam/projects/saju/saju-ios/SajuForum/ for exact logic.\",\"assignedBy\":\"stage2-core\",\"timestamp\":\"2026-03-03T07:56:09.311Z\"}",
+    "timestamp": "2026-03-03T07:56:09.311Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "team-lead",
+    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1772524712055@stage2-core\",\"from\":\"team-lead\",\"reason\":\"Task complete, shutting down.\",\"timestamp\":\"2026-03-03T07:58:32.055Z\"}",
+    "timestamp": "2026-03-03T07:58:32.055Z",
+    "read": true
+  }
+]

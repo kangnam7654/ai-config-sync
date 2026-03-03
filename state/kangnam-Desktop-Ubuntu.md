@@ -1,23 +1,23 @@
 # State: kangnam-Desktop-Ubuntu
-> 마지막 업데이트: 2026-03-03 11:00 KST
+> Last updated: 2026-03-03 11:30 KST
 
-## 환경
+## Environment
 - **OS:** Ubuntu 24.04.4 LTS (x86_64)
 - **Hostname:** kangnam-Desktop-Ubuntu
 
 ## OpenClaw
-- **버전:** N/A
-- **기본 모델:** N/A
+- **Version:** N/A
+- **Model:** N/A
 
 ## Claude Code
-- **버전:** N/A
+- **Version:** N/A
 
-## 스케줄 목록
+## Scheduled Jobs
 ```
 */30 * * * * bash /home/kangnam/projects/ai-config-sync/sync.sh >> /home/kangnam/projects/ai-config-sync/logs/sync.log 2>&1
 ```
 
-## 최근 변경된 워크스페이스 파일
+## Recent Workspace Changes
 ```
 SOUL.md
 TOOLS.md

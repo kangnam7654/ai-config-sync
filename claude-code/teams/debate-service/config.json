@@ -1,0 +1,47 @@
+{
+  "name": "debate-service",
+  "description": "Multi-Agent Debate Service - Rust backend + Flutter frontend",
+  "createdAt": 1772525554674,
+  "leadAgentId": "team-lead@debate-service",
+  "leadSessionId": "aeaababb-d1ad-42c4-a5a5-f53a8832c528",
+  "members": [
+    {
+      "agentId": "team-lead@debate-service",
+      "name": "team-lead",
+      "agentType": "team-lead",
+      "model": "claude-opus-4-6",
+      "joinedAt": 1772525554674,
+      "tmuxPaneId": "",
+      "cwd": "/Users/kangnam/projects/auto_company",
+      "subscriptions": []
+    },
+    {
+      "agentId": "reviewer@debate-service",
+      "name": "reviewer",
+      "agentType": "reviewer",
+      "model": "sonnet",
+      "prompt": "Review the Multi-Agent Debate Service project at /Users/kangnam/projects/auto_company/. This has two major parts:\n\n1. **Rust backend** at `backend/` - Axum server with LLM integration, agent orchestration, SSE streaming\n2. **Flutter frontend** at `app/` - Material Design 3 app with SSE streaming, Riverpod state management\n\nCheck for:\n1. Does `cargo build` work in the backend directory? (run it)\n2. Do the Rust data models and SSE event types match between backend and frontend?\n3. Are the API endpoints consistent between backend routes and frontend api_service?\n4. Is the SSE event parsing in the frontend compatible with what the backend sends?\n5. Any obvious bugs, missing imports, or architectural issues?\n\nFocus on integration correctness between the two sides. Give me a concise report of any issues found. If you find issues, list them with file paths and line numbers. Do NOT fix anything - just report.",
+      "color": "yellow",
+      "planModeRequired": false,
+      "joinedAt": 1772526253855,
+      "tmuxPaneId": "in-process",
+      "cwd": "/Users/kangnam/projects/auto_company",
+      "subscriptions": [],
+      "backendType": "in-process"
+    },
+    {
+      "agentId": "code-reviewer@debate-service",
+      "name": "code-reviewer",
+      "agentType": "reviewer",
+      "model": "sonnet",
+      "prompt": "Review the Multi-Agent Debate Service project at /Users/kangnam/projects/auto_company/. This has two major parts:\n\n1. **Rust backend** at `backend/` - Axum server with LLM integration, agent orchestration, SSE streaming\n2. **Flutter frontend** at `app/` - Material Design 3 app with SSE streaming, Riverpod state management\n\nDo the following:\n1. Run `cargo build` in the backend directory to verify it compiles\n2. Check if the SSE event type names match between backend (src/models/events.rs) and frontend (lib/models/debate_event.dart or similar)\n3. Check if API endpoints in backend routes match what frontend api_service.dart calls\n4. Check the SSE event JSON field names match between backend serialization and frontend parsing\n5. Check any obvious architectural issues\n\nGive me a concise report of findings - issues found and things that look correct. Include file paths and line numbers for any issues. Do NOT fix anything.",
+      "color": "purple",
+      "planModeRequired": false,
+      "joinedAt": 1772526263587,
+      "tmuxPaneId": "in-process",
+      "cwd": "/Users/kangnam/projects/auto_company",
+      "subscriptions": [],
+      "backendType": "in-process"
+    }
+  ]
+}

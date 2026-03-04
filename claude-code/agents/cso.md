@@ -2,7 +2,7 @@
 name: cso
 description: "Use this agent when the CEO (or any decision-maker) has proposed a strategic decision requiring critical evaluation — business plans, investments, pivots, partnerships, hiring, product direction, or significant operational changes. Acts as a strategic counterbalance.\n\nExamples:\n\n- CEO proposes pivoting from B2C to B2B SaaS → Launch CSO to validate feasibility and risks\n- CEO wants to hire 5 people and double marketing budget → Launch CSO to verify financial viability\n- CEO drafts a new business plan → Launch CSO for comprehensive strategic review\n- CEO makes multiple consecutive decisions → Proactively launch CSO to check strategic coherence"
 model: opus
-tools: ["Read", "Glob", "Grep", "WebSearch", "WebFetch"]
+tools: ["Read", "Glob", "Grep", "WebSearch", "WebFetch", "Write", "Edit"]
 memory: user
 ---
 

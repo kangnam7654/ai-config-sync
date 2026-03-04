@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> Last updated: 2026-03-04 18:00 KST
+> Last updated: 2026-03-04 22:30 KST
 
 ## Environment
 - **OS:** macOS 26.3 (arm64)
@@ -21,6 +21,7 @@
 ```
 idea-lab/jd-analyzer_pm/PLAN.md
 idea-lab/jd-analyzer_pm/SPEC.md
+osaka_hotels_20260522-25.csv
 analyze_notion.py
 todo.json
 memory/2026-02-03-0610.md
@@ -28,5 +29,4 @@ memory/2026-02-06.md
 memory/2026-02-27.md
 memory/2026-02-07.md
 memory/2026-02-23.md
-memory/2026-02-05.md
 ```

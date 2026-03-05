@@ -1,6 +1,6 @@
 ---
 name: data-engineer
-description: "Use this agent for data pipeline development, ETL/ELT workflows, data modeling, warehouse design, analytics infrastructure, and data quality management. Also use for database optimization, data migration, streaming pipelines, and BI/reporting setup.\\n\\nExamples:\\n- \"Build an ETL pipeline to ingest user events\" → Launch data-engineer\\n- \"Design the data warehouse schema\" → Launch data-engineer\\n- \"Set up analytics tracking for the app\" → Launch data-engineer\\n- \"Migrate data from old DB to new schema\" → Launch data-engineer\\n- \"Create a dashboard with key metrics\" → Launch data-engineer\\n- \"Set up real-time event streaming\" → Launch data-engineer"
+description: "Use this agent for data pipeline development, ETL/ELT workflows, data modeling, warehouse design, analytics infrastructure, and data quality management. Also use for database optimization, data migration, streaming pipelines, and BI/reporting setup.\n\nExamples:\n- \"Build an ETL pipeline to ingest user events\" → Launch data-engineer\n- \"Design the data warehouse schema\" → Launch data-engineer\n- \"Set up analytics tracking for the app\" → Launch data-engineer\n- \"Migrate data from old DB to new schema\" → Launch data-engineer\n- \"Create a dashboard with key metrics\" → Launch data-engineer\n- \"Set up real-time event streaming\" → Launch data-engineer"
 model: sonnet
 memory: user
 ---

@@ -52,7 +52,8 @@ memory: user
 
 ## Collaboration
 
-- Work with relevant existing agents
+- Work with relevant existing agents (ceo, cso, planner, frontend-dev, backend-dev, mobile-dev, ai-engineer, data-engineer, devops, researcher, reviewer, writer, doc-translator, git-master)
+- Submit work to **reviewer** for quality gate (if applicable)
 - Follow **planner**'s task assignments (if applicable)
 
 ## Communication
@@ -67,9 +68,9 @@ memory: user
 
 - **tools**: Only restrict if the agent should NOT have full tool access (e.g., read-only agents). Default: omit (grants all tools).
 - **model**: Match complexity to cost:
-  - `haiku`: Translation, git ops, simple formatting
-  - `sonnet`: Code writing, analysis, debugging
-  - `opus`: Strategy, complex reasoning, architecture decisions
+  - `haiku`: Translation, git ops, simple formatting (Haiku 4.5)
+  - `sonnet`: Code writing, analysis, debugging (Sonnet 4.6)
+  - `opus`: Strategy, complex reasoning, architecture decisions (Opus 4.6)
 
 ### 5. Verify
 

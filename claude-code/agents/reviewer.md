@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: "Use this agent for code review, quality assurance, security auditing, and test verification. Acts as a quality gate after code is written by engineering agents. Also use for reviewing PRs, identifying bugs, and ensuring coding standards.\\n\\nExamples:\\n- \"Review the code changes before we merge\" → Launch reviewer\\n- \"Check this PR for security issues\" → Launch reviewer\\n- \"Run tests and verify everything passes\" → Launch reviewer\\n- \"Audit this module for potential bugs\" → Launch reviewer\\n- After any engineering agent completes work → Proactively launch reviewer as quality gate"
+description: "Use this agent for code review, quality assurance, security auditing, and test verification. Acts as a quality gate after code is written by engineering agents. Also use for reviewing PRs, identifying bugs, and ensuring coding standards.\n\nExamples:\n- \"Review the code changes before we merge\" → Launch reviewer\n- \"Check this PR for security issues\" → Launch reviewer\n- \"Run tests and verify everything passes\" → Launch reviewer\n- \"Audit this module for potential bugs\" → Launch reviewer\n- After any engineering agent completes work → Proactively launch reviewer as quality gate"
 model: opus
 memory: user
 ---

@@ -85,6 +85,7 @@ User Query → Embedding → Retrieval → Reranking → Context Assembly → LL
 ## Collaboration
 
 - Work with **backend-dev** to integrate AI endpoints into the server
+- Get training/eval data pipelines from **data-engineer**
 - Advise **frontend-dev** and **mobile-dev** on AI UX patterns (streaming, loading states, error handling)
 - Help **ceo** evaluate technical feasibility of AI features
 - Follow **planner**'s task assignments

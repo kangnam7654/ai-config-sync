@@ -13,11 +13,10 @@
 3. **DB 우선**: DB가 필요한 프로젝트는 DB 스키마 설계를 가장 먼저 수행 (ERD, 테이블 정의, 관계, 인덱스 등)
 4. **순서**: 설계문서 작성 → 사용자 확인 → 설계에 맞춰 구현
 5. **형식**: Markdown 기본. 필요 시 다이어그램, 테이블 등 활용
-6. **다이어그램**: 아키텍처, 시퀀스, ERD 등은 Mermaid(`.mmd`)로 작성 후 이미지로 렌더링
-   - SVG (권장): `mmdc -i input.mmd -o output.svg -b transparent`
-   - PNG 필요 시: `mmdc -i input.mmd -o output.png -b transparent -s 4` (scale 4x 고해상도)
-   - `.mmd` 원본과 렌더링 결과 모두 `docs/` 안에 보관
-   - Markdown 문서에서는 `![설명](./diagram.svg)` 로 참조
+6. **다이어그램**: 아키텍처, 시퀀스, ERD 등은 Mermaid(`.mmd`)로 작성 후 PNG로 렌더링
+   - `mmdc -i input.mmd -o output.png -b transparent -s 4` (4x 고해상도)
+   - `.mmd` 원본과 `.png` 결과 모두 `docs/` 안에 보관
+   - Markdown 문서에서는 `![설명](./diagram.png)` 로 참조
 
 ## Development Environment
 

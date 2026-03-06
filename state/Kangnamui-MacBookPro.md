@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> Last updated: 2026-03-06 16:30 KST
+> Last updated: 2026-03-06 17:00 KST
 
 ## Environment
 - **OS:** macOS 26.3 (arm64)
@@ -25,8 +25,8 @@ osaka_hotels_20260522-25.csv
 analyze_notion.py
 todo.json
 video-pipeline/script-001.md
+video-pipeline/assets/saju-video.mp4
+video-pipeline/assets/saju-music.mp3
+video-pipeline/assets/saju-music.mp4
 memory/2026-02-03-0610.md
-memory/2026-02-06.md
-memory/2026-02-27.md
-memory/2026-02-07.md
 ```

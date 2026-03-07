@@ -39,7 +39,7 @@ https://flight.naver.com/flights/domestic/{출발공항}-{도착공항}-{YYYYMMD
 ```
 https://www.korail.com/ticket/main
 ```
-- 검색창에 출발역 / 도착역 / 날짜 입력 필요 → 브라우저 `act` 사용
+- 검색창에 출발역 / 도착역 / 날짜 입력 필요 → 브라우저 `fill`, `click` 사용
 - 또는 레츠코레일 앱이 더 빠를 수 있음
 
 **네이버 기차 조회 (더 간편)**
@@ -81,9 +81,9 @@ https://search.naver.com/search.naver?query=제주+배편+{날짜}
 
 - `profile: openclaw` 사용
 - 페이지 로딩 후 **2~3초 대기** 후 screenshot
-- 로그인 팝업 뜨면 `act`으로 닫기 또는 무시하고 뒤 결과 읽기
+- 로그인 팝업 뜨면 `click`으로 닫기 또는 무시하고 뒤 결과 읽기
 - 캡챠 막히면 → 네이버 항공이나 다른 사이트로 전환
-- 결과가 JS 렌더링이라 web_fetch 안됨 → 반드시 브라우저 사용
+- 결과가 JS 렌더링이라 `web_fetch` 안됨 → 반드시 브라우저 사용
 
 ## 결과 전달 형식
 

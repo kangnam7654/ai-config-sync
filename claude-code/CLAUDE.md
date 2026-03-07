@@ -18,6 +18,14 @@
    - `.mmd` 원본과 `.png` 결과 모두 `docs/` 안에 보관
    - Markdown 문서에서는 `![설명](./diagram.png)` 로 참조
 
+## Testing
+
+모든 코드는 작성될 때마다 Unit 테스트와 통합 테스트를 통과해야 한다.
+- **Unit 테스트**: 함수 단위 로직 검증. 외부 의존성은 전부 Mock.
+- **통합 테스트**: 모듈 간 연결 검증. 외부 I/O(API, 파일시스템, DB)만 Mock, 모듈 간 호출은 실제 코드.
+- 코드 변경 후 반드시 `uv run python -m pytest tests/ -q` 로 전체 테스트 통과 확인.
+- 새 기능/모듈 추가 시 해당 기능의 Unit + 통합 테스트도 함께 작성.
+
 ## Development Environment
 
 ### Python

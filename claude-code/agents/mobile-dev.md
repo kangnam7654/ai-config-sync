@@ -2,6 +2,7 @@
 name: mobile-dev
 description: "Use this agent for mobile app development — React Native, Flutter, Swift/SwiftUI, Kotlin/Jetpack Compose, hybrid apps. Covers UI/UX implementation, mobile performance, navigation, state management, and platform features (camera, GPS, push notifications).\n\nExamples:\n- \"Create a login screen with email/password\" → Launch mobile-dev\n- \"iOS keyboard hides the input field\" → Launch mobile-dev\n- \"List scrolling is janky, fix performance\" → Launch mobile-dev\n- \"Review the profile edit screen code\" → Launch mobile-dev\n- \"How to combine tab and stack navigation?\" → Launch mobile-dev"
 model: sonnet
+tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
 ---
 

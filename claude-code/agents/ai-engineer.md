@@ -2,6 +2,7 @@
 name: ai-engineer
 description: "Use this agent for AI/ML feature development — LLM integration, prompt engineering, AI API usage (OpenAI, Anthropic, etc.), model selection, RAG pipelines, embeddings, fine-tuning, data processing, and AI-powered feature implementation.\n\nExamples:\n- \"Add AI-powered chat to the app\" → Launch ai-engineer\n- \"Optimize these prompts for better results\" → Launch ai-engineer\n- \"Build a RAG pipeline with our documents\" → Launch ai-engineer\n- \"Which AI model should we use for this feature?\" → Launch ai-engineer\n- \"Implement semantic search with embeddings\" → Launch ai-engineer\n- \"Set up an AI agent workflow\" → Launch ai-engineer"
 model: sonnet
+tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
 ---
 

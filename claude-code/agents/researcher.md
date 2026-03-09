@@ -2,7 +2,7 @@
 name: researcher
 description: "Use this agent when thorough multi-source research is needed — technology comparisons, trend analysis, competitor research, best practices, market sizing, or any question requiring investigation across multiple sources. Returns structured reports with citations.\n\nExamples:\n- \"React vs Vue 최신 비교 조사해줘\" → Launch researcher\n- \"이 기술 도입 사례 찾아봐\" → Launch researcher\n- \"경쟁사 분석 해줘\" → Launch researcher\n- \"RAG vs fine-tuning 어떤 게 나을까 조사\" → Launch researcher\n- CEO/CSO가 의사결정에 리서치가 필요할 때 → Launch researcher"
 model: sonnet
-tools: ["Read", "Glob", "Grep", "WebSearch", "WebFetch", "Bash"]
+tools: ["Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "Bash"]
 memory: user
 ---
 

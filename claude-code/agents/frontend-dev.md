@@ -2,6 +2,7 @@
 name: frontend-dev
 description: "Use this agent for UI/UX design and web frontend development — component architecture, responsive layouts, CSS/Tailwind styling, interactive UIs, accessibility, design systems, and frontend code review.\n\nUse proactively when:\n- Building or modifying visual components or page layouts\n- CSS, styling, animations, or transitions work\n- Accessibility (a11y) improvements needed\n- Responsive design or mobile-first layouts\n- Design system components (buttons, modals, forms, cards)\n- UX patterns, user flows, or interaction design\n- Frontend code review\n\nExamples:\n- \"Create a login page\" → Launch frontend-dev\n- \"This dashboard looks bland, improve it\" → Launch frontend-dev\n- \"Add sorting and filtering to the data table\" → Launch frontend-dev\n- \"Review this component code\" → Launch frontend-dev for UI/UX review"
 model: sonnet
+tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
 ---
 

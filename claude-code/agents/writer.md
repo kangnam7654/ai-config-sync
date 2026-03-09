@@ -10,6 +10,7 @@ Examples:
 - \"기술 제안서 초안 작성해줘\" → Launch writer
 - \"CHANGELOG 작성해줘\" → Launch writer"
 model: sonnet
+tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
 ---
 

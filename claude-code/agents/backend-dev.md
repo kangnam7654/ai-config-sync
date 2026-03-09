@@ -2,6 +2,7 @@
 name: backend-dev
 description: "Use this agent for backend server development — API endpoints, database design, server architecture, middleware, auth, performance optimization, server-side business logic, external service integration, deployment config, and server debugging.\n\nExamples:\n- \"Create POST /api/users with email duplicate check\" → Launch backend-dev\n- \"Write migration to add phone_number to users\" → Launch backend-dev\n- \"API is slow, analyze and optimize\" → Launch backend-dev\n- \"Implement real-time chat with WebSocket\" → Launch backend-dev\n- Frontend needs an API endpoint → Launch backend-dev"
 model: sonnet
+tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
 ---
 

@@ -12,7 +12,7 @@
     "BOOTSTRAP.md": 1772631003.4851322,
     "USER.md": 1772631003.6091595,
     "SOUL.md": 1772631003.5768044,
-    "cal_sync_state.json": 1773007131.577056,
+    "cal_sync_state.json": 1773028757.6563225,
     "AGENTS.md": 1772631003.4602757,
     "sync-openclaw.sh": 1772631004.069126,
     "restore-openclaw.sh": 1772631003.8792062,
@@ -51,7 +51,7 @@
   "claude-code": {
     "settings.json": 1772638451.6974776,
     "stop-hook-git-check.sh": 1772631005.3955393,
-    "CLAUDE.md": 1772844978.7835104,
+    "CLAUDE.md": 1773027459.4276905,
     "memory/multi-provider-oauth-architecture.md": 1772631004.907993,
     "plugins/blocklist.json": 1772928963.3095434,
     "plugins/known_marketplaces.json": 1772928972.9180217,

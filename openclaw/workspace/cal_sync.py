@@ -9,7 +9,7 @@ from datetime import datetime, timezone, timedelta
 import urllib.request, urllib.error
 
 NOTION_KEY = os.environ.get("NOTION_API_KEY", "")
-NOTION_DB  = "51e30d93-ee03-4545-9386-24758046f4ed"
+NOTION_DB  = "b53115d0-3307-4f56-a76b-2ea22dae80a0"
 CALENDAR_ID = "kangnam7653@gmail.com"
 STATE_FILE = os.path.expanduser("~/.openclaw/workspace/cal_sync_state.json")
 
@@ -51,11 +51,11 @@ def get_notion_events():
             body["start_cursor"] = cursor
         data = json.dumps(body).encode()
         req = urllib.request.Request(
-            f"https://api.notion.com/v1/data_sources/{NOTION_DB}/query",
+            f"https://api.notion.com/v1/databases/{NOTION_DB}/query",
             data=data,
             headers={
                 "Authorization": f"Bearer {NOTION_KEY}",
-                "Notion-Version": "2025-09-03",
+                "Notion-Version": "2022-06-28",
                 "Content-Type": "application/json"
             }, method="POST"
         )
@@ -88,10 +88,13 @@ def get_notion_events():
 
 # ─── GCal 이벤트 조회 ─────────────────────────────────────────
 def get_gcal_events():
+    now = datetime.now()
+    from_dt = (now - timedelta(days=90)).strftime("%Y-%m-%dT00:00:00+09:00")
+    to_dt   = (now + timedelta(days=365)).strftime("%Y-%m-%dT23:59:59+09:00")
     result = subprocess.run(
         ["gog", "calendar", "events", CALENDAR_ID,
-         "--from", "2020-01-01T00:00:00+09:00",
-         "--to", "2030-12-31T23:59:59+09:00",
+         "--from", from_dt,
+         "--to", to_dt,
          "--all-pages", "--max", "500", "--json"],
         capture_output=True, text=True
     )
@@ -120,7 +123,7 @@ def add_to_notion(name, start, end=None, location=""):
             date_obj["end"] = end_clean
 
     payload = {
-        "parent": {"data_source_id": NOTION_DB},
+        "parent": {"database_id": NOTION_DB},
         "properties": {
             "이름": {"title": [{"text": {"content": name[:200]}}]},
             "날짜": {"date": date_obj}
@@ -135,7 +138,7 @@ def add_to_notion(name, start, end=None, location=""):
         data=data,
         headers={
             "Authorization": f"Bearer {NOTION_KEY}",
-            "Notion-Version": "2025-09-03",
+            "Notion-Version": "2022-06-28",
             "Content-Type": "application/json"
         }, method="POST"
     )

@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> Last updated: 2026-03-11 15:00 KST
+> Last updated: 2026-03-11 15:30 KST
 
 ## Environment
 - **OS:** macOS 26.3.1 (arm64)
@@ -23,10 +23,10 @@ idea-lab/jd-analyzer_pm/PLAN.md
 idea-lab/jd-analyzer_pm/SPEC.md
 analyze_notion.py
 kanazawa-trip.html
+osaka-trip.html
 todo.json
 cal_sync.py
 video-pipeline/script-001.md
 video-pipeline/tools/01-extract-subtitle.sh
 video-pipeline/scripts/2026-03-06-new.md
-video-pipeline/scripts/2026-03-06-saju-warning.md
 ```

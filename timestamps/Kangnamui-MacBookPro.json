@@ -1,7 +1,8 @@
 {
   "workspace": {
     "analyze_notion.py": 1772631003.6246173,
-    "kanazawa-trip.html": 1773208473.5857823,
+    "kanazawa-trip.html": 1773209013.4211519,
+    "osaka-trip.html": 1773210268.358131,
     "todo.json": 1772631004.089934,
     "cal_sync.py": 1773032730.5449297,
     "notion_to_gcal_sync.sh": 1772947477.8259065,
@@ -484,8 +485,9 @@
     "agent-memory/ceo/MEMORY.md": 1772631004.3907878,
     "agent-memory/mobile-dev/MEMORY.md": 1772631004.5202827,
     "agent-memory/frontend-dev/MEMORY.md": 1772631004.4710941,
+    "agent-memory/researcher/mcp-client-implementation.md": 1773209399.7497563,
     "agent-memory/researcher/llm-subscription-auth.md": 1773208369.8635886,
-    "agent-memory/researcher/MEMORY.md": 1773208354.1967854,
+    "agent-memory/researcher/MEMORY.md": 1773209388.4470208,
     "agent-memory/backend-dev/MEMORY.md": 1772631004.3699331,
     "skills/travel-planner/SKILL.md": 1773206534.2935953,
     "skills/travel-planner/references/holidays.md": 1773206534.2927864,

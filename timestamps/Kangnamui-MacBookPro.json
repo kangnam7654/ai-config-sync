@@ -1,8 +1,8 @@
 {
   "workspace": {
     "analyze_notion.py": 1772631003.6246173,
-    "kanazawa-trip.html": 1773209013.4211519,
-    "osaka-trip.html": 1773210268.358131,
+    "kanazawa-trip.html": 1773211896.5985398,
+    "osaka-trip.html": 1773211592.3040688,
     "todo.json": 1772631004.089934,
     "cal_sync.py": 1773032730.5449297,
     "notion_to_gcal_sync.sh": 1772947477.8259065,
@@ -15,7 +15,7 @@
     "BOOTSTRAP.md": 1772631003.4851322,
     "USER.md": 1772631003.6091595,
     "SOUL.md": 1772631003.5768044,
-    "cal_sync_state.json": 1773207167.012497,
+    "cal_sync_state.json": 1773210792.3983555,
     "AGENTS.md": 1772631003.4602757,
     "sync-openclaw.sh": 1772631004.069126,
     "restore-openclaw.sh": 1772631003.8792062,
@@ -478,6 +478,8 @@
     "teams/company-sim-service/inboxes/team-lead.json": 1772631005.5103316,
     "teams/flirtiq-subscription/config.json": 1772631005.8118,
     "teams/flirtiq-subscription/inboxes/team-lead.json": 1772631005.8606687,
+    "agent-memory/llm-subscription-auth.md": 1773211756.4638085,
+    "agent-memory/MEMORY.md": 1773211845.9113111,
     "agent-memory/cso/MEMORY.md": 1772631004.4109209,
     "agent-memory/tdd-guide/vitest-patterns.md": 1773206764.9707127,
     "agent-memory/tdd-guide/MEMORY.md": 1773206750.129562,

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>오사카+가나자와 3박4일 커플 여행 플랜</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#fafaf8;color:#2c2c2c;line-height:1.7}
+
+/* ── COVER ── */
+.cover{background:linear-gradient(135deg,#e94560 0%,#0f3460 60%,#1a1a2e 100%);color:#fff;padding:72px 56px;position:relative;overflow:hidden}
+.cover::before{content:'✈️';position:absolute;right:56px;top:50%;transform:translateY(-50%);font-size:100px;opacity:.1}
+.cover .badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:300;margin-bottom:18px;letter-spacing:1px}
+.cover h1{font-size:38px;font-weight:700;line-height:1.2;margin-bottom:10px}
+.cover .subtitle{font-size:15px;font-weight:300;opacity:.7;margin-bottom:26px}
+.cover .meta{display:flex;gap:20px;flex-wrap:wrap}
+.cover .meta-item{display:flex;align-items:center;gap:7px;font-size:13px;opacity:.85}
+
+/* ── CONTAINER ── */
+.container{max-width:800px;margin:0 auto;padding:28px 24px}
+.sec{background:#fff;border-radius:16px;padding:28px;margin-bottom:22px;border:1px solid #ede9e4}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.sec-head span{font-size:22px}
+.sec-head h2{font-size:18px;font-weight:700;color:#1a1a2e}
+
+/* ── FLIGHT CARDS ── */
+.flight-card{background:#fafaf8;border-radius:12px;padding:18px;margin-bottom:12px;border:1px solid #ede9e4}
+.flight-label{font-size:11px;font-weight:600;color:#e94560;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.flight-route{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.f-point{text-align:center;min-width:80px}
+.f-time{font-size:22px;font-weight:700;color:#1a1a2e}
+.f-ap{font-size:11px;color:#888;margin-top:2px}
+.f-mid{flex:1;text-align:center;position:relative}
+.f-dur{font-size:11px;color:#888;margin-bottom:4px}
+.f-line{height:2px;background:linear-gradient(90deg,#e94560,#0f3460);border-radius:2px;margin:0 10px}
+.f-badge{display:inline-block;background:#e8f5e9;color:#2e7d32;font-size:10px;font-weight:700;padding:2px 10px;border-radius:10px;margin-top:4px}
+.f-airline{font-size:11px;color:#888}
+.f-price{font-size:14px;font-weight:700;color:#e94560}
+.flight-info{display:flex;justify-content:space-between;align-items:center}
+
+/* ── ROUTE DIAGRAM ── */
+.route-diagram{background:linear-gradient(135deg,#f8f9fa,#e8f5e9);border-radius:14px;padding:24px;margin-bottom:18px;border:1px solid #c8e6c9}
+.route-flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.route-city{background:#fff;border-radius:10px;padding:8px 16px;text-align:center;border:2px solid #2e7d32;min-width:90px}
+.route-city.active{background:#2e7d32;color:#fff}
+.route-city .city-name{font-size:14px;font-weight:700}
+.route-city .city-sub{font-size:10px;opacity:.7}
+.route-arrow{font-size:18px;color:#2e7d32}
+
+/* ── DAY HEADER ── */
+.day-hd{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:12px;padding:16px 22px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.day-num{font-size:28px;font-weight:700;line-height:1}
+.day-info{flex:1}
+.day-date{font-size:13px;font-weight:500;opacity:.8}
+.day-title{font-size:16px;font-weight:700}
+.day-city-badge{display:inline-block;padding:3px 10px;border-radius:8px;font-size:10px;font-weight:700;margin-left:8px}
+
+/* ── TIMELINE ── */
+.tl{display:flex;gap:14px;margin-bottom:14px;padding-left:4px}
+.tl-t{min-width:44px;font-size:13px;font-weight:700;color:#e94560;padding-top:2px}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:#e94560;margin-top:6px;flex-shrink:0;position:relative}
+.tl-dot::after{content:'';position:absolute;left:4px;top:10px;width:2px;height:calc(100% + 10px);background:#ede9e4}
+.tl:last-child .tl-dot::after{display:none}
+.tl-c{flex:1;padding-bottom:4px}
+.tl-title{font-size:13px;font-weight:700;color:#2c2c2c}
+.tl-desc{font-size:12px;color:#888;line-height:1.6}
+
+/* ── SPOT CARDS ── */
+.spots{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.spot{background:#fafaf8;border-radius:10px;padding:14px;border:1px solid #ede9e4}
+.spot-cat{font-size:10px;font-weight:600;color:#e94560;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.spot-name{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:4px}
+.spot-desc{font-size:11px;color:#888;line-height:1.5}
+.spot-price{font-size:11px;font-weight:600;color:#2e7d32;margin-top:4px}
+
+/* ── HOTEL ── */
+.hotel{background:#fff;border:1px solid #ede9e4;border-radius:14px;padding:18px;margin-bottom:14px}
+.hotel-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.hotel-name{font-size:15px;font-weight:700;color:#1a1a2e}
+.hotel-rating{background:#003580;color:#fff;padding:3px 8px;border-radius:6px;font-size:12px;font-weight:700}
+.hotel-loc{font-size:11px;color:#888;margin-bottom:8px}
+.hotel-price{font-size:16px;font-weight:700;color:#e94560;margin-bottom:8px}
+.hotel-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.htag{display:inline-block;background:#f5f5f5;padding:3px 8px;border-radius:6px;font-size:10px;color:#555}
+.hotel-review{font-size:12px;color:#555;line-height:1.7}
+.hotel-review strong{color:#1a1a2e}
+
+/* ── BUDGET TABLE ── */
+.btable{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.btable th{background:#1a1a2e;color:#fff;padding:10px;text-align:left;font-weight:600}
+.btable td{padding:10px;border-bottom:1px solid #f0ece8}
+.btable .r{text-align:right;font-weight:600;color:#e94560}
+
+/* ── CHECKLIST ── */
+.cl{columns:2;column-gap:20px}
+.ci{break-inside:avoid;display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;color:#555}
+.cb{width:16px;height:16px;border:2px solid #ccc;border-radius:4px;flex-shrink:0}
+
+/* ── FOOTER ── */
+.footer{background:#1a1a2e;color:rgba(255,255,255,.45);text-align:center;padding:22px;font-size:11px;margin-top:10px}
+
+@media print{
+  body{background:#fff}
+  .cover,.day-hd,.btable th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cover::before{display:none!important}
+  *{overflow:visible!important}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="badge">✈️ 커플 여행 플랜 · 2026</div>
+  <h1>오사카 + 가나자와<br>3박 4일</h1>
+  <p class="subtitle">도시의 활기 × 전통의 고즈넉함 · 두 도시 완전 정복</p>
+  <div class="meta">
+    <div class="meta-item">📅 2026년 5월 22~26일 (4가지 출발 옵션)</div>
+    <div class="meta-item">💑 2인 커플 여행</div>
+    <div class="meta-item">💰 150~200만원 (항공+숙박+교통)</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- 루트 다이어그램 -->
+<div class="sec">
+  <div class="sec-head"><span>🗺️</span><h2>여행 루트 — 오픈조(Open Jaw) 항공</h2></div>
+  
+  <div class="route-diagram">
+    <div class="route-flow">
+      <div class="route-city"><div class="city-name">🇰🇷 인천</div><div class="city-sub">ICN</div></div>
+      <div class="route-arrow">✈️→</div>
+      <div class="route-city active"><div class="city-name">🏙️ 오사카</div><div class="city-sub">KIX · 2박</div></div>
+      <div class="route-arrow">🚄→</div>
+      <div class="route-city active"><div class="city-name">🏯 가나자와</div><div class="city-sub">1박</div></div>
+      <div class="route-arrow">✈️→</div>
+      <div class="route-city"><div class="city-name">🇰🇷 인천</div><div class="city-sub">KMQ→ICN</div></div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:#555">
+      <strong>오픈조 항공권:</strong> 가는 편 KIX(간사이공항) · 오는 편 KMQ(고마츠공항) — 편도 2장 별도 구매
+    </div>
+  </div>
+
+  <p style="font-size:13px;color:#888;margin-bottom:16px">
+    한 도시만 가면 아쉬운 당신에게! <strong>오사카의 먹거리·쇼핑</strong>과 <strong>가나자와의 전통미·해산물</strong>을 한 번에.
+    간사이공항(LCC 저렴)으로 들어가고, 가나자와 관광 후 고마츠공항(JAL 직항)으로 귀국하는 알뜰 루트.
+  </p>
+
+  <!-- 오사카→가나자와 이동 수단 -->
+  <div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:12px">🚄 오사카 → 가나자와 이동 수단</div>
+  
+  <div style="background:#fff3e0;border-radius:10px;padding:10px 14px;font-size:11px;color:#e65100;margin-bottom:14px;border:1px solid #ffe0b2">
+    ⚠️ <strong>2024년 3월 변경:</strong> 호쿠리쿠 신칸센 쓰루가 연장으로 썬더버드는 오사카↔쓰루가만 운행. 오사카→가나자와는 <strong>쓰루가 환승</strong> 필요.
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px">
+    <div style="background:#e8f5e9;border-radius:10px;padding:12px;border:1px solid #a5d6a7">
+      <div style="font-size:11px;font-weight:700;color:#2e7d32;margin-bottom:6px">🥇 특급+신칸센 (추천)</div>
+      <div style="font-size:11px;color:#555;line-height:1.6">
+        오사카 →<span style="color:#1565c0"> 썬더버드 1h20m</span><br>
+        → 쓰루가 환승 →<span style="color:#e65100"> 신칸센 45m</span><br>
+        → 가나자와<br>
+        <strong>총 약 2시간 20분</strong><br>
+        <strong style="color:#e94560">1인 약 9,400엔 (₩8.5만)</strong>
+      </div>
+    </div>
+    <div style="background:#fff8e1;border-radius:10px;padding:12px;border:1px solid #fff176">
+      <div style="font-size:11px;font-weight:700;color:#f57f17;margin-bottom:6px">🥈 고속버스 (직행)</div>
+      <div style="font-size:11px;color:#555;line-height:1.6">
+        오사카역 → 가나자와역<br>
+        직행 · 환승 없음<br>
+        <strong>총 약 4시간 30분</strong><br>
+        <strong style="color:#e94560">1인 약 4,500엔 (₩4만)</strong><br>
+        <span style="font-size:10px">예약: 서일본JR버스/북철버스</span>
+      </div>
+    </div>
+    <div style="background:#f3e5f5;border-radius:10px;padding:12px;border:1px solid #ce93d8">
+      <div style="font-size:11px;font-weight:700;color:#7b1fa2;margin-bottom:6px">🥉 야간 고속버스</div>
+      <div style="font-size:11px;color:#555;line-height:1.6">
+        오사카 23시경 출발<br>
+        가나자와 다음날 7시경 도착<br>
+        <strong>숙박 1박 절약 가능!</strong><br>
+        <strong style="color:#e94560">1인 약 4,000엔 (₩3.6만)</strong><br>
+        <span style="font-size:10px;color:#c0392b">⚠ 커플 여행엔 비추</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4가지 출발 옵션 -->
+<div class="sec">
+  <div class="sec-head"><span>✈️</span><h2>4가지 출발 옵션 — 종합 비용 비교</h2></div>
+
+  <p style="font-size:12px;color:#888;margin-bottom:14px">오픈조: 가는 편(ICN→KIX) LCC 편도 + 오는 편(KMQ→ICN) JAL 편도 별도 구매. 오사카 2박 + 가나자와 1박.</p>
+
+  <div style="overflow-x:auto;margin-bottom:14px">
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;border:1px solid #ede9e4;font-size:11px">
+      <thead>
+        <tr style="background:#e94560;color:#fff">
+          <th style="padding:10px 8px;text-align:left;font-weight:600;width:12%">옵션</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:14%">출발 → 귀국</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:8%">숙박</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:7%">연차</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:16%">✈️ 항공 (2인)</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:13%">🏨 숙박 (2인)</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:10%">🚄 이동</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:10%">💰 합계</th>
+          <th style="padding:10px 8px;text-align:center;font-weight:600;width:10%">판정</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #f0ece8">
+          <td style="padding:10px 8px;font-weight:700;color:#7b1010">① 목밤</td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">5/21(목) 밤<br>→ 5/25(월)</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700;color:#c0392b">4박<br><span style="font-size:9px">+1박(새벽)</span></td>
+          <td style="padding:10px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:8px;font-size:9px;font-weight:700">5/22</span></td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            KIX LCC 20~30만<br>+ KMQ JAL 30~40만<br>= <strong>50~70만 /인</strong>
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            4박 40~72만<br><span style="color:#c0392b;font-size:9px">⚠ +1박</span>
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">₩9~17만</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700;color:#c0392b;font-size:12px">149~229만</td>
+          <td style="padding:10px 8px;text-align:center;font-size:9px;color:#888">복잡 △</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0ece8;background:#fffaf5">
+          <td style="padding:10px 8px;font-weight:700;color:#2255a0">② 금아침</td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">5/22(금) 아침<br>→ 5/25(월)</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700">3박<br><span style="font-size:9px;color:#888">오2+가1</span></td>
+          <td style="padding:10px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:8px;font-size:9px;font-weight:700">5/22</span></td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            KIX LCC 25~40만<br>+ KMQ JAL 30~40만<br>= <strong>55~80만 /인</strong><br><span style="font-size:9px;color:#c0392b">금아침 LCC 비쌈</span>
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            3박 30~57만
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">₩9~17만</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700;color:#c0392b;font-size:12px">149~234만</td>
+          <td style="padding:10px 8px;text-align:center;font-size:9px;color:#c0392b">비쌈 ✕</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0ece8">
+          <td style="padding:10px 8px;font-weight:700;color:#555">③ 금밤</td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">5/22(금) 밤<br>→ 5/26(화)</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700;color:#c0392b">4박<br><span style="font-size:9px">+1박(새벽)</span></td>
+          <td style="padding:10px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:8px;font-size:9px;font-weight:700">5/26</span></td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            KIX LCC 20~30만<br>+ KMQ JAL 25~35만<br>= <strong>45~65만 /인</strong><br><span style="font-size:9px;color:#2e7d32">화귀국 저렴</span>
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            4박 32~60만<br><span style="color:#c0392b;font-size:9px">⚠ +1박</span>
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">₩9~17만</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700;font-size:12px">131~202만</td>
+          <td style="padding:10px 8px;text-align:center;font-size:9px;color:#888">+1박 △</td>
+        </tr>
+        <tr style="background:#f0fff0">
+          <td style="padding:10px 8px;font-weight:700;color:#2e7d32">④ 토아침</td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">5/23(토) 아침<br>→ 5/26(화)</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700">3박<br><span style="font-size:9px;color:#2e7d32">오2+가1 ✓</span></td>
+          <td style="padding:10px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:8px;font-size:9px;font-weight:700">5/26</span></td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            KIX LCC 25~35만<br>+ KMQ JAL 25~35만<br>= <strong>50~70만 /인</strong><br><span style="font-size:9px;color:#2e7d32">화귀국 저렴 ✨</span>
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">
+            3박 24~50만<br><span style="font-size:9px;color:#2e7d32">추가 없음 ✓</span>
+          </td>
+          <td style="padding:10px 8px;text-align:center;font-size:10px">₩9~17만</td>
+          <td style="padding:10px 8px;text-align:center;font-weight:700;font-size:12px"><span style="color:#2e7d32">133~207만 ✨</span></td>
+          <td style="padding:10px 8px;text-align:center"><span style="background:#2e7d32;color:#fff;padding:2px 6px;border-radius:6px;font-size:9px;font-weight:700">추천 💰</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 경고 박스 -->
+  <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:10px 14px;font-size:11px;color:#856404;margin-bottom:14px">
+    ⚠️ <strong>밤비행기(①③) 주의:</strong> 새벽 도착 = +1박 추가. 캡슐호텔(₩3~5만)로 절약 가능하지만 커플 여행엔 추천 안 함.
+    <strong>④(토아침)가 추가 비용 없이 깔끔.</strong>
+  </div>
+
+  <!-- 추천 요약 -->
+  <div style="background:#f0fff0;border:2px solid #2e7d32;border-radius:12px;padding:14px 18px;font-size:12px;margin-bottom:8px">
+    <div style="font-weight:700;color:#2e7d32;margin-bottom:6px">✨ Mori 추천</div>
+    <div style="color:#444;line-height:1.8">
+      <strong>🥇 ④ 토아침 (133~207만):</strong> 추가 숙박 없음 + 화 귀국(항공↓) + 피로 없음. 예산 200만원 이내 가능.<br>
+      <strong>🥈 ③ 금밤 (131~202만):</strong> 항공 가장 싸지만 +1박 추가. 체력 자신 있으면 OK.<br>
+      <strong>❌ ②:</strong> 금아침 LCC가 비싸서 비효율. <strong>❌ ①:</strong> +1박에 월귀국 항공도 비쌈.
+    </div>
+  </div>
+  <p style="font-size:10px;color:#bbb">※ 가격은 2026년 5월 연휴 시즌 추정치. 실제 가격은 예약 시점·항공사에 따라 변동.</p>
+</div>
+
+<!-- 항공편 상세 -->
+<div class="sec">
+  <div class="sec-head"><span>✈️</span><h2>항공편 상세 — 오픈조(편도×2)</h2></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+    <div class="flight-card" style="border-left:4px solid #e94560">
+      <div class="flight-label">가는 편 · ICN → KIX (오사카)</div>
+      <div class="flight-route">
+        <div class="f-point"><div class="f-time">07~10시</div><div class="f-ap">인천 ICN</div></div>
+        <div class="f-mid">
+          <div class="f-dur">약 2시간</div>
+          <div class="f-line"></div>
+          <div class="f-badge" style="background:#fff3e0;color:#e65100">LCC 다양</div>
+        </div>
+        <div class="f-point"><div class="f-time">09~12시</div><div class="f-ap">간사이 KIX</div></div>
+      </div>
+      <div style="font-size:11px;color:#555;margin-top:6px">
+        제주항공 · 진에어 · 에어서울 · 피치항공 등<br>
+        <strong style="color:#e94560">편도 1인 15~40만원</strong> (시즌·시간대별)
+      </div>
+      <a href="https://flight.naver.com/flights/international/ICN-KIX-20260523?adult=2&fareType=Y" target="_blank" style="display:inline-block;margin-top:6px;font-size:11px;color:#003580;font-weight:600">→ 네이버 항공 검색 (5/23)</a>
+    </div>
+    <div class="flight-card" style="border-left:4px solid #0f3460">
+      <div class="flight-label">오는 편 · KMQ → ICN (가나자와)</div>
+      <div class="flight-route">
+        <div class="f-point"><div class="f-time">10:15</div><div class="f-ap">고마츠 KMQ</div></div>
+        <div class="f-mid">
+          <div class="f-dur">1시간 55분</div>
+          <div class="f-line"></div>
+          <div class="f-badge">JAL 직항</div>
+        </div>
+        <div class="f-point"><div class="f-time">12:10</div><div class="f-ap">인천 ICN</div></div>
+      </div>
+      <div style="font-size:11px;color:#555;margin-top:6px">
+        일본항공 (JAL) · 대한항공 코드쉐어<br>
+        <strong style="color:#e94560">편도 1인 25~40만원</strong>
+      </div>
+      <a href="https://flight.naver.com/flights/international/KMQ-ICN-20260526?adult=2&fareType=Y" target="_blank" style="display:inline-block;margin-top:6px;font-size:11px;color:#003580;font-weight:600">→ 네이버 항공 검색 (5/26)</a>
+    </div>
+  </div>
+
+  <div style="background:#e3f2fd;border-radius:10px;padding:12px 14px;font-size:11px;color:#1565c0;border:1px solid #90caf9">
+    💡 <strong>오픈조 꿀팁:</strong> 왕복 할인이 안 되지만, KIX행 LCC가 워낙 싸서 JAL KMQ 직항 왕복(59만~/인)보다 오히려 저렴할 수 있음!
+    가는 편·오는 편 따로 검색해서 각각 최저가로 예약.
+  </div>
+</div>
+
+<!-- 숙소 — 오사카 -->
+<div class="sec">
+  <div class="sec-head"><span>🏨</span><h2>숙소 — 오사카 (2박)</h2></div>
+  <p style="font-size:12px;color:#888;margin-bottom:16px">난바·심사이바시 지역 · 호텔 · 1박 ₩10만~30만 기준</p>
+
+  <div class="hotel" style="border-left:4px solid #2e7d32">
+    <div class="hotel-head">
+      <div>
+        <div class="hotel-name">🥇 도미인 프리미엄 난바</div>
+        <div class="hotel-loc">📍 난바역 도보 5분 · 도톤보리 도보 7분</div>
+      </div>
+      <div class="hotel-rating">8.6</div>
+    </div>
+    <div class="hotel-price">₩180,000~220,000 <small>/박 (추정)</small></div>
+    <div class="hotel-tags">
+      <span class="htag">♨️ 옥상 온천</span><span class="htag">요나키소바(夜鳴きそば) 무료</span><span class="htag">해산물 조식</span>
+    </div>
+    <div class="hotel-review">
+      👍 <strong>추천 이유:</strong> 도미인 체인 특유의 온천+야식 서비스. 커플 여행에 가성비 최고. 난바 중심이라 어디든 접근 편리.<br>
+      ❤️ <strong>커플 포인트:</strong> 옥상 노천탕에서 오사카 야경. 체크아웃 후에도 온천 이용 가능(일부 지점).<br>
+      ⚠️ <strong>주의:</strong> 연휴 시즌 조기 매진. 빠른 예약 필수.
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="hotel-head">
+      <div>
+        <div class="hotel-name">🥈 크로스호텔 오사카</div>
+        <div class="hotel-loc">📍 심사이바시역 도보 1분 · 도톤보리 도보 3분</div>
+      </div>
+      <div class="hotel-rating">8.7</div>
+    </div>
+    <div class="hotel-price">₩303,970 <small>/박 (Booking.com 실제가)</small></div>
+    <div class="hotel-tags">
+      <span class="htag">🎨 디자인 호텔</span><span class="htag">레스토랑 조식</span><span class="htag">최고 위치</span>
+    </div>
+    <div class="hotel-review">
+      👍 <strong>추천 이유:</strong> 심사이바시 한복판. 디자인 감각 좋고 객실 퀄리티 높음. "인스타 감성" 여행에 적합.<br>
+      ❤️ <strong>커플 포인트:</strong> 모던한 인테리어 + 도톤보리 야경 도보권. 분위기 중시하면 이 곳.<br>
+      ⚠️ <strong>주의:</strong> 가격대가 높음. 2박 시 ₩60만 이상. 예산 여유 있을 때.
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="hotel-head">
+      <div>
+        <div class="hotel-name">🥉 e hotel Stormu Namba</div>
+        <div class="hotel-loc">📍 난바역 도보 8분</div>
+      </div>
+      <div class="hotel-rating">8.0</div>
+    </div>
+    <div class="hotel-price">₩127,245 <small>/박 (Booking.com 실제가)</small></div>
+    <div class="hotel-tags">
+      <span class="htag">💰 가성비</span><span class="htag">신축 깨끗</span><span class="htag">세탁기 완비</span>
+    </div>
+    <div class="hotel-review">
+      👍 <strong>추천 이유:</strong> 1박 12만원대로 깔끔한 신축. 커플 예산 여행에 적합. 기본에 충실.<br>
+      ❤️ <strong>커플 포인트:</strong> 절약한 돈으로 맛집 투어에 투자!<br>
+      ⚠️ <strong>주의:</strong> 난바역에서 살짝 걸음. 관광 편의보단 가격 우선일 때.
+    </div>
+  </div>
+</div>
+
+<!-- 숙소 — 가나자와 -->
+<div class="sec">
+  <div class="sec-head"><span>🏯</span><h2>숙소 — 가나자와 (1박)</h2></div>
+  <p style="font-size:12px;color:#888;margin-bottom:16px">가나자와역 주변 · 1박만이니 위치+편의 중심 · 다음날 KMQ 이동 고려</p>
+
+  <div class="hotel" style="border-left:4px solid #2e7d32">
+    <div class="hotel-head">
+      <div>
+        <div class="hotel-name">🥇 도미인 프리미엄 가나자와</div>
+        <div class="hotel-loc">📍 가나자와역 도보 7분 · 오미초시장 도보 10분</div>
+      </div>
+      <div class="hotel-rating">8.8</div>
+    </div>
+    <div class="hotel-price">₩190,000~250,000 <small>/박 (추정)</small></div>
+    <div class="hotel-tags">
+      <span class="htag">♨️ 천연 온천</span><span class="htag">요나키소바 무료</span><span class="htag">가나자와 해산물 조식</span>
+    </div>
+    <div class="hotel-review">
+      👍 <strong>추천 이유:</strong> 오사카에서도 도미인 썼다면 포인트 연계! 가나자와 도미인은 특히 조식 해산물 퀄리티가 높기로 유명.<br>
+      ❤️ <strong>커플 포인트:</strong> 여행 마지막 밤 온천으로 마무리. 피로 회복 후 다음날 귀국.<br>
+      ⚠️ <strong>주의:</strong> 인기 많아 조기 예약 필수. 주말 요금 높음.
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="hotel-head">
+      <div>
+        <div class="hotel-name">🥈 호텔 마이스테이즈 프리미어 가나자와</div>
+        <div class="hotel-loc">📍 가나자와역 동구 도보 2분</div>
+      </div>
+      <div class="hotel-rating">8.4</div>
+    </div>
+    <div class="hotel-price">₩130,000~180,000 <small>/박 (추정)</small></div>
+    <div class="hotel-tags">
+      <span class="htag">🚉 역 초근접</span><span class="htag">대욕장</span><span class="htag">조식 뷔페</span>
+    </div>
+    <div class="hotel-review">
+      👍 <strong>추천 이유:</strong> 가나자와역 바로 앞! 짐 보관·이동 최적. 다음날 KMQ 리무진 타기 편리.<br>
+      ❤️ <strong>커플 포인트:</strong> 역앞이라 밤늦게까지 관광 후 편하게 귀환.<br>
+      ⚠️ <strong>주의:</strong> 도미인만큼의 온천 퀄리티는 아님. 위치에 올인하는 선택.
+    </div>
+  </div>
+
+  <div class="hotel">
+    <div class="hotel-head">
+      <div>
+        <div class="hotel-name">🥉 ANA 크라운 플라자 가나자와</div>
+        <div class="hotel-loc">📍 가나자와역 도보 1분 (역 직결)</div>
+      </div>
+      <div class="hotel-rating">8.5</div>
+    </div>
+    <div class="hotel-price">₩250,000~350,000 <small>/박 (추정)</small></div>
+    <div class="hotel-tags">
+      <span class="htag">⭐ 프리미엄</span><span class="htag">역 직결</span><span class="htag">고층 전망</span><span class="htag">풀서비스</span>
+    </div>
+    <div class="hotel-review">
+      👍 <strong>추천 이유:</strong> 가나자와 최고급 호텔 중 하나. 마지막 밤을 특별하게 보내고 싶다면.<br>
+      ❤️ <strong>커플 포인트:</strong> 고층 객실에서 가나자와 야경. "마지막 밤의 특별함".<br>
+      ⚠️ <strong>주의:</strong> 예산 초과 가능성. 1박이니 스플러지할 가치는 있음.
+    </div>
+  </div>
+</div>
+
+<!-- 일정 코스 -->
+<div class="sec">
+  <div class="sec-head"><span>📋</span><h2>모델 일정 — 옵션 ④ 기준 (5/23~26)</h2></div>
+  <p style="font-size:12px;color:#888;margin-bottom:18px">토아침 출발 추천 코스. 다른 옵션도 날짜만 밀어서 적용 가능.</p>
+
+  <!-- Day 1 -->
+  <div class="day-hd">
+    <div class="day-num">D1</div>
+    <div class="day-info">
+      <div class="day-date">5월 23일 (토)</div>
+      <div class="day-title">인천 출발 → 오사카 도착 <span class="day-city-badge" style="background:#e94560;color:#fff">오사카</span></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div class="tl"><div class="tl-t">07~10</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">인천공항 출발 (LCC)</div><div class="tl-desc">간사이공항까지 약 2시간</div></div></div>
+    <div class="tl"><div class="tl-t">11~12</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">간사이공항 도착 → 난바 이동</div><div class="tl-desc">라피트 특급 38분 or 난카이 급행 45분 · ₩900~1,500엔</div></div></div>
+    <div class="tl"><div class="tl-t">13:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">호텔 체크인 & 짐 맡기기</div><div class="tl-desc">체크인 전이면 프론트에 짐 보관</div></div></div>
+    <div class="tl"><div class="tl-t">13:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🍜 점심 — 도톤보리 먹거리 투어</div><div class="tl-desc">타코야끼(쿠쿠루) · 오코노미야끼(미즈노) · 쿠시카츠(다루마)</div></div></div>
+    <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🛍️ 심사이바시스지 쇼핑</div><div class="tl-desc">심사이바시→아메리카무라→오렌지스트리트 · 카페 탐방</div></div></div>
+    <div class="tl"><div class="tl-t">18:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🌅 난바 파크스 옥상 정원</div><div class="tl-desc">도심 속 옥상 공원에서 석양 감상 · 무료</div></div></div>
+    <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🍺 우라난바(裏なんば) 저녁</div><div class="tl-desc">현지인 맛집 골목 · 이자카야 호핑 · 하이볼&꼬치 </div></div></div>
+    <div class="tl"><div class="tl-t">21:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🌃 도톤보리 야경 산책</div><div class="tl-desc">글리코 사인 앞 인증샷 · 도톤보리강 크루즈(₩900엔/20분)</div></div></div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-hd" style="background:linear-gradient(135deg,#7b1010,#c0392b)">
+    <div class="day-num">D2</div>
+    <div class="day-info">
+      <div class="day-date">5월 24일 (일) · 부처님오신날 🪷</div>
+      <div class="day-title">오사카 종일 or 교토 당일치기 <span class="day-city-badge" style="background:#e94560;color:#fff">오사카</span></div>
+    </div>
+  </div>
+
+  <div style="background:#fff8e1;border-radius:10px;padding:12px 14px;font-size:12px;color:#f57f17;margin-bottom:16px;border:1px solid #fff176">
+    💡 <strong>선택:</strong> A) 오사카 종일 관광 — 신세카이·천왕사·오사카성 or B) 교토 당일치기 (JR 신쾌속 약 30분)
+  </div>
+
+  <div style="font-size:13px;font-weight:700;color:#7b1010;margin-bottom:10px">코스 A — 오사카 딥 다이브</div>
+  <div style="margin-bottom:16px">
+    <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🏯 오사카성 공원 산책</div><div class="tl-desc">천수각 입장 600엔 · 니시노마루 정원 200엔 · 광활한 공원 산책</div></div></div>
+    <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🍜 쿠로몬 시장 브런치</div><div class="tl-desc">"오사카의 부엌" · 해산물 · 과일 · 먹으면서 구경</div></div></div>
+    <div class="tl"><div class="tl-t">13:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🗼 신세카이 & 츠텐카쿠</div><div class="tl-desc">레트로 오사카 · 츠텐카쿠 전망대 900엔 · 쿠시카츠 거리</div></div></div>
+    <div class="tl"><div class="tl-t">16:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">☕ 텐노지 · 아베노하루카스 전망대</div><div class="tl-desc">일본 최고층 빌딩 300m 전망대 1,800엔 · 카페 타임</div></div></div>
+    <div class="tl"><div class="tl-t">18:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🍣 저녁 — 회전초밥 or 야키니쿠</div><div class="tl-desc">난바 주변 맛집 · 마지막 오사카 식사</div></div></div>
+    <div class="tl"><div class="tl-t">20:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">♨️ 호텔 온천 & 요나키소바</div><div class="tl-desc">도미인 투숙 시 21:30~23:00 무료 라멘. 내일 이동 전 충전!</div></div></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:700;color:#1565c0;margin-bottom:10px">코스 B — 교토 당일치기</div>
+  <div style="margin-bottom:20px">
+    <div class="tl"><div class="tl-t">08:30</div><div class="tl-dot" style="background:#1565c0"></div><div class="tl-c"><div class="tl-title">🚃 오사카 → 교토 (JR 신쾌속 ~30분)</div><div class="tl-desc">오사카역 출발 · 편도 580엔</div></div></div>
+    <div class="tl"><div class="tl-t">09:30</div><div class="tl-dot" style="background:#1565c0"></div><div class="tl-c"><div class="tl-title">⛩️ 후시미이나리 대사</div><div class="tl-desc">천 개의 도리이 · 무료 입장 · 오전이 한산함</div></div></div>
+    <div class="tl"><div class="tl-t">12:00</div><div class="tl-dot" style="background:#1565c0"></div><div class="tl-c"><div class="tl-title">🍜 니시키 시장 점심</div><div class="tl-desc">"교토의 부엌" · 유바(두부피) · 교토 츠케모노</div></div></div>
+    <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot" style="background:#1565c0"></div><div class="tl-c"><div class="tl-title">🎋 아라시야마 대나무숲</div><div class="tl-desc">토게츠교 · 대나무숲 산책 · 기모노 대여도 가능</div></div></div>
+    <div class="tl"><div class="tl-t">17:00</div><div class="tl-dot" style="background:#1565c0"></div><div class="tl-c"><div class="tl-title">🏛️ 기온 거리 산책</div><div class="tl-desc">하나미코지도리 · 야사카신사 · 게이샤 거리</div></div></div>
+    <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot" style="background:#1565c0"></div><div class="tl-c"><div class="tl-title">🚃 교토 → 오사카 귀환 · 저녁</div><div class="tl-desc">난바로 돌아와 가볍게 식사 · 내일 이동 준비</div></div></div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-hd" style="background:linear-gradient(135deg,#e94560,#0f3460)">
+    <div class="day-num">D3</div>
+    <div class="day-info">
+      <div class="day-date">5월 25일 (월) · 대체공휴일</div>
+      <div class="day-title">오사카 → 가나자와 이동 & 관광 <span class="day-city-badge" style="background:#0f3460;color:#fff">가나자와</span></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div class="tl"><div class="tl-t">08:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">호텔 체크아웃 · 짐 정리</div><div class="tl-desc">캐리어는 가나자와역 코인락커에 보관 예정</div></div></div>
+    <div class="tl"><div class="tl-t">08:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🚄 오사카역 출발 → 가나자와</div><div class="tl-desc">
+      <strong>추천:</strong> 썬더버드(→쓰루가) + 호쿠리쿠신칸센(→가나자와)<br>
+      약 2시간 20분 · 1인 약 9,400엔(₩8.5만)<br>
+      <span style="color:#2e7d32">절약:</span> 고속버스 약 4.5시간 · 1인 약 4,500엔(₩4만)
+    </div></div></div>
+    <div class="tl"><div class="tl-t">11:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와역 도착! 🎉</div><div class="tl-desc">츠즈미몬(鼓門) 대문 인증샷 · 코인락커에 짐 보관 · 버스 1일권 구매(800엔)</div></div></div>
+    <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🦀 오미초 시장 점심</div><div class="tl-desc">가나자와의 부엌 · 노도구로(아카무쓰) 초밥 · 카이센동 · 가니(게) 코로케</div></div></div>
+    <div class="tl"><div class="tl-t">13:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🌿 켄로쿠엔 (兼六園)</div><div class="tl-desc">일본 3대 정원 · 입장 320엔 · 초여름 신록이 절정</div></div></div>
+    <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🎨 21세기 미술관</div><div class="tl-desc">무료존만 봐도 충분 · "스위밍 풀" 인스타 명소 · 유료존 450엔</div></div></div>
+    <div class="tl"><div class="tl-t">16:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🏘️ 히가시차야 거리</div><div class="tl-desc">에도시대 찻집 거리 · 금박 소프트아이스크림 · 기모노 대여 산책</div></div></div>
+    <div class="tl"><div class="tl-t">18:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">호텔 체크인 · 짐 회수</div><div class="tl-desc">역에서 짐 찾아 호텔로</div></div></div>
+    <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🍣 가나자와 저녁 — 회전초밥 or 이자카야</div><div class="tl-desc">모리모리 초밥(가나자와역) · 이타루(居酒屋) · 노도구로 시오야키</div></div></div>
+    <div class="tl"><div class="tl-t">21:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🌙 가나자와역 라이트업 & 온천</div><div class="tl-desc">츠즈미몬 야경 산책 · 호텔 온천으로 여행 마무리</div></div></div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="day-hd" style="background:linear-gradient(135deg,#0f3460,#1a1a2e)">
+    <div class="day-num">D4</div>
+    <div class="day-info">
+      <div class="day-date">5월 26일 (화) · 연차</div>
+      <div class="day-title">가나자와 오전 관광 → 귀국 <span class="day-city-badge" style="background:#0f3460;color:#fff">귀국</span></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:10px">
+    <div class="tl"><div class="tl-t">06:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">조식 & 체크아웃</div><div class="tl-desc">도미인 해산물 조식 or 호텔 조식 · 짐 패킹</div></div></div>
+    <div class="tl"><div class="tl-t">07:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">🌅 나가마치 무사 저택 거리 산책</div><div class="tl-desc">아침 산책 코스 · 토담길 · 인적 없는 고즈넉함 · 무료</div></div></div>
+    <div class="tl"><div class="tl-t">08:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와역 → 고마츠공항</div><div class="tl-desc">리무진 버스 약 40분 · 1,300엔 · 08:00~08:30 탑승 추천</div></div></div>
+    <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠공항 도착 · 체크인</div><div class="tl-desc">출발 1시간 전 · 면세점은 소규모 · 기념품 정리</div></div></div>
+    <div class="tl"><div class="tl-t">10:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">✈️ KMQ → ICN · JAL 직항</div><div class="tl-desc">고마츠 10:15 출발 → 인천 12:10 도착 · 점심시간에 한국!</div></div></div>
+  </div>
+</div>
+
+<!-- 예산 요약 -->
+<div class="sec">
+  <div class="sec-head"><span>💰</span><h2>예산 요약 — 2인 기준 (식비·쇼핑 제외)</h2></div>
+
+  <table class="btable">
+    <thead><tr><th>항목</th><th>내역</th><th class="r">금액 (2인)</th></tr></thead>
+    <tbody>
+      <tr><td>✈️ 항공 (오픈조)</td><td>ICN→KIX 편도 LCC + KMQ→ICN 편도 JAL</td><td class="r">100~140만원</td></tr>
+      <tr><td>🏨 오사카 숙박 (2박)</td><td>가성비~중급 호텔</td><td class="r">24~44만원</td></tr>
+      <tr><td>🏯 가나자와 숙박 (1박)</td><td>도미인~역앞 호텔</td><td class="r">13~25만원</td></tr>
+      <tr><td>🚄 오사카→가나자와</td><td>특급+신칸센 (2인)</td><td class="r">17만원</td></tr>
+      <tr><td>🚌 현지 교통</td><td>KIX→난바 + 버스패스 + 리무진</td><td class="r">5~8만원</td></tr>
+      <tr><td>🎫 입장료</td><td>켄로쿠엔, 미술관, 오사카성 등</td><td class="r">2~4만원</td></tr>
+      <tr style="background:#f0fff0"><td>💰 <strong>가성비 조합</strong></td><td><strong>④ + LCC + 가성비 숙소 + 특급</strong></td><td class="r" style="color:#2e7d32;font-size:15px"><strong>161~238만원</strong></td></tr>
+      <tr style="background:#fff8e1"><td>💰 <strong>절약 조합</strong></td><td><strong>④ + LCC + 가성비 숙소 + 고속버스</strong></td><td class="r" style="color:#e65100;font-size:15px"><strong>153~229만원</strong></td></tr>
+      <tr><td>💰 <strong>프리미엄</strong></td><td><strong>크로스호텔 + ANA크라운 + 특급</strong></td><td class="r" style="font-size:14px"><strong>230~310만원</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:#aaa;margin-top:10px">※ 150~200만원 예산이면 가성비 숙소 + 고속버스(오사카→가나자와)로 맞출 수 있음. 특급 이용 시 약간 초과 가능.</p>
+</div>
+
+<!-- 장단점 비교 -->
+<div class="sec">
+  <div class="sec-head"><span>⚖️</span><h2>오사카+가나자와 vs 단일 도시 — 뭐가 나을까?</h2></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+    <div style="background:#f0fff0;border-radius:10px;padding:14px;border:1px solid #a5d6a7">
+      <div style="font-size:13px;font-weight:700;color:#2e7d32;margin-bottom:8px">👍 합체 루트의 장점</div>
+      <div style="font-size:12px;color:#555;line-height:1.7">
+        • 두 도시의 매력을 <strong>한 번에</strong> 경험<br>
+        • 도시형(오사카) + 전통형(가나자와) 조합<br>
+        • 오픈조로 항공 <strong>오히려 저렴</strong>할 수 있음<br>
+        • "두 도시 돌았다" 만족감 & 여행 밀도 높음<br>
+        • 이동 자체가 관광 (신칸센 차창 풍경)
+      </div>
+    </div>
+    <div style="background:#fff3e0;border-radius:10px;padding:14px;border:1px solid #ffe0b2">
+      <div style="font-size:13px;font-weight:700;color:#e65100;margin-bottom:8px">⚠️ 주의할 점</div>
+      <div style="font-size:12px;color:#555;line-height:1.7">
+        • 3박에 2도시 = 각 도시 체류 짧음<br>
+        • Day 3 이동일 = <strong>반나절 이동</strong><br>
+        • 캐리어 들고 환승 번거로움<br>
+        • 가나자와 온천(야마나카) 가기엔 시간 부족<br>
+        • 예산이 단일 도시보다 <strong>약간 높을 수 있음</strong>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#e8f5e9;border:2px solid #2e7d32;border-radius:12px;padding:14px 18px;font-size:12px">
+    <div style="font-weight:700;color:#2e7d32;margin-bottom:6px">🎯 결론 — 이런 커플에게 추천!</div>
+    <div style="color:#444;line-height:1.8">
+      ✅ "한 도시만으론 아쉬워" → 두 도시 맛보기<br>
+      ✅ "먹거리도 좋고 전통 분위기도 좋고" → 오사카+가나자와 = 완벽 조합<br>
+      ✅ "여행 다니면서 이동도 즐기는 편" → 신칸센 여정 자체가 경험<br>
+      ❌ 한 도시에서 느긋하게 쉬고 싶다면 → 단일 도시 플랜 추천
+    </div>
+  </div>
+</div>
+
+<!-- 체크리스트 -->
+<div class="sec">
+  <div class="sec-head"><span>✅</span><h2>출발 전 체크리스트</h2></div>
+  <div class="cl">
+    <div class="ci"><div class="cb"></div><span>연차 신청 (④→5/26 화)</span></div>
+    <div class="ci"><div class="cb"></div><span>ICN→KIX 편도 항공권 예약 (LCC)</span></div>
+    <div class="ci"><div class="cb"></div><span>KMQ→ICN 편도 항공권 예약 (JAL)</span></div>
+    <div class="ci"><div class="cb"></div><span>오사카 호텔 2박 예약</span></div>
+    <div class="ci"><div class="cb"></div><span>가나자와 호텔 1박 예약</span></div>
+    <div class="ci"><div class="cb"></div><span>썬더버드+신칸센 예약 (e5489 or 역 창구)</span></div>
+    <div class="ci"><div class="cb"></div><span>여행자보험 가입</span></div>
+    <div class="ci"><div class="cb"></div><span>엔화 환전 (₩30~50만 현금)</span></div>
+    <div class="ci"><div class="cb"></div><span>ICOCA 카드 (간사이공항 구매)</span></div>
+    <div class="ci"><div class="cb"></div><span>가나자와 버스 1일권 (역에서 구매)</span></div>
+    <div class="ci"><div class="cb"></div><span>여권 유효기간 확인 (6개월 이상)</span></div>
+    <div class="ci"><div class="cb"></div><span>포켓와이파이 or 일본 eSIM</span></div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <p>✈️ 오사카+가나자와 3박4일 커플 여행 플랜 · 2026년 5월 23~26일 (옵션 ④ 기준)</p>
+  <p style="margin-top:6px">Made with ❤️ by Mori · 가격은 추정치이며 실제 예약 시 변동될 수 있습니다</p>
+</div>
+
+</body>
+</html>

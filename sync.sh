@@ -133,10 +133,16 @@ else
 fi
 
 # ── 5. Pull latest code ──────────────────────────────────────────
-if git pull --rebase origin main 2>/dev/null; then
-  echo "  -> Code updated"
+if [ "$PLATFORM" = "windows" ]; then
+  # Windows는 push하지 않으므로 repo를 remote에 맞춰 리셋
+  git reset --hard origin/main 2>/dev/null
+  echo "  -> Code reset to origin/main"
 else
-  echo "  [WARN] Code update failed (will retry next run)"
+  if git pull --rebase origin main 2>/dev/null; then
+    echo "  -> Code updated"
+  else
+    echo "  [WARN] Code update failed (will retry next run)"
+  fi
 fi
 
 echo "Done [$HOSTNAME]"

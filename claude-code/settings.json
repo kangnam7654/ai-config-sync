@@ -20,8 +20,10 @@
   },
   "enabledPlugins": {
     "ralph-loop@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "postman@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high"
+  "extraKnownMarketplaces": {},
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
 }

@@ -20,6 +20,16 @@
         "lastUpdated": "2026-02-16T21:54:44.388Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
+    ],
+    "postman@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/postman/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-03-11T04:23:54.084Z",
+        "lastUpdated": "2026-03-11T04:23:54.084Z",
+        "gitCommitSha": "0714280351c1a137e79aad465a66730511ffbd57"
+      }
     ]
   }
 }

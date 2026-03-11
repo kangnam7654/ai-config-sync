@@ -2,1194 +2,622 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>가나자와 3박4일 여행 플랜</title>
+<title>가나자와 3박4일 커플 여행 플랜</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
-    background: #fafaf8;
-    color: #2c2c2c;
-    line-height: 1.7;
-  }
-
-  .cover {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: white;
-    padding: 80px 60px;
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cover::before {
-    content: '🏯';
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 120px;
-    opacity: 0.15;
-  }
-
-  .cover .badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 300;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-  }
-
-  .cover h1 {
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
-  .cover .subtitle {
-    font-size: 16px;
-    font-weight: 300;
-    opacity: 0.75;
-    margin-bottom: 30px;
-  }
-
-  .cover .meta {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .cover .meta-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    opacity: 0.85;
-  }
-
-  .cover .meta-item .icon {
-    font-size: 16px;
-  }
-
-  .container {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 50px 40px;
-  }
-
-  .section {
-    margin-bottom: 48px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #e8e4df;
-  }
-
-  .section-header .emoji {
-    font-size: 22px;
-  }
-
-  .section-header h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1a1a2e;
-  }
-
-  /* 항공 카드 */
-  .flight-card {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    border: 1px solid #ede9e4;
-    margin-bottom: 16px;
-  }
-
-  .flight-route {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-
-  .flight-point {
-    text-align: center;
-  }
-
-  .flight-time {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1a1a2e;
-  }
-
-  .flight-airport {
-    font-size: 12px;
-    color: #888;
-    margin-top: 2px;
-  }
-
-  .flight-line {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20px;
-  }
-
-  .flight-duration {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 6px;
-  }
-
-  .flight-arrow {
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(to right, #0f3460, #e94560);
-    position: relative;
-    border-radius: 2px;
-  }
-
-  .flight-arrow::after {
-    content: '▶';
-    position: absolute;
-    right: -4px;
-    top: -8px;
-    font-size: 12px;
-    color: #e94560;
-  }
-
-  .flight-badge {
-    display: inline-block;
-    background: #e8f5e9;
-    color: #2e7d32;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-    margin-top: 6px;
-  }
-
-  .flight-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 16px;
-    border-top: 1px solid #f0ece8;
-  }
-
-  .flight-airline {
-    font-size: 13px;
-    color: #555;
-  }
-
-  .flight-price {
-    font-size: 22px;
-    font-weight: 700;
-    color: #e94560;
-  }
-
-  .flight-price-note {
-    font-size: 11px;
-    color: #aaa;
-    font-weight: 400;
-  }
-
-  /* 예산 표 */
-  .budget-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    border: 1px solid #ede9e4;
-  }
-
-  .budget-table th {
-    background: #1a1a2e;
-    color: white;
-    padding: 14px 20px;
-    text-align: left;
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .budget-table td {
-    padding: 14px 20px;
-    font-size: 14px;
-    border-bottom: 1px solid #f5f2ef;
-  }
-
-  .budget-table tr:last-child td {
-    border-bottom: none;
-    background: #fdf8f3;
-    font-weight: 700;
-  }
-
-  .budget-table .amount {
-    text-align: right;
-    font-weight: 500;
-  }
-
-  .budget-table tr:last-child .amount {
-    color: #e94560;
-    font-size: 16px;
-  }
-
-  /* 일정 카드 */
-  .day-card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    border: 1px solid #ede9e4;
-    margin-bottom: 20px;
-  }
-
-  .day-header {
-    padding: 18px 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .day-header.day1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
-  .day-header.day2 { background: linear-gradient(135deg, #0f3460, #1a4a7a); }
-  .day-header.day3 { background: linear-gradient(135deg, #16213e, #0f3460); }
-  .day-header.day4 { background: linear-gradient(135deg, #1a2e1a, #1a3a1a); }
-
-  .day-num {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .day-title {
-    color: white;
-  }
-
-  .day-title .date {
-    font-size: 13px;
-    opacity: 0.7;
-    font-weight: 300;
-    margin-bottom: 2px;
-  }
-
-  .day-title .theme {
-    font-size: 16px;
-    font-weight: 700;
-  }
-
-  .day-body {
-    padding: 20px 24px;
-  }
-
-  .timeline-item {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    align-items: flex-start;
-  }
-
-  .timeline-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .tl-time {
-    font-size: 12px;
-    color: #888;
-    font-weight: 500;
-    min-width: 40px;
-    padding-top: 2px;
-  }
-
-  .tl-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #0f3460;
-    margin-top: 6px;
-    flex-shrink: 0;
-  }
-
-  .tl-content {
-    flex: 1;
-  }
-
-  .tl-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a2e;
-    margin-bottom: 2px;
-  }
-
-  .tl-desc {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.5;
-  }
-
-  /* 포인트 박스 */
-  .highlight-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  .highlight-card {
-    background: white;
-    border-radius: 14px;
-    padding: 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    border: 1px solid #ede9e4;
-  }
-
-  .highlight-card .hc-emoji {
-    font-size: 24px;
-    margin-bottom: 8px;
-  }
-
-  .highlight-card .hc-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 4px;
-  }
-
-  .highlight-card .hc-desc {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.5;
-  }
-
-  /* 체크리스트 */
-  .checklist {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    border: 1px solid #ede9e4;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: #333;
-  }
-
-  .check-box {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    flex-shrink: 0;
-  }
-
-  /* 날씨 박스 */
-  .info-bar {
-    background: linear-gradient(135deg, #e8f5f9, #d4eef7);
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 20px;
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    border: 1px solid #b8e0ef;
-  }
-
-  .info-bar-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: #1a3a4a;
-  }
-
-  .info-bar-item .label {
-    font-weight: 500;
-  }
-
-  .footer {
-    background: #1a1a2e;
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 24px;
-    font-size: 12px;
-    margin-top: 20px;
-  }
-
-  /* 호텔 카드 */
-  .hotel-card {
-    background: white;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    border: 1px solid #ede9e4;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hotel-tier {
-    height: 5px;
-  }
-  .tier-budget { background: linear-gradient(to right, #4caf50, #81c784); }
-  .tier-mid { background: linear-gradient(to right, #ff9800, #ffb74d); }
-  .tier-premium { background: linear-gradient(to right, #e91e63, #f48fb1); }
-
-  .hotel-body {
-    padding: 18px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .hotel-name {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1a1a2e;
-  }
-
-  .hotel-sub {
-    font-size: 12px;
-    color: #888;
-  }
-
-  .hotel-rating {
-    font-size: 13px;
-    color: #444;
-    font-weight: 500;
-  }
-
-  .hotel-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 4px;
-  }
-
-  .tag {
-    background: #f5f2ef;
-    color: #555;
-    padding: 3px 9px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-  }
-
-  .hotel-price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: auto;
-    padding-top: 12px;
-    border-top: 1px solid #f0ece8;
-  }
-
-  .hotel-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: #e94560;
-  }
-
-  .per-night {
-    font-size: 11px;
-    font-weight: 400;
-    color: #aaa;
-  }
-
-  .hotel-total {
-    font-size: 12px;
-    color: #888;
-    margin-top: 2px;
-  }
-
-  .book-btn {
-    display: inline-block;
-    background: #003580;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .book-btn-premium {
-    background: linear-gradient(135deg, #b8860b, #daa520);
-  }
-
-  @media print {
-    body { background: white; }
-    .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .day-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .budget-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#fafaf8;color:#2c2c2c;line-height:1.7}
+
+/* ── COVER ── */
+.cover{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:72px 56px;position:relative;overflow:hidden}
+.cover::before{content:'🏯';position:absolute;right:56px;top:50%;transform:translateY(-50%);font-size:110px;opacity:.13}
+.cover .badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:300;margin-bottom:18px;letter-spacing:1px}
+.cover h1{font-size:40px;font-weight:700;line-height:1.2;margin-bottom:10px}
+.cover .subtitle{font-size:15px;font-weight:300;opacity:.7;margin-bottom:26px}
+.cover .meta{display:flex;gap:20px;flex-wrap:wrap}
+.cover .meta-item{display:flex;align-items:center;gap:7px;font-size:13px;opacity:.85}
+
+/* ── CONTAINER ── */
+.wrap{max-width:820px;margin:0 auto;padding:48px 36px}
+.sec{margin-bottom:48px}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #e8e4df}
+.sec-head h2{font-size:19px;font-weight:700;color:#1a1a2e}
+
+/* ── INFO BAR ── */
+.info-bar{background:linear-gradient(135deg,#e8f5f9,#d4eef7);border-radius:12px;padding:14px 18px;margin-bottom:18px;display:flex;gap:20px;flex-wrap:wrap;border:1px solid #b8e0ef}
+.info-item{display:flex;align-items:center;gap:7px;font-size:13px;color:#1a3a4a}
+.info-item .lbl{font-weight:600}
+
+/* ── FLIGHT ── */
+.flight-card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;margin-bottom:14px}
+.flight-label{font-size:11px;color:#999;font-weight:600;letter-spacing:.5px;margin-bottom:14px}
+.flight-route{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.f-point{text-align:center}
+.f-time{font-size:26px;font-weight:700;color:#1a1a2e}
+.f-ap{font-size:11px;color:#999;margin-top:2px}
+.f-mid{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 16px}
+.f-dur{font-size:11px;color:#999;margin-bottom:5px}
+.f-line{width:100%;height:2px;background:linear-gradient(to right,#0f3460,#e94560);border-radius:2px;position:relative}
+.f-line::after{content:'▶';position:absolute;right:-4px;top:-8px;font-size:11px;color:#e94560}
+.f-badge{background:#e8f5e9;color:#2e7d32;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:600;margin-top:5px}
+.flight-info{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid #f0ece8}
+.f-airline{font-size:12px;color:#666}
+.f-price{font-size:20px;font-weight:700;color:#e94560}
+.f-price small{font-size:11px;font-weight:400;color:#bbb}
+
+/* ── BUDGET TABLE ── */
+.btable{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4}
+.btable th{background:#1a1a2e;color:#fff;padding:13px 18px;text-align:left;font-size:12px;font-weight:500}
+.btable td{padding:13px 18px;font-size:13px;border-bottom:1px solid #f5f2ef}
+.btable tr:last-child td{border-bottom:none;background:#fdf8f3;font-weight:700}
+.btable .r{text-align:right;font-weight:500}
+.btable tr:last-child .r{color:#e94560;font-size:15px}
+
+/* ── SPOT GRID ── */
+.spot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.spot-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid #ede9e4}
+.spot-card .em{font-size:22px;margin-bottom:7px}
+.spot-card .name{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:3px}
+.spot-card .desc{font-size:12px;color:#666;line-height:1.5}
+
+/* ── COURSE TABS ── */
+.course-nav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.course-badge{padding:8px 18px;border-radius:24px;font-size:13px;font-weight:700;border:2px solid transparent}
+.cA{background:#1a1a2e;color:#fff}
+.cB{background:#0f5132;color:#fff}
+.cC{background:#6f3000;color:#fff}
+.course-block{margin-bottom:28px}
+.course-title-bar{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:16px 20px;border-radius:14px}
+.ctA{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.ctB{background:linear-gradient(135deg,#0f5132,#1a7a4a)}
+.ctC{background:linear-gradient(135deg,#6f3000,#a05000)}
+.course-title-bar .ct-icon{font-size:28px}
+.course-title-bar .ct-info .ct-tag{font-size:11px;color:rgba(255,255,255,.6);font-weight:300;margin-bottom:3px}
+.course-title-bar .ct-info .ct-name{font-size:17px;font-weight:700;color:#fff}
+.course-title-bar .ct-info .ct-sub{font-size:12px;color:rgba(255,255,255,.7);margin-top:3px}
+
+/* ── DAY CARD ── */
+.day-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;margin-bottom:14px}
+.day-hd{padding:14px 20px;display:flex;align-items:center;gap:12px}
+.dhA1{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.dhA2{background:linear-gradient(135deg,#0f3460,#1a4a7a)}
+.dhA3{background:linear-gradient(135deg,#16213e,#0f3460)}
+.dhA4{background:linear-gradient(135deg,#1a2e1a,#1a3a1a)}
+.dhB1{background:linear-gradient(135deg,#0f5132,#186a3b)}
+.dhB2{background:linear-gradient(135deg,#1a6b44,#1f8b5a)}
+.dhB3{background:linear-gradient(135deg,#0a4a2e,#0f5132)}
+.dhB4{background:linear-gradient(135deg,#0a3020,#0f4530)}
+.dhC1{background:linear-gradient(135deg,#6f3000,#8b3a00)}
+.dhC2{background:linear-gradient(135deg,#8b4500,#a05000)}
+.dhC3{background:linear-gradient(135deg,#7a3800,#9a4800)}
+.dhC4{background:linear-gradient(135deg,#5a2500,#7a3500)}
+.day-num{background:rgba(255,255,255,.2);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.day-meta{color:#fff}
+.day-meta .dm-date{font-size:11px;opacity:.65;font-weight:300;margin-bottom:1px}
+.day-meta .dm-theme{font-size:15px;font-weight:700}
+.day-body{padding:18px 20px}
+.tl{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.tl:last-child{margin-bottom:0}
+.tl-t{font-size:11px;color:#999;font-weight:500;min-width:36px;padding-top:2px}
+.tl-dot{width:7px;height:7px;border-radius:50%;background:#0f3460;margin-top:6px;flex-shrink:0}
+.tl-c .tl-title{font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:1px}
+.tl-c .tl-desc{font-size:12px;color:#666;line-height:1.5}
+
+/* ── HOTEL ── */
+.hotel-tier-bar{height:4px}
+.hta{background:linear-gradient(to right,#4caf50,#81c784)}
+.htm{background:linear-gradient(to right,#ff9800,#ffb74d)}
+.htp{background:linear-gradient(to right,#e91e63,#f48fb1)}
+.hotel-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4}
+.hotel-inner{padding:18px}
+.h-name{font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:2px}
+.h-sub{font-size:11px;color:#999;margin-bottom:8px}
+.h-score{display:inline-block;background:#1a1a2e;color:#fff;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-bottom:8px}
+.h-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.htag{background:#f5f2ef;color:#555;padding:2px 8px;border-radius:14px;font-size:10px;font-weight:500}
+
+/* 리뷰 박스 */
+.h-review{background:#fafaf8;border-radius:10px;padding:12px 14px;margin-bottom:12px;border:1px solid #ede9e4}
+.h-review-row{display:flex;gap:6px;margin-bottom:7px;font-size:12px;line-height:1.5}
+.h-review-row:last-child{margin-bottom:0}
+.h-rv-icon{flex-shrink:0;font-size:13px}
+.h-rv-label{font-weight:600;color:#444;min-width:48px;flex-shrink:0}
+.h-rv-text{color:#555}
+
+.h-price-row{display:flex;justify-content:space-between;align-items:flex-end;padding-top:12px;border-top:1px solid #f0ece8}
+.h-price{font-size:17px;font-weight:700;color:#e94560}
+.h-price small{font-size:10px;font-weight:400;color:#bbb}
+.h-total{font-size:11px;color:#999;margin-top:1px}
+.book-btn{display:inline-block;background:#003580;color:#fff;padding:7px 13px;border-radius:7px;font-size:11px;font-weight:600;text-decoration:none}
+.book-gold{background:linear-gradient(135deg,#b8860b,#daa520)}
+
+/* ── CHECKLIST ── */
+.checklist{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.ci{display:flex;align-items:center;gap:8px;font-size:12px;color:#333}
+.cb{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;flex-shrink:0}
+
+/* ── FOOTER ── */
+.footer{background:#1a1a2e;color:rgba(255,255,255,.45);text-align:center;padding:22px;font-size:11px;margin-top:10px}
+
+@media print{
+  body{background:#fff}
+  .cover,.day-hd,.course-title-bar,.btable th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 </style>
 </head>
 <body>
 
-<!-- 커버 -->
+<!-- COVER -->
 <div class="cover">
   <div class="badge">✈️ 커플 여행 플랜 · 2026</div>
   <h1>가나자와<br>3박 4일</h1>
-  <p class="subtitle">일본 전통문화의 보석 · 켄로쿠엔 · 해산물 · 차야가이</p>
+  <p class="subtitle">일본 전통문화의 보석 · 켄로쿠엔 · 해산물 · 온천</p>
   <div class="meta">
-    <div class="meta-item"><span class="icon">📅</span><span>2026년 5월 22일(금) ~ 25일(월)</span></div>
-    <div class="meta-item"><span class="icon">💑</span><span>2인 여행</span></div>
-    <div class="meta-item"><span class="icon">🌤️</span><span>18~21°C · 맑음</span></div>
-    <div class="meta-item"><span class="icon">🗾</span><span>이시카와현 가나자와시</span></div>
+    <div class="meta-item">📅 2026년 5월 22일(금) ~ 25일(월)</div>
+    <div class="meta-item">💑 2인 커플 여행</div>
+    <div class="meta-item">🌤️ 18~21°C · 맑음</div>
+    <div class="meta-item">🗾 이시카와현 가나자와시</div>
   </div>
 </div>
 
-<div class="container">
+<div class="wrap">
 
-  <!-- 날씨 & 시기 -->
-  <div class="section">
-    <div class="info-bar">
-      <div class="info-bar-item"><span>🌸</span><span class="label">5월 하순</span> <span>신록 절정기 · 벚꽃 끝나고 초록이 가득</span></div>
-      <div class="info-bar-item"><span>🌡️</span><span class="label">기온</span> <span>18~21°C · 야외 활동 최적</span></div>
-      <div class="info-bar-item"><span>☀️</span><span class="label">날씨</span> <span>맑음 위주 · 가끔 소나기 가능</span></div>
-      <div class="info-bar-item"><span>🏖️</span><span class="label">혼잡도</span> <span>골든위크 이후 · 비교적 한산</span></div>
-    </div>
+<!-- 날씨 & 시기 -->
+<div class="sec">
+  <div class="info-bar">
+    <div class="info-item">🌸 <span class="lbl">5월 하순</span> — 신록 절정 · 벚꽃 끝나고 초록이 가득</div>
+    <div class="info-item">🌡️ <span class="lbl">기온</span> 18~21°C · 야외 최적</div>
+    <div class="info-item">☀️ <span class="lbl">날씨</span> 맑음 위주 · 소나기 가끔</div>
+    <div class="info-item">🏖️ <span class="lbl">혼잡도</span> 골든위크 이후 · 비교적 한산</div>
   </div>
-
-  <!-- 항공편 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="emoji">✈️</span>
-      <h2>항공편</h2>
-    </div>
-
-    <div class="flight-card">
-      <div style="font-size: 12px; color: #888; font-weight: 500; margin-bottom: 16px; letter-spacing: 0.5px;">가는 편 · 5월 22일 (금) — 연차</div>
-      <div class="flight-route">
-        <div class="flight-point">
-          <div class="flight-time">07:30</div>
-          <div class="flight-airport">인천 ICN</div>
-        </div>
-        <div class="flight-line">
-          <div class="flight-duration">1시간 45분</div>
-          <div class="flight-arrow"></div>
-          <div class="flight-badge">직항</div>
-        </div>
-        <div class="flight-point">
-          <div class="flight-time">09:15</div>
-          <div class="flight-airport">고마츠 KMQ</div>
-        </div>
-      </div>
-      <div class="flight-info">
-        <div class="flight-airline">일본항공 (JAL) · 대한항공 공동운항</div>
-        <div class="flight-price">592,500원 <span class="flight-price-note">~/인</span></div>
-      </div>
-    </div>
-
-    <div class="flight-card">
-      <div style="font-size: 12px; color: #888; font-weight: 500; margin-bottom: 16px; letter-spacing: 0.5px;">오는 편 · 5월 25일 (월) — 대체공휴일</div>
-      <div class="flight-route">
-        <div class="flight-point">
-          <div class="flight-time">10:15</div>
-          <div class="flight-airport">고마츠 KMQ</div>
-        </div>
-        <div class="flight-line">
-          <div class="flight-duration">1시간 55분</div>
-          <div class="flight-arrow"></div>
-          <div class="flight-badge">직항</div>
-        </div>
-        <div class="flight-point">
-          <div class="flight-time">12:10</div>
-          <div class="flight-airport">인천 ICN</div>
-        </div>
-      </div>
-      <div class="flight-info">
-        <div class="flight-airline">일본항공 (JAL) · 대한항공 공동운항</div>
-        <div class="flight-price">왕복 동일편</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 예산 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="emoji">💰</span>
-      <h2>예상 예산 (2인 합계 · 식비/쇼핑 제외)</h2>
-    </div>
-    <table class="budget-table">
-      <thead>
-        <tr>
-          <th>항목</th>
-          <th>내역</th>
-          <th class="amount" style="text-align:right">금액</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>✈️ 항공 (왕복)</td>
-          <td>JAL 직항 · 2인</td>
-          <td class="amount">약 118~125만원</td>
-        </tr>
-        <tr>
-          <td>🏨 숙박 (3박)</td>
-          <td>가나자와 시내 호텔 · 2인1실</td>
-          <td class="amount">30~45만원</td>
-        </tr>
-        <tr>
-          <td>🚌 현지 교통</td>
-          <td>버스패스 + 공항 리무진</td>
-          <td class="amount">10~15만원</td>
-        </tr>
-        <tr>
-          <td>🎫 입장료</td>
-          <td>켄로쿠엔, 미술관 등</td>
-          <td class="amount">3~5만원</td>
-        </tr>
-        <tr>
-          <td>💰 <strong>합계</strong></td>
-          <td><strong>식비·쇼핑 별도</strong></td>
-          <td class="amount">161~190만원</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 여행 하이라이트 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="emoji">⭐</span>
-      <h2>가나자와 핵심 스팟</h2>
-    </div>
-    <div class="highlight-grid">
-      <div class="highlight-card">
-        <div class="hc-emoji">🌿</div>
-        <div class="hc-title">켄로쿠엔 (兼六園)</div>
-        <div class="hc-desc">일본 3대 정원 중 하나. 5월 신록이 절정. 이른 아침 방문 추천 (혼잡 전)</div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-emoji">🏮</div>
-        <div class="hc-title">히가시 차야가이 (東茶屋街)</div>
-        <div class="hc-desc">에도시대 게이샤 골목. 황혼 무렵이 가장 로맨틱. 골드 소프트크림 필수</div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-emoji">🎨</div>
-        <div class="hc-title">21세기미술관</div>
-        <div class="hc-desc">인증샷 명소 1위. 수영장 착시 작품. 현대미술을 가볍게 즐기는 공간</div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-emoji">🦀</div>
-        <div class="hc-title">오미초 시장 해산물</div>
-        <div class="hc-desc">흰새우, 방어, 가나자와 오마카세 스시. 도쿄보다 가성비 훨씬 좋음</div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-emoji">🏔️</div>
-        <div class="hc-title">야마나카 온천</div>
-        <div class="hc-desc">가나자와에서 버스 1시간. 계곡 온천 마을. 당일치기 힐링 코스</div>
-      </div>
-      <div class="highlight-card">
-        <div class="hc-emoji">🏯</div>
-        <div class="hc-title">가나자와성</div>
-        <div class="hc-desc">켄로쿠엔 바로 옆. 성곽 복원이 잘 되어 있어 산책 코스로 이어가기 좋음</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 일정 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="emoji">📅</span>
-      <h2>Day-by-Day 일정</h2>
-    </div>
-
-    <!-- Day 1 -->
-    <div class="day-card">
-      <div class="day-header day1">
-        <div class="day-num">1</div>
-        <div class="day-title">
-          <div class="date">5월 22일 (금) · 연차</div>
-          <div class="theme">✈️ 도착 · 첫 밤 가나자와</div>
-        </div>
-      </div>
-      <div class="day-body">
-        <div class="timeline-item">
-          <div class="tl-time">07:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">인천공항 출발</div>
-            <div class="tl-desc">JAL 직항 · 고마츠공항 07:30 출발</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">09:15</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">고마츠공항 도착</div>
-            <div class="tl-desc">리무진버스 타고 가나자와역까지 약 40분</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">11:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">호텔 체크인 (짐 맡기기)</div>
-            <div class="tl-desc">가나자와역 근처 또는 히가시 차야가이 인근 추천</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">12:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">오미초 시장 점심</div>
-            <div class="tl-desc">신선한 해산물 덮밥 or 스시. 가나자와 첫 식사는 여기서</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">14:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">히가시 차야가이 산책</div>
-            <div class="tl-desc">에도시대 게이샤 골목 · 골드 소프트크림 · 전통 잡화점 구경</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">17:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">황혼 산책 · 가나자와역 모테나시 돔</div>
-            <div class="tl-desc">목재와 유리로 만든 가나자와역 정문. 야간 조명이 아름다움</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">19:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">저녁 — 가나자와 오마카세 스시</div>
-            <div class="tl-desc">카타마치 or 타테마치 골목의 카운터 스시 추천. 예약 필수</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Day 2 -->
-    <div class="day-card">
-      <div class="day-header day2">
-        <div class="day-num">2</div>
-        <div class="day-title">
-          <div class="date">5월 23일 (토)</div>
-          <div class="theme">🌿 정원 · 성 · 현대미술</div>
-        </div>
-      </div>
-      <div class="day-body">
-        <div class="timeline-item">
-          <div class="tl-time">08:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">켄로쿠엔 이른 아침 산책</div>
-            <div class="tl-desc">일본 3대 정원 · 5월 신록 절정 · 한산한 아침 시간대 추천</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">10:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">가나자와성</div>
-            <div class="tl-desc">켄로쿠엔 바로 옆 · 성곽 둘레 산책 코스</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">12:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">점심 — 히츠마부시 or 라멘</div>
-            <div class="tl-desc">가나자와 특산 노토규 or 인근 맛집</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">13:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">21세기미술관</div>
-            <div class="tl-desc">수영장 착시 작품(무료구역) + 유료 전시관 · 인증샷 필수</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">15:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">니시 차야가이 & 카타마치 쇼핑</div>
-            <div class="tl-desc">금박 기념품 · 전통 화과자 · 가나자와 로컬 편집숍</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">19:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">저녁 — 이자카야</div>
-            <div class="tl-desc">가나자와 지산지소(地産地消) 이자카야 · 노토 오징어, 흰새우 회</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Day 3 -->
-    <div class="day-card">
-      <div class="day-header day3">
-        <div class="day-num">3</div>
-        <div class="day-title">
-          <div class="date">5월 24일 (일) · 부처님오신날</div>
-          <div class="theme">♨️ 온천 힐링 or 노토 반도</div>
-        </div>
-      </div>
-      <div class="day-body">
-        <div class="timeline-item">
-          <div class="tl-time">09:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">옵션 A · 야마나카 온천 당일치기</div>
-            <div class="tl-desc">버스 1시간 · 계곡 온천 마을 · 노천탕에서 힐링 · 카가온천 료칸 족욕 체험 가능</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">09:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">옵션 B · 노토 반도 드라이브</div>
-            <div class="tl-desc">렌터카 추천 · 아마쿠사의 해안선 드라이브 · 천요로즈시마 절경</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">13:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">점심 — 온천지 소바 or 해산물</div>
-            <div class="tl-desc">야마나카 온천 마을의 산채 소바 or 노토 신선한 해산물</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">16:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">가나자와 귀환</div>
-            <div class="tl-desc">저녁 전 호텔 복귀</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">18:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">저녁 — 마지막 밤 특별 디너</div>
-            <div class="tl-desc">예산 여유 있으면 가나자와 고급 가이세키(懐石) 추천. 2인 2~3만엔대</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">20:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">히가시 차야가이 야경</div>
-            <div class="tl-desc">밤 조명 켜진 차야가이 골목 · 마지막 밤 산책</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Day 4 -->
-    <div class="day-card">
-      <div class="day-header day4">
-        <div class="day-num">4</div>
-        <div class="day-title">
-          <div class="date">5월 25일 (월) · 대체공휴일</div>
-          <div class="theme">🛫 귀국 · 공항 스시로 마무리</div>
-        </div>
-      </div>
-      <div class="day-body">
-        <div class="timeline-item">
-          <div class="tl-time">07:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">호텔 체크아웃</div>
-            <div class="tl-desc">짐 챙겨서 출발 준비</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">08:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">가나자와역 모리모리 스시 (아침)</div>
-            <div class="tl-desc">가나자와 회전초밥 명가. 마지막 해산물 인사</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">08:40</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">고마츠공항행 리무진버스 탑승</div>
-            <div class="tl-desc">가나자와역 → 고마츠공항 약 40분</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">10:15</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">고마츠 출발 → 인천 12:10 도착</div>
-            <div class="tl-desc">JAL 직항 1시간 55분 · 점심 전 한국 도착 🇰🇷</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 숙소 추천 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="emoji">🏨</span>
-      <h2>숙소 추천 (3박 기준 · 2인 1실)</h2>
-    </div>
-    <p style="font-size:13px; color:#888; margin-bottom:20px;">※ 가격은 부킹닷컴 실시간 기준 (2026.03.11 조회) · 연휴 시즌 가격으로 변동 가능 · 링크 클릭 시 해당 날짜 자동 적용</p>
-
-    <!-- 가성비형 -->
-    <div style="margin-bottom:10px;">
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
-        <span style="background:#e8f5e9; color:#2e7d32; padding:4px 14px; border-radius:20px; font-size:13px; font-weight:700;">💚 가성비형</span>
-        <span style="font-size:13px; color:#666;">1박 13~17만원 · 3박 합계 약 39~51만원</span>
-      </div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; margin-bottom:28px;">
-      <div class="hotel-card">
-        <div class="hotel-tier tier-budget"></div>
-        <div class="hotel-body">
-          <div class="hotel-name">Arigate Stay Kanazawa Ekimae</div>
-          <div class="hotel-sub">아파트형 숙소 · 가나자와역 도보 2분</div>
-          <div class="hotel-rating">⭐ 8.6점 (Very Good)</div>
-          <div class="hotel-features">
-            <span class="tag">역 근처</span>
-            <span class="tag">조용한 객실</span>
-            <span class="tag">주방 있음</span>
-          </div>
-          <div class="hotel-price-row">
-            <div>
-              <div class="hotel-price">₩131,451 <span class="per-night">/박</span></div>
-              <div class="hotel-total">3박 약 39만원</div>
-            </div>
-            <a href="https://www.booking.com/searchresults.ko.html?ss=Arigate+Stay+Kanazawa+Ekimae&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="hotel-card">
-        <div class="hotel-tier tier-budget"></div>
-        <div class="hotel-body">
-          <div class="hotel-name">COOLIN BUDGET Kanazawa Ekimae</div>
-          <div class="hotel-sub">비즈니스 호텔 · 가나자와역 바로 앞</div>
-          <div class="hotel-rating">🏨 비즈니스 호텔</div>
-          <div class="hotel-features">
-            <span class="tag">역 직결</span>
-            <span class="tag">교통 최적</span>
-            <span class="tag">깔끔한 객실</span>
-          </div>
-          <div class="hotel-price-row">
-            <div>
-              <div class="hotel-price">₩153,454 <span class="per-night">/박</span></div>
-              <div class="hotel-total">3박 약 46만원</div>
-            </div>
-            <a href="https://www.booking.com/searchresults.ko.html?ss=COOLIN+BUDGET+Kanazawa+Ekimae&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 중급형 -->
-    <div style="margin-bottom:10px;">
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
-        <span style="background:#fff8e1; color:#f57f17; padding:4px 14px; border-radius:20px; font-size:13px; font-weight:700;">💛 중급형</span>
-        <span style="font-size:13px; color:#666;">1박 17~28만원 · 3박 합계 약 51~85만원</span>
-      </div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; margin-bottom:28px;">
-      <div class="hotel-card">
-        <div class="hotel-tier tier-mid"></div>
-        <div class="hotel-body">
-          <div class="hotel-name">도미인 프리미엄 가나자와</div>
-          <div class="hotel-sub">Dormy Inn Premium Kanazawa · 비즈니스 온천 호텔</div>
-          <div class="hotel-rating">⭐ 8.8점 (Fabulous) · 온천 보유</div>
-          <div class="hotel-features">
-            <span class="tag">♨️ 내부 온천</span>
-            <span class="tag">아침식사 유명</span>
-            <span class="tag">역 도보 7분</span>
-          </div>
-          <div class="hotel-price-row">
-            <div>
-              <div class="hotel-price">₩180,000 <span class="per-night">/박 (추정)</span></div>
-              <div class="hotel-total">3박 약 54만원</div>
-            </div>
-            <a href="https://www.booking.com/hotel/jp/dormy-inn-premium-kanazawa.ko.html?checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="hotel-card">
-        <div class="hotel-tier tier-mid"></div>
-        <div class="hotel-body">
-          <div class="hotel-name">가나자와 백만석 호텔 에키</div>
-          <div class="hotel-sub">Kanazawa Hyakumangoku Hotel Eki · 역 근처</div>
-          <div class="hotel-rating">🏨 시티 호텔</div>
-          <div class="hotel-features">
-            <span class="tag">역 근처</span>
-            <span class="tag">레스토랑</span>
-            <span class="tag">넓은 객실</span>
-          </div>
-          <div class="hotel-price-row">
-            <div>
-              <div class="hotel-price">₩191,126 <span class="per-night">/박</span></div>
-              <div class="hotel-total">3박 약 57만원</div>
-            </div>
-            <a href="https://www.booking.com/searchresults.ko.html?ss=%EA%B0%80%EB%82%98%EC%9E%90%EC%99%80+%EB%B0%B1%EB%A7%8C%EC%84%9D+%ED%98%B8%ED%85%94+%EC%97%90%ED%82%A4&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="hotel-card" style="grid-column: span 2;">
-        <div class="hotel-tier tier-mid"></div>
-        <div class="hotel-body">
-          <div class="hotel-name">HOTEL MYSTAYS 가나자와</div>
-          <div class="hotel-sub">HOTEL MYSTAYS Kanazawa · 시티 비즈니스 호텔 체인</div>
-          <div class="hotel-rating">🏨 비즈니스 호텔 · 전국 체인</div>
-          <div class="hotel-features">
-            <span class="tag">중심가 위치</span>
-            <span class="tag">금연 객실</span>
-            <span class="tag">편의시설 완비</span>
-            <span class="tag">조식 옵션</span>
-          </div>
-          <div class="hotel-price-row">
-            <div>
-              <div class="hotel-price">₩261,855 <span class="per-night">/박</span></div>
-              <div class="hotel-total">3박 약 79만원</div>
-            </div>
-            <a href="https://www.booking.com/hotel/jp/hotel-mystays-kanazawa.ko.html?checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 프리미엄형 -->
-    <div style="margin-bottom:10px;">
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
-        <span style="background:#fce4ec; color:#c62828; padding:4px 14px; border-radius:20px; font-size:13px; font-weight:700;">💎 프리미엄형</span>
-        <span style="font-size:13px; color:#666;">1박 30만원+ · 3박 합계 약 90만원+</span>
-      </div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; margin-bottom:28px;">
-      <div class="hotel-card">
-        <div class="hotel-tier tier-premium"></div>
-        <div class="hotel-body">
-          <div class="hotel-name">ANA 크라운 플라자 가나자와</div>
-          <div class="hotel-sub">ANA Crowne Plaza Kanazawa · 5성급 시티 호텔</div>
-          <div class="hotel-rating">⭐ 8.5점 · 5성급</div>
-          <div class="hotel-features">
-            <span class="tag">5성급</span>
-            <span class="tag">수영장</span>
-            <span class="tag">시티뷰</span>
-            <span class="tag">컨시어지</span>
-          </div>
-          <div class="hotel-price-row">
-            <div>
-              <div class="hotel-price">₩300,000~ <span class="per-night">/박</span></div>
-              <div class="hotel-total">3박 약 90만원~</div>
-            </div>
-            <a href="https://www.booking.com/hotel/jp/ana-crowne-plaza-kanazawa.ko.html?checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn book-btn-premium">예약하기</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="hotel-card">
-        <div class="hotel-tier tier-premium"></div>
-        <div class="hotel-body">
-          <div class="hotel-name">료칸 추천 — 야마나카 온천</div>
-          <div class="hotel-sub">전통 일본 료칸 · 노천탕 · 가이세키 저녁 포함</div>
-          <div class="hotel-rating">🎎 전통 료칸 · 1박2식 포함</div>
-          <div class="hotel-features">
-            <span class="tag">노천 온천</span>
-            <span class="tag">가이세키</span>
-            <span class="tag">유카타 제공</span>
-            <span class="tag">가나자와 차로 1시간</span>
-          </div>
-          <div class="hotel-price-row">
-            <div>
-              <div class="hotel-price">₩350,000+ <span class="per-night">/박</span></div>
-              <div class="hotel-total">3박 약 105만원+</div>
-            </div>
-            <a href="https://www.booking.com/searchresults.ko.html?ss=%EC%95%BC%EB%A7%88%EB%82%98%EC%B9%B4+%EC%98%A8%EC%84%BC+%EB%A3%8C%EC%B9%B8&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn book-btn-premium">검색하기</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 전체 검색 버튼 -->
-    <div style="text-align:center; padding:20px; background:white; border-radius:14px; border:1px solid #ede9e4;">
-      <p style="font-size:13px; color:#666; margin-bottom:12px;">더 많은 옵션 직접 비교하기</p>
-      <a href="https://www.booking.com/searchresults.ko.html?ss=Kanazawa&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1&order=price" target="_blank"
-         style="display:inline-block; background:#003580; color:white; padding:12px 28px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none;">
-        🔍 부킹닷컴에서 전체 가나자와 숙소 보기
-      </a>
-    </div>
-  </div>
-
-  <!-- 예약 체크리스트 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="emoji">📋</span>
-      <h2>예약 체크리스트</h2>
-    </div>
-    <div class="checklist">
-      <div class="check-item"><div class="check-box"></div><span>항공권 예매 (JAL / 네이버 항공)</span></div>
-      <div class="check-item"><div class="check-box"></div><span>숙박 예약 (아고다 / 부킹닷컴)</span></div>
-      <div class="check-item"><div class="check-box"></div><span>여행자보험 가입</span></div>
-      <div class="check-item"><div class="check-box"></div><span>환전 (엔화) or 트래블카드</span></div>
-      <div class="check-item"><div class="check-box"></div><span>스시 레스토랑 예약 (카운터석)</span></div>
-      <div class="check-item"><div class="check-box"></div><span>포켓와이파이 or 현지 eSIM</span></div>
-      <div class="check-item"><div class="check-box"></div><span>켄로쿠엔 입장권 (현장 구매 가능)</span></div>
-      <div class="check-item"><div class="check-box"></div><span>21세기미술관 유료관 사전 예약</span></div>
-      <div class="check-item"><div class="check-box"></div><span>온천 or 노토 반도 플랜 결정</span></div>
-      <div class="check-item"><div class="check-box"></div><span>연차 신청 (5월 22일)</span></div>
-    </div>
-  </div>
-
 </div>
+
+<!-- 항공편 -->
+<div class="sec">
+  <div class="sec-head"><span>✈️</span><h2>항공편</h2></div>
+  <div class="flight-card">
+    <div class="flight-label">가는 편 · 5월 22일 (금) — 연차</div>
+    <div class="flight-route">
+      <div class="f-point"><div class="f-time">07:30</div><div class="f-ap">인천 ICN</div></div>
+      <div class="f-mid">
+        <div class="f-dur">1시간 45분</div>
+        <div class="f-line"></div>
+        <div class="f-badge">직항</div>
+      </div>
+      <div class="f-point"><div class="f-time">09:15</div><div class="f-ap">고마츠 KMQ</div></div>
+    </div>
+    <div class="flight-info">
+      <div class="f-airline">일본항공 (JAL) · 대한항공 공동운항</div>
+      <div class="f-price">592,500원 <small>~/인</small></div>
+    </div>
+  </div>
+  <div class="flight-card">
+    <div class="flight-label">오는 편 · 5월 25일 (월) — 대체공휴일</div>
+    <div class="flight-route">
+      <div class="f-point"><div class="f-time">10:15</div><div class="f-ap">고마츠 KMQ</div></div>
+      <div class="f-mid">
+        <div class="f-dur">1시간 55분</div>
+        <div class="f-line"></div>
+        <div class="f-badge">직항</div>
+      </div>
+      <div class="f-point"><div class="f-time">12:10</div><div class="f-ap">인천 ICN</div></div>
+    </div>
+    <div class="flight-info">
+      <div class="f-airline">일본항공 (JAL) · 대한항공 공동운항</div>
+      <div class="f-price">왕복 동일편</div>
+    </div>
+  </div>
+</div>
+
+<!-- 예산 -->
+<div class="sec">
+  <div class="sec-head"><span>💰</span><h2>예상 예산 (2인 합계 · 식비/쇼핑 제외)</h2></div>
+  <table class="btable">
+    <thead><tr><th>항목</th><th>내역</th><th class="r">금액</th></tr></thead>
+    <tbody>
+      <tr><td>✈️ 항공 (왕복)</td><td>JAL 직항 · 2인</td><td class="r">약 118~125만원</td></tr>
+      <tr><td>🏨 숙박 (3박)</td><td>아래 가격대별 선택</td><td class="r">39~105만원</td></tr>
+      <tr><td>🚌 현지 교통</td><td>버스패스 + 공항 리무진</td><td class="r">10~15만원</td></tr>
+      <tr><td>🎫 입장료</td><td>켄로쿠엔, 미술관 등</td><td class="r">3~5만원</td></tr>
+      <tr><td>💰 <strong>합계</strong></td><td><strong>가성비 / 중급 / 프리미엄</strong></td><td class="r">170 / 200 / 250만원~</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 핵심 스팟 -->
+<div class="sec">
+  <div class="sec-head"><span>⭐</span><h2>가나자와 핵심 스팟</h2></div>
+  <div class="spot-grid">
+    <div class="spot-card"><div class="em">🌿</div><div class="name">켄로쿠엔 (兼六園)</div><div class="desc">일본 3대 정원. 5월 신록 절정. 이른 아침 방문 추천</div></div>
+    <div class="spot-card"><div class="em">🏮</div><div class="name">히가시 차야가이 (東茶屋街)</div><div class="desc">에도시대 게이샤 골목. 황혼 무렵 특히 로맨틱. 골드 소프트크림 필수</div></div>
+    <div class="spot-card"><div class="em">🎨</div><div class="name">21세기미술관</div><div class="desc">수영장 착시 작품 인증샷 명소. 현대미술 가볍게 즐기기</div></div>
+    <div class="spot-card"><div class="em">🦀</div><div class="name">오미초 시장 해산물</div><div class="desc">흰새우, 방어, 오마카세 스시. 도쿄보다 훨씬 가성비 좋음</div></div>
+    <div class="spot-card"><div class="em">♨️</div><div class="name">야마나카 온천</div><div class="desc">버스 1시간. 계곡 온천 마을. 노천탕 당일치기 or 료칸 1박</div></div>
+    <div class="spot-card"><div class="em">🏯</div><div class="name">가나자와성</div><div class="desc">켄로쿠엔 바로 옆. 성곽 복원 잘 됨. 이어서 산책하기 좋음</div></div>
+  </div>
+</div>
+
+<!-- 코스별 일정 -->
+<div class="sec">
+  <div class="sec-head"><span>📅</span><h2>코스별 일정 — 3가지 테마 플랜</h2></div>
+  <p style="font-size:13px;color:#888;margin-bottom:22px;">동일한 날짜(5/22~25)에 어떤 테마로 여행할지 선택하세요. 취향에 따라 코스를 조합해도 됩니다.</p>
+
+  <!-- 코스 A -->
+  <div class="course-block">
+    <div class="course-title-bar ctA">
+      <div class="ct-icon">🏯</div>
+      <div class="ct-info">
+        <div class="ct-tag">COURSE A</div>
+        <div class="ct-name">전통 문화 & 미식 감성</div>
+        <div class="ct-sub">차야가이 · 켄로쿠엔 · 오마카세 스시 · 금박 공예</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhA1"><div class="day-num">1</div><div class="day-meta"><div class="dm-date">5/22(금) 연차</div><div class="dm-theme">✈️ 도착 · 히가시 차야가이 첫 밤</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠 도착 → 리무진 버스</div><div class="tl-desc">공항→가나자와역 약 40분 · 1,300엔</div></div></div>
+        <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오미초 시장 점심</div><div class="tl-desc">신선한 해산물 덮밥 or 스시 · 1인 1,500~3,000엔</div></div></div>
+        <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">히가시 차야가이 산책</div><div class="tl-desc">에도시대 게이샤 거리 · 골드 소프트크림 · 전통 잡화점</div></div></div>
+        <div class="tl"><div class="tl-t">16:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와역 모테나시 돔 야경</div><div class="tl-desc">목재+유리 정문 · 황혼 조명이 아름다운 포토스팟</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 카운터 오마카세 스시</div><div class="tl-desc">카타마치 골목의 소규모 스시집 · 예약 필수 · 1인 8,000~15,000엔</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhA2"><div class="day-num">2</div><div class="day-meta"><div class="dm-date">5/23(토)</div><div class="dm-theme">🌿 정원 · 성 · 현대미술</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">08:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">켄로쿠엔 이른 아침 산책</div><div class="tl-desc">인파 적은 오픈 직후 방문 · 입장료 320엔</div></div></div>
+        <div class="tl"><div class="tl-t">10:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와성 둘레 산책</div><div class="tl-desc">켄로쿠엔 옆 · 무료 개방 구역 충분</div></div></div>
+        <div class="tl"><div class="tl-t">12:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">점심 — 노토규(能登牛) 런치</div><div class="tl-desc">가나자와 특산 와규 · 런치 세트 2,500~4,000엔</div></div></div>
+        <div class="tl"><div class="tl-t">13:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">21세기미술관</div><div class="tl-desc">수영장 착시(무료) + 유료 전시관 360엔 · 인증샷 필수</div></div></div>
+        <div class="tl"><div class="tl-t">15:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">금박 공예 체험 & 쇼핑</div><div class="tl-desc">가나자와 금박 기념품 · 전통 화과자 · 로컬 편집숍</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 지산지소 이자카야</div><div class="tl-desc">노토 오징어 · 흰새우 회 · 가나자와 지역 청주</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhA3"><div class="day-num">3</div><div class="day-meta"><div class="dm-date">5/24(일) 부처님오신날</div><div class="dm-theme">🏺 전통 공예 & 카가 온천 체험</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">이시카와현립 전통산업공예관</div><div class="tl-desc">가나자와 전통 공예 전시 · 도자기·칠기·가가유젠(加賀友禅) 체험 옵션</div></div></div>
+        <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">니시 차야가이 & 카타마치</div><div class="tl-desc">히가시보다 한적한 전통 거리 · 카페 & 골동품 숍</div></div></div>
+        <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">카가 온천 족욕 & 산책</div><div class="tl-desc">야마나카 온천 마을 버스 1시간 · 계곡 산책로 + 족탕 체험</div></div></div>
+        <div class="tl"><div class="tl-t">17:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와 귀환</div><div class="tl-desc">마지막 밤 저녁 준비</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">마지막 저녁 — 가이세키(懐石)</div><div class="tl-desc">정통 가나자와 코스 요리 · 2인 25,000~40,000엔 · 특별한 날에 어울림</div></div></div>
+        <div class="tl"><div class="tl-t">20:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">히가시 차야가이 야경 산책</div><div class="tl-desc">밤 조명 켜진 차야가이 · 마지막 밤 로맨틱 산책</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhA4"><div class="day-num">4</div><div class="day-meta"><div class="dm-date">5/25(월) 대체공휴일</div><div class="dm-theme">🛫 귀국 · 아침 스시로 마무리</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">07:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와역 모리모리 스시</div><div class="tl-desc">가나자와 대표 회전초밥 · 마지막 해산물 인사</div></div></div>
+        <div class="tl"><div class="tl-t">08:40</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">리무진 버스 탑승</div><div class="tl-desc">가나자와역 → 고마츠공항 약 40분</div></div></div>
+        <div class="tl"><div class="tl-t">10:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠 출발 → 인천 12:10 도착 🇰🇷</div><div class="tl-desc">JAL 직항 1시간 55분 · 점심 전 한국 귀환</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 코스 B -->
+  <div class="course-block">
+    <div class="course-title-bar ctB">
+      <div class="ct-icon">♨️</div>
+      <div class="ct-info">
+        <div class="ct-tag">COURSE B</div>
+        <div class="ct-name">힐링 & 온천 온전 릴렉스</div>
+        <div class="ct-sub">야마나카 료칸 1박 포함 · 노천탕 · 가이세키 · 여유로운 페이스</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhB1"><div class="day-num">1</div><div class="day-meta"><div class="dm-date">5/22(금) 연차</div><div class="dm-theme">✈️ 도착 · 여유로운 시작</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠 도착 → 가나자와역</div><div class="tl-desc">리무진 버스 40분</div></div></div>
+        <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오미초 시장 해산물 점심</div><div class="tl-desc">첫 끼니는 신선한 스시 or 해산물 덮밥</div></div></div>
+        <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">히가시 차야가이 & 가나자와성 산책</div><div class="tl-desc">무리하지 않고 여유롭게 · 카페에서 쉬엄쉬엄</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 가나자와 이자카야</div><div class="tl-desc">내일 온천 위해 컨디션 조절 · 가볍게 먹기</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhB2"><div class="day-num">2</div><div class="day-meta"><div class="dm-date">5/23(토)</div><div class="dm-theme">🌿 켄로쿠엔 & 미술관 · 오후는 자유</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">08:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">켄로쿠엔 아침 산책</div><div class="tl-desc">이른 아침 여유있게 · 신록 속 둘이서 산책</div></div></div>
+        <div class="tl"><div class="tl-t">11:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">21세기미술관</div><div class="tl-desc">수영장 착시 인증샷 + 카페에서 여유롭게</div></div></div>
+        <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">호텔 귀환 · 낮잠 & 충전</div><div class="tl-desc">내일 온천 투어 대비 컨디션 관리</div></div></div>
+        <div class="tl"><div class="tl-t">18:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 조용한 카운터 스시</div><div class="tl-desc">소규모 오마카세 or 카타마치 동네 맛집</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhB3"><div class="day-num">3</div><div class="day-meta"><div class="dm-date">5/24(일) 부처님오신날</div><div class="dm-theme">♨️ 야마나카 온천 료칸 1박 (하이라이트)</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">10:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와역 출발 → 야마나카 온천</div><div class="tl-desc">버스 약 1시간 · 요금 약 1,000엔 · 노토사토 버스 이용</div></div></div>
+        <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">야마나카 온천 마을 산책</div><div class="tl-desc">학선계(鶴仙渓) 계곡 산책로 · 족탕 카페 · 유리 공방</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">료칸 체크인</div><div class="tl-desc">유카타 갈아입기 · 체크인 후 개인 노천탕 or 대욕장 즐기기</div></div></div>
+        <div class="tl"><div class="tl-t">18:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">료칸 가이세키 저녁 (1박2식 포함)</div><div class="tl-desc">제철 해산물 + 카가 전통 요리 · 방에서 서빙 · 유카타 차림으로</div></div></div>
+        <div class="tl"><div class="tl-t">20:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">달밤 노천탕</div><div class="tl-desc">계곡 소리 들으며 별 보는 노천탕 · 이 여행의 클라이맥스</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhB4"><div class="day-num">4</div><div class="day-meta"><div class="dm-date">5/25(월) 대체공휴일</div><div class="dm-theme">🛫 아침 온천 → 가나자와 → 귀국</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">07:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">료칸 아침 온천 & 조식</div><div class="tl-desc">1박2식 포함 · 마지막 온천욕 · 일본식 조식</div></div></div>
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와역으로 귀환</div><div class="tl-desc">버스 약 1시간 · 역에서 기념품 쇼핑</div></div></div>
+        <div class="tl"><div class="tl-t">08:40</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠공항 리무진 탑승</div><div class="tl-desc">시간 계산 주의 · 일찍 이동 권장</div></div></div>
+        <div class="tl"><div class="tl-t">10:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠 출발 → 인천 12:10 도착 🇰🇷</div><div class="tl-desc">몸도 마음도 리프레시된 상태로 귀국</div></div></div>
+      </div>
+    </div>
+    <div style="background:#e8f5e9;border-radius:10px;padding:12px 16px;font-size:12px;color:#2e7d32;margin-top:-8px;">
+      💡 <strong>코스 B 추가 비용:</strong> 야마나카 온천 료칸 1박2식 약 30,000~50,000엔(2인) 추가 · 숙박 3박 대신 가나자와 2박 + 료칸 1박으로 구성
+    </div>
+  </div>
+
+  <!-- 코스 C -->
+  <div class="course-block">
+    <div class="course-title-bar ctC">
+      <div class="ct-icon">🚗</div>
+      <div class="ct-info">
+        <div class="ct-tag">COURSE C</div>
+        <div class="ct-name">노토 반도 드라이브 & 해산물 어드벤처</div>
+        <div class="ct-sub">렌터카 필수 · 해안선 드라이브 · 절경 · 생선구이 정식</div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhC1"><div class="day-num">1</div><div class="day-meta"><div class="dm-date">5/22(금) 연차</div><div class="dm-theme">✈️ 도착 · 렌터카 픽업</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠공항 도착 → 렌터카 픽업</div><div class="tl-desc">공항 내 렌터카 업체 · 국제운전면허증 필수 · 2,000~4,000엔/일</div></div></div>
+        <div class="tl"><div class="tl-t">11:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와 시내 체크인 후 출발</div><div class="tl-desc">짐 맡기고 노토 반도 방향으로</div></div></div>
+        <div class="tl"><div class="tl-t">13:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">나나오(七尾) 해산물 점심</div><div class="tl-desc">노토 반도 항구 마을 · 생선구이 정식 · 1인 1,500~2,500엔</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">노토 해안 드라이브</div><div class="tl-desc">능등(能登) 해안도로 · 능암(能岩), 소토우라 해안 절경</div></div></div>
+        <div class="tl"><div class="tl-t">18:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와 귀환 · 저녁</div><div class="tl-desc">오미초 시장 근처 이자카야</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhC2"><div class="day-num">2</div><div class="day-meta"><div class="dm-date">5/23(토)</div><div class="dm-theme">🌊 이라부 대교 & 서쪽 해안</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">켄로쿠엔 빠르게 방문</div><div class="tl-desc">오전 1시간만 · 드라이브 전 관광 체크</div></div></div>
+        <div class="tl"><div class="tl-t">11:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">노토 반도 서쪽 드라이브</div><div class="tl-desc">치리하마 나기사 드라이브웨이(渚ドライブウェイ) · 해변 위를 달리는 도로</div></div></div>
+        <div class="tl"><div class="tl-t">13:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">점심 — 능등(能登) 오징어 먹물 카레</div><div class="tl-desc">이 지역 명물 · 검은색 카레 · 충격적인 비주얼</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">21세기미술관</div><div class="tl-desc">가나자와 시내 돌아와서 미술관 + 히가시 차야가이</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 오마카세 스시</div><div class="tl-desc">드라이브의 피로를 고급 스시로 풀기</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhC3"><div class="day-num">3</div><div class="day-meta"><div class="dm-date">5/24(일) 부처님오신날</div><div class="dm-theme">🏔️ 야마나카 온천 당일치기</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">렌터카로 야마나카 온천 출발</div><div class="tl-desc">차로 약 50분 · 버스보다 빠르고 편리</div></div></div>
+        <div class="tl"><div class="tl-t">10:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">학선계 계곡 산책</div><div class="tl-desc">아침 계곡 공기 최고 · 족탕 카페</div></div></div>
+        <div class="tl"><div class="tl-t">12:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">온천 입욕 (소바 먹고 오후 온천)</div><div class="tl-desc">당일 입욕 가능한 료칸 온천 이용 · 약 500~1,500엔</div></div></div>
+        <div class="tl"><div class="tl-t">14:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">카가 온천 드라이브 귀환</div><div class="tl-desc">경치 좋은 해안 도로로 가나자와 복귀</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">마지막 저녁 — 가나자와 특선 가이세키</div><div class="tl-desc">여행 마무리 특별 디너 · 예약 필수</div></div></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-hd dhC4"><div class="day-num">4</div><div class="day-meta"><div class="dm-date">5/25(월) 대체공휴일</div><div class="dm-theme">🛫 렌터카 반납 → 귀국</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">07:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">아침 식사 후 체크아웃</div><div class="tl-desc">호텔 조식 or 역 주변 카페</div></div></div>
+        <div class="tl"><div class="tl-t">08:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠공항 렌터카 반납</div><div class="tl-desc">공항 내 반납 창구 · 여유 있게 이동</div></div></div>
+        <div class="tl"><div class="tl-t">10:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠 출발 → 인천 12:10 도착 🇰🇷</div><div class="tl-desc">렌터카 여행의 자유로움을 안고 귀국</div></div></div>
+      </div>
+    </div>
+    <div style="background:#fff3e0;border-radius:10px;padding:12px 16px;font-size:12px;color:#e65100;margin-top:-8px;">
+      💡 <strong>코스 C 유의사항:</strong> 국제운전면허증 사전 발급 필수 · 일본은 좌측 통행 · 고마츠공항 픽업 가능 · 렌터카 추가 비용 약 6,000~12,000엔/3일
+    </div>
+  </div>
+</div>
+
+<!-- 숙소 추천 -->
+<div class="sec">
+  <div class="sec-head"><span>🏨</span><h2>숙소 추천 — 가격대별 + 리뷰 요약</h2></div>
+  <p style="font-size:12px;color:#999;margin-bottom:20px;">※ 가격: 부킹닷컴 실시간 기준(2026.03.11) · 연휴 가격으로 변동 가능 · 예약하기 클릭 시 해당 날짜 자동 적용</p>
+
+  <!-- 가성비형 -->
+  <div style="margin-bottom:16px;">
+    <span style="background:#e8f5e9;color:#2e7d32;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;">💚 가성비형</span>
+    <span style="font-size:12px;color:#888;margin-left:8px;">1박 13~17만원 · 3박 2인 합계 약 39~51만원</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px;">
+    <div class="hotel-card">
+      <div class="hotel-tier-bar hta"></div>
+      <div class="hotel-inner">
+        <div class="h-name">Arigate Stay Kanazawa Ekimae</div>
+        <div class="h-sub">아파트형 숙소 · 가나자와역 도보 2분</div>
+        <div class="h-score">⭐ 8.6점 Very Good</div>
+        <div class="h-tags">
+          <span class="htag">역 도보 2분</span><span class="htag">아파트형</span><span class="htag">주방 있음</span><span class="htag">세탁기</span>
+        </div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">역에서 바로. 아파트형이라 둘만의 독립 공간. 주방·세탁기 있어 편리</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">호텔 직원 간섭 없이 프라이빗한 둘만의 공간. 슈퍼에서 장 봐서 해 먹기도 가능</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">조식 없음 · 키 박스 셀프 체크인</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩131,451 <small>/박</small></div><div class="h-total">3박 약 39만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=Arigate+Stay+Kanazawa+Ekimae&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-tier-bar hta"></div>
+      <div class="hotel-inner">
+        <div class="h-name">COOLIN BUDGET Kanazawa Ekimae</div>
+        <div class="h-sub">비즈니스 호텔 · 가나자와역 바로 앞</div>
+        <div class="h-score">🏨 비즈니스 호텔</div>
+        <div class="h-tags">
+          <span class="htag">역 바로 앞</span><span class="htag">교통 최적</span><span class="htag">모던 인테리어</span>
+        </div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">가나자와역 앞이라 이동 피로 제로. 깔끔하고 모던한 객실. 관광 동선 최적</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">짐 무거울 때 역 앞은 최고. 관광에 집중하고 싶은 커플에게 적합</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">객실 좁음 · 뷰 기대 어려움 · 온천 없음</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩153,454 <small>/박</small></div><div class="h-total">3박 약 46만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=COOLIN+BUDGET+Kanazawa+Ekimae&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 중급형 -->
+  <div style="margin-bottom:16px;">
+    <span style="background:#fff8e1;color:#f57f17;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;">💛 중급형</span>
+    <span style="font-size:12px;color:#888;margin-left:8px;">1박 17~28만원 · 3박 2인 합계 약 51~85만원</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:10px;">
+    <div class="hotel-card" style="grid-column:span 2;">
+      <div class="hotel-tier-bar htm"></div>
+      <div class="hotel-inner">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div>
+            <div class="h-name">🌟 도미인 프리미엄 가나자와</div>
+            <div class="h-sub">Dormy Inn Premium Kanazawa · 온천 비즈니스 호텔</div>
+            <div class="h-score">⭐ 8.8점 Fabulous — 이 구간 최추천</div>
+            <div class="h-tags">
+              <span class="htag">♨️ 옥상 온천</span><span class="htag">야나기소바 무료</span><span class="htag">해산물 조식</span><span class="htag">역 도보 7분</span>
+            </div>
+          </div>
+          <div class="h-review" style="margin-bottom:0">
+            <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">리뷰 요약</span><span class="h-rv-text">가나자와 최고 가성비 호텔. 옥상 노천 온천, 밤 11시 무료 라멘(夜鳴きそば), 해산물 포함 조식 뷔페 — 이 세 가지로 유명</span></div>
+            <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">"온천에서 야경 보며 둘이서 릴렉스 최고", "조식 퀄리티가 식당 수준", "숙박비 이상의 경험"</span></div>
+            <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">연휴엔 조식 줄 김 · 체크인 피크 타임 대기 가능</span></div>
+          </div>
+        </div>
+        <div class="h-price-row" style="margin-top:14px">
+          <div><div class="h-price">₩180,000~ <small>/박 추정</small></div><div class="h-total">3박 약 54만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=Dormy+Inn+Premium+Kanazawa&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htm"></div>
+      <div class="hotel-inner">
+        <div class="h-name">가나자와 백만석 호텔 에키</div>
+        <div class="h-sub">Kanazawa Hyakumangoku Hotel Eki · 시티 호텔</div>
+        <div class="h-score">🏨 시티 호텔 · 역 근처</div>
+        <div class="h-tags"><span class="htag">역 근처</span><span class="htag">레스토랑</span><span class="htag">넓은 객실</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">역 접근성 좋음. 전통적인 일본 시티 호텔. 객실 비교적 넓음</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">무난하고 안정적. 특색은 없지만 실망도 없는 선택</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">온천 없음 · 주변 시설 평범</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩191,126 <small>/박</small></div><div class="h-total">3박 약 57만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=%EA%B0%80%EB%82%98%EC%9E%90%EC%99%80+%EB%B0%B1%EB%A7%8C%EC%84%9D+%ED%98%B8%ED%85%94&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htm"></div>
+      <div class="hotel-inner">
+        <div class="h-name">HOTEL MYSTAYS 가나자와</div>
+        <div class="h-sub">HOTEL MYSTAYS Kanazawa · 전국 체인</div>
+        <div class="h-score">🏨 비즈니스 체인 · 안정적 품질</div>
+        <div class="h-tags"><span class="htag">중심가</span><span class="htag">조식 옵션</span><span class="htag">금연 객실</span><span class="htag">전국 체인</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">전국 체인이라 서비스 표준화. 중심가 위치. 처음 일본 여행이면 안심되는 선택</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">브랜드 신뢰도. 예상 가능한 품질. 걱정 없이 숙박하고 관광에 집중하고 싶을 때</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">특색 없음 · 개성 중시하면 비추</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩261,855 <small>/박</small></div><div class="h-total">3박 약 79만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=HOTEL+MYSTAYS+Kanazawa&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 프리미엄형 -->
+  <div style="margin-bottom:16px;margin-top:14px;">
+    <span style="background:#fce4ec;color:#c62828;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;">💎 프리미엄형</span>
+    <span style="font-size:12px;color:#888;margin-left:8px;">1박 30만원+ · 3박 2인 합계 약 90만원+</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px;">
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htp"></div>
+      <div class="hotel-inner">
+        <div class="h-name">ANA 크라운 플라자 가나자와</div>
+        <div class="h-sub">ANA Crowne Plaza Kanazawa · 5성급</div>
+        <div class="h-score">⭐ 8.5점 · 5성급 럭셔리</div>
+        <div class="h-tags"><span class="htag">5성급</span><span class="htag">수영장</span><span class="htag">시티뷰</span><span class="htag">컨시어지</span><span class="htag">역 접근성</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">리뷰 요약</span><span class="h-rv-text">가나자와 최고급 시티 호텔. 수영장·피트니스·다수 레스토랑. 서비스 수준 월등. 시내 조망 뷰 훌륭</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">기념일이나 특별한 여행에 딱. "호텔 자체가 목적이 되는 경험". 조식 퀄리티 최상</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">가격 높음 · 단체 관광객 많은 편</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩300,000~ <small>/박</small></div><div class="h-total">3박 약 90만원~</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=ANA+Crowne+Plaza+Kanazawa&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn book-gold">예약하기</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htp"></div>
+      <div class="hotel-inner">
+        <div class="h-name">야마나카 온천 료칸 (1박2식)</div>
+        <div class="h-sub">코스 B와 연계 · 전통 일본 료칸 숙박</div>
+        <div class="h-score">🎎 전통 료칸 · 노천탕 · 가이세키 포함</div>
+        <div class="h-tags"><span class="htag">노천 온천</span><span class="htag">가이세키</span><span class="htag">유카타</span><span class="htag">1박2식</span><span class="htag">계곡 뷰</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">리뷰 요약</span><span class="h-rv-text">가나자와에서 차/버스 1시간. 계곡 옆 전통 료칸. 유카타 차림 가이세키 저녁 → 노천탕 → 별 감상. "일본 여행의 진수"라는 평 다수</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">커플에게 가장 특별한 경험. 기념일·프로포즈에도 어울림. 야마나카 온천 가야류 추천</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">시내에서 떨어져 있음 · 코스 B와 함께 설계 필요</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩350,000+ <small>/박 (2인1식)</small></div><div class="h-total">1박 약 35만원+ (조석 포함)</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=%EC%95%BC%EB%A7%88%EB%82%98%EC%B9%B4+%EC%98%A8%EC%84%BC+%EB%A3%8C%EC%B9%B8&checkin=2026-05-23&checkout=2026-05-24&group_adults=2&no_rooms=1" target="_blank" class="book-btn book-gold">검색하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 전체 검색 -->
+  <div style="text-align:center;padding:18px;background:#fff;border-radius:12px;border:1px solid #ede9e4">
+    <p style="font-size:12px;color:#888;margin-bottom:10px">더 많은 옵션 직접 비교하기</p>
+    <a href="https://www.booking.com/searchresults.ko.html?ss=Kanazawa&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1&order=price" target="_blank"
+       style="display:inline-block;background:#003580;color:#fff;padding:11px 24px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">
+      🔍 부킹닷컴에서 전체 가나자와 숙소 보기
+    </a>
+  </div>
+</div>
+
+<!-- 예약 체크리스트 -->
+<div class="sec">
+  <div class="sec-head"><span>📋</span><h2>예약 체크리스트</h2></div>
+  <div class="checklist">
+    <div class="ci"><div class="cb"></div><span>항공권 예매 (JAL / 네이버 항공)</span></div>
+    <div class="ci"><div class="cb"></div><span>숙박 예약 (아고다 / 부킹닷컴)</span></div>
+    <div class="ci"><div class="cb"></div><span>여행자보험 가입</span></div>
+    <div class="ci"><div class="cb"></div><span>환전 (엔화) or 트래블카드</span></div>
+    <div class="ci"><div class="cb"></div><span>스시 레스토랑 예약 (카운터석)</span></div>
+    <div class="ci"><div class="cb"></div><span>포켓와이파이 or 현지 eSIM</span></div>
+    <div class="ci"><div class="cb"></div><span>켄로쿠엔 입장권 (현장 구매 가능)</span></div>
+    <div class="ci"><div class="cb"></div><span>21세기미술관 유료관 사전 예약</span></div>
+    <div class="ci"><div class="cb"></div><span>온천 or 노토 반도 플랜 결정</span></div>
+    <div class="ci"><div class="cb"></div><span>연차 신청 (5월 22일)</span></div>
+    <div class="ci"><div class="cb"></div><span>코스 A/B/C 중 선택 확정</span></div>
+    <div class="ci"><div class="cb"></div><span>코스 C 선택 시 국제운전면허 발급</span></div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
 
 <div class="footer">
-  <p>✈️ 가나자와 3박4일 · 2026년 5월 22~25일 · 커플 여행 플랜</p>
-  <p style="margin-top: 6px; font-size: 11px; opacity: 0.5;">실시간 항공 가격 기준 2026.03.11 · 항공권 가격은 변동될 수 있습니다</p>
+  <p>✈️ 가나자와 3박4일 커플 여행 플랜 · 2026년 5월 22~25일</p>
+  <p style="margin-top:5px;opacity:.5">실시간 항공·숙박 가격 기준 2026.03.11 · 가격은 변동될 수 있습니다</p>
 </div>
 
 </body>

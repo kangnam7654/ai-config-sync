@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>오사카 3박4일 커플 여행 플랜</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#fafaf8;color:#2c2c2c;line-height:1.7}
+
+.cover{background:linear-gradient(135deg,#7b1010 0%,#a01818 45%,#c0392b 100%);color:#fff;padding:72px 56px;position:relative;overflow:hidden}
+.cover::before{content:'🏙️';position:absolute;right:56px;top:50%;transform:translateY(-50%);font-size:110px;opacity:.13}
+.cover .badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:300;margin-bottom:18px;letter-spacing:1px}
+.cover h1{font-size:40px;font-weight:700;line-height:1.2;margin-bottom:10px}
+.cover .subtitle{font-size:15px;font-weight:300;opacity:.7;margin-bottom:26px}
+.cover .meta{display:flex;gap:20px;flex-wrap:wrap}
+.cover .meta-item{font-size:13px;opacity:.85}
+
+.wrap{max-width:820px;margin:0 auto;padding:48px 36px}
+.sec{margin-bottom:48px}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #e8e4df}
+.sec-head h2{font-size:19px;font-weight:700;color:#2c0000}
+
+.info-bar{background:linear-gradient(135deg,#fdf0f0,#fde0e0);border-radius:12px;padding:14px 18px;margin-bottom:18px;display:flex;gap:20px;flex-wrap:wrap;border:1px solid #f5c0c0}
+.info-item{display:flex;align-items:center;gap:7px;font-size:13px;color:#4a1010}
+.info-item .lbl{font-weight:600}
+
+.alert-box{background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:12px 16px;font-size:12px;color:#856404;margin-bottom:18px}
+
+.flight-card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;margin-bottom:14px}
+.flight-label{font-size:11px;color:#999;font-weight:600;letter-spacing:.5px;margin-bottom:14px}
+.flight-route{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.f-point{text-align:center}
+.f-time{font-size:26px;font-weight:700;color:#2c0000}
+.f-ap{font-size:11px;color:#999;margin-top:2px}
+.f-mid{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 16px}
+.f-dur{font-size:11px;color:#999;margin-bottom:5px}
+.f-line{width:100%;height:2px;background:linear-gradient(to right,#7b1010,#e94560);border-radius:2px;position:relative}
+.f-line::after{content:'▶';position:absolute;right:-4px;top:-8px;font-size:11px;color:#e94560}
+.f-badge{background:#e8f5e9;color:#2e7d32;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:600;margin-top:5px}
+.f-badge-lcc{background:#fff3e0;color:#e65100}
+.flight-info{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid #f0ece8}
+.f-airline{font-size:12px;color:#666}
+.f-price{font-size:20px;font-weight:700;color:#c0392b}
+.f-price small{font-size:11px;font-weight:400;color:#bbb}
+
+.btable{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4}
+.btable th{background:#7b1010;color:#fff;padding:13px 18px;text-align:left;font-size:12px;font-weight:500}
+.btable td{padding:13px 18px;font-size:13px;border-bottom:1px solid #f5f2ef}
+.btable tr:last-child td{border-bottom:none;background:#fdf8f3;font-weight:700}
+.btable .r{text-align:right;font-weight:500}
+.btable tr:last-child .r{color:#c0392b;font-size:15px}
+
+.spot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.spot-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid #ede9e4}
+.spot-card .em{font-size:22px;margin-bottom:7px}
+.spot-card .name{font-size:13px;font-weight:700;color:#2c0000;margin-bottom:3px}
+.spot-card .desc{font-size:12px;color:#666;line-height:1.5}
+
+/* COURSE */
+.course-block{margin-bottom:28px}
+.course-title-bar{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:16px 20px;border-radius:14px}
+.ctA{background:linear-gradient(135deg,#7b1010,#a01818)}
+.ctB{background:linear-gradient(135deg,#1a3a6e,#2255a0)}
+.ctC{background:linear-gradient(135deg,#4a2060,#6a3090)}
+.ct-icon{font-size:28px}
+.ct-info .ct-tag{font-size:11px;color:rgba(255,255,255,.6);font-weight:300;margin-bottom:3px}
+.ct-info .ct-name{font-size:17px;font-weight:700;color:#fff}
+.ct-info .ct-sub{font-size:12px;color:rgba(255,255,255,.7);margin-top:3px}
+
+.day-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;margin-bottom:14px}
+.day-hd{padding:14px 20px;display:flex;align-items:center;gap:12px}
+.dhA1{background:linear-gradient(135deg,#7b1010,#9b1515)}
+.dhA2{background:linear-gradient(135deg,#a01818,#c02020)}
+.dhA3{background:linear-gradient(135deg,#8b1212,#b01a1a)}
+.dhA4{background:linear-gradient(135deg,#6a0e0e,#8a1212)}
+.dhB1{background:linear-gradient(135deg,#1a3a6e,#1e4a8e)}
+.dhB2{background:linear-gradient(135deg,#2255a0,#2a6ab8)}
+.dhB3{background:linear-gradient(135deg,#1a3a6e,#224a8e)}
+.dhB4{background:linear-gradient(135deg,#152e58,#1a3a6e)}
+.dhC1{background:linear-gradient(135deg,#4a2060,#5a2878)}
+.dhC2{background:linear-gradient(135deg,#5a2878,#6a3090)}
+.dhC3{background:linear-gradient(135deg,#4a2060,#5e2870)}
+.dhC4{background:linear-gradient(135deg,#3a1850,#4a2060)}
+.day-num{background:rgba(255,255,255,.2);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.day-meta{color:#fff}
+.day-meta .dm-date{font-size:11px;opacity:.65;font-weight:300;margin-bottom:1px}
+.day-meta .dm-theme{font-size:15px;font-weight:700}
+.day-body{padding:18px 20px}
+.tl{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.tl:last-child{margin-bottom:0}
+.tl-t{font-size:11px;color:#999;font-weight:500;min-width:36px;padding-top:2px}
+.tl-dot{width:7px;height:7px;border-radius:50%;background:#7b1010;margin-top:6px;flex-shrink:0}
+.tl-c .tl-title{font-size:13px;font-weight:600;color:#2c0000;margin-bottom:1px}
+.tl-c .tl-desc{font-size:12px;color:#666;line-height:1.5}
+
+/* HOTEL */
+.hotel-tier-bar{height:4px}
+.hta{background:linear-gradient(to right,#4caf50,#81c784)}
+.htm{background:linear-gradient(to right,#ff9800,#ffb74d)}
+.htp{background:linear-gradient(to right,#e91e63,#f48fb1)}
+.hotel-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4}
+.hotel-inner{padding:18px}
+.h-name{font-size:14px;font-weight:700;color:#2c0000;margin-bottom:2px}
+.h-sub{font-size:11px;color:#999;margin-bottom:8px}
+.h-score{display:inline-block;background:#7b1010;color:#fff;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-bottom:8px}
+.h-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.htag{background:#f5f2ef;color:#555;padding:2px 8px;border-radius:14px;font-size:10px;font-weight:500}
+.h-review{background:#fafaf8;border-radius:10px;padding:12px 14px;margin-bottom:12px;border:1px solid #ede9e4}
+.h-review-row{display:flex;gap:6px;margin-bottom:7px;font-size:12px;line-height:1.5}
+.h-review-row:last-child{margin-bottom:0}
+.h-rv-icon{flex-shrink:0;font-size:13px}
+.h-rv-label{font-weight:600;color:#444;min-width:52px;flex-shrink:0}
+.h-rv-text{color:#555}
+.h-price-row{display:flex;justify-content:space-between;align-items:flex-end;padding-top:12px;border-top:1px solid #f0ece8}
+.h-price{font-size:17px;font-weight:700;color:#c0392b}
+.h-price small{font-size:10px;font-weight:400;color:#bbb}
+.h-total{font-size:11px;color:#999;margin-top:1px}
+.book-btn{display:inline-block;background:#003580;color:#fff;padding:7px 13px;border-radius:7px;font-size:11px;font-weight:600;text-decoration:none}
+.book-gold{background:linear-gradient(135deg,#b8860b,#daa520)}
+
+.checklist{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.ci{display:flex;align-items:center;gap:8px;font-size:12px;color:#333}
+.cb{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;flex-shrink:0}
+
+.footer{background:#7b1010;color:rgba(255,255,255,.45);text-align:center;padding:22px;font-size:11px;margin-top:10px}
+
+@media print{
+  body{background:#fff}
+  .cover,.day-hd,.course-title-bar,.btable th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="badge">✈️ 커플 여행 플랜 · 2026</div>
+  <h1>오사카<br>3박 4일</h1>
+  <p class="subtitle">일본 식도락의 수도 · 도톤보리 · 교토 당일치기 · 고베 야경</p>
+  <div class="meta">
+    <div class="meta-item">📅 2026년 5월 22일(금) ~ 25일(월)</div>
+    <div class="meta-item">💑 2인 커플 여행</div>
+    <div class="meta-item">🌤️ 20~24°C · 맑음</div>
+    <div class="meta-item">🗾 오사카부 오사카시</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- 날씨 & 시기 -->
+<div class="sec">
+  <div class="info-bar">
+    <div class="info-item">🌸 <span class="lbl">5월 하순</span> — 쾌적한 초여름 · 습도 아직 낮음</div>
+    <div class="info-item">🌡️ <span class="lbl">기온</span> 20~24°C · 야외 활동 최적</div>
+    <div class="info-item">☀️ <span class="lbl">날씨</span> 맑음 위주 · 간헐적 소나기</div>
+    <div class="info-item">⚠️ <span class="lbl">혼잡도</span> 연휴라 관광지 매우 붐빔 · 예약 필수</div>
+  </div>
+  <div class="alert-box">
+    ⚠️ <strong>연휴 주의:</strong> 오사카는 한국인 관광객이 가장 많이 찾는 도시. 5월 연휴 기간엔 도톤보리·유니버설 등 특히 혼잡. 인기 맛집 예약 최소 1~2주 전 필수. 숙소도 일찍 예약해야 좋은 가격 잡을 수 있음.
+  </div>
+</div>
+
+<!-- 항공편 & 출발 플랜 -->
+<div class="sec">
+  <div class="sec-head"><span>✈️</span><h2>출발 플랜 선택 — 4가지 옵션</h2></div>
+  <p style="font-size:13px;color:#888;margin-bottom:18px">언제 출발하느냐에 따라 여행 길이와 연차 소모가 달라져요. 아래 4가지 중 상황에 맞게 선택하세요.</p>
+
+  <!-- 옵션 비교 표 -->
+  <div style="overflow-x:auto;margin-bottom:20px">
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;font-size:13px">
+      <thead>
+        <tr style="background:#7b1010;color:#fff">
+          <th style="padding:12px 14px;text-align:left;font-weight:600">옵션</th>
+          <th style="padding:12px 14px;text-align:center;font-weight:600">출발</th>
+          <th style="padding:12px 14px;text-align:center;font-weight:600">귀국</th>
+          <th style="padding:12px 14px;text-align:center;font-weight:600">일정</th>
+          <th style="padding:12px 14px;text-align:center;font-weight:600">연차</th>
+          <th style="padding:12px 14px;text-align:center;font-weight:600">추천도</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #f0ece8">
+          <td style="padding:13px 14px;font-weight:700;color:#7b1010">🅐 기본안</td>
+          <td style="padding:13px 14px;text-align:center">5/22(금) 아침<br><span style="font-size:11px;color:#888">연차 사용</span></td>
+          <td style="padding:13px 14px;text-align:center">5/25(월)<br><span style="font-size:11px;color:#888">대체공휴일</span></td>
+          <td style="padding:13px 14px;text-align:center;font-weight:700">3박 4일</td>
+          <td style="padding:13px 14px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">1일</span></td>
+          <td style="padding:13px 14px;text-align:center">⭐⭐⭐</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0ece8;background:#fdf8ff">
+          <td style="padding:13px 14px;font-weight:700;color:#4a0080">🅑 연차 0일 꿀안</td>
+          <td style="padding:13px 14px;text-align:center">5/21(목) 밤<br><span style="font-size:11px;color:#888">퇴근 후 출발</span></td>
+          <td style="padding:13px 14px;text-align:center">5/25(월)<br><span style="font-size:11px;color:#888">대체공휴일</span></td>
+          <td style="padding:13px 14px;text-align:center;font-weight:700">4박 4일</td>
+          <td style="padding:13px 14px;text-align:center"><span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">0일 ✨</span></td>
+          <td style="padding:13px 14px;text-align:center">⭐⭐⭐⭐⭐</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0ece8">
+          <td style="padding:13px 14px;font-weight:700;color:#1a3a6e">🅒 알짜 확장안</td>
+          <td style="padding:13px 14px;text-align:center">5/21(목) 밤<br><span style="font-size:11px;color:#888">퇴근 후 출발</span></td>
+          <td style="padding:13px 14px;text-align:center">5/26(화)<br><span style="font-size:11px;color:#888">연차 1일</span></td>
+          <td style="padding:13px 14px;text-align:center;font-weight:700">5박 5일</td>
+          <td style="padding:13px 14px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">1일</span></td>
+          <td style="padding:13px 14px;text-align:center">⭐⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td style="padding:13px 14px;font-weight:700;color:#555">🅓 주말 출발안</td>
+          <td style="padding:13px 14px;text-align:center">5/22(금) 밤<br><span style="font-size:11px;color:#888">퇴근 후 출발</span></td>
+          <td style="padding:13px 14px;text-align:center">5/26(화)~27(수)<br><span style="font-size:11px;color:#888">다음 주 귀국</span></td>
+          <td style="padding:13px 14px;text-align:center;font-weight:700">3박4일~4박5일</td>
+          <td style="padding:13px 14px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">1~2일</span></td>
+          <td style="padding:13px 14px;text-align:center">⭐⭐⭐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 옵션별 상세 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+
+    <!-- 옵션 A -->
+    <div class="flight-card" style="border-left:4px solid #7b1010">
+      <div style="font-size:12px;font-weight:700;color:#7b1010;margin-bottom:10px">🅐 기본안 · 5/22(금) 아침 출발</div>
+      <div class="flight-route" style="margin-bottom:10px">
+        <div class="f-point"><div class="f-time" style="font-size:16px">06~09시</div><div class="f-ap">ICN 출발</div></div>
+        <div class="f-mid"><div class="f-dur">약 2시간</div><div class="f-line"></div><div class="f-badge">직항</div></div>
+        <div class="f-point"><div class="f-time" style="font-size:16px">08~11시</div><div class="f-ap">KIX 도착</div></div>
+      </div>
+      <div style="font-size:12px;color:#555;line-height:1.6">
+        귀국: <strong>5/25(월)</strong> 대체공휴일<br>
+        항공: 제주항공/진에어/대한항공 등<br>
+        <strong style="color:#c0392b">왕복 1인 25~60만원</strong>
+      </div>
+      <a href="https://flight.naver.com/flights/international/ICN-KIX-20260522/KIX-ICN-20260525?adult=2&fareType=Y" target="_blank" style="display:inline-block;margin-top:10px;font-size:11px;color:#003580;font-weight:600">→ 네이버 항공 검색</a>
+    </div>
+
+    <!-- 옵션 B -->
+    <div class="flight-card" style="border-left:4px solid #4a0080;background:#fdf8ff">
+      <div style="font-size:12px;font-weight:700;color:#4a0080;margin-bottom:10px">🅑 연차 0일 꿀안 · 5/21(목) 밤 출발 ✨</div>
+      <div class="flight-route" style="margin-bottom:10px">
+        <div class="f-point"><div class="f-time" style="font-size:16px">22~23시</div><div class="f-ap">ICN 출발</div></div>
+        <div class="f-mid"><div class="f-dur">약 2시간</div><div class="f-line"></div><div class="f-badge f-badge-lcc">야간편</div></div>
+        <div class="f-point"><div class="f-time" style="font-size:16px">익일 00~02시</div><div class="f-ap">KIX 도착</div></div>
+      </div>
+      <div style="font-size:12px;color:#555;line-height:1.6">
+        5/22(금) 새벽 도착 → 실질 4박 확보<br>
+        귀국: <strong>5/25(월)</strong> 대체공휴일<br>
+        연차 <strong style="color:#2e7d32">0일</strong> · <strong style="color:#c0392b">왕복 1인 25~50만원</strong>
+      </div>
+      <a href="https://flight.naver.com/flights/international/ICN-KIX-20260521/KIX-ICN-20260525?adult=2&fareType=Y" target="_blank" style="display:inline-block;margin-top:10px;font-size:11px;color:#003580;font-weight:600">→ 네이버 항공 검색</a>
+    </div>
+
+    <!-- 옵션 C -->
+    <div class="flight-card" style="border-left:4px solid #1a3a6e">
+      <div style="font-size:12px;font-weight:700;color:#1a3a6e;margin-bottom:10px">🅒 알짜 확장안 · 5/21(목) 밤 + 5/26(화) 귀국</div>
+      <div style="font-size:12px;color:#555;line-height:1.8">
+        <strong>출발:</strong> 5/21(목) 22~23시 야간편<br>
+        <strong>도착:</strong> 5/22(금) 새벽 — 5일 풀 활용<br>
+        <strong>귀국:</strong> 5/26(화) 연차 1일<br>
+        → 연차 1일로 <strong style="color:#1a3a6e">5박5일</strong> 완성!<br>
+        <strong style="color:#c0392b">왕복 1인 25~50만원</strong>
+      </div>
+      <a href="https://flight.naver.com/flights/international/ICN-KIX-20260521/KIX-ICN-20260526?adult=2&fareType=Y" target="_blank" style="display:inline-block;margin-top:10px;font-size:11px;color:#003580;font-weight:600">→ 네이버 항공 검색</a>
+    </div>
+
+    <!-- 옵션 D -->
+    <div class="flight-card" style="border-left:4px solid #555">
+      <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:10px">🅓 주말 출발안 · 5/22(금) 밤 출발</div>
+      <div class="flight-route" style="margin-bottom:10px">
+        <div class="f-point"><div class="f-time" style="font-size:16px">20~23시</div><div class="f-ap">ICN 출발</div></div>
+        <div class="f-mid"><div class="f-dur">약 2시간</div><div class="f-line"></div><div class="f-badge f-badge-lcc">야간편</div></div>
+        <div class="f-point"><div class="f-time" style="font-size:16px">익일 00~01시</div><div class="f-ap">KIX 도착</div></div>
+      </div>
+      <div style="font-size:12px;color:#555;line-height:1.6">
+        퇴근 후 공항 이동 → 연차 불필요<br>
+        귀국: <strong>5/26(화) 연차 1일</strong> or <strong>5/27(수) 연차 2일</strong><br>
+        대신 5/22 밤~5/23 새벽 이동으로 <strong>첫날 짧음</strong><br>
+        <strong style="color:#c0392b">왕복 1인 20~45만원</strong>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <a href="https://flight.naver.com/flights/international/ICN-KIX-20260522/KIX-ICN-20260526?adult=2&fareType=Y" target="_blank" style="font-size:11px;color:#003580;font-weight:600">→ 5/26 귀국 검색</a>
+        <a href="https://flight.naver.com/flights/international/ICN-KIX-20260522/KIX-ICN-20260527?adult=2&fareType=Y" target="_blank" style="font-size:11px;color:#003580;font-weight:600">→ 5/27 귀국 검색</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 추천 요약 박스 -->
+  <div style="background:#fdf8ff;border:2px solid #4a0080;border-radius:12px;padding:16px 20px;font-size:13px">
+    <div style="font-weight:700;color:#4a0080;margin-bottom:8px">✨ Mori 추천: 옵션 B (목요일 밤 출발)</div>
+    <div style="color:#444;line-height:1.7">
+      목요일 퇴근 후 → 밤 비행기 → 5/22(금) 새벽 오사카 도착 → 5/25(월) 귀국.<br>
+      <strong>연차 1일도 안 쓰고 실질 4박</strong>. 오사카는 야간에 입국해도 편의점·도톤보리 야경 즐길 수 있어서 낭비가 없음.<br>
+      더 욕심 있으면 옵션 C (5/26 귀국)로 <strong>연차 1일 = 5박5일</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- 예산 -->
+<div class="sec">
+  <div class="sec-head"><span>💰</span><h2>예상 예산 (2인 합계 · 식비/쇼핑 제외)</h2></div>
+  <table class="btable">
+    <thead><tr><th>항목</th><th>내역</th><th class="r">금액</th></tr></thead>
+    <tbody>
+      <tr><td>✈️ 항공 (왕복)</td><td>LCC 기준 2인 / FSC는 추가</td><td class="r">50만원 ~ 120만원</td></tr>
+      <tr><td>🏨 숙박 (3박)</td><td>가격대별 선택</td><td class="r">30만원 ~ 100만원</td></tr>
+      <tr><td>🚌 현지 교통</td><td>오사카 주유패스 + 이코카 카드</td><td class="r">6~12만원</td></tr>
+      <tr><td>🎫 입장료 등</td><td>USJ, 관광지, 교토 당일치기</td><td class="r">5~20만원</td></tr>
+      <tr><td>💰 <strong>합계</strong></td><td><strong>가성비 / 중급 / 프리미엄</strong></td><td class="r">91 / 150 / 250만원~</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px;color:#aaa;margin-top:8px">※ 오사카 주유패스(1~2일권) 구매 시 주요 관광지 무료 입장 + 교통 포함 — 가성비 높음</p>
+</div>
+
+<!-- 핵심 스팟 -->
+<div class="sec">
+  <div class="sec-head"><span>⭐</span><h2>오사카 & 근교 핵심 스팟</h2></div>
+  <div class="spot-grid">
+    <div class="spot-card"><div class="em">🍢</div><div class="name">도톤보리 (道頓堀)</div><div class="desc">오사카의 상징. 글리코맨 간판, 타코야키, 라멘, 쿠이다오레 골목. 밤이 특히 화려함</div></div>
+    <div class="spot-card"><div class="em">🦀</div><div class="name">쿠로몬 시장 (黒門市場)</div><div class="desc">오사카 부엌. 신선한 해산물, 과일, 길거리 음식. 아침~낮 방문 추천</div></div>
+    <div class="spot-card"><div class="em">⛩️</div><div class="name">교토 (당일치기)</div><div class="desc">신칸센 15분. 아라시야마 대나무숲, 후시미이나리 천 개의 도리이, 기온 거리</div></div>
+    <div class="spot-card"><div class="em">🦌</div><div class="name">나라 (당일치기)</div><div class="desc">JR 45분. 귀여운 사슴 800마리, 도다이지 대불, 고후쿠지. 짧은 여정에도 만족도 높음</div></div>
+    <div class="spot-card"><div class="em">🎡</div><div class="name">유니버설 스튜디오 재팬 (USJ)</div><div class="desc">해리포터, 슈퍼닌텐도월드. 반일~하루 소요. 성수기 입장권 사전 구매 필수</div></div>
+    <div class="spot-card"><div class="em">🌃</div><div class="name">고베 + 아리마 온천</div><div class="desc">오사카에서 전철 30분. 고베규, 기타노 이진칸, 항구 야경. 아리마온천 당일치기 가능</div></div>
+  </div>
+</div>
+
+<!-- 코스별 일정 -->
+<div class="sec">
+  <div class="sec-head"><span>📅</span><h2>코스별 일정 — 3가지 테마 플랜</h2></div>
+  <p style="font-size:13px;color:#888;margin-bottom:14px">오사카를 어떤 방식으로 즐길지에 따라 3가지 코스를 준비했습니다. 일부 코스를 섞어서 나만의 플랜으로 커스텀도 가능해요.</p>
+
+  <!-- 출발 옵션 안내 -->
+  <div style="background:#f5f0ff;border-radius:12px;padding:14px 18px;margin-bottom:22px;border:1px solid #d4b8ff;font-size:12px;color:#4a0080">
+    <strong>📌 출발 옵션별 일정 적용 방법:</strong><br>
+    <span style="display:block;margin-top:6px;line-height:1.8">
+      • <strong>옵션 A (5/22 아침 출발)</strong> → 아래 코스 그대로 사용 (Day 1: 5/22)<br>
+      • <strong>옵션 B/C (5/21 목요일 밤 출발)</strong> → <span style="background:#4a0080;color:#fff;padding:1px 6px;border-radius:4px">Day 0</span> 카드 추가 사용. Day 1은 5/22(금) 새벽 도착 후 오전부터 시작<br>
+      • <strong>옵션 C (5/26 귀국)</strong> → 귀국일 하루 추가 = 교토나 나라 한 곳 더 추가 가능<br>
+      • <strong>옵션 D (5/22 금 밤 출발)</strong> → Day 1은 5/23(토) 새벽 도착으로 시작
+    </span>
+  </div>
+
+  <!-- Day 0 박스 (목요일 밤 출발 시) -->
+  <div style="background:#fdf8ff;border:2px dashed #4a0080;border-radius:14px;padding:18px 20px;margin-bottom:22px">
+    <div style="font-size:13px;font-weight:700;color:#4a0080;margin-bottom:12px">✈️ Day 0 — 옵션 B/C 사용 시 (5/21 목요일 밤)</div>
+    <div class="tl"><div class="tl-t">퇴근</div><div class="tl-dot" style="background:#4a0080"></div><div class="tl-c"><div class="tl-title">퇴근 → 공항 이동</div><div class="tl-desc">인천공항 2~3시간 전 도착. 체크인·면세점 쇼핑</div></div></div>
+    <div class="tl"><div class="tl-t">22~23시</div><div class="tl-dot" style="background:#4a0080"></div><div class="tl-c"><div class="tl-title">인천 출발 → 간사이 도착 (익일 00~02시)</div><div class="tl-desc">야간편 · 기내 수면 · 기내식 있는 편 선택 추천</div></div></div>
+    <div class="tl"><div class="tl-t">01~03시</div><div class="tl-dot" style="background:#4a0080"></div><div class="tl-c"><div class="tl-title">간사이공항 입국 → 숙소 이동</div><div class="tl-desc">심야 공항버스 or 택시 이용 · 난바까지 약 40분 · 숙소 심야 체크인 사전 확인</div></div></div>
+    <div class="tl" style="margin-bottom:0"><div class="tl-t">03~</div><div class="tl-dot" style="background:#4a0080"></div><div class="tl-c"><div class="tl-title">잠깐 수면 후 → 5/22(금) 아침부터 Day 1 시작 🎉</div><div class="tl-desc">5/22 아침부터 하루 풀로 활용 · 연차 없이 4박 확보</div></div></div>
+  </div>
+
+  <!-- 코스 A -->
+  <div class="course-block">
+    <div class="course-title-bar ctA">
+      <div class="ct-icon">🍜</div>
+      <div class="ct-info">
+        <div class="ct-tag">COURSE A</div>
+        <div class="ct-name">오사카 식도락 풀 탐방</div>
+        <div class="ct-sub">도톤보리 · 쿠로몬 · 타코야키 · 오마카세 · 쿠이다오레 먹방 여행</div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhA1"><div class="day-num">1</div><div class="day-meta"><div class="dm-date">5/22(금) 연차</div><div class="dm-theme">✈️ 도착 · 도톤보리 첫 밤</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:xx</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">간사이공항 도착 → 난바 이동</div><div class="tl-desc">공항급행 라피트 or 일반 난카이 전철 · 약 40~50분 · 930~1,450엔</div></div></div>
+        <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">쿠로몬 시장 점심</div><div class="tl-desc">오사카 부엌 · 신선 해산물 꼬치 · 길거리 음식 투어 · 1인 2,000~4,000엔</div></div></div>
+        <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">신사이바시 · 아메리카무라 쇼핑</div><div class="tl-desc">오사카 최대 쇼핑 거리 · 스트리트 패션 · 빈티지 편집숍</div></div></div>
+        <div class="tl"><div class="tl-t">17:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">도톤보리 황혼 산책</div><div class="tl-desc">글리코맨 인증샷 · 에비스바시 전망 · 운하 주변 야경 준비</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 오마카세 스시 or 철판구이</div><div class="tl-desc">도톤보리 인근 카운터 스시 · 1인 8,000~15,000엔 · 예약 필수</div></div></div>
+        <div class="tl"><div class="tl-t">21:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">도톤보리 야경 & 디저트</div><div class="tl-desc">운하 유람선(야간 운항 있음) · 크레페 · 아이스크림</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhA2"><div class="day-num">2</div><div class="day-meta"><div class="dm-date">5/23(토)</div><div class="dm-theme">🍡 타코야키 · 오코노미야키 · 라멘 투어</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">아침 — 오사카식 모닝 (킷사텐)</div><div class="tl-desc">일본 전통 커피숍 모닝세트 · 토스트+삶은계란+커피 · 500~800엔</div></div></div>
+        <div class="tl"><div class="tl-t">10:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오사카성 & 공원 산책</div><div class="tl-desc">5월 신록의 오사카성 · 공원 피크닉 분위기 · 입장료 600엔</div></div></div>
+        <div class="tl"><div class="tl-t">13:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">점심 — 타코야키 + 오코노미야키 비교</div><div class="tl-desc">우메다 타코야키 유명 맛집 vs 도톤보리 오코노미야키 · "오사카 소울푸드" 비교 체험</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">우메다 스카이빌딩 공중정원</div><div class="tl-desc">오사카 360도 파노라마 뷰 · 입장료 1,500엔 · 커플 포토스팟</div></div></div>
+        <div class="tl"><div class="tl-t">18:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">우메다 야경 디너</div><div class="tl-desc">루쿠아 1100 · 그랑 프론트 오사카 레스토랑 가이드 추천</div></div></div>
+        <div class="tl"><div class="tl-t">20:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">덴덴타운 야간 산책</div><div class="tl-desc">전자상가 · 피규어 · 애니메이션 굿즈 · 24시간 편의점 쇼핑</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhA3"><div class="day-num">3</div><div class="day-meta"><div class="dm-date">5/24(일) 부처님오신날</div><div class="dm-theme">🦌 나라 당일치기 · 사슴과의 만남</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">08:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">난바 출발 → 나라 이동</div><div class="tl-desc">킨테쓰 특급 or JR · 약 45분~1시간 · 1,000~1,500엔</div></div></div>
+        <div class="tl"><div class="tl-t">10:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">나라 공원 사슴과 산책</div><div class="tl-desc">800마리 사슴 자유 방목 · 사슴 전병 사 먹이기 · 공원 무료</div></div></div>
+        <div class="tl"><div class="tl-t">11:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">도다이지 (東大寺) 대불</div><div class="tl-desc">세계 최대 목조 건물 · 15m 대불 · 입장료 800엔</div></div></div>
+        <div class="tl"><div class="tl-t">13:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">점심 — 나라 전통 가마메시 or 소바</div><div class="tl-desc">나라 전통 솥밥 · 관광 거리 식당</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">나라마치 전통 거리 산책</div><div class="tl-desc">에도~메이지 시대 상인 마을 · 기념품 · 카페</div></div></div>
+        <div class="tl"><div class="tl-t">17:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오사카 귀환 · 저녁</div><div class="tl-desc">마지막 밤 오사카 야경 · 도톤보리 운하 야경 마무리</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhA4"><div class="day-num">4</div><div class="day-meta"><div class="dm-date">5/25(월) 대체공휴일</div><div class="dm-theme">🛫 귀국 · 공항에서 마지막 라멘</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">07:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">쿠로몬 시장 아침 산책</div><div class="tl-desc">시장 아침 개장 · 과일 · 간식 · 마지막 기념품</div></div></div>
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">간사이공항 이동</div><div class="tl-desc">난카이 전철 or 리무진 버스 · 여유있게 이동</div></div></div>
+        <div class="tl"><div class="tl-t">공항</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">공항 라멘 · 면세점 쇼핑</div><div class="tl-desc">간사이공항 3층 레스토랑가 · 라멘 국물로 마무리</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 코스 B -->
+  <div class="course-block">
+    <div class="course-title-bar ctB">
+      <div class="ct-icon">⛩️</div>
+      <div class="ct-info">
+        <div class="ct-tag">COURSE B</div>
+        <div class="ct-name">교토 집중 탐방 + 오사카 야경</div>
+        <div class="ct-sub">아라시야마 · 후시미이나리 · 기온 · 철학의 길 — 교토를 제대로</div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhB1"><div class="day-num">1</div><div class="day-meta"><div class="dm-date">5/22(금) 연차</div><div class="dm-theme">✈️ 도착 · 오사카 첫인상</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:xx</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">간사이공항 도착 → 난바</div><div class="tl-desc">라피트 or 난카이 전철 40~50분</div></div></div>
+        <div class="tl"><div class="tl-t">12:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">도톤보리 점심 + 산책</div><div class="tl-desc">글리코맨 인증샷 · 타코야키 · 우동</div></div></div>
+        <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">신사이바시 · 쇼핑</div><div class="tl-desc">아이들 상가 · 기념품 · 드럭스토어</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 오사카 고급 이자카야</div><div class="tl-desc">신사이바시 뒷골목 · 지역 청주 + 오사카 해산물</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhB2"><div class="day-num">2</div><div class="day-meta"><div class="dm-date">5/23(토)</div><div class="dm-theme">⛩️ 교토 당일치기 — 아라시야마 + 기온</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">07:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오사카 출발 → 교토 이동</div><div class="tl-desc">신칸센 15분 or JR 신쾌속 75분 · 교토역 도착</div></div></div>
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">아라시야마 대나무숲</div><div class="tl-desc">이른 아침에 한산 · 도게츠쿄 다리 · 자전거 대여 추천 · 덴류지 정원</div></div></div>
+        <div class="tl"><div class="tl-t">12:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">점심 — 교토식 두부 요리 or 소바</div><div class="tl-desc">아라시야마 내 전통 료칸 식당 or 역 주변 점심</div></div></div>
+        <div class="tl"><div class="tl-t">14:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">후시미이나리 (伏見稲荷) 천 개의 도리이</div><div class="tl-desc">오렌지색 도리이 터널 · 인증샷 필수 · 전체 등산 2시간 or 중간 반환 가능</div></div></div>
+        <div class="tl"><div class="tl-t">17:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">기온 거리 황혼 산책</div><div class="tl-desc">마이코/게이샤 만날 수 있는 시간대 · 야사카신사 · 전통 찻집</div></div></div>
+        <div class="tl"><div class="tl-t">19:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오사카 귀환 · 저녁</div><div class="tl-desc">도톤보리 야경 감상 + 야식</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhB3"><div class="day-num">3</div><div class="day-meta"><div class="dm-date">5/24(일) 부처님오신날</div><div class="dm-theme">🎡 USJ or 오사카 성 + 우메다</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">08:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">옵션 A — 유니버설 스튜디오 재팬 (USJ)</div><div class="tl-desc">해리포터 · 슈퍼닌텐도월드 · 입장권 사전 구매 필수 · 1인 8,600엔~</div></div></div>
+        <div class="tl"><div class="tl-t">08:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">옵션 B — 오사카성 + 우메다 코스</div><div class="tl-desc">오사카성 역사 관람 → 우메다 쇼핑 → 스카이빌딩 공중정원 야경</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">마지막 저녁 — 오사카 특선 디너</div><div class="tl-desc">우메다 루쿠아 1100 레스토랑가 or 스카이빌딩 전망 레스토랑</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhB4"><div class="day-num">4</div><div class="day-meta"><div class="dm-date">5/25(월) 대체공휴일</div><div class="dm-theme">🛫 귀국</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">오전</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">체크아웃 → 쇼핑 마무리</div><div class="tl-desc">돈키호테 · 마츠모토 키요시 · 마지막 쇼핑</div></div></div>
+        <div class="tl"><div class="tl-t">공항</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">간사이공항 이동 → 귀국 🇰🇷</div><div class="tl-desc">라피트 or 리무진 버스 · 여유있게 출발</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 코스 C -->
+  <div class="course-block">
+    <div class="course-title-bar ctC">
+      <div class="ct-icon">🥩</div>
+      <div class="ct-info">
+        <div class="ct-tag">COURSE C</div>
+        <div class="ct-name">고베 럭셔리 + 아리마 온천 힐링</div>
+        <div class="ct-sub">고베규 스테이크 · 항구 야경 · 아리마 황금 온천 · 이진칸 이국적 거리</div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhC1"><div class="day-num">1</div><div class="day-meta"><div class="dm-date">5/22(금) 연차</div><div class="dm-theme">✈️ 도착 · 오사카 정착</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:xx</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">간사이공항 → 오사카 난바</div><div class="tl-desc">체크인 후 도톤보리 주변 탐색</div></div></div>
+        <div class="tl"><div class="tl-t">12:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">쿠로몬 시장 점심</div><div class="tl-desc">해산물 꼬치 · 참치 횟감 · 과일</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">도톤보리 + 신사이바시 산책</div><div class="tl-desc">오사카 분위기 체감 · 글리코맨 인증</div></div></div>
+        <div class="tl"><div class="tl-t">19:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">저녁 — 오사카 오마카세 스시</div><div class="tl-desc">내일 고베 전에 오사카 스시 미리 즐기기</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhC2"><div class="day-num">2</div><div class="day-meta"><div class="dm-date">5/23(토)</div><div class="dm-theme">🌃 고베 당일치기 — 이진칸 + 항구 야경</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오사카 → 고베 이동</div><div class="tl-desc">한신 전철 or JR · 약 20~30분</div></div></div>
+        <div class="tl"><div class="tl-t">10:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">기타노 이진칸 (北野異人館) 이국 거리</div><div class="tl-desc">메이지 시대 외국인 저택 밀집 지역 · 유럽풍 건축 · 포토스팟</div></div></div>
+        <div class="tl"><div class="tl-t">13:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">점심 — 고베규 런치 스테이크</div><div class="tl-desc">세계 3대 와규 · 런치 코스 5,000~12,000엔 · 저녁보다 저렴</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">하버랜드 & 메리켄 파크</div><div class="tl-desc">고베항 항구 뷰 · 쇼핑몰 · 모자이크 쇼핑센터</div></div></div>
+        <div class="tl"><div class="tl-t">18:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고베 야경 → 오사카 귀환</div><div class="tl-desc">롯코산 야경 or 하버 야경 감상 후 귀환</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhC3"><div class="day-num">3</div><div class="day-meta"><div class="dm-date">5/24(일) 부처님오신날</div><div class="dm-theme">♨️ 아리마 온천 당일치기</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">09:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오사카 → 아리마 온천 이동</div><div class="tl-desc">신코베에서 지하철+버스 약 1시간 or 직행버스 · 1,000~1,500엔</div></div></div>
+        <div class="tl"><div class="tl-t">11:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">긴노유 (銀の湯) / 킨노유 (金の湯)</div><div class="tl-desc">일본 3대 명천 아리마 온천 · 황금빛 탕(킨노유) 650엔 · 일반탕(긴노유) 550엔</div></div></div>
+        <div class="tl"><div class="tl-t">13:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">점심 — 아리마 탄산 만주 + 소바</div><div class="tl-desc">아리마 명물 탄산 온천수로 만든 만주 · 시내 소바집</div></div></div>
+        <div class="tl"><div class="tl-t">15:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">온천 마을 산책 & 기념품 쇼핑</div><div class="tl-desc">온천 마을 골목 탐방 · 온천 사탕·죽 기념품</div></div></div>
+        <div class="tl"><div class="tl-t">17:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">오사카 귀환 · 마지막 저녁</div><div class="tl-desc">도톤보리 마지막 야경 감상 + 야키니쿠 or 스키야키</div></div></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-hd dhC4"><div class="day-num">4</div><div class="day-meta"><div class="dm-date">5/25(월) 대체공휴일</div><div class="dm-theme">🛫 귀국</div></div></div>
+      <div class="day-body">
+        <div class="tl"><div class="tl-t">오전</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">마지막 쇼핑 → 공항 이동</div><div class="tl-desc">돈키호테 · 드럭스토어 · 마지막 면세 쇼핑</div></div></div>
+        <div class="tl"><div class="tl-t">공항</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">간사이공항 → 인천 귀국 🇰🇷</div><div class="tl-desc">공항 라멘으로 오사카 마무리</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 옵션 C/D 보너스 일정 -->
+<div style="background:#f0f5ff;border:2px dashed #1a3a6e;border-radius:14px;padding:20px;margin-top:-10px;margin-bottom:28px">
+  <div style="font-size:13px;font-weight:700;color:#1a3a6e;margin-bottom:14px">📅 보너스 Day — 옵션 C (5/26 귀국) / 옵션 D (5/26~27 귀국) 시 추가 일정</div>
+  <p style="font-size:12px;color:#555;margin-bottom:14px">귀국을 5/26(화) or 5/27(수)로 늘리면 아래 중 하나를 추가할 수 있어요.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="background:#fff;border-radius:10px;padding:14px;border:1px solid #c5d8f5">
+      <div style="font-size:12px;font-weight:700;color:#1a3a6e;margin-bottom:8px">➕ 교토 2차 탐방 (코스 B 선택 시)</div>
+      <div class="tl" style="margin-bottom:8px"><div class="tl-t">오전</div><div class="tl-dot" style="background:#1a3a6e"></div><div class="tl-c"><div class="tl-title">철학의 길 + 은각사 (銀閣寺)</div><div class="tl-desc">교토 동부 조용한 산책로 · 인파 적음</div></div></div>
+      <div class="tl" style="margin-bottom:8px"><div class="tl-t">오후</div><div class="tl-dot" style="background:#1a3a6e"></div><div class="tl-c"><div class="tl-title">니조성 or 교토고쇼</div><div class="tl-desc">전날 못 간 교토 스팟 마저 탐방</div></div></div>
+      <div class="tl" style="margin-bottom:0"><div class="tl-t">저녁</div><div class="tl-dot" style="background:#1a3a6e"></div><div class="tl-c"><div class="tl-title">오사카 귀환 → 다음날 공항</div><div class="tl-desc"></div></div></div>
+    </div>
+    <div style="background:#fff;border-radius:10px;padding:14px;border:1px solid #c5d8f5">
+      <div style="font-size:12px;font-weight:700;color:#1a3a6e;margin-bottom:8px">➕ 우메다 쇼핑 집중 + 귀국</div>
+      <div class="tl" style="margin-bottom:8px"><div class="tl-t">오전</div><div class="tl-dot" style="background:#1a3a6e"></div><div class="tl-c"><div class="tl-title">우메다 쇼핑 집중 (그랑 프론트 · 루쿠아)</div><div class="tl-desc">귀국 전 마지막 쇼핑 · 기념품 최종 정리</div></div></div>
+      <div class="tl" style="margin-bottom:8px"><div class="tl-t">점심</div><div class="tl-dot" style="background:#1a3a6e"></div><div class="tl-c"><div class="tl-title">못 먹은 오사카 음식 마저 먹기</div><div class="tl-desc">타코야키 · 오코노미야키 · 라멘 中 선택</div></div></div>
+      <div class="tl" style="margin-bottom:0"><div class="tl-t">오후</div><div class="tl-dot" style="background:#1a3a6e"></div><div class="tl-c"><div class="tl-title">간사이공항 이동 → 귀국 🇰🇷</div><div class="tl-desc">라피트 or 리무진버스</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 숙소 추천 -->
+<div class="sec">
+  <div class="sec-head"><span>🏨</span><h2>숙소 추천 — 가격대별 + 리뷰 요약</h2></div>
+  <p style="font-size:12px;color:#999;margin-bottom:8px">※ 가격: 부킹닷컴 실시간 기준(2026.03.11) · 연휴 가격 · 변동 가능 · 예약하기 클릭 시 해당 날짜 적용</p>
+  <p style="font-size:12px;color:#c0392b;margin-bottom:20px">⚠️ 오사카는 연휴에 숙소 가격 급등 + 빨리 마감. 항공권 잡으면 바로 숙소 예약 권장.</p>
+
+  <!-- 가성비형 -->
+  <div style="margin-bottom:16px">
+    <span style="background:#e8f5e9;color:#2e7d32;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700">💚 가성비형</span>
+    <span style="font-size:12px;color:#888;margin-left:8px">1박 10~18만원 · 3박 2인 합계 약 30~54만원</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px">
+    <div class="hotel-card">
+      <div class="hotel-tier-bar hta"></div>
+      <div class="hotel-inner">
+        <div class="h-name">e hotel Namba Higashi</div>
+        <div class="h-sub">비즈니스 호텔 · 난바 동쪽 · 도보권</div>
+        <div class="h-score">🏨 비즈니스 · 도톤보리 근처</div>
+        <div class="h-tags"><span class="htag">난바 근처</span><span class="htag">깔끔 모던</span><span class="htag">가성비</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">도톤보리 도보권. 깔끔하고 모던한 비즈니스 호텔. 위치 대비 가격 좋음</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">관광에 집중하고 싶은 커플. 숙소보다 밖에서 더 많이 보내는 여행 스타일</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">객실 좁은 편 · 조식 없음 · 로비 협소</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩123,061 <small>/박</small></div><div class="h-total">3박 약 37만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=e+hotel+Namba+Higashi&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-tier-bar hta"></div>
+      <div class="hotel-inner">
+        <div class="h-name">Minn Hotel Namba</div>
+        <div class="h-sub">아파트형 호텔 · 난바 중심부</div>
+        <div class="h-score">🏨 아파트형 · 난바 도심</div>
+        <div class="h-tags"><span class="htag">난바 도심</span><span class="htag">아파트형</span><span class="htag">주방</span><span class="htag">넓은 공간</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">아파트형이라 공간 여유. 주방 있어 간단히 해먹기 가능. 난바 중심 위치</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">호텔 느낌보다 우리만의 공간 원하는 커플. 이른 아침·늦은 밤 편의점 접근 용이</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">프론트 운영 시간 확인 필요 · 조식 없음</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩109,539 <small>/박</small></div><div class="h-total">3박 약 33만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=Minn+Hotel+Namba+Osaka&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 중급형 -->
+  <div style="margin-bottom:16px">
+    <span style="background:#fff8e1;color:#f57f17;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700">💛 중급형</span>
+    <span style="font-size:12px;color:#888;margin-left:8px">1박 17~30만원 · 3박 2인 합계 약 51~90만원</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:10px">
+    <div class="hotel-card" style="grid-column:span 2">
+      <div class="hotel-tier-bar htm"></div>
+      <div class="hotel-inner">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <div class="h-name">🌟 도미인 프리미엄 난바</div>
+            <div class="h-sub">Dormy Inn Premium Namba · 난바 온천 비즈니스 호텔</div>
+            <div class="h-score">⭐ 8.9점 Fabulous — 이 구간 최추천</div>
+            <div class="h-tags">
+              <span class="htag">♨️ 대욕탕</span><span class="htag">야나기소바 무료</span><span class="htag">해산물 조식</span><span class="htag">난바 도보권</span>
+            </div>
+          </div>
+          <div class="h-review" style="margin-bottom:0">
+            <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">리뷰 요약</span><span class="h-rv-text">가나자와 도미인과 같은 체인. 대욕탕, 야나기소바(무료 야식 라멘), 해산물 조식 3종 세트. "숙박비 이상의 경험" 후기 다수</span></div>
+            <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">온천에서 오사카 관광 피로 회복. 아침 조식이 여행의 하이라이트. 가성비 1등</span></div>
+            <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">연휴 조기 마감 잦음 · 조식 줄 길 수 있음</span></div>
+          </div>
+        </div>
+        <div class="h-price-row" style="margin-top:14px">
+          <div><div class="h-price">₩190,000~ <small>/박 추정</small></div><div class="h-total">3박 약 57만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=Dormy+Inn+Premium+Namba&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htm"></div>
+      <div class="hotel-inner">
+        <div class="h-name">JR 호텔 난바 오사카</div>
+        <div class="h-sub">JR Hotel Namba Osaka · JR 역 연결</div>
+        <div class="h-score">🏨 시티 호텔 · JR 직결</div>
+        <div class="h-tags"><span class="htag">JR 직결</span><span class="htag">교통 최적</span><span class="htag">레스토랑</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">JR 역과 직결. 교토·나라 당일치기 시 교통 편리 극대화. 안정적인 JR 계열 서비스</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">코스 B (교토 당일치기) 선택 시 최적 위치. 이동 편의성 1등</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">도톤보리까지 약간 걷거나 전철 1정거장</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩171,689 <small>/박</small></div><div class="h-total">3박 약 52만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=JR+Hotel+Namba+Osaka&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htm"></div>
+      <div class="hotel-inner">
+        <div class="h-name">Ark Hotel Osaka Shinsaibashi</div>
+        <div class="h-sub">루트인 계열 · 신사이바시 위치</div>
+        <div class="h-score">🏨 비즈니스 체인 · 신사이바시</div>
+        <div class="h-tags"><span class="htag">신사이바시</span><span class="htag">조식 옵션</span><span class="htag">쇼핑 직결</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">장점</span><span class="h-rv-text">루트인 계열 안정적 품질. 신사이바시 쇼핑 거리 바로 앞. 조식 뷔페 옵션 있음</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">쇼핑 좋아하는 커플. 신사이바시·도톤보리 도보 5분 이내</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">특색 없는 체인 스타일</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩188,393 <small>/박</small></div><div class="h-total">3박 약 57만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=Ark+Hotel+Osaka+Shinsaibashi&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn">예약하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 프리미엄형 -->
+  <div style="margin-bottom:16px;margin-top:14px">
+    <span style="background:#fce4ec;color:#c62828;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700">💎 프리미엄형</span>
+    <span style="font-size:12px;color:#888;margin-left:8px">1박 30만원+ · 3박 2인 합계 약 90만원+</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px">
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htp"></div>
+      <div class="hotel-inner">
+        <div class="h-name">크로스 호텔 오사카</div>
+        <div class="h-sub">Cross Hotel Osaka · 도톤보리 바로 옆</div>
+        <div class="h-score">⭐ 8.7점 Fabulous · 위치 최고</div>
+        <div class="h-tags"><span class="htag">도톤보리 옆</span><span class="htag">디자인 호텔</span><span class="htag">인피니티 바</span><span class="htag">루프탑</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">리뷰 요약</span><span class="h-rv-text">도톤보리 글리코맨 바로 옆. 인피니티 바(루프탑) 운영. 디자인 인테리어. 위치+분위기 모두 만점. "오사카 최고 위치 호텔"</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">호텔 창문에서 도톤보리 야경. 루프탑에서 야경 보며 칵테일. 오사카 커플 여행 1순위</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">연휴엔 가격 더 오름 · 조기 매진 잦음</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩303,970 <small>/박</small></div><div class="h-total">3박 약 91만원</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=Cross+Hotel+Osaka&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn book-gold">예약하기</a>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-tier-bar htp"></div>
+      <div class="hotel-inner">
+        <div class="h-name">스위소텔 난카이 오사카</div>
+        <div class="h-sub">Swissôtel Nankai Osaka · 5성급 럭셔리</div>
+        <div class="h-score">⭐ 8.6점 · 5성급 · 난바 파크스 직결</div>
+        <div class="h-tags"><span class="htag">5성급</span><span class="htag">난바 파크스 직결</span><span class="htag">수영장</span><span class="htag">스파</span><span class="htag">시티뷰</span></div>
+        <div class="h-review">
+          <div class="h-review-row"><span class="h-rv-icon">👍</span><span class="h-rv-label">리뷰 요약</span><span class="h-rv-text">오사카 난바 최고급 시티 호텔. 수영장·스파 운영. 난바 파크스 쇼핑몰 직결. 서비스 최고 수준</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">❤️</span><span class="h-rv-label">커플 추천</span><span class="h-rv-text">특별한 날 최고 선택. "호텔이 목적지". 수영장+스파로 도심 속 리조트 경험</span></div>
+          <div class="h-review-row"><span class="h-rv-icon">⚠️</span><span class="h-rv-label">주의</span><span class="h-rv-text">고가 · 연휴 시즌 사전 예약 필수</span></div>
+        </div>
+        <div class="h-price-row">
+          <div><div class="h-price">₩400,000+ <small>/박 추정</small></div><div class="h-total">3박 약 120만원+</div></div>
+          <a href="https://www.booking.com/searchresults.ko.html?ss=Swissotel+Nankai+Osaka&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1" target="_blank" class="book-btn book-gold">예약하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:18px;background:#fff;border-radius:12px;border:1px solid #ede9e4">
+    <p style="font-size:12px;color:#888;margin-bottom:10px">더 많은 옵션 직접 비교하기</p>
+    <a href="https://www.booking.com/searchresults.ko.html?ss=Osaka+Namba&checkin=2026-05-22&checkout=2026-05-25&group_adults=2&no_rooms=1&nflt=ht_id%3D204&order=class" target="_blank"
+       style="display:inline-block;background:#7b1010;color:#fff;padding:11px 24px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">
+      🔍 부킹닷컴에서 전체 오사카 호텔 보기
+    </a>
+  </div>
+</div>
+
+<!-- 예약 체크리스트 -->
+<div class="sec">
+  <div class="sec-head"><span>📋</span><h2>예약 체크리스트</h2></div>
+  <div class="checklist">
+    <div class="ci"><div class="cb"></div><span>항공권 예매 (LCC or FSC 비교)</span></div>
+    <div class="ci"><div class="cb"></div><span>숙박 예약 (빨리 마감 — 서두르기)</span></div>
+    <div class="ci"><div class="cb"></div><span>여행자보험 가입</span></div>
+    <div class="ci"><div class="cb"></div><span>환전 (엔화) or 트래블카드</span></div>
+    <div class="ci"><div class="cb"></div><span>오사카 주유패스 사전 구매</span></div>
+    <div class="ci"><div class="cb"></div><span>인기 맛집 예약 (1~2주 전)</span></div>
+    <div class="ci"><div class="cb"></div><span>USJ 선택 시 — 입장권 사전 구매</span></div>
+    <div class="ci"><div class="cb"></div><span>포켓와이파이 or 현지 eSIM</span></div>
+    <div class="ci"><div class="cb"></div><span>코스 A/B/C 중 선택 확정</span></div>
+    <div class="ci"><div class="cb"></div><span>연차 신청 (5월 22일)</span></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>✈️ 오사카 3박4일 커플 여행 플랜 · 2026년 5월 22~25일</p>
+  <p style="margin-top:5px;opacity:.5">실시간 숙박 가격 기준 2026.03.11 · 가격은 변동될 수 있습니다</p>
+</div>
+
+</body>
+</html>

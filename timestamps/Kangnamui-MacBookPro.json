@@ -1,10 +1,12 @@
 {
   "workspace": {
     "analyze_notion.py": 1772631003.6246173,
+    "kanazawa-pdf.html": 1773212941.2896144,
     "kanazawa-trip.html": 1773211896.5985398,
     "osaka-trip.html": 1773211592.3040688,
     "todo.json": 1772631004.089934,
     "cal_sync.py": 1773032730.5449297,
+    "osaka-kanazawa-trip.html": 1773213837.546861,
     "notion_to_gcal_sync.sh": 1772947477.8259065,
     "IDENTITY.md": 1772631003.541222,
     "HEARTBEAT.md": 1772631003.522081,
@@ -39,6 +41,7 @@
     "memory/2026-02-05.md": 1772631003.7056792,
     "memory/2026-02-01.md": 1772631003.6720927,
     "memory/2026-03-04.md": 1772631003.843796,
+    "memory/2026-03-11.md": 1773212420.7383847,
     ".openclaw/workspace-state.json": 1772631003.4406524,
     "skills/travel-planner.skill": 1772631004.0064628,
     "skills/transport-search.skill": 1772631003.9389563,

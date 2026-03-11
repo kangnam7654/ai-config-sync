@@ -153,7 +153,7 @@ body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#faf
   <h1>가나자와<br>3박 4일</h1>
   <p class="subtitle">일본 전통문화의 보석 · 켄로쿠엔 · 해산물 · 온천</p>
   <div class="meta">
-    <div class="meta-item">📅 2026년 5월 22일(금) ~ 25일(월)</div>
+    <div class="meta-item">📅 2026년 5월 22~26일 (4가지 출발 옵션)</div>
     <div class="meta-item">💑 2인 커플 여행</div>
     <div class="meta-item">🌤️ 18~21°C · 맑음</div>
     <div class="meta-item">🗾 이시카와현 가나자와시</div>
@@ -172,56 +172,166 @@ body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#faf
   </div>
 </div>
 
-<!-- 항공편 -->
+<!-- 항공편 & 출발 옵션 -->
 <div class="sec">
-  <div class="sec-head"><span>✈️</span><h2>항공편</h2></div>
-  <div class="flight-card">
-    <div class="flight-label">가는 편 · 5월 22일 (금) — 연차</div>
-    <div class="flight-route">
-      <div class="f-point"><div class="f-time">07:30</div><div class="f-ap">인천 ICN</div></div>
-      <div class="f-mid">
-        <div class="f-dur">1시간 45분</div>
-        <div class="f-line"></div>
-        <div class="f-badge">직항</div>
-      </div>
-      <div class="f-point"><div class="f-time">09:15</div><div class="f-ap">고마츠 KMQ</div></div>
+  <div class="sec-head"><span>✈️</span><h2>4가지 출발 옵션 — 종합 비용 비교</h2></div>
+
+  <p style="font-size:13px;color:#888;margin-bottom:12px">가나자와 접근법은 크게 두 가지: <strong>KMQ 직항</strong>(JAL 1일 1편) vs <strong>KIX 경유</strong>(간사이공항 → JR 특급 약 2.5시간). 밤비행기는 KIX 경유만 가능.</p>
+
+  <!-- 경로 비교 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+    <div style="background:#e8f5e9;border-radius:10px;padding:12px 14px;border:1px solid #a5d6a7">
+      <div style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:4px">🛫 경로 A — KMQ 직항</div>
+      <div style="font-size:11px;color:#555;line-height:1.6">ICN → KMQ 직항 1시간 45분<br>JAL (KE 코드쉐어) · 1일 1편<br>왕복 1인 약 59만원~<br><strong>가나자와역까지:</strong> 리무진 버스 40분 · 1,300엔</div>
     </div>
-    <div class="flight-info">
-      <div class="f-airline">일본항공 (JAL) · 대한항공 공동운항</div>
-      <div class="f-price">592,500원 <small>~/인</small></div>
+    <div style="background:#e3f2fd;border-radius:10px;padding:12px 14px;border:1px solid #90caf9">
+      <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:4px">🛫 경로 B — KIX 경유 (밤비행기 가능)</div>
+      <div style="font-size:11px;color:#555;line-height:1.6">ICN → KIX 약 2시간 (LCC/FSC 다양)<br>왕복 1인 약 25~60만원<br><strong>가나자와까지:</strong> JR 특급 썬더버드 약 2.5시간<br>편도 약 7,800엔(₩7만) · 왕복 ₩14만 추가</div>
     </div>
   </div>
-  <div class="flight-card">
-    <div class="flight-label">오는 편 · 5월 25일 (월) — 대체공휴일</div>
-    <div class="flight-route">
-      <div class="f-point"><div class="f-time">10:15</div><div class="f-ap">고마츠 KMQ</div></div>
-      <div class="f-mid">
-        <div class="f-dur">1시간 55분</div>
-        <div class="f-line"></div>
-        <div class="f-badge">직항</div>
+
+  <!-- 종합 비용 비교 표 -->
+  <div style="overflow-x:auto;margin-bottom:14px">
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #ede9e4;font-size:12px">
+      <thead>
+        <tr style="background:#1a1a2e;color:#fff">
+          <th style="padding:11px 10px;text-align:left;font-weight:600;width:14%">옵션</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:14%">출발 → 귀국</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:10%">경로</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:8%">숙박</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:7%">연차</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:14%">✈️ 항공+열차 (2인)</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:13%">🏨 숙박</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:10%">💰 합계</th>
+          <th style="padding:11px 8px;text-align:center;font-weight:600;width:10%">판정</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #f0ece8">
+          <td style="padding:11px 10px;font-weight:700;color:#7b1010">① 목밤</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">5/21(목) 밤<br>→ 5/25(월)</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px;color:#1565c0;font-weight:600">KIX 경유</td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700;color:#c0392b">4박<br><span style="font-size:9px">KIX1+가3</span></td>
+          <td style="padding:11px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:2px 6px;border-radius:10px;font-size:9px;font-weight:700">5/22</span></td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            LCC 40~60만<br>+ 열차 ₩14만<br>= <strong>54~74만</strong>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            4박 52~68만<br><span style="font-size:9px;color:#c0392b">+1박(KIX캡슐/호텔)</span>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700;color:#c0392b;font-size:13px">106~142만</td>
+          <td style="padding:11px 8px;text-align:center;font-size:10px;color:#888">복잡 △</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0ece8;background:#f0fff0">
+          <td style="padding:11px 10px;font-weight:700;color:#2e7d32">② 금아침</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">5/22(금) 아침<br>→ 5/25(월)</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px;color:#2e7d32;font-weight:600">KMQ 직항</td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700">3박<br><span style="font-size:9px;color:#2e7d32">22·23·24 ✓</span></td>
+          <td style="padding:11px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:2px 6px;border-radius:10px;font-size:9px;font-weight:700">5/22</span></td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            JAL 직항<br>2인 왕복 <strong>118~125만</strong><br><span style="font-size:9px;color:#888">열차 불필요</span>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            3박 39~57만<br><span style="font-size:9px;color:#2e7d32">추가 없음 ✓</span>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700;font-size:13px"><span style="color:#2e7d32">157~182만</span></td>
+          <td style="padding:11px 8px;text-align:center"><span style="background:#2e7d32;color:#fff;padding:3px 7px;border-radius:6px;font-size:9px;font-weight:700">편의 1등</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0ece8">
+          <td style="padding:11px 10px;font-weight:700;color:#555">③ 금밤</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">5/22(금) 밤<br>→ 5/26(화)</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px;color:#1565c0;font-weight:600">KIX 경유</td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700;color:#c0392b">4박<br><span style="font-size:9px">KIX1+가3</span></td>
+          <td style="padding:11px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:2px 6px;border-radius:10px;font-size:9px;font-weight:700">5/26</span></td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            LCC 40~60만<br>+ 열차 ₩14만<br>= <strong>54~74만</strong>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            4박 43~60만<br><span style="font-size:9px;color:#c0392b">+1박(KIX캡슐/호텔)</span>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700;color:#c0392b;font-size:13px">97~134만</td>
+          <td style="padding:11px 8px;text-align:center;font-size:10px;color:#888">복잡 △</td>
+        </tr>
+        <tr style="background:#fffaf0">
+          <td style="padding:11px 10px;font-weight:700;color:#e65100">④ 토아침</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">5/23(토) 아침<br>→ 5/26(화)</td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            <span style="color:#2e7d32;font-weight:600">KMQ</span> or<br><span style="color:#1565c0;font-weight:600">KIX</span>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700">3박<br><span style="font-size:9px;color:#2e7d32">23·24·25 ✓</span></td>
+          <td style="padding:11px 8px;text-align:center"><span style="background:#fff3e0;color:#e65100;padding:2px 6px;border-radius:10px;font-size:9px;font-weight:700">5/26</span></td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            JAL: 118~125만<br>KIX LCC+열차: 64~84만<br><span style="font-size:9px;color:#2e7d32">화귀국=항공↓</span>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-size:11px">
+            3박 33~54만<br><span style="font-size:9px;color:#2e7d32">추가 없음 ✓</span>
+          </td>
+          <td style="padding:11px 8px;text-align:center;font-weight:700;font-size:13px"><span style="color:#e65100">97~179만</span></td>
+          <td style="padding:11px 8px;text-align:center"><span style="background:#e65100;color:#fff;padding:3px 7px;border-radius:6px;font-size:9px;font-weight:700">가성비 💰</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 밤비행기 경고 -->
+  <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:12px 16px;font-size:12px;color:#856404;margin-bottom:18px">
+    ⚠️ <strong>가나자와 밤비행기 주의:</strong> KMQ(고마츠)에는 야간편이 없어 <strong>KIX(간사이) 경유</strong> 필수.
+    새벽 KIX 도착 → 캡슐호텔 or 공항 벤치 → 아침 JR 썬더버드(약 2.5시간, 편도 ₩7만).
+    <strong>항공은 싸지만 열차비 + 1박 추가 + 이동 시간으로 실질 이점 감소.</strong>
+  </div>
+
+  <!-- 기존 JAL 직항 상세 (②용) -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+    <div class="flight-card" style="border-left:4px solid #2e7d32">
+      <div style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:10px">② JAL 직항 KMQ · 가장 편리</div>
+      <div class="flight-route" style="margin-bottom:8px">
+        <div class="f-point"><div class="f-time" style="font-size:18px">07:30</div><div class="f-ap">ICN 출발</div></div>
+        <div class="f-mid"><div class="f-dur">1시간 45분</div><div class="f-line"></div><div class="f-badge">직항</div></div>
+        <div class="f-point"><div class="f-time" style="font-size:18px">09:15</div><div class="f-ap">KMQ 도착</div></div>
       </div>
-      <div class="f-point"><div class="f-time">12:10</div><div class="f-ap">인천 ICN</div></div>
+      <div style="font-size:12px;color:#555">JAL (KE 코드쉐어) · 공항→역 버스 40분<br><strong style="color:#e94560">왕복 1인 약 59만원~ (2인 118~125만)</strong></div>
+      <a href="https://flight.naver.com/flights/international/ICN-KMQ-20260522/KMQ-ICN-20260525?adult=2&fareType=Y" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#003580;font-weight:600">→ 네이버 항공 검색</a>
     </div>
-    <div class="flight-info">
-      <div class="f-airline">일본항공 (JAL) · 대한항공 공동운항</div>
-      <div class="f-price">왕복 동일편</div>
+    <div class="flight-card" style="border-left:4px solid #e65100">
+      <div style="font-size:12px;font-weight:700;color:#e65100;margin-bottom:10px">④ KIX LCC → 썬더버드 · 가성비</div>
+      <div class="flight-route" style="margin-bottom:8px">
+        <div class="f-point"><div class="f-time" style="font-size:18px">06~09시</div><div class="f-ap">ICN 출발</div></div>
+        <div class="f-mid"><div class="f-dur">약 2시간</div><div class="f-line"></div><div class="f-badge" style="background:#fff3e0;color:#e65100">LCC</div></div>
+        <div class="f-point"><div class="f-time" style="font-size:18px">08~11시</div><div class="f-ap">KIX 도착</div></div>
+      </div>
+      <div style="font-size:12px;color:#555">KIX → JR 썬더버드 2.5시간 → 가나자와<br>LCC 왕복 25~40만 + 열차 ₩14만 = <strong style="color:#e94560">1인 39~54만 (2인 78~108만)</strong></div>
+      <a href="https://flight.naver.com/flights/international/ICN-KIX-20260523/KIX-ICN-20260526?adult=2&fareType=Y" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#003580;font-weight:600">→ 네이버 항공 검색</a>
     </div>
   </div>
+
+  <!-- 추천 -->
+  <div style="background:#e8f5e9;border:2px solid #2e7d32;border-radius:12px;padding:16px 20px;font-size:13px;margin-bottom:8px">
+    <div style="font-weight:700;color:#2e7d32;margin-bottom:8px">✨ Mori 추천 — 가나자와는 오사카와 사정이 다름</div>
+    <div style="color:#444;line-height:1.8">
+      <strong>🥇 편의 최고:</strong> ② JAL 직항 (157~182만원) — 직항이라 이동 피로 없음. 예산 150~200만원에 맞음. <strong>가나자와에선 이게 정답.</strong><br>
+      <strong>🥈 가성비:</strong> ④ KIX LCC+썬더버드 (97~162만원) — JAL보다 항공 40~50만원 절약. 대신 KIX→가나자와 이동 2.5시간 추가.<br>
+      <strong>⚠️ 비추:</strong> ①③ 밤비행기 KIX 경유 — 항공은 싸지만 +1박 + 열차비 + 새벽 이동 피로. 가나자와에선 비효율적.
+    </div>
+  </div>
+  <p style="font-size:10px;color:#bbb;margin-bottom:0">※ JAL 가격은 네이버항공 실시간 기준(2026.03). KIX LCC는 제주항공/진에어/에어서울 등 연휴 추정가.</p>
 </div>
 
 <!-- 예산 -->
 <div class="sec">
   <div class="sec-head"><span>💰</span><h2>예상 예산 (2인 합계 · 식비/쇼핑 제외)</h2></div>
   <table class="btable">
-    <thead><tr><th>항목</th><th>내역</th><th class="r">금액</th></tr></thead>
+    <thead><tr><th>항목</th><th>내역</th><th class="r">금액 (2인)</th></tr></thead>
     <tbody>
-      <tr><td>✈️ 항공 (왕복)</td><td>JAL 직항 · 2인</td><td class="r">약 118~125만원</td></tr>
-      <tr><td>🏨 숙박 (3박)</td><td>아래 가격대별 선택</td><td class="r">39~105만원</td></tr>
-      <tr><td>🚌 현지 교통</td><td>버스패스 + 공항 리무진</td><td class="r">10~15만원</td></tr>
+      <tr><td>✈️ 항공 (왕복)</td><td>② JAL 직항 / ④ KIX LCC+열차</td><td class="r">78~125만원</td></tr>
+      <tr><td>🏨 숙박 (3박)</td><td>가성비 / 중급 / 프리미엄</td><td class="r">39~105만원</td></tr>
+      <tr><td>🚌 현지 교통</td><td>버스패스 + 공항 리무진</td><td class="r">6~15만원</td></tr>
       <tr><td>🎫 입장료</td><td>켄로쿠엔, 미술관 등</td><td class="r">3~5만원</td></tr>
-      <tr><td>💰 <strong>합계</strong></td><td><strong>가성비 / 중급 / 프리미엄</strong></td><td class="r">170 / 200 / 250만원~</td></tr>
+      <tr style="background:#f0fff0"><td>💰 <strong>④ KIX LCC + 가성비 숙소</strong></td><td><strong>토아침 LCC+열차 + 저가 호텔</strong></td><td class="r" style="color:#2e7d32;font-size:14px"><strong>126~160만원</strong></td></tr>
+      <tr><td>💰 <strong>② JAL 직항 + 중급 숙소</strong></td><td><strong>직항 + 도미인급</strong></td><td class="r" style="font-size:14px"><strong>170~200만원</strong></td></tr>
+      <tr><td>💰 <strong>② JAL + 프리미엄</strong></td><td><strong>직항 + ANA크라운/료칸</strong></td><td class="r" style="font-size:14px"><strong>220~260만원</strong></td></tr>
     </tbody>
   </table>
+  <p style="font-size:11px;color:#aaa;margin-top:8px">※ 밤비행기(①③)는 +1박 + 열차비 추가로 ④보다 비용 이점 적음. ②(JAL 직항)는 비싸지만 편의성 최고.</p>
 </div>
 
 <!-- 핵심 스팟 -->
@@ -240,7 +350,10 @@ body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#faf
 <!-- 코스별 일정 -->
 <div class="sec">
   <div class="sec-head"><span>📅</span><h2>코스별 일정 — 3가지 테마 플랜</h2></div>
-  <p style="font-size:13px;color:#888;margin-bottom:22px;">동일한 날짜(5/22~25)에 어떤 테마로 여행할지 선택하세요. 취향에 따라 코스를 조합해도 됩니다.</p>
+  <p style="font-size:13px;color:#888;margin-bottom:14px;">어떤 테마로 여행할지 선택하세요. 취향에 따라 코스를 조합해도 됩니다.</p>
+  <div style="background:#e8f5e9;border-radius:10px;padding:12px 16px;font-size:12px;color:#2e7d32;margin-bottom:22px;border:1px solid #a5d6a7">
+    📌 <strong>옵션별 적용:</strong> ②(금아침) → 아래 코스 그대로 (Day 1 = 5/22). ④(토아침) → Day 1 = 5/23, 날짜 하루 밀어서 적용. 귀국일 = 5/26(화).
+  </div>
 
   <!-- 코스 A -->
   <div class="course-block">
@@ -343,9 +456,9 @@ body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#faf
     <div class="day-card">
       <div class="day-hd dhB4"><div class="day-num">4</div><div class="day-meta"><div class="dm-date">5/25(월) 대체공휴일</div><div class="dm-theme">🛫 아침 온천 → 가나자와 → 귀국</div></div></div>
       <div class="day-body">
-        <div class="tl"><div class="tl-t">07:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">료칸 아침 온천 & 조식</div><div class="tl-desc">1박2식 포함 · 마지막 온천욕 · 일본식 조식</div></div></div>
-        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">가나자와역으로 귀환</div><div class="tl-desc">버스 약 1시간 · 역에서 기념품 쇼핑</div></div></div>
-        <div class="tl"><div class="tl-t">08:40</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠공항 리무진 탑승</div><div class="tl-desc">시간 계산 주의 · 일찍 이동 권장</div></div></div>
+        <div class="tl"><div class="tl-t">06:30</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">료칸 아침 온천 & 조식</div><div class="tl-desc">1박2식 포함 · 마지막 온천욕 · 일본식 조식</div></div></div>
+        <div class="tl"><div class="tl-t">08:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">야마나카 → 고마츠공항 직행</div><div class="tl-desc">택시 or 버스 약 30~40분 · 가나자와 경유하면 시간 부족 ⚠️</div></div></div>
+        <div class="tl"><div class="tl-t">09:00</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠공항 도착 · 체크인</div><div class="tl-desc">출발 1시간 전 도착 · 면세점 쇼핑</div></div></div>
         <div class="tl"><div class="tl-t">10:15</div><div class="tl-dot"></div><div class="tl-c"><div class="tl-title">고마츠 출발 → 인천 12:10 도착 🇰🇷</div><div class="tl-desc">몸도 마음도 리프레시된 상태로 귀국</div></div></div>
       </div>
     </div>
@@ -483,7 +596,7 @@ body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#faf
             <div class="h-sub">Dormy Inn Premium Kanazawa · 온천 비즈니스 호텔</div>
             <div class="h-score">⭐ 8.8점 Fabulous — 이 구간 최추천</div>
             <div class="h-tags">
-              <span class="htag">♨️ 옥상 온천</span><span class="htag">야나기소바 무료</span><span class="htag">해산물 조식</span><span class="htag">역 도보 7분</span>
+              <span class="htag">♨️ 옥상 온천</span><span class="htag">요나키소바(夜鳴きそば) 무료</span><span class="htag">해산물 조식</span><span class="htag">역 도보 7분</span>
             </div>
           </div>
           <div class="h-review" style="margin-bottom:0">
@@ -607,7 +720,7 @@ body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#faf
     <div class="ci"><div class="cb"></div><span>켄로쿠엔 입장권 (현장 구매 가능)</span></div>
     <div class="ci"><div class="cb"></div><span>21세기미술관 유료관 사전 예약</span></div>
     <div class="ci"><div class="cb"></div><span>온천 or 노토 반도 플랜 결정</span></div>
-    <div class="ci"><div class="cb"></div><span>연차 신청 (5월 22일)</span></div>
+    <div class="ci"><div class="cb"></div><span>연차 신청 (②→5/22 · ④→5/26)</span></div>
     <div class="ci"><div class="cb"></div><span>코스 A/B/C 중 선택 확정</span></div>
     <div class="ci"><div class="cb"></div><span>코스 C 선택 시 국제운전면허 발급</span></div>
   </div>
@@ -616,7 +729,7 @@ body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#faf
 </div><!-- /wrap -->
 
 <div class="footer">
-  <p>✈️ 가나자와 3박4일 커플 여행 플랜 · 2026년 5월 22~25일</p>
+  <p>✈️ 가나자와 3박4일 커플 여행 플랜 · 2026년 5월 22~26일 (4가지 출발 옵션)</p>
   <p style="margin-top:5px;opacity:.5">실시간 항공·숙박 가격 기준 2026.03.11 · 가격은 변동될 수 있습니다</p>
 </div>
 

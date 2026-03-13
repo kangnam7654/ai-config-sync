@@ -92,3 +92,46 @@ Recommendation: **Electron for solo devs** (JS-only, zero new language, biggest 
 3. All markdown/streaming libs target React first
 4. LobeChat, AnythingLLM, Claude Desktop all use React
 **Svelte+Tauri** is the performance-maximalist choice for experienced devs willing to DIY chat UI components.
+
+## Open-Source Text-to-Video on Apple Silicon (researched 2026-03-13)
+
+Key findings for running Wan2.1 and alternatives on M-series Macs:
+
+### Wan2.1 MPS Support Status
+- **Official support: NO.** Wan2.1 repo has no official MPS/Metal backend. GitHub Issues #14 and #208 track this — open since release, community-driven only.
+- **Workaround path**: Set `PYTORCH_ENABLE_MPS_FALLBACK=1`, use `--offload_model True --t5_cpu`, replace CUDA device init with MPS in code. PR #69 by bakhti-ai exists but was not merged.
+- **ComfyUI route**: Works via GGUF quantized models (city96/Wan2.1-T2V-14B-gguf). GGUF format bypasses the Float8_e4m3fn / Float16 MPS type errors that hit safetensors models. Use Euler sampler + normal scheduler.
+- **Community fork**: github.com/HighDoping/Wan2.1 has Apple Silicon patches. github.com/kbadri007/Wan2mac forks Wan2GP for Apple Silicon.
+
+### Memory Requirements
+- **1.3B model**: 6-8GB VRAM on NVIDIA. On Mac, practical minimum is ~16GB unified memory (model + system overhead).
+- **14B model**: 8GB VRAM with offloading on NVIDIA. On Mac, 36GB+ unified memory needed for practical use; 64GB recommended.
+- **14B fp8 GGUF**: Reportedly runnable on ~24-36GB unified memory via ComfyUI.
+
+### Generation Speed (Real-World Reports, 2025)
+- **RTX 4090**: 5-second 480p clip in ~5.3 min (14B model). Reference baseline.
+- **RTX 3090**: 50 min for a full-resolution Wan 2.2 fp8 generation (1280x768).
+- **M1 Pro (1.3B, 8 frames, 480p)**: ~10 min (1 min/step). 24 frames = 1.5hr+ unfinished. ~2-5x slower than RTX 4090.
+- **M1 Ultra 128GB (14B/2.2 fp8, 1280x768)**: 48 HOURS vs 50 min on 3090. ~57x slower — indicates missing MPS optimization, not typical ratio.
+- **M4 Max 128GB (1.3B, 32-48 frames)**: Successfully generated via MPS patches. ~100GB memory used during generation.
+- **GGUF on Apple Silicon (generic report)**: ~5 min for 2 seconds of low-res video. "Extremely slow."
+
+### Key Technical Blockers on MPS
+1. `Float8_e4m3fn` dtype not supported by MPS backend — blocks safetensors fp8 models
+2. PyTorch MPS NDArray size limit: cannot exceed 2^32 bytes — caps resolution/frame count
+3. sinusoidal embeddings and rotary encodings need float32 cast (float64 not supported on MPS)
+
+### Alternatives That Work Better on Apple Silicon
+| Model | RAM Needed | Speed on Mac | Notes |
+|---|---|---|---|
+| LTX-Video (via MLX) | 32GB+ (64GB rec) | 5-15 min/video | Native MLX port. M1-M4 supported. ltx-video-mac app. |
+| HunyuanVideo (MLX) | 36GB+ (90GB+ ideal) | ~16 min/clip (M3 Pro 36GB, fast mode) | HunyuanVideo_MLX project. 6-step fast mode needed. |
+| CogVideoX-5B | 12GB+ | ~20x slower than RTX 4090 (reported) | Works via ComfyUI MPS. Quality decent. |
+| AnimateDiff | 16GB+ | Moderate | AUTOMATIC1111 v1.6+ required. Shorter clips only. |
+
+### Practical Recommendation for Mac Users
+- **Best for quick testing**: ComfyUI + Wan2.1-T2V-1.3B-GGUF (Q4/Q6). Minimum 24GB unified memory.
+- **Best quality on Mac**: LTX-Video via MLX (ltx-video-mac app, 32GB+) or HunyuanVideo_MLX (36GB+).
+- **Wan2.1 14B on Mac**: Only practical on M2 Ultra/M3 Ultra/M4 Max 128GB. Expect 5-20x slower than RTX 4090.
+- **Do not use**: Wan2GP (deepbeepmeep) — CUDA-only, no MPS adaptation.
+- **PyTorch version**: Use 2.4.1 for LTX-Video. 2.2+ required for MPS video generation generally.

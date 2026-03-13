@@ -19,9 +19,6 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "ralph-loop@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "postman@claude-plugins-official": true,
     "cli-anything@cli-anything": true
   },
   "extraKnownMarketplaces": {

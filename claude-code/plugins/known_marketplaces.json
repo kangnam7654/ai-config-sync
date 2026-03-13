@@ -5,6 +5,14 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/home/kangnam/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-03-13T02:36:18.706Z"
+    "lastUpdated": "2026-03-13T05:00:03.852Z"
+  },
+  "cli-anything": {
+    "source": {
+      "source": "github",
+      "repo": "HKUDS/CLI-Anything"
+    },
+    "installLocation": "/Users/kangnam/.claude/plugins/marketplaces/cli-anything",
+    "lastUpdated": "2026-03-13T04:55:09.727Z"
   }
 }

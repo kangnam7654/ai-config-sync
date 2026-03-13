@@ -21,9 +21,17 @@
   "enabledPlugins": {
     "ralph-loop@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "postman@claude-plugins-official": true
+    "postman@claude-plugins-official": true,
+    "cli-anything@cli-anything": true
   },
-  "extraKnownMarketplaces": {},
+  "extraKnownMarketplaces": {
+    "cli-anything": {
+      "source": {
+        "source": "github",
+        "repo": "HKUDS/CLI-Anything"
+      }
+    }
+  },
   "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true
 }

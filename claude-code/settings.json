@@ -19,8 +19,7 @@
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "cli-anything@cli-anything": true,
-    "figma@claude-plugins-official": true
+    "cli-anything@cli-anything": true
   },
   "extraKnownMarketplaces": {
     "cli-anything": {

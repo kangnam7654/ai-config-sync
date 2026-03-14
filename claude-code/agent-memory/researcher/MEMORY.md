@@ -129,6 +129,19 @@ Key findings for running Wan2.1 and alternatives on M-series Macs:
 | CogVideoX-5B | 12GB+ | ~20x slower than RTX 4090 (reported) | Works via ComfyUI MPS. Quality decent. |
 | AnimateDiff | 16GB+ | Moderate | AUTOMATIC1111 v1.6+ required. Shorter clips only. |
 
+## Figma Programmatic Design Creation (researched 2026-03-14)
+
+Key findings on creating editable Figma frames/nodes from outside Figma:
+
+- **Figma REST API**: Fundamentally READ-ONLY for visual nodes. No POST/PUT for frames/text/shapes. Only variables, comments, dev resources, webhooks have write endpoints.
+- **figma-use** (dannote/figma-use): CDP-based CLI, 100+ commands. Figma 126+ (Feb 2026) blocked `--remote-debugging-port`. Workaround: `figma-use daemon start --pipe`. JSX render supported.
+- **figma-mcp-write-server** (oO/figma-mcp-write-server): 24 MCP tools via Plugin API. Requires Figma Desktop open + plugin running. Pre-release.
+- **figma-console-mcp** (southleft): 58+ tools. Plugin API + WebSocket. Figma must be open.
+- **OpenPencil** (openpencil.dev): Open-source Figma alternative. Reads/writes .fig files natively. MCP server with 90+ tools. Does NOT require Figma running. `bun add -g @open-pencil/mcp`. Pre-release (v0.9.0, Mar 2026, 2.3k stars).
+- **react-figma**: React renderer targeting Figma Plugin API. Requires Figma open.
+- **Codia AI API**: Commercial, `api.codia.ai/v1/open/image_to_design` — converts images to editable Figma nodes.
+- See: figma-programmatic-creation.md for full decision matrix.
+
 ### Practical Recommendation for Mac Users
 - **Best for quick testing**: ComfyUI + Wan2.1-T2V-1.3B-GGUF (Q4/Q6). Minimum 24GB unified memory.
 - **Best quality on Mac**: LTX-Video via MLX (ltx-video-mac app, 32GB+) or HunyuanVideo_MLX (36GB+).

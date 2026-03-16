@@ -148,3 +148,15 @@ Key findings on creating editable Figma frames/nodes from outside Figma:
 - **Wan2.1 14B on Mac**: Only practical on M2 Ultra/M3 Ultra/M4 Max 128GB. Expect 5-20x slower than RTX 4090.
 - **Do not use**: Wan2GP (deepbeepmeep) — CUDA-only, no MPS adaptation.
 - **PyTorch version**: Use 2.4.1 for LTX-Video. 2.2+ required for MPS video generation generally.
+
+## Claude Code OAuth API Internals (researched 2026-03-16, binary analysis v2.1.76)
+
+- **Endpoint**: `https://api.anthropic.com/v1/messages` (same as regular API)
+- **OAuth auth headers**: `Authorization: Bearer <accessToken>` + `anthropic-beta: oauth-2025-04-20`
+- **API key auth headers**: `x-api-key: <key>` (no Authorization, no oauth beta)
+- **anthropic-version**: `2023-06-01` (added by @anthropic-ai/sdk automatically)
+- **Other default headers**: `x-app: cli`, `User-Agent: <version string>`
+- **Token refresh**: `POST https://platform.claude.com/v1/oauth/token` with `client_id: 9d1c250a-e61b-44d9-88ed-5944d1962f5e`
+- **BLOCKED**: Since ~Feb 20, 2026, `api.anthropic.com` returns 401 "OAuth authentication is currently not supported" for third-party use
+- **Credentials file**: `~/.claude/.credentials.json` under `claudeAiOauth` key
+- See: claude-code-oauth-api.md for full binary analysis details

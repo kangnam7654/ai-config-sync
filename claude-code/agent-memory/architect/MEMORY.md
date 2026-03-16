@@ -1,0 +1,2 @@
+- [user_kangnam.md](./user_kangnam.md) — Dalgyeol saju app developer, iOS+Rust full stack, design-first, Korean docs
+- [project_checkin_ad_reward.md](./project_checkin_ad_reward.md) — Daily check-in + ad reward point system design (migration 014, 2026-03-16)

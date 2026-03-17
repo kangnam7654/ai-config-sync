@@ -387,6 +387,21 @@ redact-thinking-2026-02-12
 
 OpenClaw이 OAT에 사용하는 조합: `claude-code-20250219,oauth-2025-04-20,fine-grained-tool-streaming-2025-05-14,interleaved-thinking-2025-05-14`
 
+### OAuth 토큰 갱신
+
+```
+POST https://platform.claude.com/v1/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "refresh_token",
+  "refresh_token": "sk-ant-ort01-...",
+  "client_id": "9d1c250a-e61b-44d9-88ed-5944d1962f5e"
+}
+```
+
+응답: `{ "token_type": "Bearer", "access_token": "sk-ant-oat01-...", "refresh_token": "...", "expires_in": ... }`
+
 ### 사용량 / 계정 API
 
 ```bash

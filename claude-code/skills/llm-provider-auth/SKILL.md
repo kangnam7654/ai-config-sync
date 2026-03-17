@@ -290,6 +290,7 @@ Header: Authorization: Bearer <token>  (NOT x-api-key — 반드시 Bearer)
 **중요**:
 - OAT 토큰은 반드시 `Authorization: Bearer` 헤더로 전송 (`x-api-key` 아님)
 - `anthropic-beta: claude-code-20250219,oauth-2025-04-20` 헤더 필수 (없으면 401)
+- Claude Code 식별 헤더 필수: `user-agent: claude-cli/<version>` + `x-app: cli` (없으면 Haiku만 허용)
 - Anthropic SDK 사용 시: `authToken` 파라미터 사용 (`apiKey` 아님)
 - OAT 토큰은 만료됨 — `expiresAt` 확인 필요
 

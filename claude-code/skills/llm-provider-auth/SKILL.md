@@ -278,16 +278,74 @@ Header:  x-api-key: sk-ant-api03-...
          anthropic-version: 2023-06-01
 ```
 
-### 방법 B: Setup Token (Pro/Max 구독, OAuth)
+### 방법 B: OAT Token (Pro/Max 구독, OAuth)
 
 ```
-Token:  sk-ant-oat01-... (claude setup-token 명령으로 생성)
-Header: Authorization: Bearer <token>
+Token:  sk-ant-oat01-... (claude setup-token 또는 macOS Keychain에서 자동 읽기)
+Header: Authorization: Bearer <token>  (NOT x-api-key — 반드시 Bearer)
         anthropic-version: 2023-06-01
         anthropic-beta: claude-code-20250219,oauth-2025-04-20
 ```
 
-**중요**: `anthropic-beta: claude-code-20250219,oauth-2025-04-20` 헤더가 없으면 401 반환.
+**중요**:
+- OAT 토큰은 반드시 `Authorization: Bearer` 헤더로 전송 (`x-api-key` 아님)
+- `anthropic-beta: claude-code-20250219,oauth-2025-04-20` 헤더 필수 (없으면 401)
+- Anthropic SDK 사용 시: `authToken` 파라미터 사용 (`apiKey` 아님)
+- OAT 토큰은 만료됨 — `expiresAt` 확인 필요
+
+### macOS Keychain에서 OAT 토큰 자동 읽기
+
+Claude Code가 macOS Keychain에 OAuth credentials를 저장:
+
+```typescript
+import { execFileSync } from 'child_process'
+
+function readClaudeCodeKeychain() {
+  if (process.platform !== 'darwin') return null
+  try {
+    const raw = execFileSync('security',
+      ['find-generic-password', '-s', 'Claude Code-credentials', '-w'],
+      { encoding: 'utf8', timeout: 5000 }
+    )
+    const data = JSON.parse(raw.trim())
+    const oauth = data?.claudeAiOauth
+    if (!oauth?.accessToken) return null
+    return {
+      accessToken: oauth.accessToken,         // sk-ant-oat01-...
+      refreshToken: oauth.refreshToken,       // sk-ant-ort01-...
+      expiresAt: Math.floor(oauth.expiresAt / 1000), // ms → sec
+      scopes: oauth.scopes,                   // ['user:inference', ...]
+      subscriptionType: oauth.subscriptionType // 'max' | 'pro'
+    }
+  } catch { return null }
+}
+```
+
+Keychain 데이터 구조:
+```json
+{
+  "claudeAiOauth": {
+    "accessToken": "sk-ant-oat01-...",
+    "refreshToken": "sk-ant-ort01-...",
+    "expiresAt": 1773736500855,
+    "scopes": ["user:file_upload", "user:inference", "user:mcp_servers", "user:profile", "user:sessions:claude_code"],
+    "subscriptionType": "max",
+    "rateLimitTier": "default_claude_max_20x"
+  },
+  "organizationUuid": "...",
+  "mcpOAuth": {}
+}
+```
+
+### 모델 및 컨텍스트 윈도우
+
+| 모델 | 컨텍스트 | Max Output | 비고 |
+|------|---------|-----------|------|
+| `claude-opus-4-6` | 1M | 128k | 최고 성능 |
+| `claude-sonnet-4-6` | 1M | 64k | 균형 |
+| `claude-haiku-4-5` | 200k | 64k | 빠름, fallback용 |
+
+**모델명**: 날짜 suffix 없이 사용 (`claude-sonnet-4-6`, alias `claude-haiku-4-5`)
 
 ### API 호출
 
@@ -309,14 +367,46 @@ Authorization: Bearer <token>  (OAT) 또는 x-api-key: <key> (API key)
 }
 ```
 
-Thinking 사용 시 추가 beta: `interleaved-thinking-2025-05-14`
+Thinking + Tool Use 시 추가 beta: `interleaved-thinking-2025-05-14`
 
-**OAT 토큰 + 모델명 주의**: 날짜 suffix 없는 이름 사용 (`claude-sonnet-4-6`, NOT `claude-sonnet-4-6-20250514`)
+### Claude Code Beta Headers (v2.1.77)
+
+```
+claude-code-20250219          # 필수 (OAT)
+oauth-2025-04-20              # 필수 (OAT)
+interleaved-thinking-2025-05-14  # Thinking + Tools
+context-1m-2025-08-07         # 1M 컨텍스트
+context-management-2025-06-27
+structured-outputs-2025-12-15
+effort-2025-11-24             # Adaptive thinking effort
+prompt-caching-scope-2026-01-05
+fast-mode-2026-02-01
+redact-thinking-2026-02-12
+```
+
+OpenClaw이 OAT에 사용하는 조합: `claude-code-20250219,oauth-2025-04-20,fine-grained-tool-streaming-2025-05-14,interleaved-thinking-2025-05-14`
+
+### 사용량 / 계정 API
+
+```bash
+# 사용량 확인
+GET https://api.anthropic.com/api/oauth/usage
+Authorization: Bearer <token>
+anthropic-beta: oauth-2025-04-20
+
+# 계정 역할 확인
+GET https://api.anthropic.com/api/oauth/claude_cli/roles
+Authorization: Bearer <token>
+anthropic-beta: claude-code-20250219,oauth-2025-04-20
+```
+
+### 서비스 이슈 시 Haiku Fallback
+
+Anthropic 서비스 이슈 시 Sonnet/Opus가 OAT 토큰에서 400 반환하는 경우 있음 (Haiku는 작동). 400 수신 시 Haiku로 자동 전환 구현 권장.
 
 ### 토큰 연결 시 검증
 
 ```typescript
-// 저장 전에 실제 API 호출로 유효성 확인
 const headers = isOAT
   ? { 'Authorization': `Bearer ${token}`, 'anthropic-beta': 'claude-code-20250219,oauth-2025-04-20' }
   : { 'x-api-key': token }
@@ -326,8 +416,9 @@ const res = await fetch('https://api.anthropic.com/v1/messages', {
   headers: { ...headers, 'content-type': 'application/json', 'anthropic-version': '2023-06-01' },
   body: JSON.stringify({ model: 'claude-haiku-4-5', max_tokens: 1, messages: [{ role: 'user', content: 'hi' }] })
 })
+// 200 → 유효
+// 400 → 만료되었거나 모델 제한 (Haiku로 재시도)
 // 401 → 유효하지 않은 토큰
-// 200, 429 → 유효한 토큰
 ```
 
 ---
@@ -402,7 +493,7 @@ interface StoredToken {
 | Antigravity | PKCE+Secret | `107100...` | 위와 동일 | `Bearer` |
 | Copilot | Device Flow | `Iv1.b507...` | `api.githubcopilot.com/chat/completions` | `Bearer` |
 | Claude (API) | API Key | - | `api.anthropic.com/v1/messages` | `x-api-key` |
-| Claude (Sub) | Setup Token | - | 위와 동일 | `Bearer` + beta |
+| Claude (OAT) | OAuth/Keychain | - | 위와 동일 | `Bearer` + beta |
 
 ## Tool 포맷 차이
 

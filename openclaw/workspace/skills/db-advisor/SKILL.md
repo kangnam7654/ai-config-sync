@@ -8,6 +8,17 @@ origin: ECC
 
 Quick reference for PostgreSQL best practices. For detailed guidance, use the `database-reviewer` agent.
 
+## Out of Scope
+
+This skill covers **PostgreSQL only**. Do NOT use for:
+- **MySQL/MariaDB** — syntax and optimization strategies differ significantly
+- **SQLite** — lacks many PostgreSQL features (CTEs with DML, advanced indexing, RLS)
+- **MongoDB** — document database, entirely different paradigm
+- **Oracle DB** — proprietary syntax and optimizer behavior
+- **SQL Server** — different execution engine and indexing model
+
+If the user's database is not PostgreSQL, flag it explicitly and suggest they seek database-specific guidance.
+
 ## When to Activate
 
 - Writing SQL queries or migrations
@@ -15,6 +26,13 @@ Quick reference for PostgreSQL best practices. For detailed guidance, use the `d
 - Troubleshooting slow queries
 - Implementing Row Level Security
 - Setting up connection pooling
+
+## Workflow
+
+1. **Detect context**: Identify the database operation from the user's query (schema design, query optimization, indexing, RLS, configuration)
+2. **Match to pattern**: Find the relevant section below (Index Cheat Sheet, Common Patterns, Anti-Pattern Detection, Configuration)
+3. **Provide GOOD/BAD example**: Always show the recommended pattern AND the anti-pattern to avoid, with explanation of why
+4. **Add caveats**: Note version requirements, table size considerations, and trade-offs specific to their use case
 
 ## Quick Reference
 
@@ -135,6 +153,14 @@ REVOKE ALL ON SCHEMA public FROM public;
 
 SELECT pg_reload_conf();
 ```
+
+## Edge Cases
+
+- **PostgreSQL version < 12**: Generated columns, JSONB path queries (`jsonb_path_query`), and CTEs with `SEARCH`/`CYCLE` are NOT available. Always ask or check `SELECT version()` before recommending these features. For older versions, suggest equivalent workarounds (e.g., triggers instead of generated columns).
+- **Conflicting patterns (normalization vs denormalization)**: State the trade-off explicitly. Normalization reduces data redundancy and ensures consistency (good for OLTP). Denormalization reduces joins and improves read performance (good for OLAP/reporting). Recommend normalization by default; denormalize only when query performance on specific read paths is measurably insufficient.
+- **Very large tables (>100M rows)**: Recommend table partitioning (RANGE on timestamp columns is most common). Example: `CREATE TABLE orders (... ) PARTITION BY RANGE (created_at);` with monthly partitions. Also suggest `BRIN` indexes for sequential data and warn that `VACUUM` may need tuning (`autovacuum_vacuum_scale_factor` lowered to 0.01).
+- **Missing `pg_stat_statements`**: If the user asks about slow queries but `pg_stat_statements` is not enabled, provide the setup: `CREATE EXTENSION pg_stat_statements;` and note it requires `shared_preload_libraries = 'pg_stat_statements'` in postgresql.conf (requires restart).
+- **RLS performance pitfall**: Subqueries in RLS policies execute per-row. Always wrap `auth.uid()` in a `SELECT` subquery (as shown in the pattern above) to ensure it evaluates once, not per-row.
 
 ## Related
 

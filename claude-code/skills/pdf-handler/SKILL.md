@@ -293,6 +293,38 @@ with open("encrypted.pdf", "wb") as output:
     writer.write(output)
 ```
 
+## Out of Scope — Do NOT Use This Skill For
+
+- **Word/DOCX conversion** (use the `docx` skill, then convert with LibreOffice if needed)
+- **Digital signatures** (requires specialized tools like pyHanko or Adobe SDK — outside this skill)
+- **PDF/A validation** (use `verapdf` CLI directly — not covered here)
+- **Spreadsheet extraction to .xlsx as primary goal** (use the `xlsx` skill, which can read PDFs as a source)
+
+## Tool Selection Decision Tree
+
+```
+User task → What operation?
+    ├─ Read/extract text → Is it a scanned image PDF?
+    │     ├─ Yes → pytesseract + pdf2image (OCR)
+    │     └─ No → pdfplumber (text + tables) or pypdf (text only)
+    ├─ Merge/split/rotate → File size?
+    │     ├─ < 50MB → pypdf (Python)
+    │     └─ >= 50MB → qpdf (CLI, faster for large files)
+    ├─ Create new PDF → reportlab
+    ├─ Fill form → See FORMS.md
+    ├─ Encrypt/decrypt → pypdf (encrypt) or qpdf (decrypt)
+    └─ Extract images → pdfimages (poppler-utils CLI)
+```
+
+## Edge Cases
+
+- **Corrupted PDF**: Before processing, run `qpdf --check input.pdf`. If corrupt, attempt repair with `qpdf input.pdf --replace-input`. If repair fails, report to user with the specific error.
+- **Password-protected without password**: `PdfReader("file.pdf")` will raise `PdfReadError`. Report to user: "This PDF is password-protected. Please provide the password." Do NOT attempt brute force.
+- **Very large PDFs (>100MB)**: Do NOT load entirely into Python memory. Use `qpdf` CLI to split into chunks first (`qpdf input.pdf --pages . 1-50 -- chunk1.pdf`), then process each chunk.
+- **OCR on non-English text**: Specify the tesseract language pack: `pytesseract.image_to_string(image, lang='kor')` for Korean, `lang='jpn'` for Japanese, `lang='chi_sim'` for Chinese. If the language pack is not installed, run `brew install tesseract-lang` (macOS) or `apt install tesseract-ocr-kor` (Ubuntu).
+- **Empty text extraction**: If `page.extract_text()` returns empty string but the PDF has visible content, it is likely a scanned/image PDF. Fall back to the OCR workflow.
+- **Mixed scanned + text pages**: Process each page individually — check if `extract_text()` returns content; if empty for that page, use OCR for that page only.
+
 ## Quick Reference
 
 | Task | Best Tool | Command/Code |

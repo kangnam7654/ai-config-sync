@@ -149,6 +149,16 @@ Key findings on creating editable Figma frames/nodes from outside Figma:
 - **Do not use**: Wan2GP (deepbeepmeep) — CUDA-only, no MPS adaptation.
 - **PyTorch version**: Use 2.4.1 for LTX-Video. 2.2+ required for MPS video generation generally.
 
+## ToS Compliance: Subscription OAuth in Third-Party LLM Clients (researched 2026-03-18)
+
+Per-provider risk assessment triggered by Feb 2026 OpenClaw mass-ban wave:
+- **Anthropic Claude OAT tokens**: CLEAR VIOLATION + server-blocked since Jan 9, 2026. Use API keys only.
+- **Google Gemini/Antigravity OAuth**: CLEAR VIOLATION + account bans executed Feb 12-14, 2026.
+- **GitHub Copilot device flow + header spoof**: LIKELY VIOLATION, no enforcement yet.
+- **OpenAI Codex OAuth**: GRAY AREA, no enforcement (OpenClaw creator joined OpenAI).
+- Flat-rate subscriptions are incompatible with third-party tool usage; providers enforce to protect margins.
+- See: tos-subscription-oauth-compliance.md for full per-provider ToS clause analysis.
+
 ## Claude Code OAuth API Internals (researched 2026-03-16, binary analysis v2.1.76)
 
 - **Endpoint**: `https://api.anthropic.com/v1/messages` (same as regular API)

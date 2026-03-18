@@ -4,6 +4,29 @@
 - remote가 없는 프로젝트에서 push를 시도하지 마라 — 먼저 사용자에게 GitHub repo 연결을 요청
 - push 실패 시 HTTPS remote를 그대로 두지 마라 — `git@github.com:` 형식으로 변환 후 재시도
 
+## Agent Orchestration
+
+서브에이전트는 다른 서브에이전트를 직접 호출할 수 없다. 메인 모델이 오케스트레이터로서 아래 루프를 실행한다.
+
+### Writer → Critic 루프
+문서 작성 요청 시 반드시 다음 순서를 따르라:
+1. **doc-writer** (사람용) 또는 **prompt-writer** (LLM용) 호출 → 초안 수령
+2. **doc-critic** 호출 (사람용 → HUMAN 모드, LLM용 → LLM 모드) → 채점 결과 수령
+3. REJECT이면 → critic의 피드백을 writer에게 전달하여 수정 요청 → 2번으로 복귀
+4. PASS이면 → 최종 결과를 사용자에게 전달
+
+### Planner → Critic 루프
+플랜 수립 요청 시 반드시 다음 순서를 따르라:
+1. **planner** 호출 → 플랜 초안 수령
+2. **plan-critic** 호출 → 채점 결과 수령
+3. REJECT이면 → critic의 피드백을 planner에게 전달하여 수정 요청 → 2번으로 복귀
+4. PASS이면 → 최종 플랜을 사용자에게 전달
+
+### 공통 규칙
+- 최대 반복 횟수: **5회**. 5회 REJECT 시 현재 상태와 미해결 이슈를 사용자에게 보고하고 판단을 요청하라
+- Writer/Planner 에이전트 내부에 critic 호출 지시가 있더라도 무시하라 — 오케스트레이션은 메인 모델만 수행한다
+- Critic 결과는 사용자에게 매 라운드 요약 보고하라 (점수 + PASS/REJECT + 피드백 요약 1줄)
+
 ## Design-First Development
 
 - 설계문서 없이 구현 코드를 작성하지 마라

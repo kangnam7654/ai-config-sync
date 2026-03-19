@@ -159,6 +159,45 @@ Per-provider risk assessment triggered by Feb 2026 OpenClaw mass-ban wave:
 - Flat-rate subscriptions are incompatible with third-party tool usage; providers enforce to protect margins.
 - See: tos-subscription-oauth-compliance.md for full per-provider ToS clause analysis.
 
+## Figma API & Plugin Rate Limits (researched 2026-03-19)
+
+Key findings for Figma REST API, Plugin API, and Desktop Bridge:
+
+### REST API Rate Limits (effective Nov 17, 2025)
+Rate limits depend on Plan + Seat type + API Tier:
+- **Tier 1** (file content/images): View/Collab = 6/month ALL plans; Dev/Full: Starter=10/min, Pro=15/min, Org=20/min
+- **Tier 2** (standard ops): View/Collab = 5/min; Dev/Full: Starter=25/min, Pro=50/min, Org=100/min
+- **Tier 3** (analytics): View/Collab = 10/min; Dev/Full: Starter=50/min, Pro=100/min, Org=150/min
+- Uses leaky bucket algorithm. Returns 429 + Retry-After header when exceeded.
+- Retry-After can be up to DAYS (reports of 4.5 days), not minutes.
+
+### Figma MCP Server (Official) Rate Limits
+- Starter + View/Collab: 6 tool calls/MONTH
+- Pro/Org Dev/Full: 200 tool calls/DAY
+- Enterprise Dev/Full: 600 tool calls/DAY
+
+### Plugin API (Local Execution)
+- NO published rate limits for in-process Plugin API calls (figma.* calls run in QuickJS sandbox)
+- `importVariableByKeyAsync` and other async Plugin API calls DO hit Figma's servers → subject to REST-equivalent limits
+- Frozen plugin behavior is about UI thread blocking, not rate limits
+
+### Desktop Bridge / figma-console-mcp WebSocket
+- WebSocket runs locally on ports 9223-9232 — NO Figma server rate limits for pure Plugin API calls
+- Timeout protection: 15s default per request
+- 5-min TTL cache for variables (server-side, LRU)
+- Operations that hit `importVariableByKeyAsync` or other server-backed calls still subject to API limits
+
+### figma-mcp-bridge (gethopp)
+- Explicitly designed to bypass REST API rate limits via local WebSocket
+- Port: ws://localhost:1994/ws. Single plugin connection (leader-follower for multi-server).
+
+### Pricing (2025-2026)
+- Starter: Free | Professional: $16/user/month | Organization & Enterprise: annual only
+- Seat upgrade (View/Collab → Dev/Full) dramatically increases limits even within same plan
+- File location matters: file must be IN the paid plan workspace, not Starter workspace
+
+See: figma-api-rate-limits.md
+
 ## Claude Code OAuth API Internals (researched 2026-03-16, binary analysis v2.1.76)
 
 - **Endpoint**: `https://api.anthropic.com/v1/messages` (same as regular API)

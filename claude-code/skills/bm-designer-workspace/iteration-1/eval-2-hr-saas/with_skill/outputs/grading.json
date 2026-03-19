@@ -1,0 +1,37 @@
+{
+  "eval_id": 2,
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "BM 문서에 수익 모델(구독/IAP/광고 중 하나 이상)이 명시되어 있다",
+      "passed": true,
+      "evidence": "Section 3 'Revenue Model'에서 'Freemium + Per-Seat Subscription 하이브리드' 모델을 명시. Section 4에서 Free/Starter(2,500원/인/월)/Pro(5,000원/인/월)/Enterprise(별도 견적) 4개 티어 구독 모델 상세 설계."
+    },
+    {
+      "text": "경쟁사 2개 이상의 가격이 비교 테이블로 제시되어 있다",
+      "passed": true,
+      "evidence": "Section 2 'Market Context'에 Flex(4,000~8,000원/인/월), 그리팅(무료~15만원+/월), 원티드스페이스(3,000~6,000원/인/월), 시프티(~2,000원/인/월), 페이히어(~3,500원/인/월) 5개 경쟁사의 가격대가 비교 테이블로 제시. Section 4에도 ASCII 가격 포지셔닝 차트 포함."
+    },
+    {
+      "text": "CAC, LTV 중 하나 이상의 유닛 이코노믹스 수치가 계산되어 있다",
+      "passed": true,
+      "evidence": "Section 5 'Unit Economics'에 CAC 100만원((마케팅 250만 + 세일즈 인건비 150만) / 신규 4사), LTV 450만원(12.5만 x 36개월), LTV/CAC 4.5:1, Payback Period 8개월 등 상세 산식과 함께 계산."
+    },
+    {
+      "text": "3개 시나리오(보수적/기본/낙관적) 프로젝션이 있다",
+      "passed": true,
+      "evidence": "Section 5에 보수적(전환율 2%, Churn 4%, CAC 130만원 → MRR 235만원), 기본(전환율 5%, Churn 3%, CAC 100만원 → MRR 808만원), 낙관적(전환율 8%, Churn 2%, CAC 70만원 → MRR 1,850만원) 3개 시나리오 12개월 월별 프로젝션 테이블 제시."
+    },
+    {
+      "text": "기각된 대안 모델과 기각 이유가 명시되어 있다",
+      "passed": true,
+      "evidence": "Section 3에 기각 대안 테이블: 순수 구독('브랜드 인지도 없는 시드 단계에서 유료만으로 고객 획득 비현실적'), 종량제('HR은 사용량 변동 적어 고객 납득 어려움'), 거래 수수료('HR에 거래 개념 약함, 급여 이체 수수료는 은행 규제 복잡'), 순수 라이선스('엔터프라이즈 세일즈 필요 → 시드 팀으로 감당 불가') 4개 대안."
+    },
+    {
+      "text": "12개월 런웨이 제약이 재무 계획에 반영되어 있다",
+      "passed": true,
+      "evidence": "Section 5에 Runway 12개월(3억 / 2,500만)이 명시. 3개 시나리오 모두에 '현금 잔액' 컬럼이 포함되어 런웨이 소진 추적. 보수적 시나리오에서 12개월 말 현금 870만원('위험')으로 표시. Risk Assessment에서도 '런웨이 소진'을 리스크 #1으로 식별하고 '월 8 시점에서 투자 유치 시작', 'Plan B: Burn Rate 2,000만원 생존 모드' 등 대응 방안 제시."
+    }
+  ],
+  "pass_rate": 1.0
+}

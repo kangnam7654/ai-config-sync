@@ -1,0 +1,6 @@
+{
+  "eval_id": 1,
+  "eval_name": "fortune-app-monetization",
+  "prompt": "사주 운세 앱을 만들었는데 지금 무료로만 운영 중이야. 사용자가 500명 정도 되는데 어떻게 수익화하면 좋을지 BM을 설계해줘. 서버비가 월 5만원 정도 나가고, AI API 비용이 건당 50원쯤 돼. iOS 앱이고 한국 시장만 타겟이야.",
+  "assertions": []
+}

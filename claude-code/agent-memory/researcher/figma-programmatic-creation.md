@@ -1,6 +1,6 @@
 ---
 name: Figma Programmatic Design Creation Landscape
-description: Research on tools/APIs to create editable Figma frames/nodes programmatically from outside Figma (CLI, MCP, API) — March 2026
+description: Research on tools/APIs to create editable Figma frames/nodes programmatically from outside Figma (CLI, MCP, API) — March 2026, updated 2026-03-19 with full MCP comparison
 type: reference
 ---
 
@@ -102,6 +102,23 @@ type: reference
 | react-figma | No | Yes (Desktop+plugin) | Yes | Stable |
 | OpenPencil MCP | Partially | No (own app) | Yes (90+ tools) | Pre-release |
 | Codia AI API | Yes | No | Yes (via cloud) | Commercial |
+
+## MCP Tool Comparison Matrix (2026-03-19 Full Research)
+
+| Tool | Stars | 툴 수 | Write | rename_node | Free 계정 | 연결 방식 | Claude Code |
+|---|---|---|---|---|---|---|---|
+| figma-console-mcp (southleft) | 1.1k | 57-63 | YES | figma_rename_node 있음 | Yes (무료 계정 가능) | WebSocket+Plugin | 이슈있음(mcp-remote 우회) |
+| cursor-talk-to-figma-mcp (grab) | 5.8k | 40+ | YES | 없음 | Yes | WebSocket+Plugin | 가능 |
+| Figma-Context-MCP (GLips/Framelink) | 13.8k | 13 | NO (읽기전용) | 없음 | Yes (REST API Key) | REST API | 가능 |
+| Official Figma MCP | N/A | 13 | generate_figma_design만 | 없음 | 6회/월 제한 | REST+Remote | 공식 지원 |
+| figma-mcp-bridge (gethopp) | 82 | 미공개 | 미확인 | 미확인 | Yes (API 제한 우회) | WebSocket+Plugin | 가능 |
+| figma-mcp-write-server (oO) | 20 | 24 | YES | 미확인 | Yes | WebSocket+Plugin | 가능 |
+| claude-talk-to-figma-mcp (arinspunk) | 524 | 미확인 | YES | 미확인 | Yes | WebSocket+Plugin | 가능 |
+| paper.design MCP | N/A | 21 | YES | rename_nodes 있음 | Yes (100콜/주 무료) | HTTP localhost | 가능 |
+
+### Winner for Claude Code write+rename+free:
+1st choice: **figma-console-mcp (southleft)** — 57+ tools, figma_rename_node 확인, 무료 계정 가능, Claude Code 우회법 있음
+2nd choice: **cursor-talk-to-figma-mcp (grab)** — 5.8k stars, 가장 많은 커뮤니티, rename_node 없지만 나머지 완비
 
 ## Recommended Approach for iPhone Wireframe Recreation (393x852)
 

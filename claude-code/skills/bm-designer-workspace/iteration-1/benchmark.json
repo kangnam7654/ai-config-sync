@@ -1,0 +1,83 @@
+{
+  "skill_name": "bm-designer",
+  "iteration": 1,
+  "date": "2026-03-19",
+  "configurations": [
+    {
+      "name": "with_skill",
+      "results": [
+        {
+          "eval_id": 1,
+          "eval_name": "fortune-app-monetization",
+          "pass_rate": 1.0,
+          "total_tokens": 110030,
+          "duration_ms": 489250
+        },
+        {
+          "eval_id": 2,
+          "eval_name": "hr-saas-pricing",
+          "pass_rate": 1.0,
+          "total_tokens": 48615,
+          "duration_ms": 402729
+        },
+        {
+          "eval_id": 3,
+          "eval_name": "luxury-marketplace-model",
+          "pass_rate": 1.0,
+          "total_tokens": 49459,
+          "duration_ms": 400219
+        }
+      ],
+      "aggregate": {
+        "mean_pass_rate": 1.0,
+        "stddev_pass_rate": 0.0,
+        "mean_tokens": 69368,
+        "mean_duration_ms": 430733
+      }
+    },
+    {
+      "name": "without_skill",
+      "results": [
+        {
+          "eval_id": 1,
+          "eval_name": "fortune-app-monetization",
+          "pass_rate": 0.5,
+          "total_tokens": 89666,
+          "duration_ms": 262796
+        },
+        {
+          "eval_id": 2,
+          "eval_name": "hr-saas-pricing",
+          "pass_rate": 0.833,
+          "total_tokens": 31767,
+          "duration_ms": 189184
+        },
+        {
+          "eval_id": 3,
+          "eval_name": "luxury-marketplace-model",
+          "pass_rate": 0.833,
+          "total_tokens": 32180,
+          "duration_ms": 203844
+        }
+      ],
+      "aggregate": {
+        "mean_pass_rate": 0.722,
+        "stddev_pass_rate": 0.157,
+        "mean_tokens": 51204,
+        "mean_duration_ms": 218608
+      }
+    }
+  ],
+  "delta": {
+    "pass_rate": "+0.278 (with_skill 1.000 vs without_skill 0.722)",
+    "tokens": "+18164 (with_skill uses ~35% more tokens)",
+    "duration": "+212125ms (with_skill takes ~2x longer)"
+  },
+  "analyst_observations": [
+    "with_skill 버전은 3개 테스트 모두 100% 통과 (편차 0). 스킬이 일관된 구조를 보장함",
+    "without_skill의 가장 큰 약점: 유닛 이코노믹스 계산 누락 (eval-1, eval-3). 스킬이 없으면 정성적 서술에 그치는 경향",
+    "without_skill의 두 번째 약점: 기각 대안 미명시 (eval-2). 스킬이 명시적으로 요구하지 않으면 건너뜀",
+    "with_skill은 Phase별 파일 분리 생성 → 토큰/시간 증가. 최종 BM_PLAN.md 품질 대비 합리적 비용",
+    "eval-1의 without_skill이 토큰 89k로 가장 높음 — 프로젝트 코드를 직접 읽어서 발생. 스킬 버전은 110k이지만 6개 Phase 파일 포함"
+  ]
+}

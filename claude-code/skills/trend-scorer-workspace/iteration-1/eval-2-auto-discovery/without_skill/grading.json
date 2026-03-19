@@ -1,0 +1,118 @@
+{
+  "expectations": [
+    {
+      "text": "시장이 '한국'으로 설정된다",
+      "passed": true,
+      "evidence": "Output title is '2026년 3월 한국 기술 트렌드 분석' and all 9 sections exclusively cover Korean market players (네이버, 카카오, 삼성전자, SK하이닉스, 현대차그룹 등), Korean government policies (AI 기본법), and Korean market data (한국 클라우드 시장, 서울 AI Cities Index 등)."
+    },
+    {
+      "text": "카테고리가 '기술'로 한정된다",
+      "passed": true,
+      "evidence": "All 9 identified topics are technology domains: AI 에이전트, 피지컬 AI/로봇, AI 반도체/HBM, 생성형 AI 기업 도입, 자율주행, 클라우드/데이터센터, 양자컴퓨팅, 바이오테크+과학기술 AI, AI 보안/거버넌스. No non-tech topics (e.g., fashion, entertainment, food) appear."
+    },
+    {
+      "text": "5개 이상 15개 이하의 주제가 발굴된다",
+      "passed": true,
+      "evidence": "Exactly 9 topics are identified, numbered 1 through 9 in the output. This falls within the 5-15 range."
+    },
+    {
+      "text": "각 주제에 6개 지표 점수가 부여된다",
+      "passed": false,
+      "evidence": "The ranking table ('종합 평가') has only one qualitative rating column ('열기') with values like 최상/상/중상/중. There are no 6 separate metric scores per topic. The output lacks any multi-dimensional scoring system — no numerical scores, no breakdown into distinct metric categories. The table columns are: 순위, 트렌드, 열기, 핵심 근거 (4 columns, only 1 is a rating)."
+    },
+    {
+      "text": "종합 랭킹 테이블이 출력된다",
+      "passed": true,
+      "evidence": "A '종합 평가: 2026년 3월 한국 기술 트렌드 히트맵' table is present with columns 순위|트렌드|열기|핵심 근거, ranking all 9 topics from 1 (AI 에이전트) to 9 (AI 보안/거버넌스)."
+    },
+    {
+      "text": "1위 주제에 대한 상세 분석(왜 높은가)이 포함된다",
+      "passed": true,
+      "evidence": "Section 1 'AI 에이전트 (에이전틱 AI)' is the most detailed section with: (1) a '국내 주요 플레이어' table showing 4 companies' strategies, (2) market size data (2026 85억 달러 → 2030 350억 달러), (3) Gartner forecast (40% of enterprise apps by end of 2026), and (4) 267 new AI models in March 2026. The ranking table also provides '핵심 근거': '네이버-카카오-삼성 전사 전략 전환, 글로벌 시장 12.3조 원'. This constitutes a substantive explanation of why it ranks #1."
+    },
+    {
+      "text": "데이터 한계 관련 면책 문구가 포함된다",
+      "passed": false,
+      "evidence": "No disclaimer, caveat, or limitation statement appears anywhere in the output. There is no mention of data staleness, search limitations, potential biases, or any qualifier about the reliability of the analysis. The document ends with a Sources section but no accompanying disclaimer."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 2,
+    "total": 7,
+    "pass_rate": 0.71
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 3,
+      "ToolSearch": 1,
+      "WebSearch": 8,
+      "WebFetch": 3,
+      "Write": 1
+    },
+    "total_tool_calls": 16,
+    "total_steps": 58,
+    "errors_encountered": 0,
+    "output_chars": 11244,
+    "transcript_chars": 99256
+  },
+  "timing": {
+    "total_tokens": 40203,
+    "total_duration_seconds": 197.9
+  },
+  "claims": [
+    {
+      "claim": "CES 2026에서 한국 스타트업이 Innovation Awards 60%를 차지했다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "WebSearch result from koreatechdesk.com confirms: '60% of CES 2026 Innovation Awards Go to Korea'. The output accurately reflects this source."
+    },
+    {
+      "claim": "자율 AI 에이전트 시장이 2026년 약 85억 달러 규모다",
+      "type": "factual",
+      "verified": false,
+      "evidence": "This figure does not appear in any of the WebSearch results visible in the transcript. It may come from a WebFetch page that was read but the specific source is not clearly traceable in the available transcript data."
+    },
+    {
+      "claim": "한국 클라우드 시장이 2025년 99.5억 달러에서 2026년 124.6억 달러로 성장한다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "WebSearch result from mordorintelligence.kr confirms these exact figures in the search summary."
+    },
+    {
+      "claim": "가트너가 2026년 말까지 기업용 앱의 40%가 AI 에이전트 탑재할 것으로 전망했다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "This claim appears in the WebSearch result summary for '2026년 한국 기술 트렌드 IT 핫이슈' query."
+    },
+    {
+      "claim": "서울이 Counterpoint Research AI Cities Index 세계 2위다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "WebSearch result from Bloomberg/KoreaTechDesk confirms: 'Seoul ranks as the world's second most powerful AI city according to Counterpoint Research's 2025 AI Cities Index'."
+    },
+    {
+      "claim": "9개 주제로 한국 기술 트렌드를 포괄적으로 다루었다",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The output covers AI agents, physical AI/robotics, semiconductors, generative AI adoption, autonomous driving, cloud/data centers, quantum computing, biotech+AI, and AI governance — a broad and substantive set of technology topics supported by web research."
+    }
+  ],
+  "user_notes_summary": null,
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "각 주제에 6개 지표 점수가 부여된다",
+        "reason": "The expectation assumes a specific scoring methodology (6 metrics per topic) that is unlikely to emerge organically without explicit instructions. Without a skill file defining these 6 metrics, a free-form research task will naturally produce qualitative ratings rather than a structured 6-dimensional score. This assertion effectively tests whether the skill was used, which is its purpose in a with/without comparison — but consider whether the assertion text should be more explicit about what the 6 metrics are, so it can be verified unambiguously."
+      },
+      {
+        "assertion": "데이터 한계 관련 면책 문구가 포함된다",
+        "reason": "Similar to the 6-metric scoring: disclaimers are rarely included in organic research outputs unless explicitly prompted. This is a good discriminating assertion for the with/without skill comparison, as it tests whether the skill's structure adds value. No change needed."
+      },
+      {
+        "reason": "No assertion checks the quality or quantity of sources cited. The output includes 23 sources, which is strong, but a weaker output with fabricated or irrelevant sources would also pass all current assertions. Consider adding an assertion like '최소 5개의 외부 소스가 인용된다' or checking source relevance."
+      }
+    ],
+    "overall": "The assertion set is well-designed for a with/without skill comparison. The two failures (6-metric scoring, disclaimer) are exactly the kind of structured outputs a skill should add. The passing assertions confirm the baseline model can handle market/category scoping and produce a ranked trend analysis. One gap: no assertion verifies source quality or citation count."
+  }
+}

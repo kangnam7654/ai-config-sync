@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "topic-comparison",
+  "prompt": "AI agent vs MCP 트렌드 비교해줘",
+  "assertions": [
+    "출력에 '# Trend Score Report' 헤더가 포함된다",
+    "출력에 평가일, 시장, 카테고리 메타데이터가 포함된다",
+    "SVGR, SBI, NFI, STB, VOL, SEA 6개 지표 점수가 모두 포함된다",
+    "Final Score가 산출되어 순위가 매겨진다",
+    "각 지표에 근거 한 줄이 포함된다",
+    "TS, SS 카테고리 점수가 포함된다",
+    "가중치 alpha, beta 값이 명시된다"
+  ]
+}

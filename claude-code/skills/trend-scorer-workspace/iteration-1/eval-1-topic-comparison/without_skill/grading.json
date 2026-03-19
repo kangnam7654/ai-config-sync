@@ -1,0 +1,93 @@
+{
+  "expectations": [
+    {
+      "text": "출력에 '# Trend Score Report' 헤더가 포함된다",
+      "passed": false,
+      "evidence": "Output file (result.md) starts with '# AI Agent vs MCP (Model Context Protocol) 트렌드 비교 분석'. No 'Trend Score Report' header exists anywhere in the output. The output is a narrative comparison article, not a structured score report."
+    },
+    {
+      "text": "출력에 평가일, 시장, 카테고리 메타데이터가 포함된다",
+      "passed": false,
+      "evidence": "The output includes '분석일: 2026-03-19' but lacks structured metadata fields for 시장 (market) and 카테고리 (category) in the expected report format. The date appears as part of an article header, not as structured metadata for a scoring report."
+    },
+    {
+      "text": "SVGR, SBI, NFI, STB, VOL, SEA 6개 지표 점수가 모두 포함된다",
+      "passed": false,
+      "evidence": "None of the six metrics (SVGR, SBI, NFI, STB, VOL, SEA) appear anywhere in the output. Grep search returned zero matches. The output uses an entirely different analytical structure: narrative sections on market size, adoption trends, technology ecosystem, challenges, and outlook."
+    },
+    {
+      "text": "Final Score가 산출되어 순위가 매겨진다",
+      "passed": false,
+      "evidence": "No 'Final Score' appears in the output. Grep search returned zero matches. The output contains qualitative comparison tables (Section 8) but no numerical scoring or ranking system."
+    },
+    {
+      "text": "각 지표에 근거 한 줄이 포함된다",
+      "passed": false,
+      "evidence": "Since the six metrics (SVGR, SBI, NFI, STB, VOL, SEA) do not exist in the output, there are no per-metric evidence lines. The output does provide evidence for its qualitative claims (market data, adoption statistics), but not in the expected per-metric format."
+    },
+    {
+      "text": "TS, SS 카테고리 점수가 포함된다",
+      "passed": false,
+      "evidence": "No 'TS' or 'SS' category scores appear in the output. The only match for 'TS' or 'SS' was 'SSO' in a table about MCP challenges, which is unrelated to category scoring."
+    },
+    {
+      "text": "가중치 alpha, beta 값이 명시된다",
+      "passed": false,
+      "evidence": "No alpha or beta weight values appear in the output. Grep search of result.md returned zero matches for 'alpha', 'beta', or '가중치'. The transcript contains 'alpha' only in unrelated contexts (URL fragments)."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 7,
+    "total": 7,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "output_chars": 11375,
+    "transcript_chars": 111670
+  },
+  "timing": {
+    "total_tokens": 35759,
+    "duration_ms": 193358,
+    "total_duration_seconds": 193.4
+  },
+  "claims": [
+    {
+      "claim": "AI Agent 시장 규모 2025년 $7.3B ~ $8.8B",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Sources listed (Grand View Research, DemandSage) but actual source content not verifiable from available outputs. Web search results in transcript reference market data but exact figures could not be cross-checked."
+    },
+    {
+      "claim": "MCP SDK 월간 다운로드 97M+ (2026.02 기준)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript shows web search result stating 'One year after launch, MCP has become the universal standard for connecting AI agents to enterprise tools—with 97M+ monthly SDK downloads'. Matches the output claim."
+    },
+    {
+      "claim": "68% of production AI agents are built on open-source frameworks",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript web search result explicitly states '68% of production AI agents are built on open-source frameworks rather than proprietary platforms'. Matches the output claim."
+    },
+    {
+      "claim": "LangChain has been downloaded 47 million times on PyPI",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript web search result states 'LangChain has been downloaded 47 million times on PyPI'. Output rounds to '4,700만 다운로드' which matches."
+    }
+  ],
+  "user_notes_summary": null,
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "출력에 평가일, 시장, 카테고리 메타데이터가 포함된다",
+        "reason": "This assertion partially overlaps with real content (분석일 is present). Consider tightening it to require specific field labels like 'Market:' and 'Category:' in a structured metadata block, so a narrative article with a date cannot partially satisfy it."
+      },
+      {
+        "reason": "No assertion checks whether the output compares two topics (the eval is 'topic-comparison'). The without_skill run produced a qualitative comparison article, which is arguably a valid response to the prompt -- just not in the expected scoring format. An assertion like 'output contains numerical scores for each compared topic' would better discriminate between a qualitative comparison and a structured scoring report."
+      }
+    ],
+    "overall": "All 7 assertions fail because the without_skill run produced a narrative comparison article instead of a structured Trend Score Report. This is the expected baseline result -- the assertions are well-designed to discriminate between a generic response and the specific scoring format the skill is meant to produce. The 0% pass rate clearly demonstrates the value gap the skill is intended to fill."
+  }
+}

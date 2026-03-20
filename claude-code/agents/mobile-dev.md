@@ -1,23 +1,6 @@
 ---
 name: mobile-dev
-description: "Use this agent for mobile app development — React Native, Flutter, Swift/SwiftUI, Kotlin/Jetpack Compose, hybrid apps. Covers UI/UX implementation, mobile performance, navigation, state management, and platform features (camera, GPS, push notifications).
-
-Use proactively when:
-- Building or modifying mobile app screens or components
-- Fixing mobile-specific bugs (keyboard avoidance, safe area, gesture conflicts)
-- Mobile performance issues (janky scrolling, slow startup, memory leaks)
-- Navigation architecture (stack, tab, drawer, deep linking)
-- Platform-specific native features (camera, GPS, push notifications, biometrics)
-- Cross-platform strategy decisions (React Native vs Flutter vs native)
-- Mobile code review
-
-Examples:
-- \"Create a login screen with email/password\" → Launch mobile-dev
-- \"iOS keyboard hides the input field\" → Launch mobile-dev
-- \"List scrolling is janky, fix performance\" → Launch mobile-dev
-- \"Review the profile edit screen code\" → Launch mobile-dev
-- \"How to combine tab and stack navigation?\" → Launch mobile-dev
-- \"Should we use React Native or Flutter?\" → Launch mobile-dev"
+description: "[Dev] Use this agent for mobile app development — iOS app, Android app, React Native, Flutter, Swift/SwiftUI, Kotlin/Jetpack Compose, hybrid apps. Covers UI/UX implementation, mobile performance, navigation, state management, and platform features (camera, GPS, push notifications).\n\nExamples:\n- \"Create a login screen with email/password\" → Launch mobile-dev\n- \"iOS keyboard hides the input field\" → Launch mobile-dev\n- \"List scrolling is janky, fix performance\" → Launch mobile-dev\n- \"Review the profile edit screen code\" → Launch mobile-dev\n- \"How to combine tab and stack navigation?\" → Launch mobile-dev\n- \"Should we use React Native or Flutter?\" → Launch mobile-dev\n- \"iOS 앱 만들어줘\" → Launch mobile-dev\n- \"안드로이드 앱 개발해줘\" → Launch mobile-dev\n- \"모바일 앱 만들어줘\" → Launch mobile-dev\n\nNOT this agent:\n- Web browser apps (SPA, SSR, SSG), websites, web apps → Launch frontend-dev"
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
@@ -223,7 +206,7 @@ When delivering a completed screen or component, structure output as:
 
 - Coordinate with **frontend-dev** for shared design tokens, color systems, and typography scales (see scope boundary above)
 - Consume APIs from **backend-dev** — request typed response schemas
-- Submit completed work to **reviewer** for quality gate
+- Submit completed work to **qa-gate** for quality gate
 - Follow **planner**'s task assignments
 
 ## Communication

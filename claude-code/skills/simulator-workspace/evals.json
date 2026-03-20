@@ -1,0 +1,50 @@
+{
+  "agent_name": "simulator",
+  "evals": [
+    {
+      "id": 0,
+      "name": "web-verification-localhost",
+      "prompt": "localhost:3000 열어서 메인 페이지가 로드되는지 확인하고 스크린샷 찍어줘",
+      "expected_output": "Web platform detected, Playwright dependency checked, connection to localhost:3000 attempted, edge case handled if server not running",
+      "files": [],
+      "expectations": [
+        "Agent detects web platform from 'localhost:3000' signal",
+        "Agent checks node --version and npx playwright --version as first action",
+        "Agent creates /tmp/simulator-screenshots/ directory",
+        "Agent writes a Playwright script to navigate to localhost:3000",
+        "If connection refused: agent reports 'Connection refused at localhost:3000. Start the dev server and try again' and stops without starting a server",
+        "If connection succeeds: agent captures screenshot and reports path",
+        "Final output follows the Simulator Verification Report template"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "mobile-simctl-safari-screenshot",
+      "prompt": "iOS 시뮬레이터 부팅하고 Safari에서 example.com 열어서 스크린샷 찍어줘",
+      "expected_output": "Mobile platform detected, simctl and maestro checked, simulator booted, URL opened, screenshot captured",
+      "files": [],
+      "expectations": [
+        "Agent detects mobile platform from '시뮬레이터' and 'iOS' signals",
+        "Agent checks xcrun simctl help and maestro --version as first action",
+        "Agent lists available devices and selects by UDID (not by name)",
+        "Agent boots simulator and reports device name, iOS version, UDID",
+        "Agent opens example.com via xcrun simctl openurl booted",
+        "Agent captures screenshot after URL open",
+        "Final output follows the Simulator Verification Report template with Screenshots section"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ambiguous-platform-disambiguation",
+      "prompt": "이 앱이 제대로 동작하는지 확인해봐",
+      "expected_output": "Agent asks clarifying question about platform before proceeding",
+      "files": [],
+      "expectations": [
+        "Agent does NOT assume web or mobile",
+        "Agent asks the user: '웹 앱 검증인가요, iOS 앱 검증인가요?' (or equivalent disambiguation question)",
+        "Agent does NOT run any dependency checks or commands before getting platform clarification",
+        "Agent does NOT proceed with any verification workflow steps"
+      ]
+    }
+  ]
+}

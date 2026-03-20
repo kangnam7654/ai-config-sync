@@ -1,0 +1,50 @@
+{
+  "assertions": [
+    {
+      "id": "dep-check",
+      "text": "Agent runs xcrun simctl help and maestro --version before any simulator command",
+      "passed": false,
+      "evidence": "Baseline did not run any dependency verification. Directly used xcrun simctl list devices."
+    },
+    {
+      "id": "device-list",
+      "text": "Agent lists available simulator devices with xcrun simctl list devices",
+      "passed": true,
+      "evidence": "Listed devices and found iPhone 17 Pro Max booted."
+    },
+    {
+      "id": "udid-usage",
+      "text": "Agent uses UDID (not device name) when booting the simulator",
+      "passed": false,
+      "evidence": "Baseline did not report or use UDID. Referenced device by name only."
+    },
+    {
+      "id": "env-report",
+      "text": "Agent reports device name, iOS version, and UDID at the start",
+      "passed": false,
+      "evidence": "Reported device name and iOS version but not UDID."
+    },
+    {
+      "id": "screenshot",
+      "text": "Agent captures a screenshot using xcrun simctl io booted screenshot",
+      "passed": true,
+      "evidence": "Captured screenshot saved to simulator_screenshot.png."
+    },
+    {
+      "id": "output-format",
+      "text": "Agent outputs a Simulator Session Report matching the Output Format template",
+      "passed": false,
+      "evidence": "No structured Session Report. Output was informal text summary."
+    },
+    {
+      "id": "shutdown-ask",
+      "text": "Agent asks user whether to shut down or keep the simulator running at the end",
+      "passed": false,
+      "evidence": "Baseline did not ask about simulator shutdown."
+    }
+  ],
+  "total_assertions": 7,
+  "passed": 2,
+  "failed": 5,
+  "score": 0.29
+}

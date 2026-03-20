@@ -1,0 +1,97 @@
+{
+  "skill_name": "transport-search",
+  "iteration": 1,
+  "configurations": [
+    {
+      "name": "with_skill",
+      "evals": [
+        {
+          "eval_name": "srt-busan",
+          "assertions": [
+            {"text": "SRT 사이트 URL 사용", "passed": true},
+            {"text": "SRT 분기 로직", "passed": true},
+            {"text": "출력 형식 준수", "passed": true}
+          ],
+          "pass_rate": 1.0,
+          "tokens": 27245,
+          "duration_seconds": 56.1
+        },
+        {
+          "eval_name": "oneway-flight",
+          "assertions": [
+            {"text": "편도 URL 구성", "passed": true},
+            {"text": "IATA 코드 정확", "passed": true},
+            {"text": "편도 가격 명시", "passed": true}
+          ],
+          "pass_rate": 1.0,
+          "tokens": 22824,
+          "duration_seconds": 48.1
+        },
+        {
+          "eval_name": "ktx-gangneung",
+          "assertions": [
+            {"text": "코레일 사이트 사용", "passed": true},
+            {"text": "코레일 라우팅 (SRT 아님)", "passed": true},
+            {"text": "폼 자동화 단계 기술", "passed": true}
+          ],
+          "pass_rate": 1.0,
+          "tokens": 22284,
+          "duration_seconds": 50.4
+        }
+      ],
+      "aggregate": {
+        "pass_rate": {"mean": 1.0, "stddev": 0.0},
+        "tokens": {"mean": 24118, "stddev": 2263},
+        "duration_seconds": {"mean": 51.5, "stddev": 3.4}
+      }
+    },
+    {
+      "name": "without_skill",
+      "evals": [
+        {
+          "eval_name": "srt-busan",
+          "assertions": [
+            {"text": "SRT 사이트 URL 사용", "passed": true},
+            {"text": "SRT 분기 로직", "passed": true},
+            {"text": "출력 형식 준수", "passed": false}
+          ],
+          "pass_rate": 0.67,
+          "tokens": 18219,
+          "duration_seconds": 51.1
+        },
+        {
+          "eval_name": "oneway-flight",
+          "assertions": [
+            {"text": "편도 URL 구성", "passed": false},
+            {"text": "IATA 코드 정확", "passed": true},
+            {"text": "편도 가격 명시", "passed": true}
+          ],
+          "pass_rate": 0.67,
+          "tokens": 29928,
+          "duration_seconds": 212.9
+        },
+        {
+          "eval_name": "ktx-gangneung",
+          "assertions": [
+            {"text": "코레일 사이트 사용", "passed": false},
+            {"text": "코레일 라우팅 (SRT 아님)", "passed": true},
+            {"text": "폼 자동화 단계 기술", "passed": false}
+          ],
+          "pass_rate": 0.33,
+          "tokens": 18997,
+          "duration_seconds": 135.6
+        }
+      ],
+      "aggregate": {
+        "pass_rate": {"mean": 0.56, "stddev": 0.16},
+        "tokens": {"mean": 22381, "stddev": 5408},
+        "duration_seconds": {"mean": 133.2, "stddev": 66.1}
+      }
+    }
+  ],
+  "delta": {
+    "pass_rate": "+0.44 (1.00 vs 0.56)",
+    "tokens": "+1737 (24118 vs 22381)",
+    "duration_seconds": "-81.7 (51.5 vs 133.2)"
+  }
+}

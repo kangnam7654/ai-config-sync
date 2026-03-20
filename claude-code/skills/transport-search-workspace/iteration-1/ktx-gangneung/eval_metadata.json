@@ -1,0 +1,10 @@
+{
+  "eval_id": 3,
+  "eval_name": "ktx-gangneung",
+  "prompt": "서울에서 강릉 KTX 이번 주 토요일 시간표 좀 봐줘",
+  "assertions": [
+    {"name": "korail-site-used", "description": "코레일 사이트(korail.com)를 사용했는가"},
+    {"name": "korail-not-srt", "description": "서울역 출발이므로 SRT가 아닌 코레일로 라우팅했는가"},
+    {"name": "form-steps-described", "description": "폼 자동화 단계(출발역→도착역→날짜→조회)를 기술했는가"}
+  ]
+}

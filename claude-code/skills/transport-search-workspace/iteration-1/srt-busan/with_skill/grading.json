@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "SRT 사이트(etk.srail.kr) URL을 사용했는가", "passed": true, "evidence": "etk.srail.kr/hpg/hra/01/selectScheduleList.do URL을 정확히 사용"},
+    {"text": "수서 출발 → SRT로 분기했는가", "passed": true, "evidence": "스킬 규칙 인용하며 수서+SRT 명시 → SRT 검색으로 라우팅 판단을 명확히 기술"},
+    {"text": "스킬 지정 형식을 따랐는가", "passed": true, "evidence": "[SRT 301] 05:00 → 07:28 (2시간 28분) / 가격: ₩52,600 (1인 / 편도) / 경유: 없음 형식 준수"}
+  ]
+}

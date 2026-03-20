@@ -1,6 +1,6 @@
 ---
 name: database-reviewer
-description: "PostgreSQL database specialist for migration review, query optimization, schema design, security, and performance. Use PROACTIVELY when writing SQL, creating migrations, designing schemas, or troubleshooting database performance.\n\nExamples:\n- \"Review this migration\" → Launch database-reviewer\n- \"This query is slow, optimize it\" → Launch database-reviewer\n- \"Design the schema for this feature\" → Launch database-reviewer\n- \"Check RLS policies\" → Launch database-reviewer"
+description: "[Review] PostgreSQL database specialist for migration review, query optimization, schema design, security, and performance. Use PROACTIVELY when writing SQL, creating migrations, designing schemas, or troubleshooting database performance.\n\nExamples:\n- \"Review this migration\" → Launch database-reviewer\n- \"This query is slow, optimize it\" → Launch database-reviewer\n- \"Design the schema for this feature\" → Launch database-reviewer\n- \"Check RLS policies\" → Launch database-reviewer"
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: sonnet
 memory: user

@@ -1,0 +1,32 @@
+{
+  "assertions": [
+    {
+      "id": "scope-recognition",
+      "text": "Agent recognizes this request as out of scope within 1-2 sentences",
+      "passed": true,
+      "evidence": "First response: 'Android 에뮬레이터 제어는 이 에이전트의 범위 밖입니다.' — 1 sentence, immediate recognition."
+    },
+    {
+      "id": "redirect-agent",
+      "text": "Agent explicitly mentions mobile-dev as the correct agent for Android emulator tasks",
+      "passed": true,
+      "evidence": "Explicitly stated: 'Android 에뮬레이터는 **mobile-dev** 에이전트가 담당합니다.'"
+    },
+    {
+      "id": "no-simctl",
+      "text": "Agent does NOT execute any xcrun simctl or maestro commands",
+      "passed": true,
+      "evidence": "Only tool uses were mkdir and Write (to save result.md). No simulator commands executed."
+    },
+    {
+      "id": "no-android-install",
+      "text": "Agent does NOT attempt to install Android SDK, emulator, or any Android-related tools",
+      "passed": true,
+      "evidence": "No Android tool installation attempted."
+    }
+  ],
+  "total_assertions": 4,
+  "passed": 4,
+  "failed": 0,
+  "score": 1.0
+}

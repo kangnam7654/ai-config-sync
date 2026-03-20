@@ -1,0 +1,16 @@
+{
+  "eval_id": 1,
+  "eval_name": "topic-comparison",
+  "config": "without_skill",
+  "pass": false,
+  "expectations": [
+    {"text": "# Trend Score Report 헤더 포함", "passed": false, "evidence": "Line 1: '# AI Agent vs MCP (Model Context Protocol) 트렌드 비교' — 스킬 템플릿 미사용"},
+    {"text": "평가일, 시장, 카테고리 메타데이터 포함", "passed": false, "evidence": "메타데이터 라인 없음. 제목 직후 바로 개요 섹션 시작"},
+    {"text": "6개 지표(SVGR, SBI, NFI, STB, VOL, SEA) 모두 포함", "passed": false, "evidence": "SVGR/SBI/NFI/STB/VOL/SEA 약어 미사용. 시장 규모/채택/기술 포지셔닝 등 자체 분류 사용"},
+    {"text": "Final Score 산출 및 순위 매김", "passed": false, "evidence": "정량적 Final Score 없음. 정성적 비교 매트릭스만 제공"},
+    {"text": "TS, SS 카테고리 점수 포함", "passed": false, "evidence": "TS/SS 개념 없음"},
+    {"text": "가중치 α/β 값 명시", "passed": false, "evidence": "α/β 가중치 개념 없음"},
+    {"text": "AI agent와 MCP 두 주제 모두 평가", "passed": true, "evidence": "두 주제 모두 상세히 다룸 (시장 규모, 채택, 기술 포지셔닝, 과제)"},
+    {"text": "각 지표에 근거 설명 1줄 이상 포함", "passed": false, "evidence": "6개 지표 체계를 사용하지 않으므로 해당 없음. 자체 분석 프레임워크 사용"}
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "from": "team-lead",
+    "text": "plan-critic이 아래 피드백으로 REJECT했다. 총점 8.20이지만 Clarity가 7/10으로 hard gate(>=8) 미달.\n\n## 피드백 (Clarity 개선 필요)\n\n1. **Task 2.3**: \"4가지 색상 매핑\"이라고만 되어 있고, 어떤 운세 유형이 어떤 색상에 매핑되는지 명시되지 않음. 수정 예시: daily=#A855F7 sun.max, saju=#60A5FA moon.stars, compatibility=#F472B6 heart.fill, weekly=#4ADE80 calendar\n\n2. **Task 3.1, 3.2**: \"glow 효과\"가 SwiftUI의 어떤 modifier인지 (shadow? overlay? radius? color?) 정의 없이 사용됨. 수정 예시: glow → `.shadow(color: Color(hex: \"A855F7\").opacity(0.3), radius: 12)`\n\n3. **done-when 부족**: Task 2.1, 2.3, 3.1, 3.2에 시뮬레이터 검증 기반의 구체적 완료 조건 누락. 각 태스크에 \"시뮬레이터에서 X가 렌더링됨을 확인\" 수준의 done-when 추가 필요.\n\n4. **Task 2.4**: \"수익 하락 시\"의 기준이 불명확. 구체적 수치(예: \"광고 시청 완료 횟수 20% 이상 하락 시\") 명시 필요.\n\n위 피드백을 반영하여 docs/design/PLAN_HOMEVIEW_UI_IMPROVEMENT.md 파일을 수정하라. 플랜 구조는 유지하되, Clarity가 8 이상이 되도록 모호한 표현을 구체적 SwiftUI modifier/값으로 교체하고, 모든 태스크에 측정 가능한 done-when을 추가하라.",
+    "summary": "Relay critic feedback to planner for revision",
+    "timestamp": "2026-03-20T05:00:20.254Z",
+    "read": false
+  }
+]

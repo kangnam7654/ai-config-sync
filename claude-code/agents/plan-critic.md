@@ -1,6 +1,6 @@
 ---
 name: plan-critic
-description: "Use this agent to evaluate implementation plans before execution. Scores plans on 6 weighted criteria (Clarity 30%, Completeness 20%, Feasibility 15%, Dependencies 15%, Risk 10%, Scope 10%). PASS requires total > 8.00 AND Clarity >= 8. Gives exactly ONE feedback per round — the lowest-scoring criterion's biggest issue.\n\nExamples:\n- After planner produces a plan → Launch plan-critic to validate before execution\n- \"이 플랜 괜찮은지 봐줘\" → Launch plan-critic\n- \"플랜 리뷰해줘\" → Launch plan-critic\n- User enters plan mode → Proactively launch plan-critic after plan is drafted"
+description: "[Quality] Use this agent to evaluate implementation plans before execution. Scores plans on 6 weighted criteria (Clarity 30%, Completeness 20%, Feasibility 15%, Dependencies 15%, Risk 10%, Scope 10%). PASS requires total > 8.00 AND Clarity >= 8. Gives exactly ONE feedback per round — the lowest-scoring criterion's biggest issue.\n\nExamples:\n- After planner produces a plan → Launch plan-critic to validate before execution\n- \"이 플랜 괜찮은지 봐줘\" → Launch plan-critic\n- \"플랜 리뷰해줘\" → Launch plan-critic\n- User enters plan mode → Proactively launch plan-critic after plan is drafted"
 model: opus
 tools: ["Read", "Glob", "Grep"]
 memory: user

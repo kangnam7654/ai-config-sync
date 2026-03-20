@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "스카이스캐너 편도 URL(귀국 날짜 생략)을 구성했는가", "passed": true, "evidence": "URL: /ICN/OKA/260417/?adults=1&cabinclass=economy — 귀국 날짜 세그먼트 생략 확인"},
+    {"text": "ICN→OKA IATA 코드를 정확히 사용했는가", "passed": true, "evidence": "ICN(인천), OKA(오키나와 나하) 정확. references/iata-codes.md에서 확인했다고 명시"},
+    {"text": "가격을 편도로 명시했는가", "passed": true, "evidence": "모든 결과에 '1인 / 편도' 표기. 검증 표에서도 편도 명시 여부를 체크"}
+  ]
+}

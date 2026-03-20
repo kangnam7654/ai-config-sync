@@ -1,0 +1,9 @@
+{
+  "assertions": [
+    {"id": "requests-screenshot", "text": "Returns message requesting ios-simulator agent", "passed": false, "evidence": "Baseline directly ran xcrun simctl commands to capture screenshot itself instead of delegating."},
+    {"id": "mentions-ios-simulator", "text": "Mentions ios-simulator agent", "passed": false, "evidence": "No mention of ios-simulator agent. Directly operated the simulator."},
+    {"id": "includes-appid", "text": "Includes appId in request", "passed": false, "evidence": "N/A — no delegation request made."},
+    {"id": "no-direct-simctl", "text": "Does NOT directly run xcrun simctl", "passed": false, "evidence": "Baseline ran xcrun simctl directly (9 tool uses, captured screenshot itself)."}
+  ],
+  "total_assertions": 4, "passed": 0, "failed": 4, "score": 0.0
+}

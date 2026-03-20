@@ -1,0 +1,27 @@
+{
+  "eval_id": 0,
+  "eval_name": "sim-no-screenshot",
+  "prompt": "시뮬레이터에서 돌아가는 앱 UI 리뷰해줘. appId는 com.example.myapp이야.",
+  "assertions": [
+    {
+      "id": "requests-screenshot",
+      "text": "Skill returns a message to the main model requesting ios-simulator agent to capture a screenshot",
+      "weight": 3
+    },
+    {
+      "id": "mentions-ios-simulator",
+      "text": "The response explicitly mentions ios-simulator agent as the tool to use for screenshot capture",
+      "weight": 2
+    },
+    {
+      "id": "includes-appid",
+      "text": "The screenshot request includes the appId (com.example.myapp) for the ios-simulator agent",
+      "weight": 2
+    },
+    {
+      "id": "no-direct-simctl",
+      "text": "Skill does NOT directly run xcrun simctl commands — delegates to ios-simulator agent via main model",
+      "weight": 3
+    }
+  ]
+}

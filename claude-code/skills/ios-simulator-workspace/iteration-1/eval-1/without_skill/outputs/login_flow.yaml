@@ -1,0 +1,32 @@
+appId: com.example.app
+---
+# Login Flow - Maestro E2E Test
+# Automates: email/password input -> Submit
+
+# Launch the app
+- launchApp
+
+# Wait for the login screen to load
+- waitForAnimationToEnd
+
+# Enter email
+- tapOn:
+    id: "email"
+    optional: true
+- tapOn:
+    text: ".*[Ee]mail.*"
+    optional: true
+- inputText: "test@example.com"
+
+# Enter password
+- tapOn:
+    id: "password"
+    optional: true
+- tapOn:
+    text: ".*[Pp]assword.*"
+    optional: true
+- inputText: "password123"
+
+# Tap Submit button
+- tapOn:
+    text: ".*[Ss]ubmit.*"

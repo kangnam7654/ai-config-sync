@@ -2,3 +2,4 @@
 
 - [review_researcher_agent.md](./review_researcher_agent.md) — researcher.md agent review history: PASS at 8.10 on round 3 (2026-03-19)
 - [review_idea_forge_skill.md](./review_idea_forge_skill.md) — idea-forge SKILL.md review history: PASS at 8.55 on round 4 (2026-03-20)
+- [review_service_dev_skill.md](./review_service_dev_skill.md) — service-dev SKILL.md review history: PASS at 8.30 on round 3 (2026-03-20)

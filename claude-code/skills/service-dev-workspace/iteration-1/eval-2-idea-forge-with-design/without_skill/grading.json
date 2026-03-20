@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "idea-forge 산출물을 찾거나 사용자에게 산출물 위치를 확인한다", "passed": true, "evidence": "'BM 검증 결과 공유' 요청으로 산출물 확인 시도"},
+    {"text": "Phase 0 산출물 4가지 형식으로 정리한다", "passed": false, "evidence": "4가지 형식을 사용하지 않음. 일반적인 질문-응답 형태로 정보 수집"},
+    {"text": "디자인 필요를 인지하고 Phase 2 포함을 명시한다", "passed": false, "evidence": "Phase 구조를 인식하지 않음. '디자인 도구 및 방식' 질문은 있으나 Phase 2로 구조화하지 않음"},
+    {"text": "서비스 이름을 확인한다", "passed": true, "evidence": "'저장소 이름 (예: pet-health-saas)' 확인"},
+    {"text": "사용자 승인 후 Phase 1(Plan)으로 진행할 것임을 안내한다", "passed": false, "evidence": "Phase 구조 없이 '설계문서 초안 작성' → '승인' → '구현' 순서만 제시"}
+  ]
+}

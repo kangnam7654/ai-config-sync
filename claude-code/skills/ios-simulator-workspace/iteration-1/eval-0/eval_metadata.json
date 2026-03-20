@@ -1,0 +1,42 @@
+{
+  "id": 0,
+  "name": "basic-boot-screenshot",
+  "prompt": "iOS 시뮬레이터 부팅하고 스크린샷 찍어줘",
+  "assertions": [
+    {
+      "id": "dep-check",
+      "text": "Agent runs xcrun simctl help and maestro --version before any simulator command",
+      "weight": 2
+    },
+    {
+      "id": "device-list",
+      "text": "Agent lists available simulator devices with xcrun simctl list devices",
+      "weight": 1
+    },
+    {
+      "id": "udid-usage",
+      "text": "Agent uses UDID (not device name) when booting the simulator",
+      "weight": 2
+    },
+    {
+      "id": "env-report",
+      "text": "Agent reports device name, iOS version, and UDID at the start",
+      "weight": 2
+    },
+    {
+      "id": "screenshot",
+      "text": "Agent captures a screenshot using xcrun simctl io booted screenshot",
+      "weight": 2
+    },
+    {
+      "id": "output-format",
+      "text": "Agent outputs a Simulator Session Report matching the Output Format template (Environment, Actions Performed, Screenshots, Issues Found sections)",
+      "weight": 2
+    },
+    {
+      "id": "shutdown-ask",
+      "text": "Agent asks user whether to shut down or keep the simulator running at the end",
+      "weight": 1
+    }
+  ]
+}

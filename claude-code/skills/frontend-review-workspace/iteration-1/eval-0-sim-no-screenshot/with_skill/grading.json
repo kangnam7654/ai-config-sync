@@ -1,0 +1,9 @@
+{
+  "assertions": [
+    {"id": "requests-screenshot", "text": "Skill returns a message requesting ios-simulator agent to capture a screenshot", "passed": true, "evidence": "Returned exact message: 'iOS 시뮬레이터 스크린샷이 필요합니다. ios-simulator 에이전트를 스폰하여...'"},
+    {"id": "mentions-ios-simulator", "text": "Response explicitly mentions ios-simulator agent", "passed": true, "evidence": "Explicitly says 'ios-simulator 에이전트를 스폰하여'"},
+    {"id": "includes-appid", "text": "Screenshot request includes appId com.example.myapp", "passed": true, "evidence": "앱 bundle ID: com.example.myapp included in request"},
+    {"id": "no-direct-simctl", "text": "Skill does NOT directly run xcrun simctl commands", "passed": true, "evidence": "Only 3 tool uses (Read skill, mkdir, Write output). No Bash xcrun commands."}
+  ],
+  "total_assertions": 4, "passed": 4, "failed": 0, "score": 1.0
+}

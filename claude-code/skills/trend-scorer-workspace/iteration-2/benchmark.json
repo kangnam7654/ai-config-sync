@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "skill_name": "trend-scorer",
+    "skill_path": "/Users/kangnam/.claude/skills/trend-scorer",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-20T01:00:00Z",
+    "evals_run": [1, 2, 3],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "topic-comparison",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 223.0,
+        "tokens": 58111,
+        "tool_calls": 26,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "# Trend Score Report 헤더 포함", "passed": true, "evidence": "Line 1: '# Trend Score Report'"},
+        {"text": "평가일, 시장, 카테고리 메타데이터 포함", "passed": true, "evidence": "Line 2: '평가일: 2026-03-20 | 시장: 한국 | 카테고리: 기술'"},
+        {"text": "6개 지표 모두 포함", "passed": true, "evidence": "테이블 헤더에 SVGR|SBI|NFI|STB|VOL|SEA 모두 존재"},
+        {"text": "Final Score 산출 및 순위", "passed": true, "evidence": "AI Agent Final 7.44 (1위), MCP Final 6.22 (2위)"},
+        {"text": "TS, SS 카테고리 점수 포함", "passed": true, "evidence": "테이블에 TS, SS 컬럼 존재"},
+        {"text": "가중치 α/β 값 명시", "passed": true, "evidence": "'Trending α=0.55, Steady β=0.45'"},
+        {"text": "두 주제 모두 평가", "passed": true, "evidence": "AI Agent, MCP 모두 테이블에 존재"},
+        {"text": "각 지표에 근거 설명 포함", "passed": true, "evidence": "SVGR~SEA 각 지표마다 데이터 출처와 판단 근거 상세 기술"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "topic-comparison",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.125,
+        "passed": 1,
+        "failed": 7,
+        "total": 8,
+        "time_seconds": 184.5,
+        "tokens": 33209,
+        "tool_calls": 15,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "# Trend Score Report 헤더 포함", "passed": false, "evidence": "자체 제목 사용"},
+        {"text": "평가일, 시장, 카테고리 메타데이터 포함", "passed": false, "evidence": "메타데이터 라인 없음"},
+        {"text": "6개 지표 모두 포함", "passed": false, "evidence": "SVGR/SBI/NFI/STB/VOL/SEA 미사용"},
+        {"text": "Final Score 산출 및 순위", "passed": false, "evidence": "정량적 Final Score 없음"},
+        {"text": "TS, SS 카테고리 점수 포함", "passed": false, "evidence": "TS/SS 개념 없음"},
+        {"text": "가중치 α/β 값 명시", "passed": false, "evidence": "α/β 가중치 없음"},
+        {"text": "두 주제 모두 평가", "passed": true, "evidence": "두 주제 모두 상세히 다룸"},
+        {"text": "각 지표에 근거 설명 포함", "passed": false, "evidence": "6개 지표 체계 미사용"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "auto-discovery",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 1722.6,
+        "tokens": 152267,
+        "tool_calls": 80,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "시장이 한국으로 설정", "passed": true, "evidence": "'시장: 한국'"},
+        {"text": "카테고리가 기술", "passed": true, "evidence": "'카테고리: 기술'"},
+        {"text": "5개 이상 주제 발굴", "passed": true, "evidence": "10개 주제 발굴"},
+        {"text": "15개 이하 주제 제한", "passed": true, "evidence": "10개 — 15개 이하"},
+        {"text": "6개 지표 모두 포함", "passed": true, "evidence": "SVGR|SBI|NFI|STB|VOL|SEA 존재"},
+        {"text": "종합 랭킹 테이블 출력", "passed": true, "evidence": "'## 종합 랭킹'"},
+        {"text": "1위 주제 상세 분석", "passed": true, "evidence": "'왜 높은가' 포함"},
+        {"text": "데이터 한계 면책 문구", "passed": true, "evidence": "'데이터 한계 고지' 포함"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "auto-discovery",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 4,
+        "failed": 4,
+        "total": 8,
+        "time_seconds": 214.3,
+        "tokens": 36706,
+        "tool_calls": 13,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "시장이 한국으로 설정", "passed": true, "evidence": "제목에 '한국' 포함"},
+        {"text": "카테고리가 기술", "passed": true, "evidence": "기술 분야 7개 주제"},
+        {"text": "5개 이상 주제 발굴", "passed": true, "evidence": "7개 주제"},
+        {"text": "15개 이하 주제 제한", "passed": true, "evidence": "7개"},
+        {"text": "6개 지표 모두 포함", "passed": false, "evidence": "SVGR/SBI/NFI/STB/VOL/SEA 미사용"},
+        {"text": "종합 랭킹 테이블 출력", "passed": false, "evidence": "랭킹 테이블 없음"},
+        {"text": "1위 주제 상세 분석", "passed": false, "evidence": "'왜 높은가' 형식 미사용"},
+        {"text": "데이터 한계 면책 문구", "passed": false, "evidence": "면책 문구 없음"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "steady-weight",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 243.1,
+        "tokens": 56853,
+        "tool_calls": 28,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Steady 가중치 적용 (0.30/0.70)", "passed": true, "evidence": "'α=0.30, Steady β=0.70'"},
+        {"text": "3개 주제 모두 평가", "passed": true, "evidence": "Copilot, Claude Code, Cursor 모두 존재"},
+        {"text": "랭킹 테이블 지표 완전성", "passed": true, "evidence": "Final|TS|SS|SVGR|SBI|NFI|STB|VOL|SEA 모두 존재"},
+        {"text": "STB 지표 상세 언급", "passed": true, "evidence": "'STB 8 — 2022년 출시 이후 3년 이상'"},
+        {"text": "출처 표기 포함", "passed": true, "evidence": "URL 출처 다수 기재"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "steady-weight",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": 193.3,
+        "tokens": 36909,
+        "tool_calls": 19,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Steady 가중치 적용 (0.30/0.70)", "passed": false, "evidence": "자체 5축 평가 사용"},
+        {"text": "3개 주제 모두 평가", "passed": true, "evidence": "3개 도구 모두 평가됨"},
+        {"text": "랭킹 테이블 지표 완전성", "passed": false, "evidence": "TS/SS/SVGR 등 미사용"},
+        {"text": "STB 지표 상세 언급", "passed": false, "evidence": "STB 약어 미사용"},
+        {"text": "출처 표기 포함", "passed": true, "evidence": "출처 명시됨"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 729.6, "stddev": 700.8, "min": 223.0, "max": 1722.6},
+      "tokens": {"mean": 89077, "stddev": 44845, "min": 56853, "max": 152267}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.34, "stddev": 0.16, "min": 0.125, "max": 0.5},
+      "time_seconds": {"mean": 197.4, "stddev": 12.3, "min": 184.5, "max": 214.3},
+      "tokens": {"mean": 35608, "stddev": 1683, "min": 33209, "max": 36909}
+    },
+    "delta": {
+      "pass_rate": "+0.66",
+      "time_seconds": "+532.2",
+      "tokens": "+53469"
+    }
+  },
+  "notes": [
+    "with_skill은 3개 eval 모두 pass_rate 100% 달성 — 스킬이 출력 형식을 완벽하게 통제함",
+    "without_skill은 주제 발굴·출처 표기 등 콘텐츠 역량은 보이나, 정량적 6개 지표 체계와 표준 출력 형식을 전혀 사용하지 않음",
+    "eval-2 (auto-discovery)의 with_skill이 1722초(29분) 소요 — 10개 주제 x 6개 지표 = 60회 이상 WebSearch로 인한 시간/토큰 폭증",
+    "'두 주제 모두 평가'와 '출처 표기' assertion은 with/without 모두 통과 — 비차별적(non-discriminating) assertion",
+    "스킬의 핵심 가치는 정량적 점수 체계(SVGR/SBI/NFI/STB/VOL/SEA → TS/SS → Final Score)로, baseline이 이를 자체적으로 생성하지 못함"
+  ]
+}

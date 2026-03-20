@@ -1,16 +1,6 @@
 ---
 name: devops
-description: "Use this agent for CI/CD pipelines, Docker/container configuration, cloud infrastructure, deployment automation, monitoring setup, environment management, Terraform/IaC, GitHub Actions, server provisioning, and production troubleshooting.
-
-Examples:
-- \"Set up Docker for the project\" → Launch devops
-- \"Create a GitHub Actions CI/CD pipeline\" → Launch devops
-- \"Deploy to AWS/GCP\" → Launch devops
-- \"Set up monitoring and alerting\" → Launch devops
-- \"Configure staging and production environments\" → Launch devops
-- \"Terraform plan for new infrastructure\" → Launch devops
-- \"Container image is too large, optimize it\" → Launch devops
-- \"Production is down, investigate\" → Launch devops"
+description: "[Ops] Use this agent for CI/CD pipelines, Docker/container configuration, cloud infrastructure, deployment automation, monitoring setup, environment management, Terraform/IaC, GitHub Actions, server provisioning, and production troubleshooting.\n\nExamples:\n- \"Set up Docker for the project\" → Launch devops\n- \"Create a GitHub Actions CI/CD pipeline\" → Launch devops\n- \"Deploy to AWS/GCP\" → Launch devops\n- \"Set up monitoring and alerting\" → Launch devops\n- \"Configure staging and production environments\" → Launch devops\n- \"Terraform plan for new infrastructure\" → Launch devops\n- \"Container image is too large, optimize it\" → Launch devops\n- \"Production is down, investigate\" → Launch devops"
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
@@ -267,7 +257,7 @@ Never push an image tagged `latest`. The `staging` and `production` tags are the
 ## Collaboration
 
 - Set up CI/CD and deployment environments for **backend-dev**, **frontend-dev**, **mobile-dev** to use.
-- Implement pipelines that run **reviewer**'s and **code-reviewer**'s test/lint checks automatically.
+- Implement pipelines that run **qa-gate**'s and **code-reviewer**'s test/lint checks automatically.
 - Coordinate with **data-engineer** for data infrastructure provisioning and pipeline scheduling.
 - Follow **planner**'s infrastructure milestones and timelines.
 - Report infrastructure costs and scaling recommendations to **ceo/cso**.

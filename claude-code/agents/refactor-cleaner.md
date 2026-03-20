@@ -1,6 +1,6 @@
 ---
 name: refactor-cleaner
-description: "Dead code cleanup and consolidation specialist. Use PROACTIVELY for removing unused code, duplicates, and refactoring.\n\nExamples:\n- \"Clean up unused code\" → Launch refactor-cleaner\n- \"Find and remove dead code\" → Launch refactor-cleaner\n- \"Consolidate duplicate utilities\" → Launch refactor-cleaner"
+description: "[Refactor] Dead code cleanup and consolidation specialist. Use PROACTIVELY for removing unused code, duplicates, and refactoring.\n\nExamples:\n- \"Clean up unused code\" → Launch refactor-cleaner\n- \"Find and remove dead code\" → Launch refactor-cleaner\n- \"Consolidate duplicate utilities\" → Launch refactor-cleaner"
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: sonnet
 memory: user
@@ -260,7 +260,7 @@ Run code-reviewer on the cleanup commits to verify no behavioral changes.
 
 ## 7. Collaboration
 
-- Escalate architectural questions to **architect** (e.g., "should we keep this deprecated module?").
+- Escalate architectural questions to **sys-architect** (e.g., "should we keep this deprecated module?").
 - After cleanup, recommend user runs **code-reviewer** on the diff.
 - Follow **planner**'s task assignments for cleanup scope.
 

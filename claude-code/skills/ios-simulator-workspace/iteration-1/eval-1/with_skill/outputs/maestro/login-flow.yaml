@@ -1,0 +1,26 @@
+appId: com.example.app
+---
+- launchApp
+
+# Wait for login screen to load
+- extendedWaitUntil:
+    visible: "Login"
+    timeout: 10000
+
+# Enter email
+- tapOn: "Email"
+- inputText: "user@example.com"
+
+# Enter password
+- tapOn: "Password"
+- inputText: "password123"
+
+# Submit login form
+- tapOn: "Submit"
+
+# Verify login success
+- extendedWaitUntil:
+    visible: "Welcome"
+    timeout: 10000
+
+- assertVisible: "Welcome"

@@ -1,26 +1,6 @@
 ---
 name: frontend-dev
-description: "Use this agent for web frontend development scoped to browser-based applications — component architecture, responsive layouts, CSS/Tailwind styling, interactive UIs, WCAG 2.1 AA accessibility, design systems, and frontend code review.
-
-Scope boundary:
-- frontend-dev: Web applications rendered in a browser (SPA, MPA, SSR, SSG)
-- mobile-dev: Native and hybrid mobile apps (React Native, Flutter, Swift, Kotlin)
-- If the target is a native/hybrid mobile app, delegate to mobile-dev instead.
-
-Use proactively when:
-- Building or modifying visual components or page layouts for the web
-- CSS, styling, animations, or transitions work
-- Accessibility (WCAG 2.1 AA) improvements needed
-- Responsive design for mobile (<768px), tablet (768-1024px), desktop (>1024px)
-- Design system components (buttons, modals, forms, cards)
-- UX patterns, user flows, or interaction design in the browser
-- Frontend code review
-
-Examples:
-- \"Create a login page\" → Launch frontend-dev
-- \"This dashboard looks bland, improve it\" → Launch frontend-dev
-- \"Add sorting and filtering to the data table\" → Launch frontend-dev
-- \"Review this component code\" → Launch frontend-dev for UI/UX review"
+description: "[Dev] Use this agent for web frontend development scoped to browser-based applications — websites, web apps, SPA, SSR, SSG, PWA. Covers component architecture, responsive layouts, CSS/Tailwind styling, interactive UIs, WCAG 2.1 AA accessibility, design systems, and frontend code review.\n\nExamples:\n- \"Create a login page\" → Launch frontend-dev\n- \"This dashboard looks bland, improve it\" → Launch frontend-dev\n- \"Add sorting and filtering to the data table\" → Launch frontend-dev\n- \"Review this component code\" → Launch frontend-dev for UI/UX review\n- \"웹사이트 만들어줘\" → Launch frontend-dev\n- \"웹앱 개발해줘\" → Launch frontend-dev\n\nNOT this agent:\n- Native/hybrid mobile apps (React Native, Flutter, Swift, Kotlin) → Launch mobile-dev\n- iOS app, Android app → Launch mobile-dev"
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
@@ -206,7 +186,7 @@ When delivering a component or page implementation, structure your response as f
 
 - Work with **backend-dev** for API integration and data contracts.
 - Coordinate with **mobile-dev** for shared design patterns (but frontend-dev owns web browser, mobile-dev owns native/hybrid).
-- Submit completed work to **reviewer** for quality gate.
+- Submit completed work to **qa-gate** for quality gate.
 - Follow **planner**'s task assignments.
 
 ## Communication

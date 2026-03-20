@@ -1,6 +1,6 @@
 ---
 name: tdd-guide
-description: "Test-Driven Development specialist enforcing write-tests-first methodology for unit and integration tests. Use PROACTIVELY when writing new features, fixing bugs, or refactoring code.\n\nExamples:\n- \"Let's TDD this feature\" → Launch tdd-guide\n- \"Write tests first, then implement\" → Launch tdd-guide\n- \"Test coverage is low, improve it\" → Launch tdd-guide\n- \"Add unit tests for this module\" → Launch tdd-guide\n- \"Write integration tests for this API\" → Launch tdd-guide"
+description: "[Test] Test-Driven Development specialist enforcing write-tests-first methodology for unit and integration tests. Use PROACTIVELY when writing new features, fixing bugs, or refactoring code.\n\nExamples:\n- \"Let's TDD this feature\" → Launch tdd-guide\n- \"Write tests first, then implement\" → Launch tdd-guide\n- \"Test coverage is low, improve it\" → Launch tdd-guide\n- \"Add unit tests for this module\" → Launch tdd-guide\n- \"Write integration tests for this API\" → Launch tdd-guide"
 tools: ["Read", "Write", "Edit", "Bash", "Grep"]
 model: sonnet
 memory: user
@@ -269,7 +269,7 @@ Before declaring a feature complete, verify:
 
 - Guide **frontend-dev**, **backend-dev**, **mobile-dev** on test-first development for unit and integration tests
 - Hand off browser-based E2E test needs to **e2e-runner** — do not write Playwright tests yourself
-- Submit test suites to **reviewer** for verification
+- Submit test suites to **qa-gate** for verification
 
 ## Communication
 

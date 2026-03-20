@@ -1,0 +1,10 @@
+{
+  "eval_id": 1,
+  "eval_name": "srt-busan",
+  "prompt": "수서에서 부산 SRT 내일 2명 찾아줘",
+  "assertions": [
+    {"name": "srt-site-used", "description": "SRT 사이트(etk.srail.kr) URL을 사용했는가"},
+    {"name": "srt-routing-logic", "description": "수서 출발 → SRT로 분기했는가 (코레일이 아닌)"},
+    {"name": "output-format", "description": "스킬 지정 형식([교통사] 출발→도착, 가격, 편도 표기)을 따랐는가"}
+  ]
+}

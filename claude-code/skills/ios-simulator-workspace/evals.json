@@ -1,0 +1,51 @@
+{
+  "agent_name": "ios-simulator",
+  "evals": [
+    {
+      "id": 0,
+      "name": "basic-boot-screenshot",
+      "prompt": "iOS 시뮬레이터 부팅하고 스크린샷 찍어줘",
+      "expected_output": "의존성 검증 → 디바이스 목록 조회 → 최신 iPhone 부팅 → 스크린샷 캡처 → Session Report 출력",
+      "files": [],
+      "expectations": [
+        "Agent runs dependency verification (xcrun simctl help and maestro --version) before any simulator command",
+        "Agent lists available devices with xcrun simctl list devices",
+        "Agent selects the latest iPhone model and boots it by UDID",
+        "Agent captures a screenshot with xcrun simctl io booted screenshot",
+        "Agent reports device name, iOS version, and UDID",
+        "Agent outputs a Simulator Session Report matching the Output Format template",
+        "Agent asks user whether to shut down or keep running at the end"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "maestro-login-flow",
+      "prompt": "로그인 플로우를 Maestro로 자동화해줘. appId는 com.example.app이고 이메일/비밀번호 입력 후 Submit",
+      "expected_output": "Maestro YAML 플로우 파일 maestro/login-submit.yaml 생성 → maestro test 실행 → 결과 보고",
+      "files": [],
+      "expectations": [
+        "Agent runs dependency verification before any command",
+        "Agent creates a Maestro YAML flow file at maestro/login-submit.yaml following the {feature}-{action}.yaml naming pattern",
+        "Agent includes appId: com.example.app in the YAML flow",
+        "Agent includes tapOn, inputText steps for email and password fields",
+        "Agent includes a Submit tap and assertVisible for success state",
+        "Agent attempts to run maestro test on the created flow",
+        "Agent captures screenshots after UI-modifying actions",
+        "Agent outputs a Simulator Session Report with Maestro Flow Results section"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "android-redirect",
+      "prompt": "Android 에뮬레이터에서 앱 테스트해줘",
+      "expected_output": "OUT of scope 인식 → mobile-dev로 리다이렉트",
+      "files": [],
+      "expectations": [
+        "Agent recognizes this as out of scope within 1-2 sentences",
+        "Agent explicitly mentions mobile-dev as the correct agent for Android emulator",
+        "Agent does NOT attempt to run any xcrun simctl or maestro commands",
+        "Agent does NOT attempt to install Android SDK or emulator tools"
+      ]
+    }
+  ]
+}

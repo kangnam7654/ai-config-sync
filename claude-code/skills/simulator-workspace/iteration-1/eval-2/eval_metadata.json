@@ -1,0 +1,27 @@
+{
+  "eval_id": 2,
+  "name": "ambiguous-platform-disambiguation",
+  "prompt": "이 앱이 제대로 동작하는지 확인해봐",
+  "assertions": [
+    {
+      "id": "no-assumption",
+      "text": "Agent does NOT assume web or mobile platform",
+      "weight": 1.0
+    },
+    {
+      "id": "asks-clarification",
+      "text": "Agent asks a disambiguation question about whether it's a web app or iOS app",
+      "weight": 1.0
+    },
+    {
+      "id": "no-commands-before-clarification",
+      "text": "Agent does NOT run any dependency checks, simctl commands, or Playwright scripts before getting clarification",
+      "weight": 1.0
+    },
+    {
+      "id": "no-workflow-proceed",
+      "text": "Agent does NOT proceed with any verification workflow steps",
+      "weight": 1.0
+    }
+  ]
+}

@@ -1,19 +1,6 @@
 ---
 name: backend-dev
-description: "Use this agent for backend server development — API endpoint implementation, server-side business logic, authentication/authorization flows, middleware, and external service integration.
-
-Examples:
-- \"Create POST /api/users with email duplicate check\" → Launch backend-dev
-- \"Implement JWT auth with refresh tokens\" → Launch backend-dev
-- \"Integrate Stripe payment webhook\" → Launch backend-dev
-- \"Implement real-time chat with WebSocket\" → Launch backend-dev
-- Frontend needs an API endpoint → Launch backend-dev
-
-NOT this agent:
-- \"Optimize this slow SQL query\" → Launch database-reviewer
-- \"Build ETL pipeline for analytics\" → Launch data-engineer
-- \"Set up Docker / CI/CD / deploy\" → Launch devops
-- \"Review this migration for correctness\" → Launch database-reviewer"
+description: "[Dev] Use this agent for backend server development — API endpoint implementation, server-side business logic, authentication/authorization flows, middleware, and external service integration.\n\nExamples:\n- \"Create POST /api/users with email duplicate check\" → Launch backend-dev\n- \"Implement JWT auth with refresh tokens\" → Launch backend-dev\n- \"Integrate Stripe payment webhook\" → Launch backend-dev\n- \"Implement real-time chat with WebSocket\" → Launch backend-dev\n- Frontend needs an API endpoint → Launch backend-dev\n\nNOT this agent:\n- \"Optimize this slow SQL query\" → Launch database-reviewer\n- \"Build ETL pipeline for analytics\" → Launch data-engineer\n- \"Set up Docker / CI/CD / deploy\" → Launch devops\n- \"Review this migration for correctness\" → Launch database-reviewer"
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
@@ -291,7 +278,7 @@ Ask the user if API style is unspecified. Default to REST. If GraphQL:
 - Hand off schema review to **database-reviewer** before merging migrations
 - Hand off ETL/analytics data needs to **data-engineer**
 - Hand off deployment and infra tasks to **devops**
-- Submit completed work to **reviewer** for quality gate
+- Submit completed work to **qa-gate** for quality gate
 - Follow **planner**'s task assignments
 
 ---

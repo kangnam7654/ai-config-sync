@@ -1,0 +1,42 @@
+{
+  "eval_id": 0,
+  "name": "web-verification-localhost",
+  "prompt": "localhost:3000 열어서 메인 페이지가 로드되는지 확인하고 스크린샷 찍어줘",
+  "assertions": [
+    {
+      "id": "web-platform-detect",
+      "text": "Agent detects web platform from 'localhost:3000' signal without asking",
+      "weight": 1.0
+    },
+    {
+      "id": "web-dep-check",
+      "text": "Agent checks node --version and npx playwright --version before any other command",
+      "weight": 1.0
+    },
+    {
+      "id": "web-screenshot-dir",
+      "text": "Agent creates /tmp/simulator-screenshots/ directory",
+      "weight": 0.5
+    },
+    {
+      "id": "web-playwright-script",
+      "text": "Agent writes a Playwright script to navigate to localhost:3000",
+      "weight": 1.0
+    },
+    {
+      "id": "web-edge-case",
+      "text": "If connection refused: agent reports the error and stops without starting a dev server",
+      "weight": 1.0
+    },
+    {
+      "id": "web-no-server-start",
+      "text": "Agent does NOT run npm start, npm run dev, or any command to start a server",
+      "weight": 1.0
+    },
+    {
+      "id": "web-output-format",
+      "text": "Final output uses the Simulator Verification Report template structure",
+      "weight": 1.0
+    }
+  ]
+}

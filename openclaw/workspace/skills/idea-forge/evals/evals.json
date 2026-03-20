@@ -1,0 +1,23 @@
+{
+  "skill_name": "idea-forge",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "AI 기반 반려동물 건강 모니터링 서비스 아이디어가 있는데, 검증하고 BM까지 만들어줘. 타겟은 한국 시장의 반려동물 보호자야.",
+      "expected_output": "Phase 0 스킵, Phase 1 CEO→Researcher→CSO 루프 실행, CSO Accept 시 Phase 2 bm-designer 파이프라인 호출, BM Score 포함 최종 문서 산출",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "요즘 뭐가 뜨는지 모르겠는데, 사업 아이디어 하나 찾아서 검증해줘",
+      "expected_output": "Phase 0 실행 (trend-scorer 연계 키워드 수집 → CEO 키워드 선정 → 사용자 승인), Phase 1 검증 루프, Phase 2 BM 설계",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "MCP 서버 개발 도구를 B2B SaaS로 만들면 어떨까? 3라운드만 빠르게 검증해보고 BM까지 부탁해",
+      "expected_output": "max_rounds=3 파싱, target_market=B2B, Phase 1 최대 3라운드 실행, Early Exit 처리, Phase 2 bm-designer 파이프라인 호출",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "코레일 사이트(korail.com)를 사용했는가", "passed": true, "evidence": "https://www.korail.com/ticket/main URL 사용"},
+    {"text": "서울역 출발이므로 SRT가 아닌 코레일로 라우팅했는가", "passed": true, "evidence": "출발역 '서울'(수서가 아님) → 코레일로 라우팅. 스킬 규칙 정확히 적용"},
+    {"text": "폼 자동화 단계를 기술했는가", "passed": true, "evidence": "Step 1~6으로 agent-browser open → click → fill → screenshot → 폴백까지 전체 절차 기술"}
+  ]
+}

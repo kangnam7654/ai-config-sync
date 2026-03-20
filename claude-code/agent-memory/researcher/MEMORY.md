@@ -159,6 +159,13 @@ Per-provider risk assessment triggered by Feb 2026 OpenClaw mass-ban wave:
 - Flat-rate subscriptions are incompatible with third-party tool usage; providers enforce to protect margins.
 - See: tos-subscription-oauth-compliance.md for full per-provider ToS clause analysis.
 
+## GitHub Copilot API Model IDs (researched 2026-03-20)
+
+Exact model ID strings for api.githubcopilot.com. See: github-copilot-models.md
+
+Key IDs: `claude-sonnet-4.6` (GA, 1M ctx), `claude-opus-4.6` (3x), `gpt-5.3-codex` (replaces gpt-5.1), `gemini-3.1-pro` (replaces gemini-3-pro). Free-tier models: `gpt-4.1`, `gpt-5-mini`, `grok-code-fast-1`, `raptor-mini`. Exception: fast-mode uses hyphen `claude-opus-4-6-fast` (30x multiplier).
+Deprecated and gone: `gpt-4o` (Aug 2025), `o3-mini`/`o1` (mid-2025). Deprecating imminently: `gemini-3-pro` (Mar 26), `gpt-5.1` family (Apr 1, 2026).
+
 ## Figma API & Plugin Rate Limits (researched 2026-03-19)
 
 Key findings for Figma REST API, Plugin API, and Desktop Bridge:
@@ -197,6 +204,20 @@ Rate limits depend on Plan + Seat type + API Tier:
 - File location matters: file must be IN the paid plan workspace, not Starter workspace
 
 See: figma-api-rate-limits.md
+
+## Fortune/Astrology App UI Design Trends (researched 2026-03-20)
+
+Key findings for 달결 app UI direction:
+- Dark mode dominates (82% mobile users; Co-Star, The Pattern, Nebula, 포스텔러 all dark-primary)
+- Deep purple/navy palette is the genre convention: #1A0E2E–#2D1B4E backgrounds + #A855F7 accents
+- Two opposing aesthetics: (1) Co-Star monochrome minimalism, (2) CHANI soft collage/zine warmth
+- 포스텔러: card+graph visual hierarchy, free-to-paid progressive disclosure
+- 점신: direct manipulation divination (tarot draw, crystal ball touch), trust via social proof
+- 2026 trend: glassmorphism with aurora ambient gradients (deep purples + neon blues behind frosted glass)
+- Bento grid layouts emerging for home dashboards
+- Micro-interactions > heavy motion: "light but pleasant" feedback preferred
+- WCAG 2.2: 44×44pt touch targets (Apple HIG), 4.5:1 contrast ratio for normal text
+- See: fortune-app-ui-trends-2025.md for full details
 
 ## Claude Code OAuth API Internals (researched 2026-03-16, binary analysis v2.1.76)
 

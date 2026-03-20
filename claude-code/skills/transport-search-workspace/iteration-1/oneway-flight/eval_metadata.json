@@ -1,0 +1,10 @@
+{
+  "eval_id": 2,
+  "eval_name": "oneway-flight",
+  "prompt": "인천에서 오키나와 편도 4/17 1인 항공권 가격 알아봐",
+  "assertions": [
+    {"name": "oneway-url", "description": "스카이스캐너 편도 URL(귀국 날짜 생략)을 구성했는가"},
+    {"name": "iata-correct", "description": "ICN→OKA IATA 코드를 정확히 사용했는가"},
+    {"name": "price-label-oneway", "description": "가격을 편도로 명시했는가 (왕복이 아닌)"}
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 name: e2e-runner
-description: "End-to-end testing specialist using Playwright. Use PROACTIVELY for generating, maintaining, and running E2E tests.\n\nExamples:\n- \"Write E2E tests for the login flow\" → Launch e2e-runner\n- \"E2E tests are flaky, fix them\" → Launch e2e-runner\n- \"Run E2E tests and check results\" → Launch e2e-runner"
+description: "[Test] End-to-end testing specialist using Playwright. Use PROACTIVELY for generating, maintaining, and running E2E tests.\n\nExamples:\n- \"Write E2E tests for the login flow\" → Launch e2e-runner\n- \"E2E tests are flaky, fix them\" → Launch e2e-runner\n- \"Run E2E tests and check results\" → Launch e2e-runner"
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: sonnet
 memory: user

@@ -4,6 +4,7 @@
 - **BuyBuddy MVP**: AI Shopping Agent for IT/Electronics, plan at `/home/kangnam/projects/ai-products/01-buybuddy/docs/PLAN_BUYBUDDY_MVP.md`
 - **FlirtIQ MVP**: AI Dating Conversation Coach (Privacy-First), plan at `/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN.md`
 - **FlirtIQ Phase 1 Subscription**: Plan at `/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN_PHASE1_SUBSCRIPTION.md`
+- **Dalgyeol (달결)**: Saju/fortune iOS app, details in [project_dalgyeol.md](project_dalgyeol.md), HomeView UI plan at `/Users/kangnam/projects/saju2/docs/design/PLAN_HOMEVIEW_UI_IMPROVEMENT.md`
 
 ## Planning Patterns
 - Frontend can always start with mock data (parallel with backend)

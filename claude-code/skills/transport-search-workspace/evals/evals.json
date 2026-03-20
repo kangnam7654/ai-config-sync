@@ -1,0 +1,23 @@
+{
+  "skill_name": "transport-search",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "수서에서 부산 SRT 내일 2명 찾아줘",
+      "expected_output": "SRT 사이트(etk.srail.kr)로 분기하여 검색을 시도하고, 결과를 최저가 위주로 요약",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "인천에서 오키나와 편도 4/17 1인 항공권 가격 알아봐",
+      "expected_output": "스카이스캐너 편도 URL(귀국 날짜 생략)로 검색, IATA 코드 ICN→OKA 사용, 편도 가격으로 결과 표시",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "서울에서 강릉 KTX 이번 주 토요일 시간표 좀 봐줘",
+      "expected_output": "코레일 사이트에서 폼 자동화로 검색, 서울→강릉 KTX 시간표와 가격을 요약",
+      "files": []
+    }
+  ]
+}

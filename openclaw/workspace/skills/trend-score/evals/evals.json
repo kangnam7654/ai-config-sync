@@ -1,0 +1,67 @@
+{
+  "skill_name": "trend-scorer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "AI agent vs MCP 트렌드 비교해줘",
+      "expected_output": "AI agent와 MCP 두 주제에 대해 6개 지표(SVGR, SBI, NFI, STB, VOL, SEA) 점수와 Final Score를 포함한 랭킹 테이블이 출력되어야 한다.",
+      "files": [],
+      "expectations": [
+        "출력에 '# Trend Score Report' 헤더가 포함된다",
+        "출력에 평가일, 시장, 카테고리 메타데이터가 포함된다",
+        "SVGR, SBI, NFI, STB, VOL, SEA 6개 지표 점수가 모두 포함된다",
+        "Final Score가 산출되어 순위가 매겨진다",
+        "각 지표에 근거 한 줄이 포함된다",
+        "TS, SS 카테고리 점수가 포함된다",
+        "가중치 alpha, beta 값이 명시된다"
+      ],
+      "assertions": [
+        {"text": "# Trend Score Report 헤더 포함", "type": "string_contains", "value": "# Trend Score Report"},
+        {"text": "6개 지표 약어 모두 포함", "type": "all_present", "value": ["SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]},
+        {"text": "Final Score 존재", "type": "string_contains", "value": "Final"},
+        {"text": "TS/SS 카테고리 점수 존재", "type": "all_present", "value": ["TS", "SS"]},
+        {"text": "가중치 alpha/beta 명시", "type": "regex", "value": "0\\.5[05].*0\\.4[05]|[αα].*[ββ]"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "요즘 한국에서 뭐가 뜨는지 알아봐. 기술 분야로 한정해서.",
+      "expected_output": "한국 시장, 기술 카테고리로 한정하여 자동 발굴된 5~15개 주제에 대한 트렌드 점수 랭킹이 출력되어야 한다.",
+      "files": [],
+      "expectations": [
+        "시장이 '한국'으로 설정된다",
+        "카테고리가 '기술'로 한정된다",
+        "5개 이상 15개 이하의 주제가 발굴된다",
+        "각 주제에 6개 지표 점수가 부여된다",
+        "종합 랭킹 테이블이 출력된다",
+        "1위 주제에 대한 상세 분석(왜 높은가)이 포함된다",
+        "데이터 한계 관련 면책 문구가 포함된다"
+      ],
+      "assertions": [
+        {"text": "시장이 한국으로 설정", "type": "string_contains", "value": "한국"},
+        {"text": "카테고리가 기술", "type": "string_contains", "value": "기술"},
+        {"text": "6개 지표 모두 포함", "type": "all_present", "value": ["SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]},
+        {"text": "종합 랭킹 테이블 존재", "type": "string_contains", "value": "종합 랭킹"},
+        {"text": "데이터 한계 면책 문구", "type": "regex", "value": "데이터 한계|실시간 API|상대적 수준"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "클로드 코드 vs 커서 vs 코파일럿, 꾸준한 관심 위주로 점수 매겨줘",
+      "expected_output": "3개 주제에 대해 Steady 가중치가 높은(alpha=0.30, beta=0.70) 설정으로 점수가 산출되어야 한다.",
+      "files": [],
+      "expectations": [
+        "alpha=0.30, beta=0.70 가중치가 적용된다 (스테디 위주)",
+        "클로드 코드, 커서, 코파일럿 3개 주제 모두 평가된다",
+        "랭킹 테이블에 Final, TS, SS, 6개 지표가 모두 포함된다",
+        "각 주제별 상세 분석에 Steady 근거(STB 점수)가 강조된다",
+        "출처 표기가 포함된다"
+      ],
+      "assertions": [
+        {"text": "Steady 가중치 적용 (0.30/0.70)", "type": "regex", "value": "0\\.30|0\\.70"},
+        {"text": "랭킹 테이블 지표 완전성", "type": "all_present", "value": ["Final", "TS", "SS", "SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]},
+        {"text": "STB 지표 상세 언급", "type": "string_contains", "value": "STB"}
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 name: build-error-resolver
-description: "Non-Go build and TypeScript error resolution specialist. Use PROACTIVELY when build fails or type errors occur in JavaScript/TypeScript/Python/Rust/Java projects. Fixes build/type errors only with surgical minimal diffs — no architectural edits.\n\nExamples:\n- \"Build failed, fix it\" → Launch build-error-resolver\n- \"TypeScript errors after merge\" → Launch build-error-resolver\n- \"npm run build is broken\" → Launch build-error-resolver\n- \"tsc --noEmit shows 12 errors\" → Launch build-error-resolver\n- \"Rust cargo build failed\" → Launch build-error-resolver"
+description: "[Build] Non-Go build and TypeScript error resolution specialist. Use PROACTIVELY when build fails or type errors occur in JavaScript/TypeScript/Python/Rust/Java projects. Fixes build/type errors only with surgical minimal diffs — no architectural edits.\n\nExamples:\n- \"Build failed, fix it\" → Launch build-error-resolver\n- \"TypeScript errors after merge\" → Launch build-error-resolver\n- \"npm run build is broken\" → Launch build-error-resolver\n- \"tsc --noEmit shows 12 errors\" → Launch build-error-resolver\n- \"Rust cargo build failed\" → Launch build-error-resolver"
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: sonnet
 memory: user

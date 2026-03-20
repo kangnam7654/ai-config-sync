@@ -1,0 +1,16 @@
+{
+  "eval_id": 2,
+  "eval_name": "auto-discovery",
+  "config": "with_skill",
+  "pass": true,
+  "expectations": [
+    {"text": "시장이 한국으로 설정", "passed": true, "evidence": "Line 2: '시장: 한국'"},
+    {"text": "카테고리가 기술", "passed": true, "evidence": "Line 2: '카테고리: 기술'"},
+    {"text": "5개 이상 주제 발굴", "passed": true, "evidence": "10개 주제 발굴 (AI 에이전트, HBM/AI 반도체, 바이브 코딩, MCP, 자율주행 로보택시, 물리적 AI, AI 코딩 도구, 양자컴퓨터, AI 인프라, AI 보안)"},
+    {"text": "15개 이하 주제 제한", "passed": true, "evidence": "10개 주제 — 15개 이하"},
+    {"text": "6개 지표 모두 포함", "passed": true, "evidence": "Line 12: 테이블에 SVGR|SBI|NFI|STB|VOL|SEA 모두 존재"},
+    {"text": "종합 랭킹 테이블 출력", "passed": true, "evidence": "Line 10: '## 종합 랭킹'"},
+    {"text": "1위 주제 상세 분석 (왜 높은가)", "passed": true, "evidence": "Line 31: '왜 높은가: 2026년 3월 한 달만에 267개 새 AI 모델이 발표...'"},
+    {"text": "데이터 한계 면책 문구", "passed": true, "evidence": "Line 6: '데이터 한계 고지: 본 리포트의 점수는 WebSearch 결과 기반의 상대적 수준과 추세 평가'"}
+  ]
+}

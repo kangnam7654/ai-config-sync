@@ -1,12 +1,6 @@
 ---
 name: ceo
-description: "Use this agent for product direction, market trend analysis, business strategy, and key product/business decisions. Acts as a virtual CEO who identifies opportunities, validates ideas, and makes executive decisions.
-
-Examples:
-- \"What's trending? Find new app ideas.\" → Launch ceo
-- \"Which of these ideas should we build first?\" → Launch ceo
-- \"User feedback is poor. Should we pivot?\" → Launch ceo
-- \"v1 shipped. What's next?\" → Launch ceo"
+description: "[Strategy] Use this agent for product direction, market trend analysis, business strategy, and key product/business decisions. Acts as a virtual CEO who identifies opportunities, validates ideas, and makes executive decisions.\n\nExamples:\n- \"What's trending? Find new app ideas.\" → Launch ceo\n- \"Which of these ideas should we build first?\" → Launch ceo\n- \"User feedback is poor. Should we pivot?\" → Launch ceo\n- \"v1 shipped. What's next?\" → Launch ceo"
 model: opus
 tools: ["Read", "Glob", "Grep", "WebSearch", "WebFetch", "Bash"]
 memory: user

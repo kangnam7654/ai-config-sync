@@ -1,0 +1,47 @@
+{
+  "eval_id": 1,
+  "name": "mobile-simctl-safari-screenshot",
+  "prompt": "iOS 시뮬레이터 부팅하고 Safari에서 example.com 열어서 스크린샷 찍어줘",
+  "assertions": [
+    {
+      "id": "mobile-platform-detect",
+      "text": "Agent detects mobile platform from '시뮬레이터' and 'iOS' signals without asking",
+      "weight": 1.0
+    },
+    {
+      "id": "mobile-dep-check",
+      "text": "Agent checks xcrun simctl help and maestro --version before any other command",
+      "weight": 1.0
+    },
+    {
+      "id": "mobile-device-udid",
+      "text": "Agent uses device UDID (not device name) when booting or targeting a simulator",
+      "weight": 1.0
+    },
+    {
+      "id": "mobile-env-report",
+      "text": "Agent reports device name, iOS version, and UDID after booting",
+      "weight": 1.0
+    },
+    {
+      "id": "mobile-openurl",
+      "text": "Agent opens example.com via xcrun simctl openurl booted",
+      "weight": 1.0
+    },
+    {
+      "id": "mobile-screenshot-capture",
+      "text": "Agent captures screenshot after opening URL and reports the file path",
+      "weight": 1.0
+    },
+    {
+      "id": "mobile-output-format",
+      "text": "Final output uses the Simulator Verification Report template structure",
+      "weight": 1.0
+    },
+    {
+      "id": "mobile-shutdown-ask",
+      "text": "Agent asks whether to shut down or keep the simulator running at the end",
+      "weight": 0.5
+    }
+  ]
+}

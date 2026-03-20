@@ -1,0 +1,50 @@
+{
+  "assertions": [
+    {
+      "id": "dep-check",
+      "text": "Agent runs xcrun simctl help and maestro --version before any simulator command",
+      "passed": true,
+      "evidence": "Agent verified xcrun simctl first, then checked maestro (reported not installed with install command). Dependency check ran before any simulator operation."
+    },
+    {
+      "id": "device-list",
+      "text": "Agent lists available simulator devices with xcrun simctl list devices",
+      "passed": true,
+      "evidence": "Agent ran xcrun simctl list devices and found 11 devices across iOS 26.2."
+    },
+    {
+      "id": "udid-usage",
+      "text": "Agent uses UDID (not device name) when booting the simulator",
+      "passed": true,
+      "evidence": "Agent identified UDID 3EB5BC99-4872-4A9B-B415-879B8CB0F3E2 and used it. Simulator was already booted so boot was skipped per edge case handling."
+    },
+    {
+      "id": "env-report",
+      "text": "Agent reports device name, iOS version, and UDID at the start",
+      "passed": true,
+      "evidence": "Reported: iPhone 17 Pro Max (3EB5BC99-4872-4A9B-B415-879B8CB0F3E2), iOS 26.2."
+    },
+    {
+      "id": "screenshot",
+      "text": "Agent captures a screenshot using xcrun simctl io booted screenshot",
+      "passed": true,
+      "evidence": "Captured screenshot saved to screenshot_iphone17promax.png."
+    },
+    {
+      "id": "output-format",
+      "text": "Agent outputs a Simulator Session Report matching the Output Format template",
+      "passed": true,
+      "evidence": "Output includes Environment (Device, iOS Version), Actions Performed with statuses, and Screenshots section. Saved as session_report.md."
+    },
+    {
+      "id": "shutdown-ask",
+      "text": "Agent asks user whether to shut down or keep the simulator running at the end",
+      "passed": true,
+      "evidence": "Final message: '시뮬레이터를 계속 실행 상태로 둘까요, 아니면 종료할까요?'"
+    }
+  ],
+  "total_assertions": 7,
+  "passed": 7,
+  "failed": 0,
+  "score": 1.0
+}

@@ -1,0 +1,22 @@
+[
+  {"query": "iOS 시뮬레이터 부팅해줘", "should_trigger": true},
+  {"query": "시뮬레이터에서 스크린샷 찍어줘", "should_trigger": true},
+  {"query": "iPhone 16 Pro 시뮬레이터 실행하고 앱 설치해줘", "should_trigger": true},
+  {"query": "Maestro로 로그인 플로우 자동화해줘", "should_trigger": true},
+  {"query": "시뮬레이터에서 딥링크 열어줘 myapp://profile", "should_trigger": true},
+  {"query": "Run this Maestro flow on the simulator and capture screenshots", "should_trigger": true},
+  {"query": "시뮬레이터에 푸시 알림 보내줘", "should_trigger": true},
+  {"query": "iOS 시뮬레이터 GPS 위치를 서울로 설정해줘", "should_trigger": true},
+  {"query": "시뮬레이터 기기 목록 보여줘", "should_trigger": true},
+  {"query": "Maestro studio 켜서 인터랙티브 모드로 플로우 만들어줘", "should_trigger": true},
+  {"query": "SwiftUI로 로그인 화면 만들어줘", "should_trigger": false},
+  {"query": "React Native에서 스크롤 성능이 느려요", "should_trigger": false},
+  {"query": "Playwright로 로그인 E2E 테스트 작성해줘", "should_trigger": false},
+  {"query": "Android 에뮬레이터에서 앱 테스트해줘", "should_trigger": false},
+  {"query": "Xcode 프로젝트 빌드가 실패해요", "should_trigger": false},
+  {"query": "Figma에서 로그인 화면 디자인해줘", "should_trigger": false},
+  {"query": "CI/CD에서 시뮬레이터 테스트 파이프라인 만들어줘", "should_trigger": false},
+  {"query": "Flutter 앱에서 카메라 권한 처리 어떻게 해?", "should_trigger": false},
+  {"query": "앱 성능 프로파일링 해줘 Instruments로", "should_trigger": false},
+  {"query": "Jest로 React Native 컴포넌트 유닛 테스트 작성해줘", "should_trigger": false}
+]

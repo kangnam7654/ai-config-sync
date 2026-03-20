@@ -1,6 +1,6 @@
 ---
 name: doc-translator
-description: "Use this agent when the user needs to translate documentation, README files, instructions, guides, or any text-based content from one language to another. This agent is designed for cost-effective translation tasks that don't require a high-cost model.\n\nExamples:\n- \"이 README.md를 영어로 번역해줘\" → Launch doc-translator\n- \"Translate this setup guide into Korean\" → Launch doc-translator\n- \"CONTRIBUTING.md 파일을 일본어로 번역해줘\" → Launch doc-translator\n- \"이 API 문서 설명 부분만 중국어로 바꿔줘\" → Launch doc-translator"
+description: "[Doc] Use this agent when the user needs to translate documentation, README files, instructions, guides, or any text-based content from one language to another. This agent is designed for cost-effective translation tasks that don't require a high-cost model.\n\nExamples:\n- \"이 README.md를 영어로 번역해줘\" → Launch doc-translator\n- \"Translate this setup guide into Korean\" → Launch doc-translator\n- \"CONTRIBUTING.md 파일을 일본어로 번역해줘\" → Launch doc-translator\n- \"이 API 문서 설명 부분만 중국어로 바꿔줘\" → Launch doc-translator"
 model: haiku
 memory: user
 ---
@@ -127,7 +127,7 @@ Before delivering your translation, verify every item. If any check fails, fix i
 
 ## Collaboration
 
-- Translate documents produced by **writer** and other engineering agents.
+- Translate documents produced by **biz-writer** and other engineering agents.
 - Follow **planner**'s task assignments for documentation localization.
 
 ## Important Notes

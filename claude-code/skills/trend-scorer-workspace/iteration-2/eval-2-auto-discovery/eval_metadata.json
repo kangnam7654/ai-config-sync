@@ -1,0 +1,55 @@
+{
+  "eval_id": 2,
+  "eval_name": "auto-discovery",
+  "prompt": "요즘 한국에서 뭐가 뜨는지 알아봐. 기술 분야로 한정해서.",
+  "assertions": [
+    {
+      "id": "market_korea",
+      "text": "시장이 '한국'으로 설정된다",
+      "check": "string_contains",
+      "value": "한국"
+    },
+    {
+      "id": "category_tech",
+      "text": "카테고리가 '기술'로 한정된다",
+      "check": "string_contains",
+      "value": "기술"
+    },
+    {
+      "id": "topic_count_min",
+      "text": "5개 이상의 주제가 발굴된다",
+      "check": "manual",
+      "value": "랭킹 테이블에 5개 이상의 주제 행이 있는지 확인"
+    },
+    {
+      "id": "topic_count_max",
+      "text": "15개 이하의 주제로 제한된다",
+      "check": "manual",
+      "value": "랭킹 테이블에 15개 이하의 주제 행인지 확인"
+    },
+    {
+      "id": "six_indicators",
+      "text": "각 주제에 6개 지표 점수가 부여된다",
+      "check": "all_strings_present",
+      "value": ["SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]
+    },
+    {
+      "id": "ranking_table",
+      "text": "종합 랭킹 테이블이 출력된다",
+      "check": "string_contains",
+      "value": "종합 랭킹"
+    },
+    {
+      "id": "top1_analysis",
+      "text": "1위 주제에 대한 상세 분석이 포함된다",
+      "check": "regex",
+      "value": "1위.*왜 높은가|왜 높은가"
+    },
+    {
+      "id": "disclaimer",
+      "text": "데이터 한계 관련 면책 문구가 포함된다",
+      "check": "regex",
+      "value": "데이터 한계|실시간 API.*아니|상대적 수준"
+    }
+  ]
+}

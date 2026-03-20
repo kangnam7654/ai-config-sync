@@ -14,6 +14,13 @@
         "각 지표에 근거 한 줄이 포함된다",
         "TS, SS 카테고리 점수가 포함된다",
         "가중치 alpha, beta 값이 명시된다"
+      ],
+      "assertions": [
+        {"text": "# Trend Score Report 헤더 포함", "type": "string_contains", "value": "# Trend Score Report"},
+        {"text": "6개 지표 약어 모두 포함", "type": "all_present", "value": ["SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]},
+        {"text": "Final Score 존재", "type": "string_contains", "value": "Final"},
+        {"text": "TS/SS 카테고리 점수 존재", "type": "all_present", "value": ["TS", "SS"]},
+        {"text": "가중치 alpha/beta 명시", "type": "regex", "value": "0\\.5[05].*0\\.4[05]|[αα].*[ββ]"}
       ]
     },
     {
@@ -29,6 +36,13 @@
         "종합 랭킹 테이블이 출력된다",
         "1위 주제에 대한 상세 분석(왜 높은가)이 포함된다",
         "데이터 한계 관련 면책 문구가 포함된다"
+      ],
+      "assertions": [
+        {"text": "시장이 한국으로 설정", "type": "string_contains", "value": "한국"},
+        {"text": "카테고리가 기술", "type": "string_contains", "value": "기술"},
+        {"text": "6개 지표 모두 포함", "type": "all_present", "value": ["SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]},
+        {"text": "종합 랭킹 테이블 존재", "type": "string_contains", "value": "종합 랭킹"},
+        {"text": "데이터 한계 면책 문구", "type": "regex", "value": "데이터 한계|실시간 API|상대적 수준"}
       ]
     },
     {
@@ -42,6 +56,11 @@
         "랭킹 테이블에 Final, TS, SS, 6개 지표가 모두 포함된다",
         "각 주제별 상세 분석에 Steady 근거(STB 점수)가 강조된다",
         "출처 표기가 포함된다"
+      ],
+      "assertions": [
+        {"text": "Steady 가중치 적용 (0.30/0.70)", "type": "regex", "value": "0\\.30|0\\.70"},
+        {"text": "랭킹 테이블 지표 완전성", "type": "all_present", "value": ["Final", "TS", "SS", "SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]},
+        {"text": "STB 지표 상세 언급", "type": "string_contains", "value": "STB"}
       ]
     }
   ]

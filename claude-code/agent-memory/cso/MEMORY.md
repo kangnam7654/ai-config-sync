@@ -21,7 +21,14 @@
 - 35% of subscription apps now use hybrid model (subscription + consumables) (RevenueCat 2025)
 - Dating app ARPU globally: ~$7.73 (2026 est.)
 - Tinder revenue: $1.94B (2024), $171M/mo peak (Apr 2025)
-- Claude Haiku 4.5: $1/$5 per 1M tokens — AI cost per FlirtIQ call = 15-50 KRW (negligible vs revenue)
+- Claude Haiku 4.5: $1/$5 per 1M tokens — AI cost per call = 10-50 KRW (negligible vs revenue)
+- Korean iOS rewarded video eCPM: $29 (Q1 2024 peak, Appodeal) — use $18-22 for conservative planning
+- Rewarded ad fill rate: Tier 1 = 80-90%, new/low-traffic apps = 60-70%
+- 점신(테크랩스) 2024 revenue: 978억, 2025 target: 1,380억, MAU ~79만, cumulative 1,900만 users
+- 포스텔러(운칠기삼): cumulative 860만 users, annual revenue 100억+
+- Korean fortune/divination market TAM: ~1.4조 (혁신의숲), mobile app market ~1,400억+
+- 선불전자지급수단 등록 면제: 발행잔액 30억 미만 AND 연 총발행액 500억 미만
+- Apple Small Business Program: 15% commission for <$1M annual revenue (vs standard 30%)
 
 ## Legal/Regulatory Flags
 - Third-party conversation analysis without consent = high risk under Korean PIPA (개인정보보호법 제15조)
@@ -49,12 +56,18 @@
   - CEO credit purchase estimate 5-8% too high -> realistic 3-5%
   - Must-fix: legal opinion scope must include 선불전자지급수단 / 전자금융업 registration
   - AI cost is NOT the issue (97%+ margin per credit item) — demand validation IS the issue
+- Dalgyeol BM: CONDITIONAL (Score 6.9/10) (2026-03-20) — [project_dalgyeol_bm_review.md](project_dalgyeol_bm_review.md)
+  - 4 conditions: legal opinion, price strategy fix, eCPM correction, competition response plan
+  - Key risks: 선불전자지급수단 regulation, 점신 AI 선점 (6-12mo), no UA strategy
+  - Proposal vs codebase gap: 1,100원/50P pack claimed but not implemented (actual min = 3,900원/100P)
+  - eCPM $29 is peak data; realistic $18-22 with 70% fill rate = ~47% of claimed ad revenue
 
 ## Company Context
-- Products: 01-buybuddy (MVP complete), 02-flirtiq (approved, entering execution)
-- Tech stack: FastAPI + Next.js + Claude API
-- Team: AI agent-based development (parallel dev pattern)
+- Products: 01-buybuddy (MVP complete), 02-flirtiq (approved, planning phase), 03-dalgyeol (Phase 3 complete, near launch)
+- Dalgyeol tech stack: Rust/Axum + SwiftUI + PostgreSQL + multi-LLM (Claude, Codex, Copilot, Gemini)
+- Team: 1-person bootstrap + AI agent-based development (parallel dev pattern)
 - BuyBuddy lessons: see project MEMORY.md for 10 items
+- Dalgyeol fixed costs: ~12,300 KRW/mo (near-zero risk)
 
 ## Technical Notes
 - Anthropic API does NOT support scoped/temporary client-side tokens — always use backend proxy pattern

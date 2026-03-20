@@ -1,0 +1,55 @@
+{
+  "eval_id": 1,
+  "eval_name": "topic-comparison",
+  "prompt": "AI agent vs MCP 트렌드 비교해줘",
+  "assertions": [
+    {
+      "id": "header",
+      "text": "출력에 '# Trend Score Report' 헤더가 포함된다",
+      "check": "string_contains",
+      "value": "# Trend Score Report"
+    },
+    {
+      "id": "metadata",
+      "text": "평가일, 시장, 카테고리 메타데이터가 포함된다",
+      "check": "regex",
+      "value": "평가일.*시장.*카테고리"
+    },
+    {
+      "id": "six_indicators",
+      "text": "SVGR, SBI, NFI, STB, VOL, SEA 6개 지표가 모두 테이블에 포함된다",
+      "check": "all_strings_present",
+      "value": ["SVGR", "SBI", "NFI", "STB", "VOL", "SEA"]
+    },
+    {
+      "id": "final_score",
+      "text": "Final Score가 산출되어 순위가 매겨진다",
+      "check": "regex",
+      "value": "Final"
+    },
+    {
+      "id": "ts_ss_scores",
+      "text": "TS, SS 카테고리 점수가 포함된다",
+      "check": "all_strings_present",
+      "value": ["TS", "SS"]
+    },
+    {
+      "id": "weight_alpha_beta",
+      "text": "가중치 alpha, beta 값이 명시된다",
+      "check": "regex",
+      "value": "[αα].*=.*0\\.5[05]|[ββ].*=.*0\\.4[05]"
+    },
+    {
+      "id": "both_topics",
+      "text": "AI agent와 MCP 두 주제 모두 평가된다",
+      "check": "all_strings_present",
+      "value": ["AI", "MCP"]
+    },
+    {
+      "id": "evidence_per_indicator",
+      "text": "각 지표에 근거 설명이 1줄 이상 포함된다",
+      "check": "manual",
+      "value": "각 지표 점수에 데이터 출처나 근거가 기재되어 있는지 확인"
+    }
+  ]
+}

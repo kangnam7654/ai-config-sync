@@ -1,0 +1,14 @@
+{
+  "eval_id": 2,
+  "eval_name": "no-topic-auto-discovery",
+  "prompt": "요즘 뭐가 뜨는지 모르겠는데, 사업 아이디어 하나 찾아서 검증해줘",
+  "assertions": [
+    {"name": "phase0-executed", "type": "boolean", "description": "Phase 0이 실행되었는가 (topic 미제공)"},
+    {"name": "trend-scorer-used", "type": "boolean", "description": "Phase 0에서 trend-scorer 또는 트렌드 분석이 활용되었는가"},
+    {"name": "ceo-keyword-selection", "type": "boolean", "description": "CEO가 키워드를 선정하고 topic/goal을 설정했는가"},
+    {"name": "ceo-researcher-cso-loop", "type": "boolean", "description": "Phase 1에서 CEO→Researcher→CSO 삼각 검증이 실행되었는가"},
+    {"name": "bm-designer-pipeline", "type": "boolean", "description": "bm-designer가 파이프라인 모드로 호출되었는가"},
+    {"name": "bm-score-included", "type": "boolean", "description": "BM Score가 결과에 포함되었는가"},
+    {"name": "dual-docs", "type": "boolean", "description": "AI용 + Human용 최종 문서 2종이 생성되었는가"}
+  ]
+}

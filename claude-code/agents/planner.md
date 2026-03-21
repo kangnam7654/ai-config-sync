@@ -76,7 +76,7 @@ Assign each task to exactly one agent. Valid agents and their domains:
 | **devops** | CI/CD, Docker, cloud infra, deployment, monitoring |
 | **researcher** | Technology/market research for informed decisions |
 | **biz-writer** | Documentation, specs, reports, structured data files (CSV, TSV, etc.) |
-| **doc-translator** | Documentation translation and localization |
+| **doc-parity-checker** | Documentation-code parity verification |
 | **qa-gate** | Code review and QA gate after engineering work |
 | **git-master** | Git/GitHub operations (commits, PRs, branching) |
 

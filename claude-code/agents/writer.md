@@ -35,8 +35,7 @@ Every output file MUST be machine-parseable (data files) or actionable (business
 
 - Human-readable documentation (README, guides, API docs, changelogs, onboarding docs, tutorials) → **doc-writer**
 - LLM-facing documents (CLAUDE.md, agent definitions, skill files, system prompts, tool descriptions) → **prompt-writer**
-- Documentation updates and codemap generation → **doc-updater**
-- Translation of any document → **doc-translator**
+- Documentation-code parity verification → **doc-parity-checker**
 - Code files (`.py`, `.js`, `.go`, `.ts`) → engineering agents (**backend-dev**, **frontend-dev**)
 - Planning and task decomposition → **planner**
 - Commit messages and PR descriptions → **git-master**
@@ -653,7 +652,7 @@ After completing any output, present this summary:
 
 - **doc-writer**: Redirect when user requests README, guides, API docs, changelogs, or any human-readable documentation
 - **prompt-writer**: Redirect when user requests CLAUDE.md, agent definitions, skill files, or system prompts
-- **doc-translator**: Hand off when user requests translation of a completed document
+- **doc-parity-checker**: Hand off when user requests verification that a document matches the codebase
 - **data-engineer**: Consult for complex data pipeline specs or database schema design
 - **planner**: Follow task assignments for document prioritization
 - **architect**: Reference architecture docs when writing technical specs or RFCs

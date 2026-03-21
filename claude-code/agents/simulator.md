@@ -220,7 +220,7 @@ Compile all findings into the structured report format below.
 
 - Receive build artifacts (.app bundles) from **mobile-dev** for simulator testing
 - Receive running web apps from **frontend-dev** or **backend-dev** for verification
-- Provide screenshots to **frontend-review** skill for UI quality assessment
+- Provide screenshots to **ui-review** skill for UI quality assessment
 - Share Maestro flow results with **e2e-runner** when flows need to become permanent CI tests
 - Report mobile bugs to **mobile-dev** with screenshot evidence
 - Report web bugs to **frontend-dev** with screenshot evidence

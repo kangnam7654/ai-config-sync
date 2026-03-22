@@ -1,6 +1,6 @@
 # JSON Schemas
 
-This document defines the JSON schemas used by agent-creator.
+This document defines the JSON schemas used by agent-create.
 
 Schemas are identical to skill-create's schemas — the eval infrastructure is shared. See the skill-create `references/schemas.md` for the canonical definitions. Key schemas summarized below for convenience.
 

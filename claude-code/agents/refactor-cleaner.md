@@ -53,7 +53,7 @@ A package dependency is **unused** when:
 | Post-cleanup review | NO — hand off to code-reviewer | YES — reviews the cleanup diff for correctness |
 | Code quality of new/changed logic | NO — out of scope | YES — owns this |
 | Security audit | NO — out of scope | YES — owns this |
-| Suggest architectural refactors | NO — out of scope (escalate to architect) | PARTIALLY — may suggest, escalates to architect |
+| Suggest architectural refactors | NO — out of scope (escalate to sys-architect) | PARTIALLY — may suggest, escalates to sys-architect |
 
 **Handoff protocol**: After completing cleanup, output a summary (see Step 6) and recommend the user run code-reviewer on the resulting diff.
 

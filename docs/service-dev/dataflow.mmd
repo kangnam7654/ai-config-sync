@@ -1,0 +1,48 @@
+flowchart LR
+    subgraph Phase0["Phase 0: Ideate"]
+        P0_in["idea-forge 산출물\n또는 사용자 입력"]
+        P0_out["서비스 개요\n핵심 기능 목록\n타겟 사용자\nBM 요약"]
+        P0_in --> P0_out
+    end
+
+    subgraph Phase1["Phase 1: Plan"]
+        P1_in["Phase 0 산출물"]
+        P1_process["Planner → Plan-Critic 루프"]
+        P1_out["아키텍처 설계\n기술 스택\n모듈 분해\n구현 순서\nDB 스키마"]
+        P1_in --> P1_process --> P1_out
+    end
+
+    subgraph Phase2["Phase 2: Design (Optional)"]
+        P2_in["Phase 1 산출물"]
+        P2_process["Figma MCP\nwireframe → hi-fi"]
+        P2_out["Figma 디자인\n(wireframe, hi-fi)"]
+        P2_in --> P2_process --> P2_out
+    end
+
+    subgraph Phase3["Phase 3: Spec"]
+        P3_in["Phase 1 + Phase 2 산출물"]
+        P3_process["Writer → Doc-Critic\nLLM 모드 루프"]
+        P3_out["AI용 개발 스펙\n(spec.md)"]
+        P3_in --> P3_process --> P3_out
+    end
+
+    subgraph Phase4["Phase 4: Build"]
+        P4_in["Phase 3 산출물\n(spec.md 참조)"]
+        P4_process["모듈별 사이클\ndev→review→refactor→test"]
+        P4_out["src/ 코드\ntests/ 테스트\nCoverage 80%+"]
+        P4_in --> P4_process --> P4_out
+    end
+
+    subgraph Phase5["Phase 5: Document"]
+        P5_in["Phase 4 산출물\n(완성된 코드)"]
+        P5_process["doc-writer → Doc-Critic\nHUMAN 모드 루프"]
+        P5_out["README.md\nAPI 문서\n배포 가이드\n개발 과정 기록"]
+        P5_in --> P5_process --> P5_out
+    end
+
+    P0_out --> P1_in
+    P1_out --> P2_in
+    P1_out --> P3_in
+    P2_out --> P3_in
+    P3_out --> P4_in
+    P4_out --> P5_in

@@ -32,7 +32,7 @@ bash setup-windows.sh   # Windows (Git Bash)
 2. `sync-timestamps.py` — FETCH_HEAD의 피어 타임스탬프와 로컬 mtime 비교, **newest-wins** 방식으로 파일별 병합
 3. `generate_state` — `state/{hostname}.md`에 기기 환경 정보 기록
 4. `git add` (동기화 산출물 경로만) → `git commit` → `git push` (Windows는 pull-only로 skip)
-5. `git pull --rebase` — 코드 변경 자동 반영
+5. `git pull --rebase` — 코드 변경 자동 반영 (Windows는 `git reset --hard origin/main`으로 대체)
 
 ### `sync-timestamps.py` 핵심 구조
 
@@ -53,7 +53,7 @@ bash setup-windows.sh   # Windows (Git Bash)
 | Ubuntu (개인) | O | O |
 | Windows (회사) | X (보안) | O (pull-only) |
 
-- `~/.openclaw`이 없으면 OpenClaw 섹션은 자동 스킵됨
+- `~/.openclaw/workspace`이 없으면 OpenClaw 섹션은 자동 스킵됨
 - Windows는 pull-only: 피어 설정을 수신만 하고 push하지 않음
 
 ## 코드 수정 시 주의사항

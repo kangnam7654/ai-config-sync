@@ -1,0 +1,69 @@
+stateDiagram-v2
+    [*] --> Phase0_Ideate
+
+    state Phase0_Ideate {
+        [*] --> idea_forge: idea-forge 스킬 호출
+        idea_forge --> user_idea: 또는 사용자 직접 제공
+        idea_forge --> ideate_done
+        user_idea --> ideate_done
+        ideate_done: 서비스 개요 + 핵심 기능 + 타겟 + BM 요약
+    }
+
+    Phase0_Ideate --> Phase1_Plan: 사용자 아이디어 승인
+
+    state Phase1_Plan {
+        [*] --> planner: Planner 호출
+        planner --> plan_critic: Plan-Critic 심사
+        plan_critic --> planner: REJECT (피드백 반영)
+        plan_critic --> plan_done: PASS
+        plan_done: 아키텍처 + 기술 스택 + 모듈 분해 + 구현 순서
+    }
+
+    Phase1_Plan --> Phase2_Design: Plan-Critic PASS\n+ 사용자 승인\n+ 디자인 필요
+    Phase1_Plan --> Phase3_Spec: Plan-Critic PASS\n+ 사용자 승인\n+ 디자인 불필요
+
+    state Phase2_Design {
+        [*] --> wireframe: Figma MCP wireframe
+        wireframe --> hifi: 사용자 승인 후 hi-fi
+        hifi --> design_done: 사용자 승인
+        design_done: Figma 디자인 완성
+    }
+
+    Phase2_Design --> Phase3_Spec: 사용자 디자인 승인
+
+    state Phase3_Spec {
+        [*] --> spec_writer: Writer 호출 (AI용 스펙)
+        spec_writer --> spec_critic: Doc-Critic LLM 모드
+        spec_critic --> spec_writer: REJECT (피드백 반영)
+        spec_critic --> spec_done: PASS
+        spec_done: AI용 개발 스펙 문서
+    }
+
+    Phase3_Spec --> Phase4_Build: Doc-Critic PASS\n+ 사용자 승인
+
+    state Phase4_Build {
+        [*] --> module_cycle: 모듈별 사이클 시작
+        state module_cycle {
+            [*] --> dev: 코드 작성 + commit
+            dev --> review: 코드 리뷰 + commit
+            review --> refactor: 리팩터링 + commit
+            refactor --> unit_test: Unit 테스트 + commit
+        }
+        module_cycle --> integration: 모든 모듈 완료
+        integration --> e2e: 통합 테스트 통과
+        e2e --> coverage: E2E 테스트 통과
+        coverage --> build_done: Coverage 80%+
+        build_done: 전체 테스트 통과
+    }
+
+    Phase4_Build --> Phase5_Document: 모든 테스트 통과\n+ Coverage 80%+
+
+    state Phase5_Document {
+        [*] --> doc_writer: doc-writer 호출
+        doc_writer --> doc_critic: Doc-Critic HUMAN 모드
+        doc_critic --> doc_writer: REJECT (피드백 반영)
+        doc_critic --> doc_done: PASS
+        doc_done: README + API 문서 + 배포 가이드
+    }
+
+    Phase5_Document --> [*]: Doc-Critic PASS (HUMAN)

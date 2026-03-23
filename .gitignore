@@ -15,3 +15,28 @@ claude-code/plugins/marketplaces/
 
 # 로컬 실설정 (민감값 포함, 템플릿만 추적)
 openclaw/openclaw.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# 환경 변수
+.env
+.env.local
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# 커버리지
+.coverage
+htmlcov/
+
+# OS
+Thumbs.db

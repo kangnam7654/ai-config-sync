@@ -1,0 +1,15 @@
+{
+  "eval_id": 2,
+  "variant": "with_skill",
+  "iteration": 2,
+  "assertions": [
+    { "id": "spec-1", "passed": true, "evidence": "spec-analysis.md 워크플로우 준수" },
+    { "id": "spec-2", "passed": true, "evidence": "6개 섹션 모두 식별 명시" },
+    { "id": "spec-3", "passed": true, "evidence": "9개 함수 크로스레퍼런스, 차이점 4건 발견" },
+    { "id": "spec-4", "passed": true, "evidence": "정확한 출력 포맷 준수: Summary table (Type/Count/P0/P1/P2), Test Cases by section, Gaps table, Cross-Reference matrix 4개 섹션 모두 포함" },
+    { "id": "spec-5", "passed": true, "evidence": "모든 테스트 케이스에 type + priority 할당" },
+    { "id": "spec-6", "passed": true, "evidence": "총 79개 테스트 케이스" }
+  ],
+  "score": "6/6",
+  "delta_from_iter1": "+1 (spec-4 fixed)"
+}

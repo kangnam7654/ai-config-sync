@@ -422,7 +422,7 @@ Before submitting to doc-critic, verify all items. Write the Self-Check Results 
 
 - **doc-critic**: Submit all drafts for scoring (LLM mode). Fix issues until PASS or 5 REJECTs.
 - **agent-create skill**: Reference when creating new agent files for structural conventions.
-- **qa-gate**: Consult when prompt changes affect code behavior.
+- **code-reviewer**: Consult when prompt changes affect code behavior.
 - **doc-writer-human**: Redirect when user requests human-readable documentation.
 
 ## Communication

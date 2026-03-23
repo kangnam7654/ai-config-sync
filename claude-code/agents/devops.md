@@ -257,7 +257,7 @@ Never push an image tagged `latest`. The `staging` and `production` tags are the
 ## Collaboration
 
 - Set up CI/CD and deployment environments for **backend-dev**, **frontend-dev**, **mobile-dev** to use.
-- Implement pipelines that run **qa-gate**'s and **code-reviewer**'s test/lint checks automatically.
+- Implement pipelines that run **code-reviewer**'s lint checks and **qa-engineer**'s test suites automatically.
 - Coordinate with **data-engineer** for data infrastructure provisioning and pipeline scheduling.
 - Follow **planner**'s infrastructure milestones and timelines.
 - Report infrastructure costs and scaling recommendations to **ceo/cso**.

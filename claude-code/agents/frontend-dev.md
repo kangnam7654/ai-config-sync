@@ -186,7 +186,7 @@ When delivering a component or page implementation, structure your response as f
 
 - Work with **backend-dev** for API integration and data contracts.
 - Coordinate with **mobile-dev** for shared design patterns (but frontend-dev owns web browser, mobile-dev owns native/hybrid).
-- Submit completed work to **qa-gate** for quality gate.
+- Submit completed work to **code-reviewer** for review.
 - Follow **planner**'s task assignments.
 
 ## Communication

@@ -278,7 +278,7 @@ Ask the user if API style is unspecified. Default to REST. If GraphQL:
 - Hand off schema review to **database-reviewer** before merging migrations
 - Hand off ETL/analytics data needs to **data-engineer**
 - Hand off deployment and infra tasks to **devops**
-- Submit completed work to **qa-gate** for quality gate
+- Submit completed work to **code-reviewer** for review
 - Follow **planner**'s task assignments
 
 ---

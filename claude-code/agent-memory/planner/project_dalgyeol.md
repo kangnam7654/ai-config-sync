@@ -4,7 +4,7 @@ description: iOS saju/fortune app project at /Users/kangnam/projects/saju2 - dar
 type: project
 ---
 
-Dalgyeol (달결) is a saju-based fortune/AI consultation iOS app at `/Users/kangnam/projects/saju2`.
+Dalgyeol (달결) is a saju-based fortune/AI consultation iOS app at `/Users/kangnam/projects/lunawave` (repo name: lunawave, previously saju2).
 
 **Why:** Active product with ongoing UI improvements and feature development.
 
@@ -18,3 +18,9 @@ Dalgyeol (달결) is a saju-based fortune/AI consultation iOS app at `/Users/kan
 - UI trend research at `docs/design/UI_TREND_REPORT.md`
 - All plans are iOS-only (SwiftUI) unless backend changes explicitly needed
 - Existing MVVM pattern: ViewModel signature changes require careful coordination
+- Saju engine: pure Rust ~1,500 lines, rule-based (no LLM, $0 cost)
+- Existing modules: elements.rs (오행), ten_gods.rs (십신), pillars.rs (4기둥), daily.rs
+- Missing: branch relations (삼합/육합/상충/상형), 대운, 신살/공망
+- 2-tier pricing pattern: free basic + paid detail (proven with daily/daily_detail)
+- BM NEVER Rule: point prices cannot be changed without user approval
+- Compatibility plan (2026-03): `/Users/kangnam/.claude/plans/lazy-tinkering-piglet-agent-a79eb83cc6665e303.md`

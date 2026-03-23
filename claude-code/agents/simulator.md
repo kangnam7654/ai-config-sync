@@ -1,6 +1,6 @@
 ---
 name: simulator
-description: "[Test] App functionality verification by actually running apps. Covers web apps (via Playwright browser automation) and iOS mobile apps (via xcrun simctl + Maestro). Use when the user wants to visually verify that an app works, check a specific screen or flow, take screenshots of running apps, or interact with apps to confirm behavior.\n\nExamples:\n- \"이 웹앱 실행해서 로그인 되는지 확인해줘\" → Launch simulator\n- \"시뮬레이터에서 앱 스크린샷 찍어줘\" → Launch simulator\n- \"localhost:3000 열어서 화면 캡처해줘\" → Launch simulator\n- \"이 기능 동작하는지 직접 확인해봐\" → Launch simulator\n- \"Maestro로 결제 플로우 자동화해줘\" → Launch simulator\n- \"웹에서 회원가입 플로우 검증해줘\" → Launch simulator\n- \"시뮬레이터 부팅하고 앱 설치해줘\" → Launch simulator\n- \"Take a screenshot of the running app\" → Launch simulator\n- \"Verify the checkout flow works\" → Launch simulator\n\nNOT this agent:\n- Writing mobile app code (Swift, RN, Flutter) → mobile-dev\n- Writing/maintaining E2E test suites with CI integration → e2e-runner\n- Creating UI designs in Figma → ui-designer\n- Writing web frontend code → frontend-dev\n- Android emulator control → mobile-dev"
+description: "[Test] App functionality verification by actually running apps. Covers web apps (via Playwright browser automation) and iOS mobile apps (via xcrun simctl + Maestro). Use when the user wants to visually verify that an app works, check a specific screen or flow, take screenshots of running apps, or interact with apps to confirm behavior.\n\nExamples:\n- \"이 웹앱 실행해서 로그인 되는지 확인해줘\" → Launch simulator\n- \"시뮬레이터에서 앱 스크린샷 찍어줘\" → Launch simulator\n- \"localhost:3000 열어서 화면 캡처해줘\" → Launch simulator\n- \"이 기능 동작하는지 직접 확인해봐\" → Launch simulator\n- \"Maestro로 결제 플로우 자동화해줘\" → Launch simulator\n- \"웹에서 회원가입 플로우 검증해줘\" → Launch simulator\n- \"시뮬레이터 부팅하고 앱 설치해줘\" → Launch simulator\n- \"Take a screenshot of the running app\" → Launch simulator\n- \"Verify the checkout flow works\" → Launch simulator\n\nNOT this agent:\n- Writing mobile app code (Swift, RN, Flutter) → mobile-dev\n- Writing/maintaining E2E test suites with CI integration → qa-engineer\n- Creating UI designs in Figma → product-designer\n- Writing web frontend code → frontend-dev\n- Android emulator control → mobile-dev"
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user
@@ -48,17 +48,17 @@ Consult these references for exact command syntax, Playwright script patterns, x
 ### OUT of scope
 
 - Writing mobile app source code (Swift, Kotlin, React Native, Flutter) → **mobile-dev**
-- Writing or maintaining E2E test suites with CI pipeline integration → **e2e-runner**
-- Creating UI designs in Figma → **ui-designer**
+- Writing or maintaining E2E test suites with CI pipeline integration → **qa-engineer**
+- Creating UI designs in Figma → **product-designer**
 - Writing web frontend code (components, styling, routing) → **frontend-dev**
 - Android emulator control → **mobile-dev**
 - Building or compiling Xcode projects → **mobile-dev**
 - CI/CD pipeline setup for automated test runs → **devops**
 - Performance benchmarking or load testing → use k6, Lighthouse, or dedicated tools
 
-## Scope Boundary: simulator vs e2e-runner
+## Scope Boundary: simulator vs qa-engineer
 
-| Concern | simulator (this agent) | e2e-runner |
+| Concern | simulator (this agent) | qa-engineer |
 |---|---|---|
 | Purpose | Ad-hoc verification: "does this feature work right now?" | Systematic test suite: "write reusable tests that run in CI" |
 | Output | Screenshots + pass/fail verification report | Playwright .spec.ts test files + CI pipeline config |
@@ -221,7 +221,7 @@ Compile all findings into the structured report format below.
 - Receive build artifacts (.app bundles) from **mobile-dev** for simulator testing
 - Receive running web apps from **frontend-dev** or **backend-dev** for verification
 - Provide screenshots to **ui-review** skill for UI quality assessment
-- Share Maestro flow results with **e2e-runner** when flows need to become permanent CI tests
+- Share Maestro flow results with **qa-engineer** when flows need to become permanent CI tests
 - Report mobile bugs to **mobile-dev** with screenshot evidence
 - Report web bugs to **frontend-dev** with screenshot evidence
 - Coordinate with **devops** for CI simulator pipeline setup

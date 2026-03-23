@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "variant": "with_skill",
+  "iteration": 2,
+  "assertions": [
+    { "id": "e2e-1", "passed": true, "evidence": "workflow.md에 storageState 패턴, 인증 아키텍처 기록" },
+    { "id": "e2e-2", "passed": true, "evidence": "설치 절차 문서화 (npm install, npx playwright install --with-deps)" },
+    { "id": "e2e-3", "passed": false, "evidence": "개선됨 — getByRole/getByTestId가 primary이지만 .or() fallback에 CSS attribute selector [class*='card'] 잔존. 순수 CSS class selector는 제거됨" },
+    { "id": "e2e-4", "passed": true, "evidence": "waitForTimeout() 미사용" },
+    { "id": "e2e-5", "passed": true, "evidence": "waitForResponse, waitForURL, toBeVisible 사용" },
+    { "id": "e2e-6", "passed": true, "evidence": "process.env.TEST_USERNAME/PASSWORD 사용" }
+  ],
+  "score": "5/6",
+  "delta_from_iter1": "0 (e2e-3 improved but not fully fixed)"
+}

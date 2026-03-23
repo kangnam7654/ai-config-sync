@@ -1,0 +1,38 @@
+{
+  "id": 2,
+  "name": "Spec Analysis mode - design doc to test plan",
+  "prompt": "이 설계문서를 분석해서 테스트 플랜을 만들어줘. 설계문서 경로: /Users/kangnam/.claude/skills/agent-create/qa-engineer-workspace/iteration-1/eval-2/test-design-doc.md",
+  "expected_output": "refs/spec-analysis.md를 참조하고, 6단계 워크플로우를 따르며, 구조화된 test-plan.md를 출력",
+  "assertions": [
+    {
+      "id": "spec-1",
+      "text": "Agent reads the spec-analysis.md reference file before starting analysis",
+      "type": "workflow"
+    },
+    {
+      "id": "spec-2",
+      "text": "Agent identifies which of the 6 required sections are present in the design doc",
+      "type": "workflow"
+    },
+    {
+      "id": "spec-3",
+      "text": "Agent cross-references the design doc against the actual codebase using Grep or Glob",
+      "type": "workflow"
+    },
+    {
+      "id": "spec-4",
+      "text": "Output contains the structured test plan format: Summary table, Test Cases by section, Gaps, Cross-Reference",
+      "type": "output_format"
+    },
+    {
+      "id": "spec-5",
+      "text": "Each test case has type (unit/integration/e2e) AND priority (P0/P1/P2) assigned",
+      "type": "quality"
+    },
+    {
+      "id": "spec-6",
+      "text": "Agent generates at least 5 test cases total from the design doc",
+      "type": "quality"
+    }
+  ]
+}

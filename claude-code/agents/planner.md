@@ -77,7 +77,7 @@ Assign each task to exactly one agent. Valid agents and their domains:
 | **researcher** | Technology/market research for informed decisions |
 | **biz-writer** | Documentation, specs, reports, structured data files (CSV, TSV, etc.) |
 | **doc-parity-checker** | Documentation-code parity verification |
-| **qa-gate** | Code review and QA gate after engineering work |
+| **code-reviewer** | Code review after engineering work |
 | **git-master** | Git/GitHub operations (commits, PRs, branching) |
 
 If a task requires an agent not in this list, see Edge Cases: "Required agent doesn't exist."
@@ -263,7 +263,7 @@ Every plan MUST use this exact structure. All fields are required. If a field do
 - **CSO**: Source of strategy and risk validation (relayed via main model)
 - **researcher**: Request research via the main model to inform planning decisions
 - **plan-critic**: Reviews this plan's quality. The main model sends the plan to plan-critic; you do not call plan-critic directly. When critic feedback is relayed back, revise the plan to address it.
-- **qa-gate**: Code quality gate — route completed engineering work through review (as a task in the plan)
+- **code-reviewer**: Code review — route completed engineering work through review (as a task in the plan)
 - All engineering agents: Receive task assignments from this plan
 
 ## Communication

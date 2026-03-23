@@ -206,7 +206,7 @@ When delivering a completed screen or component, structure output as:
 
 - Coordinate with **frontend-dev** for shared design tokens, color systems, and typography scales (see scope boundary above)
 - Consume APIs from **backend-dev** — request typed response schemas
-- Submit completed work to **qa-gate** for quality gate
+- Submit completed work to **code-reviewer** for review
 - Follow **planner**'s task assignments
 
 ## Communication

@@ -1,0 +1,44 @@
+{
+  "eval_id": 1,
+  "variant": "with_skill",
+  "assertions": [
+    {
+      "id": "e2e-1",
+      "text": "Agent reads the e2e-playwright.md reference file before writing tests",
+      "passed": true,
+      "evidence": "산출물이 e2e-playwright.md의 패턴을 정확히 따름: storageState 인증 패턴, project dependencies, 비인증/인증 테스트 분리, WORKFLOW.md에 설계 결정 기록"
+    },
+    {
+      "id": "e2e-2",
+      "text": "Agent detects Playwright is not installed and provides setup instructions",
+      "passed": true,
+      "evidence": "package.json에 @playwright/test 의존성 포함. WORKFLOW.md에 'npm install && npx playwright install --with-deps' 설치 가이드 포함"
+    },
+    {
+      "id": "e2e-3",
+      "text": "Agent uses data-testid locators, not CSS selectors or XPath",
+      "passed": false,
+      "evidence": "혼합 사용: data-testid를 primary로 사용하되 CSS 클래스 fallback도 포함 (예: '[data-testid=\"user-info\"], .user-profile, nav .username'). Playwright의 getByRole/getByLabel도 사용. reference의 'data-testid exclusively' 규칙 위반"
+    },
+    {
+      "id": "e2e-4",
+      "text": "Agent does NOT use page.waitForTimeout() anywhere in the test code",
+      "passed": true,
+      "evidence": "login.spec.ts, dashboard.spec.ts, auth.setup.ts 전체에서 waitForTimeout() 사용 없음"
+    },
+    {
+      "id": "e2e-5",
+      "text": "Agent uses proper waits (waitForResponse, waitForURL, expect().toBeVisible())",
+      "passed": true,
+      "evidence": "dashboard.spec.ts: page.waitForResponse()로 API 대기, page.waitForURL()로 리다이렉트 대기. 전체적으로 expect().toBeVisible(), toBeHidden(), toHaveURL() 사용"
+    },
+    {
+      "id": "e2e-6",
+      "text": "Agent does NOT hard-code credentials in the test file",
+      "passed": true,
+      "evidence": "process.env.TEST_USERNAME ?? 'testuser@example.com' 패턴 사용. .env.example 템플릿 제공. 실제 비밀번호는 환경 변수에서 읽음"
+    }
+  ],
+  "score": "5/6",
+  "notes": "e2e-3 실패: data-testid와 CSS 클래스 셀렉터를 혼합 사용. reference 규칙은 'data-testid exclusively'인데 fallback으로 .user-profile, .loading-spinner 등 CSS 클래스도 사용함. 그 외 storageState 패턴, 적절한 wait, 환경변수 사용 모두 우수"
+}

@@ -1,0 +1,113 @@
+---
+name: build-loop
+description: "auto-dev 파이프라인의 Build Loop (#27~#31). 구현(병렬), DBA 마이그레이션 리뷰, 코드/보안 리뷰, 테스트, Build Summary 문서화를 오케스트레이션한다. auto-dev 스킬이 호출하며, 독립 실행도 가능하다. '코드 구현하고 리뷰/테스트까지', 'build loop 실행' 요청에 트리거."
+---
+
+# Build Loop
+
+auto-dev 파이프라인의 Build Phase. design-spec.md를 입력받아 구현 → 리뷰 → 테스트 → 문서화를 오케스트레이션한다.
+
+## 워크플로우
+
+```
+#27 구현 (frontend/backend/mobile/ai 병렬)
+  ↓
+#28 마이그레이션/쿼리 리뷰 (DBA) ←─ 지적 → #27 (최대 10회)
+  ↓ PASS
+#29 코드 리뷰 (code-reviewer + security-reviewer 병렬) ←─ 지적 → #27 (최대 10회)
+  ↓ PASS
+#30 테스트 (qa-engineer) ←─ FAIL → #27 (최대 10회)
+  ↓ PASS
+#31 📄 Build Summary 문서화 (doc-loop)
+```
+
+---
+
+## #27 구현 (병렬)
+
+design-spec.md의 실행 계획(execution plan)을 읽고, 트랙별로 에이전트를 **병렬** 호출한다:
+
+| 트랙 | 에이전트 | 조건 |
+|------|---------|------|
+| frontend | frontend-dev | tech_stack.frontend가 N/A가 아닐 때 |
+| backend | backend-dev | tech_stack.backend가 N/A가 아닐 때 |
+| mobile | mobile-dev | tech_stack.mobile이 "React Native"일 때 |
+| ai | ai-engineer | 제품에 AI 기능이 포함될 때 |
+
+각 에이전트에게 전달하는 컨텍스트:
+- design-spec.md 전체 (아키텍처, UX/UI, 실행 계획)
+- 해당 트랙의 파일 목록 + 구현 순서
+
+각 트랙은 독립적으로 실행되며, 모든 트랙이 완료된 후 #28로 진행한다. 트랙 간 의존성이 있으면 (예: backend API가 있어야 frontend가 호출 가능) 의존 순서대로 순차 실행한다.
+
+**산출물**: implementation.yaml (트랙별)
+
+---
+
+## #28 마이그레이션/쿼리 리뷰 (DBA)
+
+**DBA 에이전트**를 파이프라인 모드(Step 5)로 호출한다. 입력: #27에서 생성된 SQL 파일, 마이그레이션 파일.
+
+5기준 채점: 마이그레이션 안전성(30%, primary >=7), 쿼리 성능(25%), 보안(20%), 인덱스 전략(15%), 스키마 준수(10%).
+
+- **PASS** (total > 8.0 AND 마이그레이션 안전성 >= 7) → #29로 진행
+- **FAIL** → DBA 피드백(구체적 파일+수정 지시)을 해당 트랙 에이전트에게 전달, #27로 복귀 (해당 트랙만 재구현)
+
+**최대 10회 반복**. 10회 소진 시 CTO 에스컬레이션.
+
+**산출물**: review-verdict.yaml
+
+---
+
+## #29 코드 리뷰 (병렬)
+
+**code-reviewer 에이전트**와 **security-reviewer 에이전트**를 병렬 호출한다. 입력: #27 전체 코드.
+
+각 에이전트가 review-verdict.yaml로 응답:
+- 둘 다 **PASS** → #30으로 진행
+- 하나라도 **FAIL** → 해당 피드백을 구현 에이전트에게 전달, #27로 복귀
+
+**최대 10회 반복**. 10회 소진 시 CTO 에스컬레이션.
+
+**산출물**: review-verdict.yaml (각 리뷰어별)
+
+---
+
+## #30 테스트 (qa-engineer)
+
+**qa-engineer 에이전트**를 호출한다. 입력: #27 전체 코드 + design-spec.md (기대 동작 기준).
+
+qa-engineer가 단위 테스트 + 통합 테스트를 작성하고 실행한다.
+
+- **PASS** (모든 테스트 통과, 커버리지 >= 80%) → #31로 진행
+- **FAIL** → qa-engineer 피드백(실패 테스트 + 원인)을 구현 에이전트에게 전달, #27로 복귀
+
+**최대 10회 반복**. 10회 소진 시 사용자 보고: "테스트 10회 실패. 수동 개입 필요."
+
+**산출물**: review-verdict.yaml
+
+---
+
+## #31 Build Summary 문서화 (doc-loop)
+
+**doc-loop 스킬**을 자동(B) 모드 + LLM 모드로 호출한다. #27~#30의 모든 산출물을 컨텍스트로 전달.
+
+문서 내용: 구현 파일 목록, 리뷰 결과 (DBA + 코드 + 보안), 테스트 결과 + 커버리지, 실행 방법.
+
+**산출물**: `{project}/docs/llm/build-summary.md`
+
+---
+
+## 루프 소진 에스컬레이션
+
+| 루프 | 10회 소진 시 |
+|------|------------|
+| #28 DBA 리뷰 | CTO 에스컬레이션. 위험 수용 또는 사용자 보고 |
+| #29 코드 리뷰 | CTO 에스컬레이션. 위험 수용 또는 사용자 보고 |
+| #30 테스트 | 사용자 보고: "테스트 10회 실패. 수동 개입 필요." 중단 |
+
+## 경계
+
+- 이 스킬은 오케스트레이션만 수행한다. 구현은 frontend/backend/mobile/ai 에이전트, 리뷰는 DBA/code-reviewer/security-reviewer, 테스트는 qa-engineer가 담당.
+- Design Phase 산출물(design-spec.md)이 입력 전제 조건이다. design-spec.md가 없으면 실행하지 않고 design-loop 완료를 요청한다.
+- Verify Phase는 verify-loop 스킬이 담당한다.

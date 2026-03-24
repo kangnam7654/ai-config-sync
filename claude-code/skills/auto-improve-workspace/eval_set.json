@@ -1,0 +1,74 @@
+[
+  {
+    "query": "우리 서비스 전체적으로 한번 점검해봐. 보안이나 성능 문제 있으면 고쳐야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "이 프로젝트 기술 부채가 좀 쌓인 것 같은데, 전반적으로 코드 품질 올리고 싶어. 뭐부터 해야 할지 진단해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "we inherited this codebase from the previous team and nobody knows the full picture. Can you audit the whole thing and tell us what needs fixing?",
+    "should_trigger": true
+  },
+  {
+    "query": "이 CLI 도구 좀 전체적으로 개선하고 싶어. 코드 리뷰하고 보안 점검하고 테스트도 추가해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "auto-improve 실행해줘. ~/projects/my-api 경로야",
+    "should_trigger": true
+  },
+  {
+    "query": "이 React 앱 코드 좀 낡았어. 최신 패턴으로 리팩터링하고 테스트 커버리지도 올려줘. 종합적으로 봐줘",
+    "should_trigger": true
+  },
+  {
+    "query": "this FastAPI backend has been running for 2 years without any review. check security, add tests, clean up the architecture",
+    "should_trigger": true
+  },
+  {
+    "query": "서비스 진단 좀 해줘. 보안 취약점 있는지, 테스트는 충분한지, 아키텍처 개선할 부분 있는지 전부 봐줘",
+    "should_trigger": true
+  },
+  {
+    "query": "우리 앱에 소셜 로그인 기능 추가해줘. Google이랑 Apple 둘 다",
+    "should_trigger": false
+  },
+  {
+    "query": "새로운 SaaS 앱을 만들고 싶어. 프로젝트 관리 도구야. 처음부터 시작해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "sync-timestamps.py 73번 줄에 bare except 있는데 고쳐줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Docker Compose 설정해서 개발 환경 구축해줘. PostgreSQL이랑 Redis 필요해",
+    "should_trigger": false
+  },
+  {
+    "query": "이 프로젝트 README 작성해줘. 설치 방법이랑 사용법 포함해서",
+    "should_trigger": false
+  },
+  {
+    "query": "CI/CD 파이프라인 세팅해줘. GitHub Actions로 테스트 자동화하고 싶어",
+    "should_trigger": false
+  },
+  {
+    "query": "이 함수 성능이 느린데 최적화해줘. O(n^2)에서 O(n log n)으로 바꿀 수 있을 것 같아",
+    "should_trigger": false
+  },
+  {
+    "query": "코드 리뷰 해줘. 이번 PR에서 바뀐 부분만 봐주면 돼",
+    "should_trigger": false
+  },
+  {
+    "query": "이 서비스 모니터링 대시보드 만들어줘. Grafana로",
+    "should_trigger": false
+  },
+  {
+    "query": "앱 하나 만들어줘. 사주팔자 보는 앱이야",
+    "should_trigger": false
+  }
+]

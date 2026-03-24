@@ -7,7 +7,7 @@ description: "기존 서비스/앱 종합 진단 + 개선 전자동 파이프라
 
 "이 서비스 점검해줘" → 종합 진단 → 개선 설계 → 구현 → 검증. 기존 코드베이스를 체계적으로 개선하는 전자동 파이프라인.
 
-36단계, 4 Phase(Audit → Design → Build → Verify)를 오케스트레이션한다.
+37단계, 4 Phase(Audit → Design → Build → Verify)를 오케스트레이션한다.
 
 ## Scope
 
@@ -62,9 +62,9 @@ Verify Phase: verify-loop (#32~#36)
 
 **audit-loop 스킬**을 호출한다. 사용자 입력(코드베이스 경로 + 선택적 범위 지정)을 전달.
 
-audit-loop가 대상 분석(#1), 병렬 진단(#2~#7: 코드 품질·보안·아키텍처·DB·테스트·UX/UI), CTO 종합 판정(#8), Audit Report 문서화(#9)를 수행한다.
+audit-loop가 대상 분석(#1), 병렬 진단(#2~#8: 코드 품질·보안·아키텍처·DB·테스트·Repo Health·UX/UI), CTO 종합 판정(#9), Audit Report 문서화(#10)를 수행한다.
 
-**Phase 전환 조건**: #8 CTO 게이트 PROCEED (개선 대상이 존재하고 우선순위 확정)
+**Phase 전환 조건**: #9 CTO 게이트 PROCEED (개선 대상이 존재하고 우선순위 확정)
 
 **게이트 결과 분기**:
 - PROCEED → Phase 2로 진행

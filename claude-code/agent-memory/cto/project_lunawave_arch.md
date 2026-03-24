@@ -1,6 +1,6 @@
 ---
 name: Lunawave (Dalgyeol) Architecture State
-description: Architecture health baseline for Rust+Swift saju fortune app - tech stack, known issues, code metrics as of 2026-03-24
+description: Architecture health baseline for Rust+Swift saju fortune app - comprehensive diagnostic scores and prioritized issues as of 2026-03-24
 type: project
 ---
 
@@ -9,23 +9,34 @@ Lunawave/Dalgyeol -- saju fortune + AI consult platform.
 **Stack**: Rust (Axum 0.8, sqlx 0.8, tokio) backend + SwiftUI iOS (MVVM) + PostgreSQL on Fly.dev.
 
 **Metrics (2026-03-24)**:
-- Backend: ~88 .rs files, ~8500 LOC (saju engine alone ~3200 LOC)
-- iOS: ~65 .swift files, ~10500 LOC in Views
-- 90 unit tests passing, 11 integration tests fail (no DB)
-- 21 clippy warnings (none critical)
-- 20 DB migrations
+- Backend: ~96 .rs files, ~13.9K LOC (saju engine alone ~3200 LOC)
+- iOS: ~72 .swift files, ~13K LOC
+- 20 DB migrations (no DOWN scripts)
+- admin_llm.rs 1118 LOC (largest file, includes HTML)
 
-**Key architecture issues identified**:
-1. CRITICAL: Apple OAuth `insecure_disable_signature_validation` in auth.rs:141
-2. CRITICAL: CORS `allow_origin(Any)` in production
-3. HIGH: No rate limiting middleware (AppError::RateLimited defined but never applied)
-4. HIGH: N+1 queries in reading_service::list_readings (loop fetches outputs per reading)
-5. HIGH: wallet_service::add_ledger_entry has no transactional locking (race condition)
-6. HIGH: 21 route handlers duplicate manual body extraction pattern (axum::body::to_bytes)
-7. MEDIUM: All iOS models use `let id: String` while backend DTOs use `Uuid` (works because serde serializes UUID as string, but fragile)
-8. MEDIUM: No RLS policies in any migrations despite multi-user data
-9. MEDIUM: reading_service::create_reading is 306 lines -- God Function
-10. MEDIUM: 33 SELECT * queries in services layer
+**Comprehensive Diagnostic Scores (2026-03-24)**:
+- Code Quality: 5.5/10
+- Security: 4.4/10 (lowest risk-adjusted)
+- Architecture: 6.0/10
+- DB: 5.85/10
+- Testing: 3.99/10 (lowest absolute)
+- UX/UI: 6.50/10
+- Weighted Average: 5.37/10
 
-**Why:** Baseline for future reviews and refactoring prioritization.
-**How to apply:** Reference these scores when evaluating PRs or planning technical debt sprints.
+**P0 Critical Issues (11 items)**:
+1. SEC-01: Google OAuth client_secret hardcoded in admin_llm.rs:263,275 -- CREDENTIAL ROTATION NEEDED
+2. SEC-02: Apple JWT insecure_disable_signature_validation in auth.rs:141
+3. SEC-03: CORS allow_origin(Any) in main.rs:45
+4. SEC-04: admin_llm::routes() on public router (mod.rs:30)
+5. SEC-05: Apple IAP JWS verification not implemented
+6. SEC-06: grant_admin off-by-one (>1 should be >=1) in admin_llm.rs:175
+7. ARCH-01: wallet_service::add_ledger_entry non-transactional (race condition, double-spend)
+8. CODE-01: let _ = signup bonus in auth_service.rs:69,274
+9. DB-01: get_balance SUM full scan, cache exists but unused on read path
+10. TEST-01: No CI/CD pipeline
+11. UX-01: Zero accessibility (Dynamic Type 0, VoiceOver 0, 580 hardcoded fonts)
+
+**Gate Decision**: PROCEED -- design-loop for architecture + db + ux_ui required.
+
+**Why:** Baseline for improvement tracking. SEC-01 requires immediate manual credential rotation before design-loop.
+**How to apply:** Reference these scores when reviewing improvement PRs. Track P0 count reduction per phase.

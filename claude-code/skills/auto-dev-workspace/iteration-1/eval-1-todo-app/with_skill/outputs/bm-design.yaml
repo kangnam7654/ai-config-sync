@@ -1,0 +1,22 @@
+step: "7"
+agent: "bm-designer"
+revenue_model: "오픈소스 (MIT License) - 비영리 레퍼런스 프로젝트"
+pricing_tiers:
+  - tier: "무료 (유일한 티어)"
+    features: "전체 기능 (추가/삭제/완료)"
+    price: "$0"
+unit_economics:
+  optimistic:
+    hosting_cost: "$0 (로컬 실행)"
+    revenue: "$0"
+    note: "비용 없는 로컬 실행 프로젝트"
+  realistic:
+    hosting_cost: "$0"
+    revenue: "$0"
+    note: "포트폴리오/학습 가치가 주된 수익"
+  pessimistic:
+    hosting_cost: "$5/월 (클라우드 배포 시)"
+    revenue: "$0"
+    note: "클라우드 배포 시 최소 비용 발생"
+bm_score: 6.5
+bm_score_rationale: "비영리 프로젝트로 BM Score가 낮으나, 사용자의 명확한 요구(기술 학습용 할일 앱)에 부합. 수익 모델이 아닌 학습/레퍼런스 가치가 핵심."

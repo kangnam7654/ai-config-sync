@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "todo-app-full-pipeline",
+  "prompt": "할일 관리 웹앱 만들어줘. React + FastAPI + SQLite로. 할일 추가/삭제/완료 기능이면 돼.",
+  "assertions": [
+    {"name": "idea_phase_complete", "description": "Idea Phase (#1-#9) completed with idea-brief.md produced"},
+    {"name": "design_phase_complete", "description": "Design Phase (#10-#26) completed with design-spec.md produced"},
+    {"name": "build_phase_complete", "description": "Build Phase (#27-#31) completed with working code and build-summary.md"},
+    {"name": "verify_phase_complete", "description": "Verify Phase (#32-#36) completed with completion.yaml"},
+    {"name": "app_runs", "description": "The produced app can actually start (npm/uvicorn commands work)"},
+    {"name": "crud_works", "description": "Add/delete/complete todo functionality works"},
+    {"name": "phase_gates_respected", "description": "CEO gate (#8) and CTO gate (#25) both passed before proceeding"}
+  ]
+}

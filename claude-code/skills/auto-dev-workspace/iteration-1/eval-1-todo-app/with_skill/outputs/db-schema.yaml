@@ -1,0 +1,43 @@
+step: "11"
+agent: "data-engineer"
+database: "SQLite 3"
+orm: "SQLAlchemy 2.0 (async)"
+
+erd_mermaid: |
+  erDiagram
+    TODOS {
+      int id PK "자동 증가"
+      string title "할일 제목, NOT NULL, 최대 200자"
+      boolean completed "완료 여부, NOT NULL, DEFAULT FALSE"
+      datetime created_at "생성 시각, NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+      datetime updated_at "수정 시각, NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+    }
+
+tables:
+  - name: "todos"
+    columns:
+      - name: "id"
+        type: "INTEGER"
+        constraints: "PRIMARY KEY AUTOINCREMENT"
+      - name: "title"
+        type: "VARCHAR(200)"
+        constraints: "NOT NULL"
+      - name: "completed"
+        type: "BOOLEAN"
+        constraints: "NOT NULL DEFAULT FALSE"
+      - name: "created_at"
+        type: "DATETIME"
+        constraints: "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+      - name: "updated_at"
+        type: "DATETIME"
+        constraints: "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    indexes:
+      - name: "ix_todos_completed"
+        columns: ["completed"]
+        rationale: "완료/미완료 필터링 쿼리 최적화"
+      - name: "ix_todos_created_at"
+        columns: ["created_at"]
+        rationale: "생성일 기준 정렬 최적화"
+
+migration_strategy: "SQLAlchemy create_all() 사용. 단일 테이블이므로 Alembic 미적용."
+rls_policy: "N/A (단일 사용자, 인증 없음)"

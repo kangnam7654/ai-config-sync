@@ -1,0 +1,11 @@
+step: "4"
+agent: "ceo"
+app_name: "TodoFlow"
+summary: "React + FastAPI + SQLite 기반의 미니멀 할일 관리 웹앱. 할일 추가, 삭제, 완료 토글 3가지 핵심 기능에 집중한다."
+target_users: "개인 생산성 관리가 필요한 개발자 및 일반 사용자"
+core_features:
+  - "할일 추가: 제목 입력으로 새 할일 생성"
+  - "할일 삭제: 개별 할일 영구 삭제"
+  - "할일 완료: 완료/미완료 토글"
+differentiator: "기술 학습용 레퍼런스 구현으로서, React+FastAPI+SQLite 풀스택의 최소 기능 완성형(MVC) 아키텍처를 명확히 보여준다."
+direction_rationale: "사용자가 기술 스택과 기능을 명확히 지정. 부가 기능 없이 3가지 핵심 기능에 집중하여 빠른 구현과 검증을 우선한다."

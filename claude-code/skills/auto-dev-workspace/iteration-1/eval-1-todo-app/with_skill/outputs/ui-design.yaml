@@ -1,0 +1,59 @@
+step: "19"
+agent: "product-designer"
+
+design_system:
+  colors:
+    primary: "#4F46E5"
+    primary_hover: "#4338CA"
+    background: "#F9FAFB"
+    surface: "#FFFFFF"
+    text_primary: "#111827"
+    text_secondary: "#6B7280"
+    text_completed: "#9CA3AF"
+    danger: "#EF4444"
+    danger_hover: "#DC2626"
+    border: "#E5E7EB"
+    success: "#10B981"
+
+  typography:
+    font_family: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
+    h1: "1.75rem / 700"
+    body: "1rem / 400"
+    small: "0.875rem / 400"
+
+  spacing:
+    xs: "4px"
+    sm: "8px"
+    md: "16px"
+    lg: "24px"
+    xl: "32px"
+
+  border_radius: "8px"
+  shadow: "0 1px 3px rgba(0,0,0,0.1)"
+
+screens:
+  - name: "메인 화면 (할일 있음)"
+    layout: |
+      ┌─────────────────────────────────┐
+      │         TodoFlow (h1)           │
+      ├─────────────────────────────────┤
+      │ [입력 필드............] [추가]  │
+      ├─────────────────────────────────┤
+      │ ☐ 장보기                    [×] │
+      │ ☑ 운동하기 (취소선)         [×] │
+      │ ☐ 코드 리뷰                [×] │
+      └─────────────────────────────────┘
+
+  - name: "메인 화면 (빈 상태)"
+    layout: |
+      ┌─────────────────────────────────┐
+      │         TodoFlow (h1)           │
+      ├─────────────────────────────────┤
+      │ [입력 필드............] [추가]  │
+      ├─────────────────────────────────┤
+      │                                 │
+      │    할일을 추가해보세요!         │
+      │                                 │
+      └─────────────────────────────────┘
+
+  tool: "HTML/CSS mockup (코드 내 구현)"

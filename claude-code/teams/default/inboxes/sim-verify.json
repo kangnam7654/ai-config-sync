@@ -1,0 +1,9 @@
+[
+  {
+    "from": "team-lead",
+    "text": "시뮬레이터에서 이메일 로그인을 해줘.\n\n1. \"이메일로 가입하기\" 버튼을 탭\n2. 이메일 입력 필드에 test@saju.app 입력\n3. 비밀번호 입력 필드에 test1234 입력\n4. 로그인/가입 버튼 탭\n5. 로그인 성공 후 홈 화면이 나오면 스크린샷 촬영\n6. 홈 화면을 아래로 스크롤하면서 벤토 그리드 전체를 스크린샷으로 촬영\n7. 리포트 탭을 탭해서 ReadingListView도 스크린샷 촬영\n\n각 화면의 스크린샷을 /tmp/simulator-screenshots/ 에 저장해줘.",
+    "summary": "Login and screenshot home bento grid",
+    "timestamp": "2026-03-24T06:59:10.598Z",
+    "read": false
+  }
+]

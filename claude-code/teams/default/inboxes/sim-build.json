@@ -1,0 +1,9 @@
+[
+  {
+    "from": "team-lead",
+    "text": "앱이 실행 중이다. 이제 페르소나 테스트를 위해 순서대로 앱을 탐색하고 모든 주요 화면의 스크린샷을 캡처하라.\n\n## Step 1: 이메일 가입 플로우\n1. \"이메일로 가입하기\" 버튼을 탭하라 (xcrun simctl 사용)\n2. 각 단계마다 xcrun simctl io booted screenshot /tmp/simulator-screenshots/이름.png 으로 캡처\n3. 이메일 가입 화면에서 테스트 계정 입력 시도\n\n## Step 2: 홈 화면\n가입/로그인 성공 후:\n1. 홈 화면 전체 스크린샷\n2. 스크롤 다운 후 추가 캡처\n3. 프로필 등록 안내 화면 캡처\n\n## Step 3: 각 탭 순회\n1. 상담 탭 스크린샷\n2. 리포트 탭 스크린샷  \n3. 마이페이지 탭 스크린샷\n\n## Step 4: 세부 화면들\n1. 포인트 스토어 (진입 가능하면)\n2. 설정 화면\n3. FAQ 화면\n4. 프로필 편집 화면\n\n가능한 한 많은 화면을 탐색하고 /tmp/simulator-screenshots/에 descriptive 이름으로 저장하라.\n탭 좌표가 필요하면 스크린샷을 분석해서 적절한 좌표를 추정하라.",
+    "summary": "Navigate app and capture all screens",
+    "timestamp": "2026-03-24T14:03:13.164Z",
+    "read": false
+  }
+]

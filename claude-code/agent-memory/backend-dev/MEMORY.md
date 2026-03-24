@@ -50,3 +50,10 @@
 - When BuyBuddy (01-buybuddy) is running, ports 5432/6379 are occupied
 - FlirtIQ uses 5433/6380 to avoid conflicts
 - Always check for port conflicts when adding new projects
+
+## Kangnam Client (/Users/kangnam/projects/kangnam-client/kangnam-client)
+
+Tauri 2.x desktop app (Rust + React). See `project_kangnam_client.md` for full structure.
+- DB functions now return `Result<T, rusqlite::Error>` — commands use `.map_err(|e| e.to_string())?`
+- `db::connection::open_database()` is the canonical way to open a DB connection (WAL + FK + busy_timeout)
+- Stale build artifacts → `cargo clean` if build script references `/Users/kangnam/projects/mcp-client/`

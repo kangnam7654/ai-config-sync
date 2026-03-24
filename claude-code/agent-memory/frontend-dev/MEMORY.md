@@ -1,5 +1,8 @@
 # Frontend-Dev Agent Memory
 
+## kangnam-client (Tauri Desktop LLM Chat Client)
+- `project_kangnam_client.md` — tech stack, design system, file paths, component conventions, IPC patterns
+
 ## Saju MVP Project Patterns
 
 ### Tech Stack

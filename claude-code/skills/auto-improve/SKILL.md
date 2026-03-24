@@ -26,7 +26,7 @@ description: "기존 서비스/앱 종합 진단 + 개선 전자동 파이프라
 
 ```
 auto-improve
-  ├── audit-loop (#1~#9)          ← NEW
+  ├── audit-loop (#1~#10)          ← NEW
   │     └── doc-loop (#9)
   ├── design-loop (#10~#26)       ← 재활용
   │     ├── architecture-loop (#10~#16)
@@ -45,7 +45,7 @@ auto-improve
 ```
 [사용자 입력: 기존 코드베이스 경로 + 개선 범위(선택)]
   ↓
-Audit Phase: audit-loop (#1~#9)
+Audit Phase: audit-loop (#1~#10)
   ↓ #8 CTO 게이트 PROCEED → audit-report.md 산출
 Design Phase: design-loop (#10~#26)
   ↓ #25 CTO 게이트 PASS → design-spec.md 산출

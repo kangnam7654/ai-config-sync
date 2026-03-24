@@ -1,0 +1,32 @@
+{
+  "eval_id": 1,
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "scope_map_created",
+      "passed": true,
+      "evidence": "Report correctly identifies Python 3 + Bash, no DB, no UI. Structured '대상 개요' table with all fields. Audit scope explicitly lists 4 areas (code quality, security, architecture, test) with DB/UX marked N/A."
+    },
+    {
+      "text": "parallel_diagnostics",
+      "passed": true,
+      "evidence": "4 diagnostic areas covered with individual sections: 코드 품질 (5.5/10), 보안 (6.0/10), 아키텍처 (6.5/10), 테스트 (1.0/10). DB and UX/UI explicitly marked '해당 없음'."
+    },
+    {
+      "text": "baseline_scores",
+      "passed": true,
+      "evidence": "Baseline scores table present with 0-10 scale for all areas, weights, weighted scores, and normalized total (4.86/10). Exactly matches audit-loop spec format."
+    },
+    {
+      "text": "priority_matrix",
+      "passed": true,
+      "evidence": "Full P0-P3 matrix with 17 items total. Each has ID (e.g., TEST-001, CODE-001), title, area, severity, difficulty (S/M/L). File paths and line numbers referenced in detailed sections."
+    },
+    {
+      "text": "gate_decision",
+      "passed": true,
+      "evidence": "CTO gate decision PROCEED with YAML-formatted gate-decision block including baseline_scores, priority_items (p0-p3), and improvement_scope. Rationale: 'P0 (TEST-001)과 P1 4건이 존재하므로 PROCEED'."
+    }
+  ],
+  "pass_rate": 1.0
+}

@@ -1,0 +1,74 @@
+{
+  "skill_name": "auto-improve",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "이 프로젝트(ai-config-sync) 전체 점검해줘. Audit Phase만 실행하고 audit-report.md를 산출해줘.",
+      "expected_output": "audit-report.md with baseline scores for code quality, security, architecture, test coverage. Gate decision (PROCEED/PARTIAL/SKIP).",
+      "files": [],
+      "assertions": [
+        {
+          "name": "scope_map_created",
+          "description": "Scope map correctly identifies tech stack (Python, Bash) and determines no DB/UI",
+          "type": "content_check"
+        },
+        {
+          "name": "parallel_diagnostics",
+          "description": "At least 4 diagnostic areas covered (code quality, security, architecture, test)",
+          "type": "content_check"
+        },
+        {
+          "name": "baseline_scores",
+          "description": "Baseline scores present for each audited area (0-10 scale)",
+          "type": "content_check"
+        },
+        {
+          "name": "priority_matrix",
+          "description": "Findings prioritized as P0-P3 with specific file references",
+          "type": "content_check"
+        },
+        {
+          "name": "gate_decision",
+          "description": "CTO gate decision (PROCEED/PARTIAL/SKIP) with rationale",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "이 프로젝트에서 보안이랑 테스트 커버리지만 점검해줘. audit-loop만 실행해.",
+      "expected_output": "Scoped audit-report.md covering only security and test diagnostics. Other areas marked as out-of-scope.",
+      "files": [],
+      "assertions": [
+        {
+          "name": "scoped_correctly",
+          "description": "Only security and test diagnostics executed, others explicitly skipped",
+          "type": "content_check"
+        },
+        {
+          "name": "security_findings",
+          "description": "Security diagnostic includes specific findings with file paths",
+          "type": "content_check"
+        },
+        {
+          "name": "test_findings",
+          "description": "Test diagnostic identifies coverage gaps and missing test areas",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 CLI 도구 좀 리팩터링해줘. sync-timestamps.py의 중복 코드가 너무 많아.",
+      "expected_output": "Should trigger auto-improve OR handle directly depending on scope. If single-file refactor, may not need full pipeline.",
+      "files": [],
+      "assertions": [
+        {
+          "name": "scope_assessment",
+          "description": "Correctly assesses whether this is a full audit task or a simple refactor",
+          "type": "content_check"
+        }
+      ]
+    }
+  ]
+}

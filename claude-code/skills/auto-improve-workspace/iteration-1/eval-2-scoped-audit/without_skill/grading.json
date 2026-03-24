@@ -1,0 +1,22 @@
+{
+  "eval_id": 2,
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "scoped_correctly",
+      "passed": true,
+      "evidence": "Report titled 'Security & Test Coverage' and covers only those two areas. No code quality, architecture, or UX sections. However, some security findings overlap with general code quality (S-07 bare except). Overall scoped correctly."
+    },
+    {
+      "text": "security_findings",
+      "passed": true,
+      "evidence": "13 security findings (S-01 to S-16, including INFO items) with file paths and line numbers. Organized by sub-category (Credential Exposure, Input Validation, File System Security, Configuration Security, .gitignore, Timestamp Data Leakage)."
+    },
+    {
+      "text": "test_findings",
+      "passed": true,
+      "evidence": "Comprehensive test coverage assessment. Identifies zero tests, recommends 37 tests across 3 priority tiers, estimates 6 hours effort. Function-level breakdown with test case counts."
+    }
+  ],
+  "pass_rate": 1.0
+}

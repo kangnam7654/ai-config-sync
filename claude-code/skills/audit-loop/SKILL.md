@@ -1,11 +1,11 @@
 ---
 name: audit-loop
-description: "auto-improve 파이프라인의 Audit Phase (#1~#9). 기존 코드베이스를 6개 관점(코드 품질, 보안, 아키텍처, DB, 테스트, UX/UI)에서 병렬 진단하고 CTO가 우선순위를 매겨 Audit Report를 산출한다. auto-improve 스킬이 호출하며, 독립 실행도 가능하다. '코드 진단해줘', '서비스 점검', '코드베이스 감사', 'audit loop 실행', '종합 진단' 요청에 트리거."
+description: "auto-improve 파이프라인의 Audit Phase (#1~#10). 기존 코드베이스를 7개 관점(코드 품질, 보안, 아키텍처, DB, 테스트, Repo Health, UX/UI)에서 병렬 진단하고 CTO가 우선순위를 매겨 Audit Report를 산출한다. auto-improve 스킬이 호출하며, 독립 실행도 가능하다. '코드 진단해줘', '서비스 점검', '코드베이스 감사', 'audit loop 실행', '종합 진단' 요청에 트리거."
 ---
 
 # audit-loop
 
-기존 코드베이스를 6개 관점에서 병렬 진단 → CTO 종합 판정 → Audit Report 문서화.
+기존 코드베이스를 7개 관점에서 병렬 진단 → CTO 종합 판정 → Audit Report 문서화.
 
 auto-improve의 Phase 1을 담당한다. auto-dev에서 idea-forge가 "뭘 만들지?"를 결정하는 것처럼, audit-loop는 "뭐가 문제인지?"를 파악한다.
 
@@ -50,17 +50,18 @@ audit_scope:
   architecture: true
   db: true        # DB 존재 시 true
   test: true
-  ux_ui: true     # UI 존재 시 true
+  repo_health: true  # 항상 true
+  ux_ui: true        # UI 존재 시 true
 user_focus: null  # 또는 사용자가 지정한 영역 목록
 ```
 
 ---
 
-### #2~#7 병렬 진단
+### #2~#8 병렬 진단
 
 #1의 scope-map에 따라 해당하는 진단을 **모두 병렬**로 실행한다. 각 진단은 독립적이므로 서로의 결과를 기다리지 않는다.
 
-scope-map에서 false인 항목은 건너뛴다 (예: DB가 없으면 #5 스킵, UI가 없으면 #7 스킵).
+scope-map에서 false인 항목은 건너뛴다 (예: DB가 없으면 #5 스킵, UI가 없으면 #8 스킵). #7 Repo Health는 항상 실행한다.
 
 #### #2 코드 품질 진단 ⓟ
 
@@ -170,7 +171,29 @@ DB 종류: {db_type}
 출력 형식: #2와 동일
 ```
 
-#### #7 UX/UI 진단 ⓟ [조건부: UI 존재 시]
+#### #7 Repo Health 진단 ⓟ
+
+**에이전트**: Explore (subagent_type=Explore)
+
+**프롬프트 템플릿**:
+```
+아래 코드베이스의 리포지토리 건강 상태를 진단하라.
+프로젝트 경로: {project_path}
+
+진단 항목:
+- .gitignore 커버리지: 추적되면 안 되는 파일이 추적 중인지 (바이너리, 시크릿, 빌드 산출물)
+- 대용량 파일: git에 추적 중인 바이너리/미디어 파일 (이미지, 폰트, 동영상, 오디오)
+- git 히스토리 비대화: .git 디렉토리 크기, 자주 변경되는 대용량 파일, 불필요한 히스토리
+- 브랜치 전략: 브랜치 구조, stale 브랜치, 커밋 위생 (메시지 품질, squash 여부)
+- CI/CD 설정: GitHub Actions, 린터, 포매터 설정 유무
+- 불필요한 파일: placeholder, stale artifact, 중복 파일
+
+출력 형식: #2와 동일 (점수 + 심각도별 발견 목록 + 파일/라인/설명/개선방향)
+```
+
+---
+
+#### #8 UX/UI 진단 ⓟ [조건부: UI 존재 시]
 
 **에이전트**: ux-reviewer + ui-reviewer (병렬 2개)
 
@@ -196,11 +219,11 @@ DB 종류: {db_type}
 
 ---
 
-### #8 CTO 종합 판정 게이트
+### #9 CTO 종합 판정 게이트
 
 **에이전트**: CTO
 
-모든 병렬 진단(#2~#7) 결과를 수집한 뒤 실행한다.
+모든 병렬 진단(#2~#8) 결과를 수집한 뒤 실행한다.
 
 **수행 내용**:
 1. 각 진단 결과의 발견 항목을 통합
@@ -235,8 +258,11 @@ DB 종류: {db_type}
 [테스트 진단 결과]
 {#6 결과}
 
+[Repo Health 진단 결과]
+{#7 결과}
+
 [UX/UI 진단 결과]
-{#7 결과 또는 "해당 없음"}
+{#8 결과 또는 "해당 없음"}
 
 판정 형식:
 1. 베이스라인 점수표 (영역별 0-10)
@@ -256,6 +282,7 @@ baseline_scores:
   architecture: 5.5
   db: 8.0          # 또는 N/A
   test_coverage: 4.0
+  repo_health: 5.0
   ux_ui: 6.0       # 또는 N/A
 priority_items:
   p0: [{id: "SEC-001", title: "SQL injection in user search", area: "security"}]
@@ -271,11 +298,11 @@ improvement_scope:
 
 ---
 
-### #9 Audit Report 문서화
+### #10 Audit Report 문서화
 
 **doc-loop 스킬**을 자동(B) 모드 + LLM 모드로 호출한다.
 
-**입력**: #1~#8의 모든 결과 (scope-map, 진단 결과 6종, gate-decision.yaml)
+**입력**: #1~#9의 모든 결과 (scope-map, 진단 결과 7종, gate-decision.yaml)
 
 **audit-report.md 필수 섹션**:
 
@@ -284,7 +311,7 @@ improvement_scope:
 | 대상 개요 | 프로젝트 경로, 기술 스택, 진단 범위 |
 | 베이스라인 점수 | 영역별 점수표 (0-10) |
 | 우선순위 매트릭스 | P0~P3 항목 전체 목록 (ID, 제목, 영역, 심각도, 난이도) |
-| 영역별 상세 진단 | 코드 품질, 보안, 아키텍처, DB, 테스트, UX/UI 각각의 발견 사항 |
+| 영역별 상세 진단 | 코드 품질, 보안, 아키텍처, DB, 테스트, Repo Health, UX/UI 각각의 발견 사항 |
 | 개선 범위 | design-loop에 전달할 개선 대상 영역 및 항목 |
 | 제약 조건 | 하위호환 요구사항, 마이그레이션 주의점, 기존 테스트 보존 필요성 |
 
@@ -296,21 +323,21 @@ improvement_scope:
 
 | 단계 | 10회 소진 처리 |
 |---|---|
-| #2~#7 진단 | 해당 영역을 "진단 불가"로 표기, 나머지 결과로 진행 |
-| #8 CTO 판정 | 사용자에게 보고, 수동 판정 요청 |
-| #9 문서화 | doc-loop 내부 5라운드 기준 적용 |
+| #2~#8 진단 | 해당 영역을 "진단 불가"로 표기, 나머지 결과로 진행 |
+| #9 CTO 판정 | 사용자에게 보고, 수동 판정 요청 |
+| #10 문서화 | doc-loop 내부 5라운드 기준 적용 |
 
 ---
 
 ## NEVER 규칙
 
-1. NEVER: #8 CTO 판정 없이 Phase 2로 진행하지 마라.
-2. NEVER: 조건부 진단(#5, #7)을 DB/UI가 없는 프로젝트에서 실행하지 마라.
-3. NEVER: 병렬 진단(#2~#7) 결과를 기다리지 않고 #8을 실행하지 마라. 모든 병렬 진단이 완료(또는 실패 처리)된 후 #8을 실행한다.
+1. NEVER: #9 CTO 판정 없이 Phase 2로 진행하지 마라.
+2. NEVER: 조건부 진단(#5 DB, #8 UX/UI)을 DB/UI가 없는 프로젝트에서 실행하지 마라.
+3. NEVER: 병렬 진단(#2~#8) 결과를 기다리지 않고 #9를 실행하지 마라. 모든 병렬 진단이 완료(또는 실패 처리)된 후 #9를 실행한다.
 
 ## ALWAYS 규칙
 
-1. ALWAYS: #2~#7은 최대한 병렬로 실행한다. 순차 실행은 기술적 제약이 있을 때만 허용한다.
+1. ALWAYS: #2~#8은 최대한 병렬로 실행한다. 순차 실행은 기술적 제약이 있을 때만 허용한다.
 2. ALWAYS: 각 진단의 점수는 0-10 스케일 + 가중 평균 총점으로 통일한다.
 3. ALWAYS: audit-report.md에 베이스라인 점수를 포함한다. 이 점수는 Verify Phase의 Before/After 비교 기준점이다.
 

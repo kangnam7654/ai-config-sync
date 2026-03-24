@@ -27,9 +27,9 @@
         "scope": "user",
         "installPath": "/Users/kangnam/.claude/plugins/cache/skill-ref/skill-ref/0.1.0",
         "version": "0.1.0",
-        "installedAt": "2026-03-24T05:27:26.127Z",
-        "lastUpdated": "2026-03-24T05:27:26.127Z",
-        "gitCommitSha": "67fb90466f992fd90106f90db8a1b3266f8c9e88"
+        "installedAt": "2026-03-24T09:56:11.381Z",
+        "lastUpdated": "2026-03-24T09:56:11.381Z",
+        "gitCommitSha": "bcb21790b38aabecf621026ef2096c0fd42948d4"
       }
     ]
   }

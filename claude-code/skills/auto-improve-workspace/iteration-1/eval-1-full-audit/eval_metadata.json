@@ -1,0 +1,27 @@
+{
+  "eval_id": 1,
+  "eval_name": "full-audit",
+  "prompt": "이 프로젝트(ai-config-sync) 전체 점검해줘. Audit Phase만 실행하고 audit-report.md를 산출해줘.",
+  "assertions": [
+    {
+      "name": "scope_map_created",
+      "description": "Scope map correctly identifies tech stack (Python, Bash) and determines no DB/UI"
+    },
+    {
+      "name": "parallel_diagnostics",
+      "description": "At least 4 diagnostic areas covered (code quality, security, architecture, test)"
+    },
+    {
+      "name": "baseline_scores",
+      "description": "Baseline scores present for each audited area (0-10 scale)"
+    },
+    {
+      "name": "priority_matrix",
+      "description": "Findings prioritized as P0-P3 with specific file references"
+    },
+    {
+      "name": "gate_decision",
+      "description": "CTO gate decision (PROCEED/PARTIAL/SKIP) with rationale"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "eval_id": 2,
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "scoped_correctly",
+      "passed": true,
+      "evidence": "Explicit YAML scope-map with code_quality: false, architecture: false, db: false, ux_ui: false. Only security: true and test: true. Sections 3 and 4 cover only these areas. Out-of-scope areas not analyzed."
+    },
+    {
+      "text": "security_findings",
+      "passed": true,
+      "evidence": "8 security findings (SEC-001 to SEC-008) with specific file paths and line numbers. Scored by sub-area (6 sub-areas with weights). Critical: SEC-001 (GitHub token in URL). Includes file path, line number, description, severity, and improvement direction for each."
+    },
+    {
+      "text": "test_findings",
+      "passed": true,
+      "evidence": "5 test findings (TEST-001 to TEST-005). Identifies zero coverage, no CI/CD, untested core logic. Includes detailed 37-test plan across 3 priority tiers with effort estimates (6 hours total). Covers function-level test cases."
+    }
+  ],
+  "pass_rate": 1.0
+}

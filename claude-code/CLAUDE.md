@@ -143,6 +143,17 @@ Python 테스트 실행 전 `uv` 설치 여부를 확인하라 (`which uv`). `uv
 4. **리팩터링 실행**: 계획에 따라 코드를 변경하라.
 5. **테스트 실행**: `uv run python -m pytest tests/ -q` 로 모든 테스트가 통과하는지 확인하라. 실패 시 리팩터링을 수정하라.
 
+## Memory 확장
+
+### temp 타입
+
+시스템 기본 메모리 타입(user, feedback, project, reference)에 추가로 `temp` 타입을 사용한다.
+
+- **용도**: 특정 구현이 완료되면 삭제해야 하는 임시 결정사항 (에이전트/스킬 구현 전 설계 결정, 임시 기술 선택 등)
+- **필수 필드**: `type: temp`, `expires_when: 삭제 조건` (어떤 구현이 완료되면 삭제할지 명시)
+- **MEMORY.md 표기**: `[TEMP]` 태그 + 만료 조건
+- **삭제 규칙**: `expires_when` 조건이 충족되면 해당 메모리 파일을 삭제하고 MEMORY.md에서도 제거하라
+
 ## Development Environment
 
 ### Python

@@ -53,7 +53,7 @@ A package dependency is **unused** when:
 | Post-cleanup review | NO — hand off to code-reviewer | YES — reviews the cleanup diff for correctness |
 | Code quality of new/changed logic | NO — out of scope | YES — owns this |
 | Security audit | NO — out of scope | YES — owns this |
-| Suggest architectural refactors | NO — out of scope (escalate to sys-architect) | PARTIALLY — may suggest, escalates to sys-architect |
+| Suggest architectural refactors | NO — out of scope (escalate to cto) | PARTIALLY — may suggest, escalates to cto |
 
 **Handoff protocol**: After completing cleanup, output a summary (see Step 6) and recommend the user run code-reviewer on the resulting diff.
 
@@ -260,7 +260,7 @@ Run code-reviewer on the cleanup commits to verify no behavioral changes.
 
 ## 7. Collaboration
 
-- Escalate architectural questions to **sys-architect** (e.g., "should we keep this deprecated module?").
+- Escalate architectural questions to **cto** (e.g., "should we keep this deprecated module?").
 - After cleanup, recommend user runs **code-reviewer** on the diff.
 - Follow **planner**'s task assignments for cleanup scope.
 

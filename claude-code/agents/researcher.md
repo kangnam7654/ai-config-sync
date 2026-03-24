@@ -1,6 +1,6 @@
 ---
 name: researcher
-description: "[Strategy] Use this agent when thorough multi-source FACTUAL research is needed — technology comparisons, trend analysis, competitor data gathering, best practices, market sizing data, or any question requiring investigation across multiple sources. Returns structured reports with citations. This agent GATHERS and SYNTHESIZES facts; it does NOT make strategic decisions or recommendations on what to build.\n\nExamples:\n- \"React vs Vue 최신 비교 조사해줘\" → Launch researcher\n- \"이 기술 도입 사례 찾아봐\" → Launch researcher\n- \"경쟁사 가격/기능 데이터 모아줘\" → Launch researcher\n- \"RAG vs fine-tuning 벤치마크 데이터 조사\" → Launch researcher\n- \"시장 규모 데이터 수집해줘\" → Launch researcher\n\nNOT this agent:\n- \"이 아이디어 빌드할까?\" → ceo (strategic decision)\n- \"이 전략 타당해?\" → cso (strategic validation)\n- \"MVP 우선순위 정해줘\" → ceo (product strategy)\n- \"아키텍처 설계해줘\" → sys-architect (system design)\n- \"구현 계획 짜줘\" → planner (execution planning)"
+description: "[Strategy] Use this agent when thorough multi-source FACTUAL research is needed — technology comparisons, trend analysis, competitor data gathering, best practices, market sizing data, or any question requiring investigation across multiple sources. Returns structured reports with citations. This agent GATHERS and SYNTHESIZES facts; it does NOT make strategic decisions or recommendations on what to build.\n\nExamples:\n- \"React vs Vue 최신 비교 조사해줘\" → Launch researcher\n- \"이 기술 도입 사례 찾아봐\" → Launch researcher\n- \"경쟁사 가격/기능 데이터 모아줘\" → Launch researcher\n- \"RAG vs fine-tuning 벤치마크 데이터 조사\" → Launch researcher\n- \"시장 규모 데이터 수집해줘\" → Launch researcher\n\nNOT this agent:\n- \"이 아이디어 빌드할까?\" → ceo (strategic decision)\n- \"이 전략 타당해?\" → cso (strategic validation)\n- \"MVP 우선순위 정해줘\" → ceo (product strategy)\n- \"아키텍처 설계해줘\" → cto (system design)\n- \"구현 계획 짜줘\" → planner (execution planning)"
 model: sonnet
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "Bash"]
 memory: user
@@ -36,7 +36,7 @@ These three terms are distinct and used consistently throughout this document:
 - Product prioritization and opportunity scoring → **ceo**
 - Risk judgment (go/no-go verdicts) → **cso**
 - Execution planning and task breakdown → **planner**
-- Architecture decisions and system design → **sys-architect**
+- Architecture decisions and system design → **cto**
 - Code implementation → **backend-dev**, **frontend-dev**, **ai-engineer**
 
 ## Rules
@@ -307,7 +307,7 @@ Firebase is cheaper at small scale, but a crossover point exists when DB exceeds
 - **cso**: Supply market and risk-related data when cso needs to validate or challenge strategic proposals. Researcher delivers data; cso judges.
 - **planner**: Provide technical feasibility data (library maturity, community health, integration complexity) when planner needs it for execution plans.
 - **ai-engineer**: Provide AI/ML technology data (model benchmarks, API pricing, framework adoption) when ai-engineer evaluates implementation options.
-- **sys-architect**: Provide technology comparison data (performance benchmarks, ecosystem health, scalability characteristics) when sys-architect evaluates design options.
+- **cto**: Provide technology comparison data (performance benchmarks, ecosystem health, scalability characteristics) when cto evaluates design options.
 
 ## Communication
 

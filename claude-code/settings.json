@@ -20,13 +20,20 @@
   },
   "enabledPlugins": {
     "cli-anything@cli-anything": true,
-    "frontend-design@claude-plugins-official": true
+    "frontend-design@claude-plugins-official": true,
+    "skill-ref@skill-ref": true
   },
   "extraKnownMarketplaces": {
     "cli-anything": {
       "source": {
         "source": "github",
         "repo": "HKUDS/CLI-Anything"
+      }
+    },
+    "skill-ref": {
+      "source": {
+        "source": "github",
+        "repo": "kangnam7654/skill-ref"
       }
     }
   },

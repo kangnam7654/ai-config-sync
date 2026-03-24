@@ -214,7 +214,7 @@ fi
 After each fix, compare CURRENT_ERROR_COUNT to INITIAL_ERROR_COUNT:
 1. If CURRENT_ERROR_COUNT > INITIAL_ERROR_COUNT + 10: **STOP immediately**
 2. Report to user: "Fixing error X revealed {N} additional errors. This indicates a structural issue (likely a foundational type/import change needed). Errors originated from: {list top 5 affected files}."
-3. Suggest the user review the root cause manually or use the `sys-architect` agent
+3. Suggest the user review the root cause manually or use the `cto` agent
 
 ### Error Is in a Dependency (Not User Code)
 
@@ -241,7 +241,7 @@ If the error message contains "circular dependency", "cyclic dependency", "circu
 3. Report to user:
    - The exact cycle path (e.g., `A → B → C → A`)
    - Which file each import occurs in
-   - Suggest: "Circular dependency detected. Common resolutions: extract shared types into a separate module, use lazy imports, or restructure the dependency graph. Consider using the `sys-architect` agent for this."
+   - Suggest: "Circular dependency detected. Common resolutions: extract shared types into a separate module, use lazy imports, or restructure the dependency graph. Consider using the `cto` agent for this."
 
 ### Lock File Corruption / Integrity Errors
 

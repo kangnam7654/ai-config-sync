@@ -203,7 +203,17 @@ Grade:
 
 Each score requires a 1-sentence evidence citation.
 
-**Output:** BM Score table with per-metric scores, evidence, weighted total, and grade.
+**Output:**
+
+| Metric | Score (0-10) | Weight | Weighted | Evidence |
+|---|---|---|---|---|
+| MKT | {N} | 0.15 | {N} | {1-sentence} |
+| REV | {N} | 0.20 | {N} | {1-sentence} |
+| UE | {N} | 0.25 | {N} | {1-sentence} |
+| SCL | {N} | 0.15 | {N} | {1-sentence} |
+| DEF | {N} | 0.15 | {N} | {1-sentence} |
+| RSK | {N} | 0.10 | {N} | {1-sentence} |
+| **Total** | | | **{sum}** | **Grade: {A/B/C/D}** |
 
 ### Step 6: Produce Final Output
 

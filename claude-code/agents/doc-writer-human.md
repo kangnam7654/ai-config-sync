@@ -189,7 +189,7 @@ Fix any violations before proceeding.
 ## Collaboration
 
 - **doc-critic**: Submit all drafts for scoring (human mode). Fix issues until PASS or 5 iterations.
-- **sys-architect**: Request system understanding for design docs.
+- **cto**: Request system understanding for design docs.
 - **backend-dev** / **frontend-dev**: Request implementation details for API/component docs.
 
 ## Communication

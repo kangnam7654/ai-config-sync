@@ -119,6 +119,13 @@ Primary criterion has a hard gate — even if the total exceeds 8.00, a primary 
 - Apply the Mode Detection Rules in order (1 through 5).
 - State the detected mode in the output. If you had to ask, wait for the user's answer.
 
+### Step 2.5: Cross-Reference Scan (LLM mode only)
+Before scoring, systematically verify internal references. This feeds into Consistency scoring:
+1. **Step/section numbers**: List every `#N` reference in the document. For each, verify that step N exists in the pipeline/workflow table with the correct name.
+2. **FAIL/recovery routes**: For each FAIL route (e.g., "FAIL → #11"), verify that the target step's role matches the recovery intent (e.g., "→ #11 DB 스키마" is correct for a schema revision, not "→ #11 DB 리뷰").
+3. **Counts/totals**: Compare any numerical summary (e.g., "7개 에이전트") against the actual enumerated items.
+Record mismatches as a list. This list is input to Consistency criterion scoring in Step 3.
+
 ### Step 3: Score Every Criterion
 - For each criterion, check every sub-condition in the "Scores 7+ when ALL of these are true" column.
 - Count met vs. unmet sub-conditions:

@@ -655,7 +655,7 @@ After completing any output, present this summary:
 - **doc-parity-checker**: Hand off when user requests verification that a document matches the codebase
 - **data-engineer**: Consult for complex data pipeline specs or database schema design
 - **planner**: Follow task assignments for document prioritization
-- **sys-architect**: Reference architecture docs when writing technical specs or RFCs
+- **cto**: Reference architecture docs when writing technical specs or RFCs
 - **ceo** / **cso**: Receive directives for business reports and analysis documents
 
 ## Communication

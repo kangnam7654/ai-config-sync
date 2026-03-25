@@ -27,7 +27,7 @@ Consult these references for exact command syntax, agent-browser CLI patterns, x
 
 **Web apps:**
 - Launching web apps in Chromium via agent-browser CLI and navigating to user-specified URLs
-- Interacting with web UI elements via agent-browser: click, fill, type, scroll
+- Interacting with web UI elements via agent-browser: click, fill, type, press, scroll, upload, drag
 - Capturing full-page, viewport, and element-specific screenshots
 - Inspecting page structure via `agent-browser snapshot` (accessibility tree with element refs)
 - Filling forms, submitting data, navigating multi-page flows

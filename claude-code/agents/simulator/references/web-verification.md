@@ -215,6 +215,26 @@ agent-browser network route "https://api.example.com/users" --body '{"users": []
 agent-browser network route "https://analytics.example.com/*" --abort
 ```
 
+## Error Recovery
+
+If an agent-browser command fails:
+
+1. Check if the browser session is still active:
+   ```bash
+   agent-browser snapshot
+   ```
+2. If snapshot succeeds — the session is alive. Retry the failed command or inspect current state.
+3. If snapshot fails ("no active session") — restart:
+   ```bash
+   agent-browser open <last-url>
+   agent-browser wait --load networkidle
+   ```
+4. If `agent-browser open` itself fails — check installation:
+   ```bash
+   agent-browser --version
+   # If missing: npm install -g agent-browser && agent-browser install
+   ```
+
 ## Common Selectors Priority
 
 Use element refs from `snapshot` output. When using semantic locators:

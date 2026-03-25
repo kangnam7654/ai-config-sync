@@ -1,6 +1,6 @@
 ---
 name: auto-improve-loop
-description: "auto-improve를 Ralph Loop 방식으로 반복 실행하여 코드베이스를 점진적으로 개선하는 전자동 연속 개선 파이프라인. 매 라운드마다 전체 auto-improve(Audit→Design→Build→Verify)를 실행하되, 이전 라운드 결과를 기억하고 우선순위를 재계산하여 매번 다른 영역을 개선한다. 목표 점수 달성 또는 최대 라운드 도달 시 자동 종료. '계속 개선해', '점진적으로 고쳐', '루프 돌려서 개선해', '반복 개선', 'auto-improve-loop', 'continuous improvement', '코드베이스 계속 개선', '완벽해질 때까지 개선', '점수 올릴 때까지 반복', '자동으로 계속 고쳐줘' 요청에 트리거. auto-improve(1회성 개선)와 구분: 이 스킬은 목표 도달까지 여러 라운드를 자율적으로 반복한다. 사용자가 '개선해줘'라고 해도 '반복', '계속', '점진적', '루프' 같은 키워드가 있으면 이 스킬을 사용할 것."
+description: "목표 품질 점수에 도달할 때까지 auto-improve를 여러 라운드 반복 실행하는 전자동 연속 개선 파이프라인. 매 라운드마다 전체 Audit→Design→Build→Verify를 실행하되, 이전 라운드 결과를 기억하고 우선순위를 재계산하여 매번 다른 영역을 개선한다. 트리거 조건: (1) 스킬명 직접 언급 — 'auto-improve-loop', 'continuous improvement loop'; (2) 점수 목표 언급 — '8점 넘을 때까지', 'target 9.0', '목표 점수까지'; (3) 라운드/반복 제한 — '최대 5라운드', '3번 돌려'; (4) 반복/지속 키워드 — 반복, 계속, 점진적, 여러 번, 완벽해질 때까지, loop, until, keep going. SKIP 조건 (이 스킬이 아님): 1회성 개선('개선해줘' 단독) → auto-improve, 진단만 → audit-loop, 스케줄 반복(/loop) → loop 스킬, 신규 앱 개발 → auto-dev. 핵심 구분: '개선해줘'만 있으면 auto-improve, 거기에 반복/점수 목표/라운드 제한이 붙으면 이 스킬."
 ---
 
 # auto-improve-loop

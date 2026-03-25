@@ -1,0 +1,82 @@
+[
+  {
+    "query": "우리 프로젝트 보안이랑 테스트 커버리지가 좀 안 좋은데, 8점 넘을 때까지 자동으로 계속 고쳐줘. 경로는 ~/projects/my-saas야",
+    "should_trigger": true
+  },
+  {
+    "query": "코드베이스가 너무 지저분해서 한 번에 다 못 고칠 것 같아. 점진적으로 여러 번 돌려서 품질 올려줘. /home/user/app",
+    "should_trigger": true
+  },
+  {
+    "query": "auto-improve-loop 실행해줘. 타겟 점수 9.0, 최대 5라운드로 설정하고 ~/my-project에서 돌려",
+    "should_trigger": true
+  },
+  {
+    "query": "이전에 개선 루프 돌리다가 세션 끊겼어. improve-progress.yaml 있으니까 이어서 해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "이 앱 완벽해질 때까지 반복해서 개선해줘. 보안이랑 아키텍처 위주로. 경로는 /var/www/app",
+    "should_trigger": true
+  },
+  {
+    "query": "continuous improvement loop 돌려줘. 코드 품질 점수가 목표치 도달할 때까지 자동으로 반복",
+    "should_trigger": true
+  },
+  {
+    "query": "이 레거시 코드 기술 부채가 심한데 루프 돌려서 하나씩 정리해줘. ~/projects/legacy-api",
+    "should_trigger": true
+  },
+  {
+    "query": "우리 서비스 코드 한번 점검해줘. 보안이랑 코드 품질 위주로. ~/projects/my-api",
+    "should_trigger": false
+  },
+  {
+    "query": "이 프로젝트 리팩터링해줘. 중복 코드 좀 정리하고 테스트 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "새로운 SaaS 앱 만들어줘. 할 일 관리 서비스야. React + FastAPI로",
+    "should_trigger": false
+  },
+  {
+    "query": "login API에서 500 에러 나는데 고쳐줘",
+    "should_trigger": false
+  },
+  {
+    "query": "이 서비스 개선해줘. /Users/me/projects/webapp",
+    "should_trigger": false
+  },
+  {
+    "query": "코드 리뷰하고 문제 있으면 고쳐줘. PR #42 기준으로",
+    "should_trigger": false
+  },
+  {
+    "query": "매 10분마다 /auto-improve 실행해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "설계문서 작성해줘. 인증 모듈 리팩터링 관련해서",
+    "should_trigger": false
+  },
+  {
+    "query": "코드베이스 진단만 해줘. 개선은 나중에 할게",
+    "should_trigger": false
+  },
+  {
+    "query": "DB 스키마 최적화해줘. 쿼리가 느려",
+    "should_trigger": false
+  },
+  {
+    "query": "이 서비스 계속 개선하고 싶은데 어떻게 하면 돼?",
+    "should_trigger": true
+  },
+  {
+    "query": "auto-improve 한 번 돌려줘. 전체 점검하고 고쳐줘",
+    "should_trigger": false
+  },
+  {
+    "query": "점수 8점 넘을 때까지 반복 개선해줘. 지금 5점대인데 경로는 ~/app",
+    "should_trigger": true
+  }
+]

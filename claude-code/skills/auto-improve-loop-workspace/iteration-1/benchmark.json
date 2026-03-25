@@ -1,0 +1,75 @@
+{
+  "skill_name": "auto-improve-loop",
+  "iteration": 1,
+  "configurations": [
+    {
+      "name": "with_skill",
+      "evals": [
+        {
+          "eval_name": "fresh-start-loop-init",
+          "pass_rate": 1.0,
+          "passed": 4,
+          "total": 4,
+          "tokens": 28570,
+          "duration_seconds": 95.2
+        },
+        {
+          "eval_name": "resume-from-round-1",
+          "pass_rate": 1.0,
+          "passed": 4,
+          "total": 4,
+          "tokens": 29344,
+          "duration_seconds": 103.3
+        },
+        {
+          "eval_name": "negative-no-loop-keyword",
+          "pass_rate": 1.0,
+          "passed": 2,
+          "total": 2,
+          "tokens": 25846,
+          "duration_seconds": 50.2
+        }
+      ],
+      "aggregate": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "total": 10,
+        "mean_tokens": 27920,
+        "mean_duration_seconds": 82.9
+      }
+    },
+    {
+      "name": "without_skill",
+      "evals": [
+        {
+          "eval_name": "fresh-start-loop-init",
+          "tokens": 23717,
+          "duration_seconds": 102.0,
+          "notes": "Basic approach but acknowledged limitations: no automated scoring, no parallel dispatch, 50-190 tool calls needed"
+        },
+        {
+          "eval_name": "resume-from-round-1",
+          "tokens": 23575,
+          "duration_seconds": 90.4,
+          "notes": "Decent resume plan but less structured context passing, no explicit circuit breaker tracking"
+        },
+        {
+          "eval_name": "negative-no-loop-keyword",
+          "tokens": 20651,
+          "duration_seconds": 48.5,
+          "notes": "Naturally chose one-time improvement approach (correct behavior for this prompt)"
+        }
+      ],
+      "aggregate": {
+        "mean_tokens": 22648,
+        "mean_duration_seconds": 80.3
+      }
+    }
+  ],
+  "delta": {
+    "pass_rate": "10/10 (with_skill) vs N/A (baseline - no assertions)",
+    "tokens": "+5272 mean (+23%)",
+    "duration": "+2.6s mean (+3.2%)",
+    "qualitative": "with_skill produces structured progress.yaml, explicit 4-condition stop logic, circuit breaker, cross-round context passing with 5 rules. without_skill lacks standardized scoring, parallel dispatch, and systematic state tracking."
+  }
+}

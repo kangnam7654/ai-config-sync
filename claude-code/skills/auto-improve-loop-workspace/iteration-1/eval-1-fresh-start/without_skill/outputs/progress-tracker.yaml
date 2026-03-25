@@ -1,0 +1,105 @@
+# Progress Tracker — Dry Run Output
+# This file shows what the tracking state would look like during execution.
+
+task:
+  project_path: /tmp/mock-webapp
+  target_score: 8.0
+  max_rounds: 3  # user-specified override (was 5 in existing file)
+  focus_areas: null  # all dimensions
+
+existing_state:
+  source: /tmp/mock-webapp/docs/llm/improve-progress.yaml
+  round_1_completed: true
+  current_round: 2
+  latest_scores:
+    code_quality: 6.5
+    security: 6.0
+    architecture: 6.5
+    db: 7.5
+    test_coverage: 5.0
+    repo_health: 6.0
+    ux_ui: 6.5
+  known_remaining_issues:
+    - id: ARCH-001
+      title: Circular dependency in core modules
+      area: architecture
+      priority: P1
+    - id: TEST-001
+      title: No integration tests for payment flow
+      area: test
+      priority: P1
+
+planned_execution:
+  round_2:
+    status: would_execute
+    priority_order:
+      - dimension: test_coverage
+        current: 5.0
+        gap: 3.0
+        planned_actions:
+          - "Add integration tests for payment flow (TEST-001)"
+          - "Add unit tests for uncovered modules"
+          - "Set up coverage reporting if missing"
+      - dimension: security
+        current: 6.0
+        gap: 2.0
+        planned_actions:
+          - "Audit all user inputs for injection vulnerabilities"
+          - "Remove any hardcoded secrets, use env vars"
+          - "Add input validation/sanitization middleware"
+      - dimension: repo_health
+        current: 6.0
+        gap: 2.0
+        planned_actions:
+          - "Add/update .gitignore for common artifacts"
+          - "Add linter configuration (eslint/ruff/etc.)"
+          - "Add CI pipeline config if missing"
+      - dimension: code_quality
+        current: 6.5
+        gap: 1.5
+        planned_actions:
+          - "Refactor functions over 50 lines"
+          - "Extract duplicated code blocks"
+          - "Fix naming inconsistencies"
+      - dimension: architecture
+        current: 6.5
+        gap: 1.5
+        planned_actions:
+          - "Resolve circular dependency (ARCH-001)"
+          - "Ensure proper layering (controller -> service -> repo)"
+      - dimension: ux_ui
+        current: 6.5
+        gap: 1.5
+        planned_actions:
+          - "Add loading states for async operations"
+          - "Add error boundaries/fallback UIs"
+          - "Check basic accessibility (alt tags, aria labels)"
+      - dimension: db
+        current: 7.5
+        gap: 0.5
+        planned_actions:
+          - "Add missing indexes on frequently queried columns"
+          - "Review N+1 query patterns"
+
+  round_3:
+    status: conditional
+    condition: "Execute only if any dimension still below 8.0 after Round 2"
+    strategy: "Focus exclusively on dimensions that remain below target"
+
+  stop_evaluation:
+    after_each_round:
+      - check: "all_scores >= 8.0"
+        action: "STOP with success"
+      - check: "round_number >= 3"
+        action: "STOP with max_rounds_exhausted"
+      - check: "no score improved since last round"
+        action: "STOP early with stagnation warning"
+
+dry_run_note: |
+  This is a DRY RUN. No code was modified. This file documents what
+  the progress tracker would contain during actual execution.
+
+  Key challenge without a skill: manual scoring is subjective and
+  there is no automated way to verify scores are consistent across
+  rounds. Each assessment requires re-reading the entire codebase
+  and applying judgment heuristics rather than deterministic checks.

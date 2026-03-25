@@ -1,0 +1,28 @@
+{
+  "skill_name": "auto-improve-loop",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "우리 프로젝트가 코드 품질이 많이 떨어져 있어. 점수가 8점 이상 될 때까지 계속 반복해서 개선해줘. 프로젝트 경로는 /Users/kangnam/projects/my-webapp이야. 최대 3라운드까지만 돌려.",
+      "expected_output": "improve-progress.yaml을 생성하고(target_score: 8.0, max_rounds: 3), 라운드 1부터 auto-improve를 호출하는 워크플로우를 시작해야 한다. auto-improve 호출 시 프로젝트 경로와 집중 영역을 전달해야 한다.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "이전에 auto-improve-loop를 돌리다가 중간에 끊겼어. improve-progress.yaml이 이미 있으니까 이어서 진행해줘. 경로는 /Users/kangnam/projects/my-webapp이야.",
+      "expected_output": "기존 improve-progress.yaml을 읽어서 마지막 완료 라운드를 파악하고, 다음 라운드부터 재개해야 한다. 이전 라운드의 items_remaining과 learnings를 auto-improve에 전달해야 한다.",
+      "files": [
+        {
+          "path": "docs/llm/improve-progress.yaml",
+          "content": "target_score: 8.0\nmax_rounds: 5\nfocus_areas: null\n\nrounds:\n  - round: 1\n    timestamp: '2026-03-24T14:00:00'\n    status: completed\n    baseline_scores:\n      code_quality: 5.5\n      security: 4.0\n      architecture: 6.0\n      db: 7.5\n      test_coverage: 3.0\n      repo_health: 5.0\n      ux_ui: 6.0\n    final_scores:\n      code_quality: 6.5\n      security: 6.0\n      architecture: 6.5\n      db: 7.5\n      test_coverage: 5.0\n      repo_health: 6.0\n      ux_ui: 6.5\n    items_addressed:\n      - id: SEC-001\n        title: SQL injection in user search\n        area: security\n        priority: P0\n    items_remaining:\n      - id: ARCH-001\n        title: Circular dependency in core modules\n        area: architecture\n        priority: P1\n      - id: TEST-001\n        title: No integration tests for payment flow\n        area: test\n        priority: P1\n    learnings: |\n      - payment 모듈 테스트 시 mock DB 필요\n      - user search API 시그니처가 변경됨\n\ncurrent_round: 2\noverall_status: in_progress\nlatest_scores:\n  code_quality: 6.5\n  security: 6.0\n  architecture: 6.5\n  db: 7.5\n  test_coverage: 5.0\n  repo_health: 6.0\n  ux_ui: 6.5\nremaining_p0_p1: 2\nall_scores_above_target: false"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 서비스 좀 개선해줘. /Users/kangnam/projects/my-webapp",
+      "expected_output": "이 프롬프트에는 '반복', '계속', '점진적', '루프' 키워드가 없으므로 auto-improve-loop이 아닌 auto-improve를 트리거해야 한다. auto-improve-loop은 트리거하지 않아야 한다.",
+      "files": []
+    }
+  ]
+}

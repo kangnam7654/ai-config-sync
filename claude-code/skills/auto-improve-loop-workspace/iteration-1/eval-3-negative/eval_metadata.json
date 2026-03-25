@@ -1,0 +1,15 @@
+{
+  "eval_id": 3,
+  "eval_name": "negative-no-loop-keyword",
+  "prompt": "이 서비스 좀 개선해줘. /tmp/mock-webapp",
+  "assertions": [
+    {
+      "text": "auto-improve-loop을 트리거하지 않아야 함 (반복/계속/루프 키워드 없음)",
+      "type": "trigger_check"
+    },
+    {
+      "text": "auto-improve(1회성)가 적절한 스킬임을 식별",
+      "type": "trigger_check"
+    }
+  ]
+}

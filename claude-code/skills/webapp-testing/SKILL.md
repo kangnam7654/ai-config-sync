@@ -1,36 +1,35 @@
 ---
 name: webapp-testing
-description: Toolkit for interacting with and testing local web applications using agent-browser CLI. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
+description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
 license: Complete terms in LICENSE.txt
 ---
 
 # Web Application Testing
 
-To test local web applications, use agent-browser CLI commands directly from the shell.
+To test local web applications, write native Python Playwright scripts.
 
 **Helper Scripts Available**:
 - `scripts/with_server.py` - Manages server lifecycle (supports multiple servers)
 
-**Always run scripts with `--help` first** to see usage. DO NOT read the source until you try running the script first and find that a customized solution is absolutely necessary. These scripts can be very large and thus pollute your context window. They exist to be called directly as black-box scripts rather than ingested into your context window.
+**Always run scripts with `--help` first** to see usage. DO NOT read the source until you try running the script first and find that a customized solution is abslutely necessary. These scripts can be very large and thus pollute your context window. They exist to be called directly as black-box scripts rather than ingested into your context window.
 
 ## Decision Tree: Choosing Your Approach
 
 ```
 User task → Is it static HTML?
-    ├─ Yes → Read HTML file directly to identify structure
-    │         ├─ Success → Use agent-browser to open file:// URL and interact
+    ├─ Yes → Read HTML file directly to identify selectors
+    │         ├─ Success → Write Playwright script using selectors
     │         └─ Fails/Incomplete → Treat as dynamic (below)
     │
     └─ No (dynamic webapp) → Is the server already running?
         ├─ No → Run: python scripts/with_server.py --help
-        │        Then use the helper to start server + run agent-browser commands
+        │        Then use the helper + write simplified Playwright script
         │
         └─ Yes → Reconnaissance-then-action:
-            1. agent-browser open <url>
-            2. agent-browser wait --load networkidle
-            3. agent-browser snapshot -i (discover interactive elements)
-            4. agent-browser screenshot (capture current state)
-            5. Execute actions with discovered refs
+            1. Navigate and wait for networkidle
+            2. Take screenshot or inspect DOM
+            3. Identify selectors from rendered state
+            4. Execute actions with discovered selectors
 ```
 
 ## Example: Using with_server.py
@@ -39,12 +38,7 @@ To start a server, run `--help` first, then use the helper:
 
 **Single server:**
 ```bash
-python scripts/with_server.py --server "npm run dev" --port 5173 -- bash -c '
-  agent-browser open http://localhost:5173
-  agent-browser wait --load networkidle
-  agent-browser screenshot /tmp/webapp-test.png
-  agent-browser close
-'
+python scripts/with_server.py --server "npm run dev" --port 5173 -- python your_automation.py
 ```
 
 **Multiple servers (e.g., backend + frontend):**
@@ -52,96 +46,66 @@ python scripts/with_server.py --server "npm run dev" --port 5173 -- bash -c '
 python scripts/with_server.py \
   --server "cd backend && python server.py" --port 3000 \
   --server "cd frontend && npm run dev" --port 5173 \
-  -- bash -c '
-    agent-browser open http://localhost:5173
-    agent-browser wait --load networkidle
-    agent-browser snapshot -i
-    agent-browser screenshot /tmp/webapp-test.png
-    agent-browser close
-  '
+  -- python your_automation.py
 ```
 
-## Core Commands
+To create an automation script, include only Playwright logic (servers are managed automatically):
+```python
+from playwright.sync_api import sync_playwright
 
-```bash
-# Navigation
-agent-browser open <url>               # Open page
-agent-browser close                    # Close browser
-
-# Element discovery
-agent-browser snapshot                 # Full accessibility tree with refs
-agent-browser snapshot -i              # Interactive elements only
-
-# Interaction (use refs from snapshot)
-agent-browser click @e1                # Click element
-agent-browser fill @e2 "text"          # Fill input (clears first)
-agent-browser type @e2 "text"          # Type without clearing
-agent-browser press Enter              # Key press
-
-# Information
-agent-browser get text @e1             # Get element text
-agent-browser get url                  # Current URL
-agent-browser get title                # Page title
-
-# Waiting
-agent-browser wait --load networkidle  # Wait for network idle
-agent-browser wait --text "Success"    # Wait for text to appear
-agent-browser wait @e1                 # Wait for element
-
-# Screenshots
-agent-browser screenshot /tmp/out.png  # Viewport screenshot
-agent-browser screenshot --full /tmp/out.png  # Full page
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True) # Always launch chromium in headless mode
+    page = browser.new_page()
+    page.goto('http://localhost:5173') # Server already running and ready
+    page.wait_for_load_state('networkidle') # CRITICAL: Wait for JS to execute
+    # ... your automation logic
+    browser.close()
 ```
 
 ## Reconnaissance-Then-Action Pattern
 
-1. **Discover elements**:
-   ```bash
-   agent-browser open http://localhost:5173
-   agent-browser wait --load networkidle
-   agent-browser snapshot -i
-   agent-browser screenshot /tmp/inspect.png
+1. **Inspect rendered DOM**:
+   ```python
+   page.screenshot(path='/tmp/inspect.png', full_page=True)
+   content = page.content()
+   page.locator('button').all()
    ```
 
-2. **Identify refs** from snapshot output (e.g., `@e1 button "Login"`, `@e2 input "Email"`)
+2. **Identify selectors** from inspection results
 
-3. **Execute actions** using discovered refs:
-   ```bash
-   agent-browser fill @e2 "test@example.com"
-   agent-browser click @e1
-   ```
+3. **Execute actions** using discovered selectors
 
 ## Out of Scope — Do NOT Use This Skill For
 
 - **Unit tests** (use pytest, jest, etc. directly — no browser needed)
 - **API-only testing** (use curl, httpie, or requests — no UI involved)
-- **Mobile app testing** (agent-browser does not support native iOS/Android apps)
+- **Mobile app testing** (Playwright does not support native iOS/Android apps)
 - **Load/performance testing** (use k6, locust, or similar dedicated tools)
 
 ## Edge Cases
 
-- **`networkidle` timeout**: If `agent-browser wait --load networkidle` hangs beyond 10s, try `agent-browser wait 3000` as fallback, then proceed with `agent-browser snapshot` to check current state.
+- **`networkidle` timeout**: If `wait_for_load_state('networkidle')` hangs beyond 10s, increase timeout to 30s: `page.wait_for_load_state('networkidle', timeout=30000)`. If still failing, fall back to `page.wait_for_load_state('domcontentloaded')` and add a manual `page.wait_for_timeout(3000)`.
 - **Server fails to start**: Check stderr output from `with_server.py`. Common causes: port already in use (kill the process or change port), missing dependencies (`npm install` / `pip install -r requirements.txt`), missing `.env` file.
-- **agent-browser not installed**: Run `npm install -g agent-browser && agent-browser install`. On CI, ensure agent-browser is in the global path.
-- **Page shows blank/white screen**: The app may require specific env vars or a backend. Take a screenshot first with `agent-browser screenshot /tmp/debug.png`, then inspect with `agent-browser snapshot`.
-- **Element not found**: Use `agent-browser wait @ref` before interacting. If the ref is stale, run `agent-browser snapshot -i` again to get fresh refs.
+- **Playwright not installed**: Run `pip install playwright && python -m playwright install chromium`. On CI, use `python -m playwright install --with-deps chromium`.
+- **Page shows blank/white screen**: The app may require specific env vars or a backend. Take a screenshot first, then check browser console logs via `page.on("console", lambda msg: print(msg.text))`.
+- **Element not found**: Use `page.wait_for_selector(selector, timeout=10000)` before interacting. If the selector is wrong, take a screenshot and re-inspect the DOM.
 
 ## Common Pitfall
 
-- **Don't** run `agent-browser snapshot` before waiting for the page to load on dynamic apps
-- **Do** run `agent-browser wait --load networkidle` before inspection
+- **Don't** inspect the DOM before waiting for `networkidle` on dynamic apps
+- **Do** wait for `page.wait_for_load_state('networkidle')` before inspection
 
 ## Best Practices
 
-- **Use bundled scripts as black boxes** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly.
-- Always close the browser with `agent-browser close` when done
-- Use `agent-browser snapshot -i` to discover interactive elements — this is more token-efficient than full snapshot
-- Use `agent-browser find` semantic locators when refs from snapshot are ambiguous
-- Capture screenshots after every significant interaction for verification evidence
+- **Use bundled scripts as black boxes** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly. 
+- Use `sync_playwright()` for synchronous scripts
+- Always close the browser when done
+- Use descriptive selectors: `text=`, `role=`, CSS selectors, or IDs
+- Add appropriate waits: `page.wait_for_selector()` or `page.wait_for_timeout()`
 
 ## Reference Files
 
 - **examples/** - Examples showing common patterns:
-  - `element_discovery.sh` - Discovering buttons, links, and inputs on a page
-  - `static_html_automation.sh` - Using file:// URLs for local HTML
-  - `console_logging.sh` - Monitoring browser state during automation
+  - `element_discovery.py` - Discovering buttons, links, and inputs on a page
+  - `static_html_automation.py` - Using file:// URLs for local HTML
+  - `console_logging.py` - Capturing console logs during automation

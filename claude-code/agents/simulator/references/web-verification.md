@@ -1,246 +1,274 @@
 # Web App Verification Reference
 
-## agent-browser CLI Setup
+## Playwright CLI Commands
 
 ```bash
-# Check installation
-agent-browser --version
+# Check Playwright installation
+npx playwright --version
 
-# Install Chromium (first time only)
-agent-browser install
+# Install specific browser
+npx playwright install chromium --with-deps
 
-# If not installed
-npm install -g agent-browser && agent-browser install
+# Install all browsers
+npx playwright install --with-deps
 ```
 
-## Core Workflow Pattern
+## Playwright Script Patterns
 
-agent-browser is a CLI tool — execute shell commands directly instead of writing script files.
+All web verification is done by writing a temporary Node.js script and executing it with `node`. Scripts are saved to `/tmp/simulator-web/` and deleted after execution unless the user requests otherwise.
 
-```bash
-# 1. Open page
-agent-browser open http://localhost:3000
+### Basic Page Navigation and Screenshot
 
-# 2. Inspect elements (get refs like @e1, @e2)
-agent-browser snapshot -i
+```javascript
+const { chromium } = require('playwright');
 
-# 3. Interact using refs
-agent-browser click @e1
-agent-browser fill @e2 "text"
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({
+    viewport: { width: 1280, height: 720 }
+  });
+  const page = await context.newPage();
 
-# 4. Capture result
-agent-browser screenshot /tmp/simulator-screenshots/result.png
+  await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
+  await page.screenshot({
+    path: '/tmp/simulator-screenshots/page-initial.png',
+    fullPage: true
+  });
 
-# 5. Close browser
-agent-browser close
+  console.log('Title:', await page.title());
+  console.log('URL:', page.url());
+
+  await browser.close();
+})();
 ```
 
-## Navigation
+### Click, Type, and Form Interaction
 
-```bash
-agent-browser open <url>               # Navigate to URL
-agent-browser open <url> --headed      # Show browser window (debug)
-agent-browser back                     # Go back
-agent-browser forward                  # Go forward
-agent-browser reload                   # Reload page
-agent-browser close                    # Close browser session
+```javascript
+// Click a button
+await page.click('button:has-text("Submit")');
+await page.click('[data-testid="login-button"]');
+await page.click('a[href="/dashboard"]');
+
+// Fill form fields
+await page.fill('input[name="email"]', 'test@example.com');
+await page.fill('input[name="password"]', 'testpass123');
+await page.fill('[data-testid="search-input"]', 'search query');
+
+// Select dropdown
+await page.selectOption('select[name="country"]', 'KR');
+
+// Check/uncheck checkbox
+await page.check('input[type="checkbox"]#terms');
+await page.uncheck('input[type="checkbox"]#newsletter');
+
+// Upload file
+await page.setInputFiles('input[type="file"]', '/path/to/file.pdf');
 ```
 
-## Snapshot (Element Discovery)
+### Waiting Strategies
 
-The `snapshot` command returns an accessibility tree with deterministic refs (`@e1`, `@e2`, ...) for each element. Use refs instead of CSS/XPath selectors.
+```javascript
+// Wait for element to appear
+await page.waitForSelector('.dashboard-content', { state: 'visible' });
 
-```bash
-agent-browser snapshot                 # Full accessibility tree
-agent-browser snapshot -i              # Interactive elements only (buttons, inputs, links)
-agent-browser snapshot -c              # Compact output (less tokens)
-agent-browser snapshot -d 3            # Limit depth
-agent-browser snapshot -s "#main"      # Scope to CSS selector
+// Wait for URL change
+await page.waitForURL('**/dashboard');
+
+// Wait for network response
+const response = await page.waitForResponse(
+  resp => resp.url().includes('/api/users') && resp.status() === 200
+);
+
+// Wait for navigation
+await Promise.all([
+  page.waitForNavigation(),
+  page.click('a[href="/next-page"]')
+]);
+
+// Wait for load state
+await page.waitForLoadState('networkidle');
 ```
 
-## Element Interaction
+### Assertions (Manual Verification)
 
-```bash
-# Click (use ref from snapshot)
-agent-browser click @e1
+```javascript
+// Check if element is visible
+const isVisible = await page.isVisible('[data-testid="success-message"]');
+console.log('Success message visible:', isVisible);
 
-# Fill input field (clears existing value first)
-agent-browser fill @e2 "test@example.com"
+// Get element text
+const text = await page.textContent('.result-message');
+console.log('Result text:', text);
 
-# Type without clearing (appends)
-agent-browser type @e2 "additional text"
+// Count elements
+const count = await page.locator('.list-item').count();
+console.log('List items:', count);
 
-# Press key
-agent-browser press Enter
-agent-browser press Control+a
+// Check element attribute
+const href = await page.getAttribute('a.next-link', 'href');
+console.log('Next link href:', href);
 
-# Scroll
-agent-browser scroll down 500
-agent-browser scroll up 300
-
-# File upload
-agent-browser upload @e1 /path/to/file.pdf
-
-# Drag and drop
-agent-browser drag @e1 @e2
+// Check input value
+const value = await page.inputValue('input[name="email"]');
+console.log('Email value:', value);
 ```
 
-## Semantic Locators (Alternative to Refs)
+### Screenshot Variants
 
-When refs are ambiguous or you need to find elements by meaning:
+```javascript
+// Full page screenshot
+await page.screenshot({
+  path: '/tmp/simulator-screenshots/full-page.png',
+  fullPage: true
+});
 
-```bash
-agent-browser find role button click --name "Submit"
-agent-browser find text "로그인" click
-agent-browser find label "이메일" fill "user@test.com"
-agent-browser find testid "submit-btn" click
+// Viewport-only screenshot
+await page.screenshot({
+  path: '/tmp/simulator-screenshots/viewport.png'
+});
+
+// Element-specific screenshot
+await page.locator('.hero-section').screenshot({
+  path: '/tmp/simulator-screenshots/hero.png'
+});
+
+// Screenshot with clip region
+await page.screenshot({
+  path: '/tmp/simulator-screenshots/region.png',
+  clip: { x: 0, y: 0, width: 800, height: 600 }
+});
 ```
 
-## Information Extraction
+### Multi-Step Flow Verification
 
-```bash
-agent-browser get text @e1             # Element text content
-agent-browser get html @e1             # innerHTML
-agent-browser get value @e1            # Input field value
-agent-browser get url                  # Current page URL
-agent-browser get title                # Page title
+```javascript
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+  const screenshotDir = '/tmp/simulator-screenshots';
+  let stepNum = 0;
+
+  const capture = async (name) => {
+    stepNum++;
+    const path = `${screenshotDir}/step-${String(stepNum).padStart(2, '0')}-${name}.png`;
+    await page.screenshot({ path, fullPage: true });
+    console.log(`Step ${stepNum} [${name}]: ${path}`);
+    return path;
+  };
+
+  // Step 1: Navigate to login
+  await page.goto('http://localhost:3000/login', { waitUntil: 'networkidle' });
+  await capture('login-page');
+
+  // Step 2: Fill credentials
+  await page.fill('input[name="email"]', 'test@example.com');
+  await page.fill('input[name="password"]', 'password123');
+  await capture('credentials-filled');
+
+  // Step 3: Submit and wait for redirect
+  await Promise.all([
+    page.waitForURL('**/dashboard'),
+    page.click('button[type="submit"]')
+  ]);
+  await capture('dashboard-loaded');
+
+  // Step 4: Verify dashboard content
+  const welcomeText = await page.textContent('.welcome-message');
+  console.log('Welcome:', welcomeText);
+  const isVisible = await page.isVisible('.user-avatar');
+  console.log('Avatar visible:', isVisible);
+  await capture('verification-complete');
+
+  await browser.close();
+})();
 ```
 
-## Screenshots
+### Authentication Handling
 
-```bash
-# Viewport screenshot
-agent-browser screenshot /tmp/simulator-screenshots/viewport.png
+```javascript
+// Cookie-based auth: set cookies before navigation
+await context.addCookies([
+  {
+    name: 'session',
+    value: 'session-token-here',
+    domain: 'localhost',
+    path: '/'
+  }
+]);
 
-# Full page screenshot
-agent-browser screenshot --full /tmp/simulator-screenshots/full-page.png
+// Local storage: set after navigation to the domain
+await page.goto('http://localhost:3000');
+await page.evaluate(() => {
+  localStorage.setItem('auth_token', 'bearer-token-here');
+});
+await page.reload();
 
-# Screenshot to auto-generated path
-agent-browser screenshot
+// Save and restore session state
+await context.storageState({ path: '/tmp/simulator-web/auth-state.json' });
+// Later: restore
+const context2 = await browser.newContext({
+  storageState: '/tmp/simulator-web/auth-state.json'
+});
 ```
 
-## Waiting Strategies
+### Responsive Viewport Testing
 
-```bash
-# Wait for element to appear
-agent-browser wait @e1
+```javascript
+const viewports = [
+  { name: 'mobile', width: 375, height: 812 },
+  { name: 'tablet', width: 768, height: 1024 },
+  { name: 'desktop', width: 1280, height: 720 },
+  { name: 'wide', width: 1920, height: 1080 }
+];
 
-# Wait for text to appear on page
-agent-browser wait --text "성공"
-
-# Wait for URL pattern
-agent-browser wait --url "**/dashboard"
-
-# Wait for network idle
-agent-browser wait --load networkidle
-
-# Wait for specific time (ms)
-agent-browser wait 2000
+for (const vp of viewports) {
+  await page.setViewportSize({ width: vp.width, height: vp.height });
+  await page.screenshot({
+    path: `/tmp/simulator-screenshots/responsive-${vp.name}.png`,
+    fullPage: true
+  });
+  console.log(`${vp.name} (${vp.width}x${vp.height}): captured`);
+}
 ```
 
-## Multi-Step Flow Verification
+### Network Interception (Read-Only Monitoring)
 
-Example: Login flow verification
+```javascript
+// Log all API requests
+page.on('request', req => {
+  if (req.url().includes('/api/')) {
+    console.log(`→ ${req.method()} ${req.url()}`);
+  }
+});
 
-```bash
-# Step 1: Navigate to login
-agent-browser open http://localhost:3000/login
-agent-browser wait --load networkidle
-agent-browser screenshot /tmp/simulator-screenshots/step-01-login-page.png
+page.on('response', resp => {
+  if (resp.url().includes('/api/')) {
+    console.log(`← ${resp.status()} ${resp.url()}`);
+  }
+});
 
-# Step 2: Discover form elements
-agent-browser snapshot -i
-# Output: @e1 input "Email", @e2 input "Password", @e3 button "Sign In"
+// Log console errors
+page.on('console', msg => {
+  if (msg.type() === 'error') {
+    console.log('CONSOLE ERROR:', msg.text());
+  }
+});
 
-# Step 3: Fill credentials
-agent-browser fill @e1 "test@example.com"
-agent-browser fill @e2 "password123"
-agent-browser screenshot /tmp/simulator-screenshots/step-02-credentials-filled.png
-
-# Step 4: Submit and wait for redirect
-agent-browser click @e3
-agent-browser wait --url "**/dashboard"
-agent-browser screenshot /tmp/simulator-screenshots/step-03-dashboard-loaded.png
-
-# Step 5: Verify dashboard content
-agent-browser snapshot -i
-agent-browser get title
-# Output: "Dashboard - MyApp"
-
-agent-browser screenshot /tmp/simulator-screenshots/step-04-verification-complete.png
-
-# Step 6: Close
-agent-browser close
+// Log page errors (uncaught exceptions)
+page.on('pageerror', err => {
+  console.log('PAGE ERROR:', err.message);
+});
 ```
-
-## Authentication Handling
-
-```bash
-# Cookie-based auth: set cookies
-agent-browser cookies set session "session-token-here"
-
-# Local storage
-agent-browser storage local set auth_token "bearer-token-here"
-
-# Save and restore session state
-agent-browser state save /tmp/simulator-web/auth-state.json
-# Later: restore
-agent-browser state load /tmp/simulator-web/auth-state.json
-```
-
-## Responsive Viewport Testing
-
-```bash
-# Open with specific viewport
-agent-browser open http://localhost:3000 --viewport 375x812
-agent-browser screenshot /tmp/simulator-screenshots/responsive-mobile.png
-
-agent-browser open http://localhost:3000 --viewport 768x1024
-agent-browser screenshot /tmp/simulator-screenshots/responsive-tablet.png
-
-agent-browser open http://localhost:3000 --viewport 1280x720
-agent-browser screenshot /tmp/simulator-screenshots/responsive-desktop.png
-
-agent-browser open http://localhost:3000 --viewport 1920x1080
-agent-browser screenshot /tmp/simulator-screenshots/responsive-wide.png
-```
-
-## Network Monitoring
-
-```bash
-# Mock an API response
-agent-browser network route "https://api.example.com/users" --body '{"users": []}'
-
-# Block a request (e.g., analytics)
-agent-browser network route "https://analytics.example.com/*" --abort
-```
-
-## Error Recovery
-
-If an agent-browser command fails:
-
-1. Check if the browser session is still active:
-   ```bash
-   agent-browser snapshot
-   ```
-2. If snapshot succeeds — the session is alive. Retry the failed command or inspect current state.
-3. If snapshot fails ("no active session") — restart:
-   ```bash
-   agent-browser open <last-url>
-   agent-browser wait --load networkidle
-   ```
-4. If `agent-browser open` itself fails — check installation:
-   ```bash
-   agent-browser --version
-   # If missing: npm install -g agent-browser && agent-browser install
-   ```
 
 ## Common Selectors Priority
 
-Use element refs from `snapshot` output. When using semantic locators:
+Use selectors in this priority order:
 
-1. `agent-browser find testid "..."` — most stable
-2. `agent-browser find role button --name "Submit"` — accessible role selectors
-3. `agent-browser find text "Button Text"` — visible text
-4. `agent-browser find label "Email"` — form labels
-5. Direct ref from `agent-browser snapshot -i` — always available
+1. `[data-testid="..."]` — most stable
+2. `role=button[name="Submit"]` — accessible role selectors
+3. `text="Button Text"` or `:has-text("...")` — visible text
+4. `#element-id` — HTML id
+5. `.class-name` — CSS class (least stable, avoid if possible)

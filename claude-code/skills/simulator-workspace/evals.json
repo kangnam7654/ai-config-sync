@@ -5,15 +5,15 @@
       "id": 0,
       "name": "web-verification-localhost",
       "prompt": "localhost:3000 열어서 메인 페이지가 로드되는지 확인하고 스크린샷 찍어줘",
-      "expected_output": "Web platform detected, agent-browser dependency checked, connection to localhost:3000 attempted, edge case handled if server not running",
+      "expected_output": "Web platform detected, Playwright dependency checked, connection to localhost:3000 attempted, edge case handled if server not running",
       "files": [],
       "expectations": [
         "Agent detects web platform from 'localhost:3000' signal",
-        "Agent checks agent-browser --version as first action",
+        "Agent checks node --version and npx playwright --version as first action",
         "Agent creates /tmp/simulator-screenshots/ directory",
-        "Agent runs agent-browser open http://localhost:3000 to navigate",
+        "Agent writes a Playwright script to navigate to localhost:3000",
         "If connection refused: agent reports 'Connection refused at localhost:3000. Start the dev server and try again' and stops without starting a server",
-        "If connection succeeds: agent captures screenshot with agent-browser screenshot and reports path",
+        "If connection succeeds: agent captures screenshot and reports path",
         "Final output follows the Simulator Verification Report template"
       ]
     },

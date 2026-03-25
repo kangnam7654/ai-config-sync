@@ -1,5 +1,8 @@
 # Frontend-Dev Agent Memory
 
+## Dear,ANT Investment Companion App
+- `project_dear_ant.md` — warm design tokens, AntCharacter usage, page layout conventions, animation patterns
+
 ## kangnam-client (Tauri Desktop LLM Chat Client)
 - `project_kangnam_client.md` — tech stack, design system, file paths, component conventions, IPC patterns
 

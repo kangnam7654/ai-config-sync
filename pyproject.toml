@@ -1,0 +1,11 @@
+[project]
+name = "ai-config-sync"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[dependency-groups]
+dev = ["pytest>=8.0", "pytest-cov>=5.0"]

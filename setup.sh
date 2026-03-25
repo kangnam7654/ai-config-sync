@@ -14,6 +14,13 @@ case "$OSTYPE" in
   *)        PLATFORM="linux" ;;
 esac
 
+# Python 명령어 (Windows: python, Unix: python3)
+if [ "$PLATFORM" = "windows" ]; then
+  PYTHON_CMD="python"
+else
+  PYTHON_CMD="python3"
+fi
+
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  ai-config-sync 셋업"
@@ -46,14 +53,19 @@ if [ "$SETUP_CRON" = "y" ] || [ "$SETUP_CRON" = "Y" ]; then
   if [ "$PLATFORM" = "windows" ]; then
     SYNC_DIR_WIN=$(cygpath -w "$SCRIPT_DIR" 2>/dev/null || echo "$SCRIPT_DIR")
     GIT_BASH_PATH=$(cygpath -w "$(which bash)" 2>/dev/null || echo "C:\\Program Files\\Git\\bin\\bash.exe")
+    WIN_LOG_DIR="$HOME/.local/share/ai-config-sync"
+    mkdir -p "$WIN_LOG_DIR"
     schtasks //Create //TN "ai-config-sync" \
-      //TR "\"$GIT_BASH_PATH\" -l -c 'cd \"$SYNC_DIR_WIN\" && bash sync.sh >> /tmp/ai-config-sync.log 2>&1'" \
+      //TR "\"$GIT_BASH_PATH\" -l -c 'cd \"$SYNC_DIR_WIN\" && bash sync.sh >> \"$WIN_LOG_DIR/sync.log\" 2>&1'" \
       //SC MINUTE //MO 30 //F 2>/dev/null \
       && echo "  -> Task Scheduler 등록 완료 (30분)" \
       || echo "  -> Task Scheduler 등록 실패. 수동 등록 필요."
   else
     # 기존 ai-config-sync 크론 제거 후 재등록
-    CRON_CMD="*/30 * * * * cd $SCRIPT_DIR && bash sync.sh >> /tmp/ai-config-sync.log 2>&1"
+    LOG_DIR="$HOME/.local/share/ai-config-sync"
+    mkdir -p "$LOG_DIR"
+    chmod 700 "$LOG_DIR"
+    CRON_CMD="*/30 * * * * cd $SCRIPT_DIR && bash sync.sh >> $LOG_DIR/sync.log 2>&1"
     ( crontab -l 2>/dev/null | grep -v "ai-config-sync" ; echo "$CRON_CMD" ) | crontab -
     echo "  -> 크론 등록 완료 (30분 간격)"
   fi
@@ -72,7 +84,11 @@ if [ -d "$CLAUDE_SRC" ]; then
 
   if [ "$RESTORE_CLAUDE" = "y" ] || [ "$RESTORE_CLAUDE" = "Y" ]; then
     mkdir -p "$CLAUDE_DST"
-    for item in CLAUDE.md settings.json agents plugins skills agent-memory memory todos teams stop-hook-git-check.sh; do
+    CLAUDE_ITEMS=$($PYTHON_CMD "$SCRIPT_DIR/sync-timestamps.py" --list-includes 2>/dev/null)
+    if [ -z "$CLAUDE_ITEMS" ]; then
+      CLAUDE_ITEMS="CLAUDE.md agents agent-memory memory plugins settings.json skills stop-hook-git-check.sh teams todos"
+    fi
+    for item in $CLAUDE_ITEMS; do
       SRC="$CLAUDE_SRC/$item"
       if [ -e "$SRC" ]; then
         if [ -d "$SRC" ]; then
@@ -108,10 +124,10 @@ if [ -d "$OPENCLAW_SRC" ]; then
     CONFIG_FILE="$HOME/.openclaw/openclaw.json"
     TEMPLATE="$SCRIPT_DIR/openclaw/openclaw.template.json"
     if [ ! -f "$CONFIG_FILE" ] && [ -f "$TEMPLATE" ]; then
-      sed "s|<REPLACE_WITH_YOUR_WORKSPACE_PATH>|$WORKSPACE|g" "$TEMPLATE" > "$CONFIG_FILE.tmp"
+      (umask 077 && sed "s|<REPLACE_WITH_YOUR_WORKSPACE_PATH>|$WORKSPACE|g" "$TEMPLATE" > "$CONFIG_FILE.tmp")
       NEW_TOKEN=$(openssl rand -hex 24)
-      sed "s|<REPLACE_WITH_NEW_TOKEN>|$NEW_TOKEN|g" "$CONFIG_FILE.tmp" > "$CONFIG_FILE"
-      rm "$CONFIG_FILE.tmp"
+      (umask 077 && sed "s|<REPLACE_WITH_NEW_TOKEN>|$NEW_TOKEN|g" "$CONFIG_FILE.tmp" > "$CONFIG_FILE")
+      rm -f "$CONFIG_FILE.tmp"
       echo "  -> openclaw.json 생성 완료"
     fi
   else

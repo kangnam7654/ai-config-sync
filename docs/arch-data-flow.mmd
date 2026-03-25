@@ -1,0 +1,55 @@
+---
+title: "Refactored sync-timestamps.py Data Flow"
+---
+flowchart LR
+    subgraph Entry["Entry Point"]
+        ARGV["sys.argv"]
+        LIST["--list-includes"]
+    end
+
+    subgraph Parse["parse_args()"]
+        VA["validate_hostname()"]
+    end
+
+    subgraph Load["Load Phase"]
+        LT["load_timestamps()<br/>ts_dir + hostname → our_ts"]
+        LPT["load_peer_timestamps()<br/>sync_dir + hostname → peer_ts_all"]
+        VT["validate_timestamp()"]
+    end
+
+    subgraph Sync["Sync Phase (per section)"]
+        SS["sync_section()<br/>section, local_dir, repo_subdir,<br/>sync_dir, our_section_ts, peer_ts_all"]
+        VF["validate_filepath()"]
+        SI["should_include()"]
+        WF["walk_files()"]
+        WAF["walk_all_files()"]
+        GB["git_bytes()"]
+    end
+
+    subgraph Save["Save Phase"]
+        ST["save_timestamps()<br/>ts_dir + hostname + new_ts"]
+    end
+
+    subgraph Output["Outputs"]
+        TS["timestamps/hostname.json"]
+        LOCAL["~/.claude/ files"]
+        REPO["claude-code/ repo files"]
+    end
+
+    ARGV --> Parse
+    LIST --> |"print_includes()"| STDOUT["stdout: space-separated list"]
+
+    Parse --> |"sync_dir, hostname"| LT
+    Parse --> |"sync_dir, hostname"| LPT
+    LPT --> |"each ts value"| VT
+    LT --> |"our_ts"| SS
+    LPT --> |"peer_ts_all"| SS
+    SS --> |"each filepath"| VF
+    SS --> |"each filepath"| SI
+    SS --> WF
+    SS --> WAF
+    SS --> |"peer content"| GB
+    SS --> |"new_section_ts"| ST
+    ST --> TS
+    SS --> LOCAL
+    SS --> REPO

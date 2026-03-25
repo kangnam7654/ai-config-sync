@@ -14,7 +14,12 @@ echo "📂 Claude Code 설정 복원 중: $CLAUDE_DIR"
 mkdir -p "$CLAUDE_DIR"
 
 # claude-code/ 내 설정 파일들을 ~/.claude/로 복사
-for item in CLAUDE.md settings.json agents plugins skills agent-memory memory todos teams stop-hook-git-check.sh; do
+PYTHON_CMD="python"
+CLAUDE_ITEMS=$($PYTHON_CMD "$SCRIPT_DIR/sync-timestamps.py" --list-includes 2>/dev/null)
+if [ -z "$CLAUDE_ITEMS" ]; then
+  CLAUDE_ITEMS="CLAUDE.md agents agent-memory memory plugins settings.json skills stop-hook-git-check.sh teams todos"
+fi
+for item in $CLAUDE_ITEMS; do
   SRC="$SCRIPT_DIR/claude-code/$item"
   if [ -e "$SRC" ]; then
     cp -r "$SRC" "$CLAUDE_DIR/"
@@ -30,7 +35,7 @@ SYNC_DIR_WIN=$(cygpath -w "$SCRIPT_DIR" 2>/dev/null || echo "$SCRIPT_DIR")
 GIT_BASH_PATH=$(cygpath -w "$(which bash)" 2>/dev/null || echo "C:\\Program Files\\Git\\bin\\bash.exe")
 
 schtasks //Create //TN "ai-config-sync" \
-  //TR "\"$GIT_BASH_PATH\" -l -c 'cd \"$SYNC_DIR_WIN\" && bash sync.sh >> /tmp/ai-config-sync.log 2>&1'" \
+  //TR "\"$GIT_BASH_PATH\" -l -c 'cd \"$SYNC_DIR_WIN\" && bash sync.sh >> \"$HOME/.local/share/ai-config-sync/sync.log\" 2>&1'" \
   //SC MINUTE //MO 30 //F 2>/dev/null && echo "✅ Task Scheduler 등록 완료 (30분 간격)" || {
   echo "⚠️  자동 등록 실패. 수동으로 등록하세요:"
   echo ""

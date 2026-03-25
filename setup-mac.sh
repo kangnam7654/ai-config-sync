@@ -4,6 +4,8 @@
 
 set -e
 
+echo "DEPRECATED: 'bash setup.sh'를 사용하세요."
+
 WORKSPACE="$HOME/.openclaw/workspace"
 CONFIG_DIR="$HOME/.openclaw"
 
@@ -28,12 +30,12 @@ if [ ! -f "$CONFIG_FILE" ]; then
   echo ""
   echo "⚙️  openclaw.json 생성 중..."
   # 워크스페이스 경로 치환
-  sed "s|<REPLACE_WITH_YOUR_WORKSPACE_PATH>|$WORKSPACE|g" "$TEMPLATE" > "$CONFIG_FILE.tmp"
+  (umask 077 && sed "s|<REPLACE_WITH_YOUR_WORKSPACE_PATH>|$WORKSPACE|g" "$TEMPLATE" > "$CONFIG_FILE.tmp")
 
   # 게이트웨이 토큰 생성
   NEW_TOKEN=$(openssl rand -hex 24)
-  sed "s|<REPLACE_WITH_NEW_TOKEN>|$NEW_TOKEN|g" "$CONFIG_FILE.tmp" > "$CONFIG_FILE"
-  rm "$CONFIG_FILE.tmp"
+  (umask 077 && sed "s|<REPLACE_WITH_NEW_TOKEN>|$NEW_TOKEN|g" "$CONFIG_FILE.tmp" > "$CONFIG_FILE")
+  rm -f "$CONFIG_FILE.tmp"
 
   echo "✅ openclaw.json 생성 완료 (토큰 자동 생성됨)"
 else

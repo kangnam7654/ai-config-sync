@@ -128,12 +128,22 @@ else
     echo "  -> No changes"
   else
     git commit -m "sync [$HOSTNAME]: $(date '+%Y-%m-%d %H:%M')"
-    if ! git push origin main 2>/dev/null; then
+    if ! git push origin main; then
       echo "  -> Push conflict, rebasing..."
-      git pull --rebase origin main
-      git push origin main
+      if ! git pull --rebase origin main; then
+        echo "  [WARN] Rebase conflict. Aborting rebase."
+        git rebase --abort
+        echo "  [WARN] 수동 해결 필요. 다음 실행에서 재시도합니다."
+      else
+        if ! git push origin main; then
+          echo "  [WARN] Push 재시도 실패. 다음 실행에서 재시도합니다."
+        else
+          echo "  Push OK (after rebase)"
+        fi
+      fi
+    else
+      echo "  Push OK"
     fi
-    echo "  Push OK"
   fi
 fi
 

@@ -1,0 +1,61 @@
+---
+title: "Implementation Dependency Graph (P0+P1+P2)"
+---
+flowchart TD
+    subgraph Phase1["Phase 1: Infra + Non-breaking"]
+        TEST1a["TEST-001a<br/>pyproject.toml + conftest"]
+        REPO1["REPO-001<br/>__pycache__ rm --cached"]
+        CODE7["CODE-007<br/>Type annotations"]
+    end
+
+    subgraph Phase2["Phase 2: Validation Functions"]
+        SEC1["SEC-001<br/>validate_hostname"]
+        SEC2["SEC-002<br/>validate_filepath"]
+        SEC4["SEC-004<br/>validate_timestamp"]
+        CODE2["CODE-002<br/>parse_args"]
+        CODE1["CODE-001<br/>bare except fix"]
+        CODE4["CODE-004<br/>unlink logging"]
+        TEST1b["TEST-001b<br/>Unit tests"]
+    end
+
+    subgraph Phase3["Phase 3: Structural Refactor"]
+        CODE5["CODE-005<br/>main() split"]
+        SEC2apply["SEC-002 apply<br/>in sync_section"]
+        SEC4apply["SEC-004 apply<br/>in load_peer"]
+        TEST1c["TEST-001c<br/>Integration tests"]
+    end
+
+    subgraph Phase4["Phase 4: Bash Scripts"]
+        ARCH1py["ARCH-001<br/>--list-includes"]
+        ARCH1sh["ARCH-001<br/>setup.sh dynamic ref"]
+        CODE3["CODE-003<br/>push error handling"]
+        SEC3["SEC-003<br/>log path fix"]
+        SEC5["SEC-005<br/>umask 077"]
+        CODE6["CODE-006<br/>setup-mac deprecated"]
+    end
+
+    subgraph Phase5["Phase 5: CI + Final"]
+        REPO2["REPO-002<br/>GitHub Actions"]
+        VERIFY["Full test + coverage"]
+    end
+
+    TEST1a --> TEST1b
+    CODE7 --> CODE5
+
+    SEC1 --> CODE2
+    CODE2 --> CODE5
+    SEC2 --> SEC2apply
+    SEC4 --> SEC4apply
+    CODE1 --> CODE5
+    CODE4 --> CODE5
+
+    TEST1b --> CODE5
+    CODE5 --> SEC2apply
+    CODE5 --> SEC4apply
+    CODE5 --> TEST1c
+    CODE5 --> ARCH1py
+
+    ARCH1py --> ARCH1sh
+
+    TEST1c --> REPO2
+    REPO2 --> VERIFY

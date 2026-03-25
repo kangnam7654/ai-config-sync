@@ -205,6 +205,10 @@ Rate limits depend on Plan + Seat type + API Tier:
 
 See: figma-api-rate-limits.md
 
+## Dear,ANT Business Model Market Research (researched 2026-03-25)
+
+투자 감정 앱 BM 설계용 시장조사. Key: Edgewonk $197/년, TraderSync $29.95~79.95/월, 헬스앱 LTV $8~55, 한국 개인투자자 1423만명, 한국 멘탈헬스앱 $48.6M(2024). See: dear-ant-business-model-research.md
+
 ## Fortune/Astrology App UI Design Trends (researched 2026-03-20)
 
 Key findings for 달결 app UI direction:

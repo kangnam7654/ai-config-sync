@@ -29,7 +29,13 @@ type: project
 - **Key flows**: login-full.yaml, capture-tabs.yaml, capture-mypage-details.yaml
 
 ## Maestro Patterns That Work
-- Tab navigation: `tapOn: "홈"`, `tapOn: "상담"`, `tapOn: "리포트"`, `tapOn: "마이"` — uses tab text labels
+- Tab navigation: TEXT LABELS DO NOT WORK (FloatingTabBar is custom View, Maestro can't find text). Use COORDINATES:
+  - 홈: `tapOn: point: "23%,90%"`
+  - 상담: `tapOn: point: "41%,90%"`
+  - 리포트: `tapOn: point: "59%,90%"`
+  - 마이: `tapOn: point: "77%,90%"`
+  - Tab bounds in 402×874 screen: 홈 [79,774][105,797], 상담 [150,774][179,797], 리포트 [229,775][245,796], 마이 [299,776][319,796]
+  - Tab accessibility labels in hierarchy: "홈 탭", "상담 탭", "리포트 탭", "마이 탭" — but Maestro `tapOn: id:` does NOT work for these (resource-id is the SF symbol name, not the label)
 - Back navigation: `tapOn: point: "8%, 9%"` — hits the nav bar back chevron reliably (from within app, not from ReadingDetailView)
 - Login flow: tap "이메일로 시작하기" → `tapOn: point: "50%,65%"` (로그인 링크) → tap "이메일" → inputText → tap "비밀번호" → inputText → tap "로그인"
   - NOTE: "이미 계정이 있으신가요? **로그인**" 버튼은 markdown bold 때문에 텍스트/레이블로 탭 불가. 좌표 `50%,65%` 사용
@@ -53,10 +59,29 @@ type: project
 - cliclick back button (nav bar): screen (848, 262) or use Maestro point "8%, 9%"
 - Email login button: screen y=672 (ios_y=485 from screen top)
 
+## SplashView Timing
+- Splash shows for 1.5 seconds total (SajuApp.swift: `showSplash = false` at 1.5s)
+- Text animation: 0.2s delay + 0.8s easeOut = fully visible at ~1.0s
+- Screenshot window to catch splash with "달결" text: ~1.0~1.4s after xcrun simctl launch
+- Command: `sleep 1.2 && xcrun simctl io <UDID> screenshot splash.png`
+- EastSeaDokdo-Regular font, 160pt, "달" above "결", offset ±18 for staggered look
+
+## Key Element Bounds (402×874 screen, confirmed 2026-03-25)
+- 마이페이지 설정 row: [20,504][382,554] → tap "50%,60%"
+- 마이페이지 로그아웃 row: [20,693][382,739] → tap "50%,82%"
+- 홈 "자세히 보기" button: [40,350][196,402] → tap "29%,43%"
+- 포인트 "충전" button: accessible via `tapOn: "충전"` (text label works)
+- 이메일 로그인 "이메일" / "비밀번호" fields: accessible via text label tapOn
+
+## Logout Dialog
+- "로그아웃 하시겠습니까?" alert with 취소 / 로그아웃 buttons
+- Confirm tap: `tapOn: point: "75%,55%"` (right button position in alert)
+
 ## Known Issues
 - MyPageView scrolls past profile card on initial load after navigating away — requires fresh app launch to see profile card at top
 - ProfileListView navigation works only when app just launched fresh (not from within scrolled MyPage)
 - iOS 26.2 Passwords app is separate; strong password dialog blocks SecureField interaction
+- After login, "암호를 저장하겠습니까?" dialog appears — dismiss with `tapOn: "지금 안 함"`
 
 **Why:** Saved to avoid re-discovering all these details on each session.
-**How to apply:** Use test account for login flows. Use Maestro with text-label tap for navigation. For MyPage profile card, ensure app is freshly launched.
+**How to apply:** Use test account for login flows. Use coordinate-based tap for navigation. For MyPage profile card, ensure app is freshly launched.

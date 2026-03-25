@@ -1,7 +1,7 @@
 #!/bin/bash
 # sync.sh - 양방향 자동 동기화 (Mac ↔ Ubuntu ↔ Windows)
 # OpenClaw 워크스페이스 + Claude Code 설정 동기화 (newest-wins)
-# Windows는 pull-only (수신만, 푸시 안 함)
+# pull-only: Windows 또는 .pull-only 파일 존재 시 수신만
 # 사용법: bash sync.sh
 
 set -e
@@ -21,6 +21,11 @@ detect_platform() {
 }
 
 detect_platform
+
+# ── Pull-only 판단 ────────────────────────────────────────────────
+is_pull_only() {
+  [ "$PLATFORM" = "windows" ] || [ -f "$SYNC_DIR/.pull-only" ]
+}
 
 # Python 명령어 (Windows: python, Unix: python3)
 if [ "$PLATFORM" = "windows" ]; then
@@ -112,9 +117,9 @@ $PYTHON_CMD "$SYNC_DIR/sync-timestamps.py" "$SYNC_DIR" "$HOSTNAME"
 # ── 3. Generate state ────────────────────────────────────────────
 generate_state
 
-# ── 4. Push (Windows는 pull-only → 스킵) ─────────────────────────
-if [ "$PLATFORM" = "windows" ]; then
-  echo "  -> Windows: pull-only mode (skip push)"
+# ── 4. Push (pull-only → 스킵) ────────────────────────────────────
+if is_pull_only; then
+  echo "  -> Pull-only mode (skip push)"
 else
   # 동기화 산출물 경로만 add (의도치 않은 파일 커밋 방지)
   git add -A openclaw/workspace claude-code timestamps state
@@ -133,8 +138,8 @@ else
 fi
 
 # ── 5. Pull latest code ──────────────────────────────────────────
-if [ "$PLATFORM" = "windows" ]; then
-  # Windows는 push하지 않으므로 repo를 remote에 맞춰 리셋
+if is_pull_only; then
+  # pull-only는 push하지 않으므로 repo를 remote에 맞춰 리셋
   git reset --hard origin/main 2>/dev/null
   echo "  -> Code reset to origin/main"
 else

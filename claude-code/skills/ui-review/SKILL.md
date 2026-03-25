@@ -36,8 +36,8 @@ Typical flow: ui-review identifies issues → user takes findings to frontend-de
 Accept one or more of these input types:
 
 - **Screenshot file path(s)** → Read the image file(s) directly
-- **Live URL** → Capture with `agent-browser open {url} && agent-browser screenshot --full /tmp/ui-review-$(date +%s).png && agent-browser close`
-- **Local app** → Capture with `agent-browser open http://localhost:{port} && agent-browser screenshot --full /tmp/ui-review-$(date +%s).png && agent-browser close`
+- **Live URL** → Capture with `agent-browser open {url} && agent-browser wait --load networkidle && agent-browser screenshot --full /tmp/ui-review-$(date +%s).png && agent-browser close`
+- **Local app** → Capture with `agent-browser open http://localhost:{port} && agent-browser wait --load networkidle && agent-browser screenshot --full /tmp/ui-review-$(date +%s).png && agent-browser close`
 - **iOS Simulator app** → See "iOS Simulator 연동" section below
 - **Figma reference** → Ask the user to export a screenshot
 

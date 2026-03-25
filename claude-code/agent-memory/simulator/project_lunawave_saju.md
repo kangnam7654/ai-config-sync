@@ -30,11 +30,11 @@ type: project
 
 ## Maestro Patterns That Work
 - Tab navigation: TEXT LABELS DO NOT WORK (FloatingTabBar is custom View, Maestro can't find text). Use COORDINATES:
-  - 홈: `tapOn: point: "23%,90%"`
-  - 상담: `tapOn: point: "41%,90%"`
-  - 리포트: `tapOn: point: "59%,90%"`
-  - 마이: `tapOn: point: "77%,90%"`
-  - Tab bounds in 402×874 screen: 홈 [79,774][105,797], 상담 [150,774][179,797], 리포트 [229,775][245,796], 마이 [299,776][319,796]
+  - **iPhone 17 Pro (402×874pt)**: 홈 `23%,90%` | 상담 `41%,90%` | 리포트 `59%,90%` | 마이 `77%,90%`
+    - Tab bounds: 홈 [79,774][105,797], 상담 [150,774][179,797], 리포트 [229,775][245,796], 마이 [299,776][319,796]
+  - **iPhone 17 Pro Max (440×956pt)**: 홈 `12%,94%` | 상담 `38%,94%` | 리포트 `63%,94%` | 마이 `88%,94%`
+    - Tab bounds: 홈 [2,874][108,922], 상담 [112,874][218,922], 리포트 [222,874][328,922], 마이 [332,874][438,922]
+  - NOTE: 퍼센트 좌표는 기기별 화면 크기에 따라 다름 — always verify bounds via `maestro hierarchy` on first use
   - Tab accessibility labels in hierarchy: "홈 탭", "상담 탭", "리포트 탭", "마이 탭" — but Maestro `tapOn: id:` does NOT work for these (resource-id is the SF symbol name, not the label)
 - Back navigation: `tapOn: point: "8%, 9%"` — hits the nav bar back chevron reliably (from within app, not from ReadingDetailView)
 - Login flow: tap "이메일로 시작하기" → `tapOn: point: "50%,65%"` (로그인 링크) → tap "이메일" → inputText → tap "비밀번호" → inputText → tap "로그인"
@@ -58,6 +58,16 @@ type: project
 - Scale: cliclick coords = screen_x = 818 + ios_x, screen_y = 187 + ios_y (1:1 scale)
 - cliclick back button (nav bar): screen (848, 262) or use Maestro point "8%, 9%"
 - Email login button: screen y=672 (ios_y=485 from screen top)
+
+## iOS 26.2 / iPhone 17 Pro Max Screen Details (added 2026-03-25)
+- Simulator window position: (662, 44) size 476x1016 macOS pts
+- Simulator toolbar height: 52pt → iOS content starts at y=96
+- iOS screen: 440x956pt (@3x = 1320x2868px)
+- Build command: `xcodebuild ... -destination 'platform=iOS Simulator,id=3EB5BC99-4872-4A9B-B415-879B8CB0F3E2'`
+- UDID: 3EB5BC99-4872-4A9B-B415-879B8CB0F3E2
+- Use `--udid 3EB5BC99-4872-4A9B-B415-879B8CB0F3E2` with maestro when Pro Max is target
+- "전체 운세 보기" button (홈 화면): use `tapOn: "전체 운세 보기"` (text label works!) → navigates to ReadingDetailView with score rings
+- Key flow: appstore-screenshots.yaml (촬영 5화면 한번에 실행)
 
 ## SplashView Timing
 - Splash shows for 1.5 seconds total (SajuApp.swift: `showSplash = false` at 1.5s)

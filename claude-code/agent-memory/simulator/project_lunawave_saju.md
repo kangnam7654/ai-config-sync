@@ -30,11 +30,21 @@ type: project
 
 ## Maestro Patterns That Work
 - Tab navigation: `tapOn: "홈"`, `tapOn: "상담"`, `tapOn: "리포트"`, `tapOn: "마이"` — uses tab text labels
-- Back navigation: `tapOn: point: "8%, 9%"` — hits the nav bar back chevron reliably
-- Login flow: tap "이메일로 시작하기" → tap "이미 계정이 있으신가요? 로그인" → tap field by text → inputText → tap title to dismiss keyboard → tap "로그인"
+- Back navigation: `tapOn: point: "8%, 9%"` — hits the nav bar back chevron reliably (from within app, not from ReadingDetailView)
+- Login flow: tap "이메일로 시작하기" → `tapOn: point: "50%,65%"` (로그인 링크) → tap "이메일" → inputText → tap "비밀번호" → inputText → tap "로그인"
+  - NOTE: "이미 계정이 있으신가요? **로그인**" 버튼은 markdown bold 때문에 텍스트/레이블로 탭 불가. 좌표 `50%,65%` 사용
+  - Screen pixel height: 2622. Link is at y=1600~1700px = ~63~65%
 - Keyboard dismissal: tap the screen title text (e.g. "이메일 로그인") to dismiss keyboard — hideKeyboard command fails for custom inputs
 - Password AutoFill dialog: does NOT appear reliably; if it appears use pressKey: Escape
 - Strong password prompt after login: tap "지금 안 함" to dismiss
+- DatePicker (profile form): tap date field → tap "YYYY년 MM월" to switch to scroll picker → swipe within `(30%,27%)~(30%,17%)` for DOWN scroll (later dates), `(30%,17%)~(30%,27%)` for UP scroll (earlier dates) → tap "YYYY년 MM월" again to return to calendar → tap day number
+- DatePicker (compatibility form): tap date field → tap "Month YYYY" → swipe within `(50%,27%)~(50%,17%)` range — picker closes if swipe goes outside (do not exceed y=17%)
+- clearText command does NOT exist in Maestro 2.3.0 — just use inputText (it appends; pre-empty the field by tapping a fresh placeholder)
+
+## Test Data Created (2026-03-25)
+- Profile: 민지, 본인, 여성, 양력 1998-03-15 (saved successfully)
+- Compatibility test: 준호 + Sep 20, 1995 (목표: Jul 20, 1995이었으나 피커 한계로 Sep)
+  - Result: 66점 (좋은 궁합), 연애 91 / 소통 41 / 가치관 66 / 생활 64
 
 ## iOS 26.2 / iPhone 17 Pro Screen Details
 - Simulator window position: (791, 107) size 456x972 macOS pts

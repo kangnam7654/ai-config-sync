@@ -36,8 +36,8 @@ Typical flow: ui-review identifies issues → user takes findings to frontend-de
 Accept one or more of these input types:
 
 - **Screenshot file path(s)** → Read the image file(s) directly
-- **Live URL** → Capture with `npx playwright screenshot --full-page {url} /tmp/ui-review-$(date +%s).png`
-- **Local app** → Capture with `npx playwright screenshot --full-page http://localhost:{port} /tmp/ui-review-$(date +%s).png`
+- **Live URL** → Capture with `agent-browser open {url} && agent-browser screenshot --full /tmp/ui-review-$(date +%s).png && agent-browser close`
+- **Local app** → Capture with `agent-browser open http://localhost:{port} && agent-browser screenshot --full /tmp/ui-review-$(date +%s).png && agent-browser close`
 - **iOS Simulator app** → See "iOS Simulator 연동" section below
 - **Figma reference** → Ask the user to export a screenshot
 
@@ -206,7 +206,7 @@ The reason for requiring exact values: vague advice like "improve the contrast" 
 
 | Situation | Resolution |
 |-----------|------------|
-| Playwright not installed | Report: "Playwright가 설치되어 있지 않습니다. `npx playwright install chromium`을 실행하거나 스크린샷을 직접 제공해주세요." |
+| agent-browser not installed | Report: "agent-browser가 설치되어 있지 않습니다. `npm install -g agent-browser && agent-browser install`을 실행하거나 스크린샷을 직접 제공해주세요." |
 | Low-res screenshot (<720px wide) | Score only clearly observable dimensions, mark others N/O. Ask for higher resolution. |
 | Static image (poster/banner), not app UI | Decline: "이 스킬은 앱/웹 UI 리뷰 전용입니다. 정적 이미지 디자인 리뷰는 지원하지 않습니다." |
 | No trending apps found for domain | Broaden to adjacent domains. Note: "{domain}의 직접 트렌드 데이터가 부족하여 인접 도메인을 참고했습니다." |

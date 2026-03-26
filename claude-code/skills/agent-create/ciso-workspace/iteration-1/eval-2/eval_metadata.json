@@ -1,0 +1,42 @@
+{
+  "eval_id": 2,
+  "name": "PIPA compliance check",
+  "prompt": "이 프로젝트에서 개인정보보호법 준수 여부를 검토해줘",
+  "assertions": [
+    {
+      "id": "A2-1",
+      "text": "Compliance Matrix includes PIPA-specific articles: Art. 15, Art. 3, Art. 21, Art. 24, Art. 30, Art. 17",
+      "type": "correctness"
+    },
+    {
+      "id": "A2-2",
+      "text": "Each compliance item cites specific article number (e.g., 'Art. 15') not just framework name",
+      "type": "correctness"
+    },
+    {
+      "id": "A2-3",
+      "text": "Data Classification step is present and completed before Compliance Matrix",
+      "type": "structure"
+    },
+    {
+      "id": "A2-4",
+      "text": "Every compliance status is exactly one of: PASS, FAIL, UNVERIFIED",
+      "type": "correctness"
+    },
+    {
+      "id": "A2-5",
+      "text": "UNVERIFIED items include description of what evidence is needed to confirm",
+      "type": "correctness"
+    },
+    {
+      "id": "A2-6",
+      "text": "Report still includes all 6 domain scores and SPS (not just compliance section)",
+      "type": "structure"
+    },
+    {
+      "id": "A2-7",
+      "text": "Agent verified claims by reading actual project files (references to specific files in ai-config-sync)",
+      "type": "behavior"
+    }
+  ]
+}

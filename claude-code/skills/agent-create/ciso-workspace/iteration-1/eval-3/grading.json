@@ -1,0 +1,43 @@
+{
+  "eval_id": 3,
+  "name": "Incident response playbook (policy-only)",
+  "with_agent": {
+    "assertions": [
+      {
+        "id": "A3-1",
+        "text": "Agent skipped Steps 1-5 (policy-only edge case)",
+        "passed": false,
+        "evidence": "Report CLAIMS 'Steps 1-5 skipped' in header, but INCLUDES: Application Security Profile, Data Classification (5 items), Compliance Matrix, Threat Register (5 threats), Domain Scores (SPS 4.3), Verdict, Remediation Roadmap. Agent recognized edge case but did NOT execute it — ran a full lightweight audit instead."
+      },
+      {
+        "id": "A3-2",
+        "text": "Policy follows Policies section format (Scope, Classification, Requirements, Exceptions, Review cycle, Effective date)",
+        "passed": true,
+        "evidence": "Lines 70-72: Scope, Classification, Effective date, Review cycle present. Lines 268: Exceptions. Requirements embedded in numbered playbook steps."
+      },
+      {
+        "id": "A3-3",
+        "text": "Policy uses provided context (KangNam Dev, data types, team size)",
+        "passed": true,
+        "evidence": "Line 70: 'KangNam Dev 조직', '1인 개발자 환경에 최적화', references '개발 환경 설정', 'API 키 참조'"
+      },
+      {
+        "id": "A3-4",
+        "text": "Requirements are numbered, specific, verifiable",
+        "passed": true,
+        "evidence": "4 detailed playbooks (A: API키 노출, B: SSH키 탈취, C: 동기화 무결성, D: GitHub 장애) with numbered steps, specific commands, and time targets"
+      },
+      {
+        "id": "A3-5",
+        "text": "No SPS score or Domain Scores present",
+        "passed": false,
+        "evidence": "Domain Scores table present at lines 39-47 with SPS 4.3/10 and Verdict 'AT RISK'. These should not exist in a policy-only output."
+      }
+    ],
+    "score": "3/5",
+    "pass_rate": 0.6
+  },
+  "without_agent": {
+    "notes": "Baseline correctly interpreted the request as policy-only — wrote a pure incident response playbook with NO security assessment. More comprehensive playbook: 10 sections, 6 incident scenarios (vs 4), asset inventory, detection methods table, recovery procedures, preventive controls checklist, post-incident documentation template. Better aligned with user intent."
+  }
+}

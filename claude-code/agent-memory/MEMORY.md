@@ -5,8 +5,8 @@
 Key findings — exact values from open-source repos. Full details in llm-subscription-auth.md
 
 - **OpenAI Codex OAuth**: client_id=`app_EMoamEEZ73f0CkXaXp7hrann`, auth=`https://auth.openai.com/oauth/authorize`, token=`https://auth.openai.com/oauth/token`, redirect=`http://localhost:1455/auth/callback`, scopes=`openid profile email offline_access`, API=`https://chatgpt.com/backend-api/codex/responses`
-- **Gemini CLI OAuth**: client_id=`681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com`, secret=`<REDACTED>`, scopes=cloud-platform+email+profile, API=`https://cloudcode-pa.googleapis.com/v1internal:streamGenerateContent` (non-standard request envelope)
-- **Google Antigravity OAuth**: client_id=`1071006060591-tmhssin2h21lcre235vtolojh4g403ep.apps.googleusercontent.com`, secret=`<REDACTED>`, redirect=`http://localhost:51121/oauth-callback`, extra scopes: cclog+experimentsandconfigs vs Gemini CLI
+- **Gemini CLI OAuth**: client_id=`681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com`, secret=`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`, scopes=cloud-platform+email+profile, API=`https://cloudcode-pa.googleapis.com/v1internal:streamGenerateContent` (non-standard request envelope)
+- **Google Antigravity OAuth**: client_id=`1071006060591-tmhssin2h21lcre235vtolojh4g403ep.apps.googleusercontent.com`, secret=`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`, redirect=`http://localhost:51121/oauth-callback`, extra scopes: cclog+experimentsandconfigs vs Gemini CLI
 - **GitHub Copilot Device Flow**: client_id=`Iv1.b507a08c87ecfe98` (official, used by VSCode/JetBrains/vim), device code at `github.com/login/device/code`, Copilot token at `api.github.com/copilot_internal/v2/token`, API=`api.githubcopilot.com/chat/completions`, header=`Copilot-Integration-Id: vscode-chat`
 - **Anthropic Claude OAuth (sk-ant-oat01-)**: BLOCKED by Anthropic ~Feb 2026. Only Console API keys (sk-ant-api03-) work for third-party.
 

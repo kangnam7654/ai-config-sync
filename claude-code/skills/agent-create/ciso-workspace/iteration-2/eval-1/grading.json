@@ -1,0 +1,18 @@
+{
+  "eval_id": 1,
+  "with_agent": {
+    "assertions": [
+      {"id": "A1-1", "passed": true, "evidence": "All 6 fields present in Application Security Profile"},
+      {"id": "A1-2", "passed": true, "evidence": "Data Classification includes CONFIDENTIAL, RESTRICTED, INTERNAL, PUBLIC + THIRD-PARTY PII markings"},
+      {"id": "A1-3", "passed": true, "evidence": "Compliance Matrix with PIPA and GDPR article-level citations"},
+      {"id": "A1-4", "passed": true, "evidence": "Threat Register with STRIDE categories and risk_score calculations"},
+      {"id": "A1-5", "passed": true, "evidence": "6 domains scored with SPS calculated"},
+      {"id": "A1-6", "passed": true, "evidence": "CRITICAL verdict for SPS < 4.0"},
+      {"id": "A1-7", "passed": true, "evidence": "Remediation Roadmap sorted by risk_score descending"},
+      {"id": "A1-8", "passed": true, "evidence": "References specific files with line numbers, found THIRD-PARTY PII (현정화 과장, 김재우 팀장)"}
+    ],
+    "score": "8/8",
+    "pass_rate": 1.0,
+    "improvement_from_iter1": "Now finds third-party PII (현정화 과장, 김재우 팀장) + residential addresses that iter-1 missed"
+  }
+}

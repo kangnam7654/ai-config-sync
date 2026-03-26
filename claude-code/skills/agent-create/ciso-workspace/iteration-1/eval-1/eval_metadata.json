@@ -1,0 +1,47 @@
+{
+  "eval_id": 1,
+  "name": "Full security posture review",
+  "prompt": "이 앱의 보안 상태를 전반적으로 평가해줘",
+  "assertions": [
+    {
+      "id": "A1-1",
+      "text": "Report contains 'Application Security Profile' section with all 6 fields (Application type, Tech stack, Authentication, Deployment, External services, Existing security controls)",
+      "type": "structure"
+    },
+    {
+      "id": "A1-2",
+      "text": "Report contains 'Data Classification' table with Sensitivity column using exactly one of: RESTRICTED, CONFIDENTIAL, INTERNAL, PUBLIC",
+      "type": "structure"
+    },
+    {
+      "id": "A1-3",
+      "text": "Report contains 'Compliance Matrix' section (either with framework entries or the 'No compliance frameworks applicable' statement)",
+      "type": "structure"
+    },
+    {
+      "id": "A1-4",
+      "text": "Report contains 'Threat Register' table with STRIDE categories and risk_score = likelihood x impact calculation",
+      "type": "correctness"
+    },
+    {
+      "id": "A1-5",
+      "text": "Report contains 'Domain Scores' table with all 6 domains scored 0-10 and SPS calculated using weighted formula",
+      "type": "correctness"
+    },
+    {
+      "id": "A1-6",
+      "text": "Verdict matches SPS range: SECURE (>=8.0), ADEQUATE (6.0-7.9), AT RISK (4.0-5.9), CRITICAL (<4.0)",
+      "type": "correctness"
+    },
+    {
+      "id": "A1-7",
+      "text": "Remediation Roadmap is sorted by risk_score descending",
+      "type": "correctness"
+    },
+    {
+      "id": "A1-8",
+      "text": "Agent actually read project files (evidence: specific file paths from ai-config-sync referenced in findings)",
+      "type": "behavior"
+    }
+  ]
+}

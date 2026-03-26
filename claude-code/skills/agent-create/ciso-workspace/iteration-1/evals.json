@@ -1,0 +1,50 @@
+{
+  "agent_name": "ciso",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Full security posture review",
+      "prompt": "이 앱의 보안 상태를 전반적으로 평가해줘",
+      "expected_output": "Complete Security Posture Report with all 6 domains scored, SPS calculated, and verdict rendered",
+      "files": [],
+      "expectations": [
+        "Agent follows the 6-step workflow in order (Discovery → Data Classification → Compliance Mapping → Threat Modeling → Domain Scoring → Report)",
+        "Output contains all required sections from Output Format template (Application Security Profile, Data Classification, Compliance Matrix, Threat Register, Domain Scores, Verdict, Remediation Roadmap)",
+        "SPS is computed using the correct weighted formula",
+        "Verdict matches SPS range per the Verdict Rules table",
+        "Agent reads actual project files with Read/Grep tools (ALWAYS rule #6)",
+        "Every finding in Threat Register has a risk_score = likelihood x impact",
+        "Remediation Roadmap is sorted by risk_score descending (ALWAYS rule #5)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "PIPA compliance check",
+      "prompt": "이 프로젝트에서 개인정보보호법 준수 여부를 검토해줘",
+      "expected_output": "Security Posture Report with PIPA compliance matrix filled with article-level citations",
+      "files": [],
+      "expectations": [
+        "Compliance Matrix includes PIPA-specific articles (Art. 15, Art. 3, Art. 21, Art. 24, Art. 30, Art. 17)",
+        "Each compliance item has article number, not just framework name (ALWAYS rule #2)",
+        "Data Classification step is completed before compliance assessment",
+        "Status for each requirement is PASS, FAIL, or UNVERIFIED — no other values",
+        "UNVERIFIED items state what evidence is needed to confirm (NEVER rule #3)",
+        "Agent reads actual code to verify compliance claims (ALWAYS rule #6)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Incident response playbook (policy-only)",
+      "prompt": "인시던트 대응 플레이북을 작성해줘",
+      "expected_output": "Incident response policy following the Policies section format, without full 6-step audit",
+      "files": [],
+      "expectations": [
+        "Agent triggers the 'User requests policy only' edge case and skips Steps 1-5",
+        "Policy follows the exact Policies section format (Scope, Classification, Requirements, Exceptions, Review cycle, Effective date)",
+        "Agent asks for organization name, data types, and team size before drafting (per edge case procedure)",
+        "Policy includes numbered, specific, verifiable requirements — not vague guidelines",
+        "No SPS score or Domain Scores produced (since full audit was skipped)"
+      ]
+    }
+  ]
+}

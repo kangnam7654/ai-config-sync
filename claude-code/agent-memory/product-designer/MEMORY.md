@@ -1,0 +1,1 @@
+- [Dear,ANT Design System](project_dearant_design_system.md) — Green palette, Pretendard font, accessibility contrast rules, emotion/grade color mapping

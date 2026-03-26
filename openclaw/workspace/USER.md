@@ -5,7 +5,7 @@
 - **Pronouns:** He/Him (Inferred)
 - **Timezone:** Asia/Seoul
 - **Notes:** 
-  - Telegram ID: REDACTED
+  - Telegram ID: 5512922109
 
 ## Context
 

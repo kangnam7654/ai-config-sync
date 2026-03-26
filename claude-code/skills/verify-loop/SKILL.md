@@ -19,9 +19,10 @@ auto-dev 파이프라인의 마지막 Phase. 구현된 앱의 동작, UI, 사용
 #34 사용성 테스트 (user-tester)
   ├─ FAIL → #17 (UX 설계 복귀)
   ↓ PASS
-#35 C-suite 론칭 디베이트 (CEO ↔ CTO ↔ CSO, 3자)
+#35 C-suite 론칭 디베이트 (CEO ↔ CTO ↔ CSO ↔ CISO, 4자)
   ├─ 코드 수정 필요 → #27 (Build로 복귀)
   ├─ 설계 변경 필요 → 사용자 보고 (human-in-loop)
+  ├─ 보안 미충족 → #27 (Build로 복귀, 보안 조치 구현)
   ↓ PASS
 #36 완성 보고 (메인 모델)
 ```
@@ -80,23 +81,28 @@ simulator가 앱을 실행하고 주요 유저 플로우를 동작 확인한다.
 
 ---
 
-## #35 C-suite 론칭 디베이트 (3자)
+## #35 C-suite 론칭 디베이트 (4자)
 
-3자 디베이트 프로토콜을 실행한다:
+4자 디베이트 프로토콜을 실행한다:
 
-1. 메인 모델이 논제(전체 산출물 + 론칭 적합성)를 **CEO, CTO, CSO** 3개 에이전트에게 동시 전달
+1. 메인 모델이 논제(전체 산출물 + 론칭 적합성)를 **CEO, CTO, CSO, CISO** 4개 에이전트에게 동시 전달
 2. 각 에이전트가 review-verdict로 응답 (채점 + 피드백)
-3. 메인 모델이 3개 피드백에서 상충 항목 추출 (3쌍 비교: CEO↔CTO, CTO↔CSO, CEO↔CSO)
+   - CEO: 시장 적합성, 비즈니스 가치
+   - CTO: 기술 품질, 아키텍처 안정성
+   - CSO: 전략적 리스크, 재무 타당성
+   - CISO: 보안 정책 준수, PII 보호, 컴플라이언스, 위협 모델 적합성
+3. 메인 모델이 4개 피드백에서 상충 항목 추출 (6쌍 비교: CEO↔CTO, CEO↔CSO, CEO↔CISO, CTO↔CSO, CTO↔CISO, CSO↔CISO)
 4. 상충 0개 → **합의 성립** → debate-result 생성
-5. 상충 1개 이상 → 각 에이전트에게 상충 항목 + 나머지 2명 의견 전달, 재평가 요청 (1라운드)
+5. 상충 1개 이상 → 각 에이전트에게 상충 항목 + 나머지 3명 의견 전달, 재평가 요청 (1라운드)
 6. 재평가 후 상충 0개 → 합의
 7. 재평가 후에도 상충 → 다음 라운드
 
-**10라운드 소진 시**: 사용자에게 3자 verdict + 상충 항목 목록을 전달하고 점검 요청 (human-in-loop).
+**10라운드 소진 시**: 사용자에게 4자 verdict + 상충 항목 목록을 전달하고 점검 요청 (human-in-loop).
 
 합의된 결과 처리:
 - **PASS** → #36으로 진행
 - **코드 수정 필요** (Build Phase 범위) → #27(구현)으로 복귀
+- **보안 미충족** (CISO FAIL) → #27(구현)으로 복귀. CISO의 remediation roadmap을 구현 에이전트에게 전달.
 - **설계 변경 필요** (Design/Idea Phase 범위) → 사용자에게 보고 (human-in-loop)
 
 **산출물**: debate-result.yaml
@@ -146,6 +152,6 @@ verify-loop는 자체적으로 다른 Phase의 스킬을 호출하지 않는다.
 
 ## 경계
 
-- 이 스킬은 오케스트레이션만 수행한다. 동작 검증은 simulator, UI 패리티는 ui-reviewer, 사용성은 user-tester, 론칭 판정은 CEO/CTO/CSO가 담당.
+- 이 스킬은 오케스트레이션만 수행한다. 동작 검증은 simulator, UI 패리티는 ui-reviewer, 사용성은 user-tester, 론칭 판정은 CEO/CTO/CSO/CISO가 담당.
 - Build Phase 산출물(build-summary.md)과 Design Phase 산출물(design-spec.md)이 입력 전제 조건이다.
 - Cross-Phase 복귀는 auto-dev에게 위임한다. verify-loop가 직접 build-loop이나 design-loop을 호출하지 않는다.

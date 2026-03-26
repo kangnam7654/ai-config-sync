@@ -112,7 +112,7 @@ await fetch('https://auth.openai.com/oauth/token', {
 ```
 Auth Flow: Authorization Code + PKCE + Secret
 Client ID:     681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com
-Client Secret: <REDACTED>
+Client Secret: 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
 Auth URL:      https://accounts.google.com/o/oauth2/v2/auth
 Token URL:     https://oauth2.googleapis.com/token
 Redirect:      http://127.0.0.1:<동적포트>/oauth2callback
@@ -170,7 +170,7 @@ await fetch('https://oauth2.googleapis.com/token', {
 
 ```
 Client ID:     1071006060591-tmhssin2h21lcre235vtolojh4g403ep.apps.googleusercontent.com
-Client Secret: <REDACTED>
+Client Secret: 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
 Auth URL:      https://accounts.google.com/o/oauth2/v2/auth
 Token URL:     https://oauth2.googleapis.com/token
 Redirect:      http://localhost:51121/oauth-callback (고정 포트)

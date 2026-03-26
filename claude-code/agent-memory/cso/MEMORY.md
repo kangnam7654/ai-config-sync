@@ -9,6 +9,7 @@
 - CEO admits errors explicitly when confronted with data ("CSO was right" section in R2) — healthy pattern
 - When CEO proposes client-side API patterns, verify the API provider actually supports the claimed feature (e.g., Anthropic scoped tokens don't exist)
 - When CEO proposes credit/IAP items, verify they align with the product's positioning (e.g., Spotlight/Super Like require dating app, not coaching tool)
+- CEO maintains multiple pricing versions across proposal/DB/docs that diverge over time -- always cross-check actual DB migrations + launch docs against proposal claims
 
 ## Key Benchmarks (2025-2026)
 - East Asia subscription conversion rate: ~2.0% (RevenueCat 2025)
@@ -18,6 +19,9 @@
 - Rizz app Dec 2025: 300K downloads, $30K revenue (Android) — much lower than peak claims
 - Hinge paying users: 5% of user base, 1.53M paying (2024), ~70% revenue from subscriptions
 - Freemium IAP conversion: 2-5% typical, top 10% achieve 5-8% (RevenueCat 2025)
+- RevenueCat 2026: freemium download-to-paid median = 2.1% (hard paywall = 10.7%, 5x better)
+- RevenueCat 2026: long trials (17-32 days) convert at 42.5% median; short (<4 days) at 25.5%
+- RevenueCat 2026: only 10% of apps run true hybrid (IAP+ads+sub), mostly gaming (4x average)
 - 35% of subscription apps now use hybrid model (subscription + consumables) (RevenueCat 2025)
 - Dating app ARPU globally: ~$7.73 (2026 est.)
 - Tinder revenue: $1.94B (2024), $171M/mo peak (Apr 2025)
@@ -56,11 +60,12 @@
   - CEO credit purchase estimate 5-8% too high -> realistic 3-5%
   - Must-fix: legal opinion scope must include 선불전자지급수단 / 전자금융업 registration
   - AI cost is NOT the issue (97%+ margin per credit item) — demand validation IS the issue
-- Dalgyeol BM: CONDITIONAL (Score 6.9/10) (2026-03-20) — [project_dalgyeol_bm_review.md](project_dalgyeol_bm_review.md)
-  - 4 conditions: legal opinion, price strategy fix, eCPM correction, competition response plan
-  - Key risks: 선불전자지급수단 regulation, 점신 AI 선점 (6-12mo), no UA strategy
-  - Proposal vs codebase gap: 1,100원/50P pack claimed but not implemented (actual min = 3,900원/100P)
-  - eCPM $29 is peak data; realistic $18-22 with 70% fill rate = ~47% of claimed ad revenue
+- Dalgyeol BM R1: CONDITIONAL (Score 6.9/10) (2026-03-20) — [project_dalgyeol_bm_review.md](project_dalgyeol_bm_review.md)
+- Dalgyeol BM R2: CONDITIONAL (Score 6.1/10) (2026-03-26) — score DECREASED
+  - 4 conditions: legal opinion (carried), pricing unification (worsened to 3 versions), UA strategy (new), competition plan (carried)
+  - 3 incompatible pricing schemes: proposal vs DB migrations vs launch-checklist
+  - Conservative DAU 1,000 revenue estimate: ~676K KRW/mo (CEO low-end 700K is plausible)
+  - RevenueCat 2026: freemium conversion median = 2.1%; CEO assumes 10% paying = top-quartile
 
 ## Company Context
 - Products: 01-buybuddy (MVP complete), 02-flirtiq (approved, planning phase), 03-dalgyeol (Phase 3 complete, near launch)

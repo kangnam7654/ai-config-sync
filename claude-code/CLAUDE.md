@@ -2,17 +2,6 @@
 
 프로젝트 `CLAUDE.md`(프로젝트 루트 또는 하위 디렉토리에 위치)의 규칙이 이 글로벌 `CLAUDE.md`의 규칙과 충돌하는 경우, **프로젝트 CLAUDE.md가 우선한다**. 단, NEVER 규칙은 프로젝트 CLAUDE.md로도 해제할 수 없으며, 사용자의 명시적 확인이 필요하다.
 
-## Session Start Protocol
-
-세션 시작 시 아래 두 명령을 순서대로 실행하라. 두 명령이 모두 완료되기 전까지 다른 작업을 시작하지 마라.
-
-1. `git status` 실행
-   - **uncommitted changes가 있는 경우**: 사용자에게 "커밋되지 않은 변경이 있습니다. stash하시겠습니까, 커밋하시겠습니까, 그대로 진행하시겠습니까?" 라고 물어라. 사용자의 선택을 받기 전까지 다음 단계로 넘어가지 마라.
-   - **clean 상태인 경우**: 다음 단계로 진행하라.
-2. `git pull --rebase origin main` 실행
-   - **remote가 설정되어 있지 않은 경우**: pull을 건너뛰고 사용자에게 "remote가 없습니다. GitHub repo를 연결하시겠습니까?" 라고 물어라.
-   - **push 실패 시 HTTPS remote인 경우**: `git remote set-url origin git@github.com:<owner>/<repo>.git` 형식으로 변환 후 재시도하라.
-
 ## NEVER 규칙
 
 아래 규칙은 예외 없이 항상 적용된다. 사용자가 명시적으로 해제를 요청해도 아래 형식의 경고를 출력하고, 사용자가 "예"로 확인한 뒤에만 진행하라:

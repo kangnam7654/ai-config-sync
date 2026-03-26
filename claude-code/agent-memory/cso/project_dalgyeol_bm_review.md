@@ -1,24 +1,28 @@
 ---
 name: Dalgyeol BM Strategic Review
-description: CSO review of Dalgyeol (saju fortune + AI consult app) business model - CONDITIONAL APPROVE with 4 conditions
+description: CSO review of Dalgyeol (saju fortune + AI consult app) business model - CONDITIONAL with pricing unification + legal gate
 type: project
 ---
 
-Dalgyeol BM review: CONDITIONAL (Score 6.9/10) on 2026-03-20.
+Dalgyeol BM review history:
+- R1: CONDITIONAL (Score 6.9/10) on 2026-03-20
+- R2: CONDITIONAL (Score 6.1/10) on 2026-03-26 -- score DECREASED due to pricing inconsistency worsening
 
-**Why:** Point IAP + rewarded ad hybrid model is viable due to ultra-low fixed costs (12,300 KRW/mo), but 4 unresolved conditions block full approval.
+**Why:** Point IAP + rewarded ad hybrid model remains viable due to ultra-low fixed costs (12,300 KRW/mo), but prior conditions are unresolved and pricing inconsistency has worsened (now 3 incompatible versions).
 
-**Conditions:**
-1. Legal opinion on 선불전자지급수단 (prepaid e-payment) classification before App Store submission
-2. Price strategy decision: 1,100 KRW (50P) pack claimed in proposal but NOT implemented in codebase (actual min = 3,900 KRW/100P)
-3. Rewarded ad eCPM assumption must be corrected: $29 is Q1 2024 peak; realistic = $18-22, fill rate 70% (actual revenue ~47% of proposal estimate)
-4. Document competitive response plan for when 점신 launches AI consult feature (6-12mo timeline)
+**R2 Conditions (4 total, 2 carried from R1):**
+1. [CARRIED R1] Legal opinion on 선불전자지급수단 classification before App Store submission
+2. [WORSENED] Unify 3 incompatible pricing schemes: proposal vs DB (migrations 011+016) vs launch-checklist (Section 4-1) -- subscription tiers differ fundamentally across all three
+3. [NEW] Document UA strategy: even minimal ASO + community seeding plan; DAU 1,000 assumption is unsupported without it
+4. [CARRIED R1] Document competitive response plan for 점신 AI consult launch (6-12mo timeline)
 
-**Key findings:**
-- 점신 2024 revenue = 978억, declared "운세 AI 선점" strategy (Feb 2025)
-- Apple Small Business Program (15% commission) applies = higher margins than proposal assumes
-- Scaling cost structure is healthy: MAU 100K = ~5.3M KRW/mo costs vs ~15M+ revenue potential
-- Value perception risk with ultra-low pricing in fortune/divination category
-- No user acquisition strategy in proposal = significant gap
+**R2 Key findings:**
+- 3 pricing versions exist: proposal (50P/1,100, Basic 200P/3,300, Premium 600P/7,700), DB (50P/1,100, Light 100P/6,900, Premium 300P/12,900), launch-checklist (100P/1,100, Premium 500P/4,900)
+- Conservative revenue estimate at DAU 1,000: ~676K KRW/mo (vs CEO 700K-1.2M range -- low end is plausible)
+- RevenueCat 2026: freemium conversion median = 2.1%, hard paywall = 10.7%
+- CEO segment breakdown (7% subscribers, 3% high spenders = 10% paying) is top-quartile; realistic baseline = 2-3%
+- eCPM now conservatively estimated at ~$3 in proposal (was $29 before); realistic Korean iOS = $15-22 with 60-70% fill rate for new apps
+- Codebase is 85%+ launch-ready: 20 migrations, full feature set, StoreKit 2 integration
+- Remaining blockers: pricing unification (1 day), IAP App Store Connect registration (1-2 days), real-device testing (2-3 days), legal opinion (1-2 weeks)
 
-**How to apply:** FlirtIQ is deprioritized (still in planning phase) while Dalgyeol is near-launch (Phase 3 complete). Legal opinion is the hard gate -- do not approve App Store submission without it.
+**How to apply:** Pricing unification is the #1 action item (1-day effort). Legal opinion remains the hard gate for App Store submission. Do not approve submission without both resolved.

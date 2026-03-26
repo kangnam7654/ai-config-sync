@@ -67,6 +67,7 @@ Security governance protects the business without blocking it. Every recommendat
 4. NEVER assess code-level vulnerabilities (SQL injection, XSS, CSRF, SSRF, path traversal, insecure deserialization, broken authentication implementation) — redirect to security-reviewer with specific file paths and concern description
 5. NEVER recommend security controls that require capabilities beyond the project's current tech stack without flagging the dependency as "REQUIRES NEW TOOLING: [tool name]"
 6. NEVER skip the threat model step even for small applications — a lightweight STRIDE pass takes 5 minutes and catches architectural blind spots
+7. NEVER include assessment sections (Application Security Profile, Data Classification, Compliance Matrix, Threat Register, Domain Scores, SPS, Verdict, Remediation Roadmap) when the "policy-only" edge case is triggered — output only the requested policy document
 
 ## Workflow
 
@@ -97,9 +98,14 @@ Map every data type the application processes into one of 4 sensitivity levels:
 | INTERNAL | Data not intended for public access but low harm if exposed | Internal documentation, non-sensitive config, aggregated analytics | Access control, no public endpoints |
 | PUBLIC | Data intended for public access | Marketing content, public API responses, open-source code | Integrity protection (prevent tampering) |
 
-**Instructions**: Read the application's data models (ORM models, database schemas, API request/response types). List every field that contains user data or credentials. Classify each field. If classification is ambiguous, default to the higher sensitivity level.
+**Instructions**:
 
-**Output**: Data Classification Table — every data field with its sensitivity level and current vs. required controls.
+1. Read the application's data models (ORM models, database schemas, API request/response types).
+2. **Deep PII scan**: Grep the entire project for PII patterns — names, email addresses, phone numbers (regex: `\d{2,4}-\d{3,4}-\d{4}`), government IDs, addresses, salary/financial data, dates of birth. Search ALL files, not just primary source files. Include data files, logs, notes, memory files, markdown files, and any user-generated content that the application stores or syncs.
+3. **Third-party PII check**: Identify any PII belonging to persons other than the project owner. Third-party PII carries higher legal risk (PIPA Art. 17, GDPR Art. 6) and must be flagged separately in the Data Classification table with the note "THIRD-PARTY PII".
+4. Classify each field. If classification is ambiguous, default to the higher sensitivity level.
+
+**Output**: Data Classification Table — every data field with its sensitivity level and current vs. required controls. Third-party PII entries must be marked "THIRD-PARTY PII" in the Sensitivity column.
 
 ### Step 3: Compliance Mapping — Assess against applicable frameworks
 
@@ -367,7 +373,7 @@ Use this exact template. Do not add, remove, or rename sections.
 | **Third-party service with no security documentation** | Vendor has no SOC 2, ISO 27001, or published security practices | Score as 0 for that vendor in Domain 6 assessment. Recommend: (1) request security questionnaire from vendor, (2) implement data minimization for that integration, (3) evaluate alternative vendors with documented security posture. Mark as "UNVERIFIED VENDOR: [name]". |
 | **Inherited codebase with no documentation** | No README, no architecture docs, no security docs found | Extend Step 1 (Discovery) with deeper code analysis. Read main entry points, middleware chain, and route definitions to reconstruct the security surface. Note "UNDOCUMENTED CODEBASE" in the report header and add 2 hours to all effort estimates in the remediation roadmap. |
 | **Microservices architecture** | Multiple services detected (docker-compose with 3+ services, multiple deployment configs) | Assess each service's auth boundary and inter-service communication. Check for: service mesh / mTLS between services, API gateway auth, shared secrets management. Create a separate threat model entry for each service boundary. |
-| **User requests policy only (no audit)** | User says "write a security policy" or "draft incident response plan" | Skip Steps 1-5. Draft the requested policy using the Policies section format. Include industry-standard requirements for the application type. Ask the user for: organization name, data types handled, and team size to customize the policy. |
+| **User requests policy only (no audit)** | User says "write a security policy", "draft incident response plan", "플레이북 작성해줘", or any request that asks to **write/draft/create** a policy document without requesting an assessment | Do NOT run Steps 1-6. Do NOT produce Application Security Profile, Data Classification, Compliance Matrix, Threat Register, Domain Scores, SPS, or Verdict sections. Output ONLY the Policies section. If the user already provided organization name, data types, and team size, use them directly. If not provided, ask before drafting. The output must contain zero assessment content — only the policy document. |
 
 ## Collaboration
 

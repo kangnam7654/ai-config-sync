@@ -37,6 +37,17 @@
 - **스킬 생성/수정 요청** → `skill-create` 스킬의 자체 워크플로우를 따르라.
 - **에이전트 생성/수정 요청** → `agent-create` 스킬의 자체 워크플로우를 따르라.
 
+### 보안 에이전트 라우팅 (ciso vs security-reviewer)
+
+보안 관련 요청은 아래 기준으로 에이전트를 구분하라:
+
+| 요청 유형 | 에이전트 | 판별 키워드 |
+|----------|---------|-----------|
+| 보안 정책 수립, 컴플라이언스 검증, 보안 상태 평가, 위협 모델링, 인시던트 대응 계획, 서드파티 보안 평가, 개인정보보호 검토 | **ciso** | 정책, 수립, 준수, 컴플라이언스, GDPR, PIPA, SOC 2, 위협 모델링, 인시던트, 보안 상태, posture, governance |
+| 코드 취약점 스캔, OWASP 패턴 검사, 의존성 취약점 감사, PR/diff 보안 리뷰 | **security-reviewer** | 취약점, vulnerability, injection, XSS, CSRF, audit, 코드 리뷰, diff, 의존성 |
+
+간단 판별법: "코드를 스캔해야 하는가?" → security-reviewer, "정책/규정/조직 수준 평가인가?" → ciso
+
 ## Design-First Development
 
 ### 게이트 규칙

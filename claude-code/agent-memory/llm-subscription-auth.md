@@ -44,7 +44,7 @@ NOTE: `api.responses.write` scope is NOT available via this OAuth client. Only c
 
 ### Client Credentials
 - **client_id**: `681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com`
-- **client_secret**: `<REDACTED>`
+- **client_secret**: `<REDACTED — see source repo google-gemini/gemini-cli>`
 
 ### Endpoints
 - **Authorization URL**: Standard Google OAuth — `https://accounts.google.com/o/oauth2/v2/auth` (via google-auth-library)
@@ -99,7 +99,7 @@ NOT the standard `GenerateContentRequest` format.
 
 ### Client Credentials
 - **client_id**: `1071006060591-tmhssin2h21lcre235vtolojh4g403ep.apps.googleusercontent.com`
-- **client_secret**: `<REDACTED>`
+- **client_secret**: `<REDACTED — see source repo NoeFabris/opencode-antigravity-auth>`
 
 ### Endpoints
 - **Authorization URL**: `https://accounts.google.com/o/oauth2/v2/auth`

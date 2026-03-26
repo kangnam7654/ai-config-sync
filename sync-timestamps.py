@@ -26,6 +26,8 @@ EXCLUDES: dict[str, list[str]] = {
         "history.jsonl", "usage-log.jsonl", "cache", "debug",
         "backups", "file-history", "telemetry", "session-env",
         "shell-snapshots", "ide", "downloads", ".git",
+        "agent-memory/security-reviewer/project_*_credentials*",
+        "agent-memory/security-reviewer/project_*_audit*",
     ],
 }
 

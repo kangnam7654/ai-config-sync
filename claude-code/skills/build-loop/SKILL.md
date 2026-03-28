@@ -106,6 +106,20 @@ qa-engineer가 단위 테스트 + 통합 테스트를 작성하고 실행한다.
 | #29 코드 리뷰 | CTO 에스컬레이션. 위험 수용 또는 사용자 보고 |
 | #30 테스트 | 사용자 보고: "테스트 10회 실패. 수동 개입 필요." 중단 |
 
+CTO 에스컬레이션 시 auto-dev에게 아래 포맷으로 반환한다:
+
+```yaml
+phase_return:
+  status: "ESCALATE"
+  source_step: "#28"          # 실패가 발생한 단계
+  source_phase: "build"       # 항상 "build"
+  target_step: "CTO"          # "CTO" 또는 "user"
+  target_phase: "escalation"  # 에스컬레이션
+  reason: "DBA 리뷰 10회 소진: 인덱스 전략 미충족" # 1줄 요약
+  attempt: 10                 # 소진된 횟수
+  same_error_consecutive: true
+```
+
 ## 경계
 
 - 이 스킬은 오케스트레이션만 수행한다. 구현은 frontend/backend/mobile/ai 에이전트, 리뷰는 DBA/code-reviewer/security-reviewer, 테스트는 qa-engineer가 담당.

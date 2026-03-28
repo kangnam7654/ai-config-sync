@@ -148,7 +148,21 @@ human_escalations: "{사용자 보고 횟수}"
 | #34 → #17 | ux-ui-loop #17 | Design | auto-dev에게 design-loop/ux-ui-loop 재실행 요청 |
 | #35 → #27 | build-loop #27 | Build | auto-dev에게 build-loop 재실행 요청 |
 
-verify-loop는 자체적으로 다른 Phase의 스킬을 호출하지 않는다. 복귀가 필요하면 auto-dev (상위 오케스트레이터)에게 복귀 대상 step 번호와 이유를 반환하고, auto-dev가 해당 Phase 스킬을 재실행한다.
+verify-loop는 자체적으로 다른 Phase의 스킬을 호출하지 않는다. 복귀가 필요하면 auto-dev에게 아래 포맷으로 반환한다:
+
+```yaml
+phase_return:
+  status: "FAIL"
+  source_step: "#32"          # 실패가 발생한 단계
+  source_phase: "verify"      # 항상 "verify"
+  target_step: "#27"          # 복귀 대상 단계
+  target_phase: "build"       # "build" 또는 "design"
+  reason: "POST /api/todos 500 에러" # 실패 원인 1줄 요약
+  attempt: 1                  # 동일 복귀 시도 횟수
+  same_error_consecutive: false # 직전 복귀와 동일 에러인지
+```
+
+auto-dev가 `target_phase`로 라우팅한다.
 
 ## 경계
 

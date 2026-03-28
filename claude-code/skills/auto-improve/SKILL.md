@@ -7,7 +7,7 @@ description: "기존 서비스/앱 종합 진단 + 개선 전자동 파이프라
 
 "이 서비스 점검해줘" → 종합 진단 → 개선 설계 → 구현 → 검증. 기존 코드베이스를 체계적으로 개선하는 전자동 파이프라인.
 
-37단계, 4 Phase(Audit → Design → Build → Verify)를 오케스트레이션한다.
+36단계, 4 Phase(Audit → Design → Build → Verify)를 오케스트레이션한다.
 
 ## Scope
 
@@ -26,7 +26,7 @@ description: "기존 서비스/앱 종합 진단 + 개선 전자동 파이프라
 
 ```
 auto-improve
-  ├── audit-loop (#1~#10)          ← NEW
+  ├── audit-loop (#1~#9)           ← NEW
   │     └── doc-loop (#9)
   ├── design-loop (#10~#26)       ← 재활용
   │     ├── architecture-loop (#10~#16)
@@ -45,8 +45,8 @@ auto-improve
 ```
 [사용자 입력: 기존 코드베이스 경로 + 개선 범위(선택)]
   ↓
-Audit Phase: audit-loop (#1~#10)
-  ↓ #8 CTO 게이트 PROCEED → audit-report.md 산출
+Audit Phase: audit-loop (#1~#9)
+  ↓ #9 CTO 게이트 PROCEED + Audit Report 문서화 → audit-report.md 산출
 Design Phase: design-loop (#10~#26)
   ↓ #25 CTO 게이트 PASS → design-spec.md 산출
 Build Phase: build-loop (#27~#31)
@@ -62,7 +62,7 @@ Verify Phase: verify-loop (#32~#36)
 
 **audit-loop 스킬**을 호출한다. 사용자 입력(코드베이스 경로 + 선택적 범위 지정)을 전달.
 
-audit-loop가 대상 분석(#1), 병렬 진단(#2~#8: 코드 품질·보안·아키텍처·DB·테스트·Repo Health·UX/UI), CTO 종합 판정(#9), Audit Report 문서화(#10)를 수행한다.
+audit-loop가 대상 분석(#1), 병렬 진단(#2~#8: 코드 품질·보안·아키텍처·DB·테스트·Repo Health·UX/UI), CTO 종합 판정 + Audit Report 문서화(#9)를 수행한다.
 
 **Phase 전환 조건**: #9 CTO 게이트 PROCEED (개선 대상이 존재하고 우선순위 확정)
 
@@ -199,15 +199,34 @@ Cross-Phase 복귀 시: 복귀 대상 Phase 스킬을 재실행한다. 이전 Ph
 
 문서 라이프사이클 주의: Design Phase 재실행 시 design-spec.md가 이미 존재할 수 있다. 재실행된 서브-루프의 산출물로 design-spec.md를 업데이트한다.
 
+### 복귀 반환 포맷
+
+Phase 스킬이 auto-improve에게 복귀를 요청할 때 아래 YAML 구조로 반환한다:
+
+```yaml
+phase_return:
+  status: "FAIL"
+  source_step: "#32"
+  source_phase: "verify"
+  target_step: "#27"
+  target_phase: "build"
+  reason: "회귀 실패: 기존 테스트 3건 깨짐"
+  attempt: 1
+  same_error_consecutive: false
+```
+
+auto-improve는 `target_phase`로 라우팅하고, 회귀 실패인 경우 build-loop 재실행 시 회귀 수정 우선 컨텍스트를 전달한다.
+
 ---
 
 ## NEVER 규칙
 
-1. NEVER: Phase 게이트를 건너뛰지 마라. Audit→Design은 CTO #8 PROCEED 필수, Design→Build는 CTO #25 PASS 필수.
+1. NEVER: Phase 게이트를 건너뛰지 마라. Audit→Design은 CTO #9 PROCEED 필수, Design→Build는 CTO #25 PASS 필수.
 2. NEVER: 에이전트가 다른 에이전트를 직접 호출하지 마라. 모든 에이전트 호출은 해당 Phase의 스킬(오케스트레이터)을 통해서만 수행한다.
-3. NEVER: 루프 상한(10회)을 초과하여 재시도하지 마라. 10회 도달 시 사용자에게 보고 후 판단을 요청한다.
-4. NEVER: 동일 Phase 내에서 단계 순서를 변경하지 마라. (예외: #2~#7 진단은 병렬 허용, #27 구현은 병렬 허용)
-5. NEVER: 기존 기능을 깨뜨리는 변경을 회귀 테스트 없이 통과시키지 마라.
+3. NEVER: 루프 상한을 초과하여 재시도하지 마라. 각 루프의 상한과 소진 처리는 아래 "루프 소진 처리" 테이블을 따른다.
+4. NEVER: SKIP 불가 단계의 실패를 무시하고 다음 단계로 진행하지 마라. SKIP 가능 여부는 아래 "단계 분류" 테이블을 따른다.
+5. NEVER: 동일 Phase 내에서 단계 순서를 변경하지 마라. (예외: #2~#8 진단은 병렬 허용, #27 구현은 병렬 허용)
+6. NEVER: 기존 기능을 깨뜨리는 변경을 회귀 테스트 없이 통과시키지 마라.
 
 ## ALWAYS 규칙
 
@@ -217,6 +236,40 @@ Cross-Phase 복귀 시: 복귀 대상 Phase 스킬을 재실행한다. 이전 Ph
 4. ALWAYS: 문서화 단계(#9, #16, #22, #26, #31)는 doc-loop 스킬을 자동(B) 모드 + LLM 모드로 호출한다.
 5. ALWAYS: Verify Phase의 완성 보고(#36)에 Before/After 점수 비교를 포함한다.
 6. ALWAYS: audit-report.md의 베이스라인 점수를 모든 Phase에 전달하여 개선 효과 측정의 기준점으로 사용한다.
+
+---
+
+## 단계 분류 (SKIP 가능 여부)
+
+| 단계 | SKIP 가능 | 조건 |
+|------|----------|------|
+| #5 DB 진단 | O | 프로젝트에 DB가 없을 때 |
+| #8 UX/UI 진단 | O | 프로젝트에 UI가 없을 때 (CLI, 라이브러리 등) |
+| #8-B 동적 진단 | O | 앱 실행 불가 시 (8-A 정적 진단만으로 진행) |
+| #28 DBA 리뷰 | O | DB/SQL/마이그레이션 파일이 없을 때 |
+| 그 외 모든 단계 | X | FAIL 시 루프 재시도 또는 에스컬레이션 |
+
+## 루프 소진 처리
+
+| 루프 | 상한 | 소진 시 처리 |
+|------|------|------------|
+| #2~#8 진단 (각각) | 10회 | 해당 영역 "진단 불가" 표기, 나머지로 진행 |
+| #9 CTO 판정 | 10회 | 사용자 보고, 수동 판정 요청 |
+| #12 DB 스키마 리뷰 | 10회 | CTO 최종 판정 (위험 수용 or ABORT) |
+| #14 API 리뷰 | 10회 | CTO 최종 판정 |
+| #15 DB-API 정합성 | 10회 | CTO 최종 판정 |
+| #18 UX 검증 | 10회 | CTO 판정 |
+| #20 UI 검증 | 10회 | CTO 판정 |
+| #21 디자인 디베이트 | 10회 (라운드) | CTO 최종 판정 확정 |
+| #23-#24 plan-loop | 내부 5회, 외부 10회 | 내부 소진→design-loop에 FAIL 반환. 외부 소진→CTO 게이트(#25) 에스컬레이션 |
+| #25 Design 게이트 | 10회 | 사용자 보고: "Design Phase 해결 불가" + 중단 |
+| #28 DBA 리뷰 | 10회 | CTO 에스컬레이션 |
+| #29 코드/보안 리뷰 | 10회 | CTO 에스컬레이션 |
+| #30 테스트 | 10회 | 사용자 보고 + 중단 |
+| #32 동작 검증 | 10회 | 사용자 보고 + 중단 |
+| #33 UI 패리티 | 10회 | 사용자 보고 + 중단 |
+| #34 사용성 테스트 | 10회 | 사용자 보고 + 중단 |
+| #35 릴리즈 디베이트 | 10회 (라운드) | 사용자 보고 (human-in-loop 전환) |
 
 ---
 

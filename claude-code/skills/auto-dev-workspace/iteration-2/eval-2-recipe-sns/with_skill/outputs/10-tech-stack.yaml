@@ -1,0 +1,43 @@
+step: "10"
+agent: "cto"
+status: "COMPLETE"
+timestamp: "2026-03-28T12:52:00+09:00"
+tech_stack:
+  frontend: "React 18 + Vite + TypeScript"
+  backend: "FastAPI (Python 3.12)"
+  database: "PostgreSQL 16"
+  mobile: "N/A"
+  infra: "Docker Compose (로컬 개발)"
+api_standard:
+  protocol: "REST"
+  auth: "JWT (access + refresh token)"
+  versioning: "URL path /api/v1"
+  naming_convention: "snake_case"
+  error_format: "{ error: { code: ERROR_CODE, message: string, detail: string | null } }"
+design_tool: "HTML/CSS 목업"
+testing_tools:
+  backend: "pytest + httpx (async)"
+  frontend: "Vitest + React Testing Library"
+  e2e: "Playwright"
+  app_verification: "Playwright"
+trade_off:
+  decision: "Backend Framework"
+  options_compared: ["FastAPI", "Express.js"]
+  scores:
+    fastapi:
+      complexity: "4 — Python 타입 힌트 기반 자동 문서화, 간결한 보일러플레이트"
+      performance: "4 — async/await 네이티브, uvicorn ASGI 서버"
+      maintainability: "4 — Pydantic 모델로 스키마 일관성 보장"
+      time_to_implement: "5 — 사용자 지정 스택, 학습 비용 없음"
+      durability: "4 — 활발한 커뮤니티, 파이썬 생태계"
+      weighted_total: 4.15
+    express:
+      complexity: "3 — 미들웨어 체인 관리, TypeScript 추가 설정 필요"
+      performance: "4 — Node.js 이벤트 루프"
+      maintainability: "3 — 스키마 검증 라이브러리 별도 필요"
+      time_to_implement: "3 — 사용자가 FastAPI 지정함"
+      durability: "4 — 안정적 생태계"
+      weighted_total: 3.35
+  recommendation: "FastAPI — 사용자 지정 + Trade-Off 점수 우위(4.15 vs 3.35)"
+adr_path: "docs/adr/ADR-001-tech-stack.md"
+next_step: 11

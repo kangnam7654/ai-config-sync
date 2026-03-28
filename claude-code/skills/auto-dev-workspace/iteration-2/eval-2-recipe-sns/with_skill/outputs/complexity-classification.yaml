@@ -1,0 +1,27 @@
+step: "idea-to-design-transition"
+agent: "main-model"
+status: "COMPLETE"
+timestamp: "2026-03-28T12:49:00+09:00"
+classification: "Standard"
+rationale:
+  core_features: 5
+  core_features_list:
+    - "레시피 CRUD"
+    - "소셜 인터랙션 (좋아요/댓글/북마크)"
+    - "팔로우 시스템"
+    - "피드 (타임라인 + 추천)"
+    - "사용자 프로필"
+  tracks: 2
+  tracks_list: ["frontend (React)", "backend (FastAPI)"]
+  db_tables_estimate: 9
+  db_tables_list: ["users", "recipes", "recipe_steps", "recipe_ingredients", "likes", "comments", "follows", "bookmarks", "tags"]
+simple_conditions_met: false
+simple_condition_details:
+  features_lte_3: false
+  single_track: false
+  tables_lte_3: false
+impact:
+  step_21: "Full 2-party design debate (ux-reviewer vs ui-reviewer)"
+  step_33: "Full UI parity check (max 10 iterations)"
+  step_34: "Full usability test (max 10 iterations)"
+  step_35: "Full 4-party C-suite launch debate (CEO/CTO/CSO/CISO)"

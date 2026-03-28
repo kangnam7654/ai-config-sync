@@ -1,0 +1,42 @@
+step: "10"
+agent: "cto"
+status: "COMPLETE"
+timestamp: "2026-03-28T12:35:00+09:00"
+tech_stack:
+  frontend: "React (Vite)"
+  backend: "N/A"
+  database: "N/A"
+  mobile: "N/A"
+  infra: "N/A (로컬 개발)"
+api_standard:
+  protocol: "N/A"
+  auth: "N/A"
+  versioning: "N/A"
+  naming_convention: "camelCase"
+  error_format: "N/A"
+design_tool: "HTML/CSS 목업"
+testing_tools:
+  app_verification: "Playwright"
+  unit_test: "Vitest"
+  component_test: "React Testing Library"
+trade_off:
+  decision: "React (Vite) vs Next.js for counter SPA"
+  options_compared: ["React + Vite", "Next.js"]
+  scores:
+    react_vite:
+      complexity: "5 — 최소 설정, 불필요한 서버 사이드 기능 없음"
+      performance: "4 — SPA로 충분, SSR 불필요"
+      maintainability: "4 — 단순 구조, 학습 곡선 최소"
+      time_to_implement: "5 — 즉시 시작 가능, 보일러플레이트 최소"
+      durability: "4 — Vite 생태계 안정적"
+      weighted_total: 4.40
+    nextjs:
+      complexity: "3 — 파일 기반 라우팅, API 라우트 등 불필요 기능 과잉"
+      performance: "5 — SSR/SSG 지원하나 이 프로젝트에 불필요"
+      maintainability: "4 — Next.js 컨벤션 학습 필요"
+      time_to_implement: "3 — 프로젝트 구조가 더 복잡"
+      durability: "5 — Vercel 지원, 장기 안정성"
+      weighted_total: 4.00
+  recommendation: "React + Vite. 카운터 SPA에 SSR/SSG 불필요. 최소 복잡도와 최단 구현 시간 우선."
+adr_path: "docs/adr/ADR-001-react-vite.md"
+next_step: 11

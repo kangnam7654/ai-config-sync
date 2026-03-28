@@ -1,0 +1,18 @@
+step: "4"
+agent: "ceo"
+status: "COMPLETE"
+timestamp: "2026-03-28T12:32:00+09:00"
+direction:
+  app_name: "Recipick"
+  tagline: "나만의 레시피를 공유하고, 맛있는 영감을 발견하는 소셜 레시피 플랫폼"
+  one_liner: "사용자가 레시피를 올리고, 좋아요/댓글로 소통하며, 팔로우 기반 피드에서 추천 레시피를 발견하는 SNS"
+  target_users: "20~40대 요리에 관심 있는 한국 사용자 — 집밥/홈쿡 문화를 즐기고 SNS에서 레시피를 탐색하는 디지털 네이티브"
+  core_features:
+    - "레시피 CRUD: 제목, 설명, 재료, 단계별 조리법, 사진 업로드"
+    - "소셜 인터랙션: 좋아요, 댓글, 북마크"
+    - "팔로우 시스템: 유저 간 팔로우/언팔로우, 팔로워/팔로잉 목록"
+    - "피드: 팔로우 기반 타임라인 + 인기/추천 레시피 탐색"
+    - "사용자 프로필: 내 레시피, 북마크, 팔로워/팔로잉 통계"
+  differentiator: "단순 레시피 DB가 아닌 SNS 경험 — 팔로우 기반 개인화 피드, 실시간 소셜 인터랙션, 깔끔한 모던 UI"
+  tech_stack_preference: "React (frontend) + FastAPI (backend) + PostgreSQL (database) — 사용자 지정"
+next_step: 5

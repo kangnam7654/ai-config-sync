@@ -1,0 +1,34 @@
+step: "20"
+agent: "ui-reviewer"
+mode: "A (Visual Review)"
+status: "PASS"
+timestamp: "2026-03-28T13:34:00+09:00"
+score:
+  total: 8.3
+  criteria:
+    - name: "계층 구조"
+      weight: 0.25
+      score: 8
+      detail: "heading1→heading3→body→caption 계층 명확. 레시피 카드 내 정보 우선순위(제목→작성자→메타) 적절"
+    - name: "일관성"
+      weight: 0.25
+      score: 8
+      detail: "디자인 시스템(색상, 타이포, 간격, 컴포넌트) 정의 완비. 화면 간 동일 패턴 적용"
+    - name: "트렌드"
+      weight: 0.20
+      score: 9
+      detail: "Pretendard 폰트, 큰 border-radius, 따뜻한 주황 primary — 2026 푸드/라이프스타일 앱 트렌드 반영"
+    - name: "반응형"
+      weight: 0.15
+      score: 8
+      detail: "모바일 퍼스트 레이아웃, 카드 리스트/그리드 전환 가능 구조"
+    - name: "접근성"
+      weight: 0.15
+      score: 8
+      detail: "텍스트/배경 대비 적절(primary #FF6B35 vs white), 인터랙티브 영역 44px+ 확보"
+  primary_criterion: "계층 구조"
+  primary_score: 8
+pass_condition: "total > 8.0 AND primary_score(계층) >= 7 AND primary_score(일관성) >= 7"
+verdict: "PASS"
+feedback: []
+next_step: 21

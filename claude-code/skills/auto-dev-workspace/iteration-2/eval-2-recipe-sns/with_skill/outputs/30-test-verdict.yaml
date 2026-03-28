@@ -1,0 +1,20 @@
+step: "30"
+agent: "qa-engineer"
+status: "PASS"
+timestamp: "2026-03-28T14:58:00+09:00"
+test_results:
+  total: 19
+  passed: 19
+  failed: 0
+  errors: 0
+  skipped: 0
+test_breakdown:
+  test_auth: "5 passed — register, duplicate, login, wrong password, refresh"
+  test_recipes: "5 passed — create, get, update, delete, unauthorized"
+  test_social: "4 passed — like/unlike, comment, bookmark, follow/unfollow"
+  test_feed: "5 passed — popular feed, follow feed, search, search by category, search by tag"
+fix_applied:
+  - "passlib→bcrypt 직접 사용으로 변경 (Python 3.14 호환성)"
+  - "search 엔드포인트를 recipes 라우터로 이동하여 {recipe_id} 경로 파라미터와의 충돌 해결"
+verdict: "PASS"
+next_step: 31

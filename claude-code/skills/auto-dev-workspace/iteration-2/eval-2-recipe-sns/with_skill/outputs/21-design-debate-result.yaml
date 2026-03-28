@@ -1,0 +1,39 @@
+step: "21"
+agent: "main-model (mediator)"
+debate_type: "full 2-party (Standard project)"
+participants: ["ux-reviewer", "ui-reviewer"]
+status: "CONSENSUS"
+timestamp: "2026-03-28T13:38:00+09:00"
+
+topic: "UX 설계(#17)와 UI 디자인(#19)의 정합성 검증"
+
+round_1:
+  ux_reviewer_verdict:
+    score: 8.5
+    feedback:
+      - "피드 탐색 플로우와 UI 레이아웃이 잘 대응됨"
+      - "레시피 작성 폼의 동적 리스트(재료/단계)는 UX 플로우의 반복 입력 패턴에 부합"
+      - "검색 화면의 카테고리 칩이 IA의 카테고리 필터와 일치"
+    concerns: []
+
+  ui_reviewer_verdict:
+    score: 8.3
+    feedback:
+      - "디자인 시스템이 UX 플로우의 모든 화면을 커버"
+      - "레시피 카드 컴포넌트가 피드와 검색 결과 모두에서 재사용 가능"
+      - "하단 네비 4개 아이콘이 IA의 4개 주요 섹션과 1:1 매핑"
+    concerns: []
+
+  conflicts_found: 0
+
+consensus:
+  agreed_items:
+    - "하단 네비 4개 = IA 4개 섹션 (홈/검색/작성/프로필)"
+    - "레시피 카드 컴포넌트는 피드 리스트(세로)와 검색 그리드(2열) 모두에서 반응형으로 사용"
+    - "레시피 상세의 하단 고정 바(좋아요/댓글/북마크)는 UX의 소셜 인터랙션 플로우를 1탭으로 완료"
+    - "작성자 바의 팔로우 버튼은 레시피 상세→프로필 이동 없이 즉시 팔로우 가능(UX 마찰 최소화)"
+  design_adjustments: []
+
+rounds_total: 1
+verdict: "CONSENSUS — 상충 항목 0건. UX와 UI가 정합함."
+next_step: 22

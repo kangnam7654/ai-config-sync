@@ -1,0 +1,33 @@
+step: "18"
+agent: "ux-reviewer"
+status: "PASS"
+timestamp: "2026-03-28T13:26:00+09:00"
+score:
+  total: 8.4
+  criteria:
+    - name: "태스크 완료"
+      weight: 0.30
+      score: 9
+      detail: "핵심 4개 플로우(레시피 등록, 피드 탐색, 검색, 프로필)가 명확한 단계로 정의됨. 각 플로우의 시작-끝이 명시적"
+    - name: "인지 부하"
+      weight: 0.25
+      score: 8
+      detail: "하단 네비 4개(홈/검색/+/프로필)로 단순. 레시피 작성은 단계가 많지만 논리적 그룹핑으로 관리 가능"
+    - name: "네비게이션"
+      weight: 0.20
+      score: 8
+      detail: "피드→상세→프로필 이동 경로 명확. 하단 네비로 어디서든 주요 기능 접근 가능"
+    - name: "접근성"
+      weight: 0.15
+      score: 8
+      detail: "2개 페르소나(민지/준호)의 기술 수준 차이를 고려한 설계. 요리 초보도 사용 가능한 단순 구조"
+    - name: "에러 복구"
+      weight: 0.10
+      score: 8
+      detail: "레시피 작성 중 임시 저장, 댓글 삭제 확인 등 에러 복구 경로 포함 권장"
+  primary_criterion: "태스크 완료"
+  primary_score: 9
+pass_condition: "total > 8.0 AND primary_score >= 7"
+verdict: "PASS"
+feedback: []
+next_step: 19

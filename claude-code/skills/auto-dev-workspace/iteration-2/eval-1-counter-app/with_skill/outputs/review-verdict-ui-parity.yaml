@@ -1,0 +1,36 @@
+step: "33"
+agent: "ui-reviewer"
+mode: "B (Design Parity)"
+status: "PASS"
+timestamp: "2026-03-28T12:53:00+09:00"
+max_iterations: 3
+iteration: 1
+score:
+  total: 9.10
+  criteria:
+    - name: "레이아웃 일치"
+      weight: 0.30
+      score: 9
+      detail: "중앙 카드, 세로 스택, 제목-숫자-버튼-리셋 순서. 목업과 일치."
+    - name: "색상/타이포"
+      weight: 0.25
+      score: 9
+      detail: "CSS 변수로 동일한 디자인 토큰 적용. Inter 폰트, rem 단위."
+    - name: "간격/여백"
+      weight: 0.20
+      score: 9
+      detail: "spacing 토큰 동일. 패딩/마진/갭 목업과 일치."
+    - name: "컴포넌트"
+      weight: 0.15
+      score: 9
+      detail: "버튼 스타일(색상, 크기, hover), 카드 섀도우/라운딩 목업과 일치."
+    - name: "반응형"
+      weight: 0.10
+      score: 9
+      detail: "375/768/1440px 브레이크포인트 동일. 모바일 우선."
+  primary_criterion: "레이아웃 일치"
+  primary_score: 9
+pass_condition: "total > 8.0 AND 레이아웃 >= 7"
+verdict: "PASS"
+feedback: []
+next_step: 34

@@ -1,0 +1,33 @@
+step: "14"
+agent: "cto"
+status: "PASS"
+timestamp: "2026-03-28T13:10:00+09:00"
+score:
+  total: 8.5
+  criteria:
+    - name: "RESTfulness"
+      weight: 0.30
+      score: 9
+      detail: "리소스 중심 URL, 적절한 HTTP 메서드/상태 코드 사용. like/bookmark는 토글 대신 POST/DELETE 분리로 멱등성 확보"
+    - name: "일관성"
+      weight: 0.25
+      score: 8
+      detail: "snake_case, 커서 페이지네이션, 에러 포맷 통일. 응답 스키마 명세 포함"
+    - name: "인증 커버리지"
+      weight: 0.20
+      score: 9
+      detail: "공개/인증 엔드포인트 구분 명확. 쓰기 작업 전부 auth_required: true. refresh 토큰 플로우 포함"
+    - name: "에러 처리"
+      weight: 0.15
+      score: 8
+      detail: "에러 포맷 정의됨. 상태 코드별 분류(400/401/403/404/409) 적절"
+    - name: "확장성"
+      weight: 0.10
+      score: 8
+      detail: "URL 버저닝(/api/v1), 커서 페이지네이션으로 대용량 대비. 검색 파라미터 확장 가능"
+  primary_criterion: "RESTfulness"
+  primary_score: 9
+pass_condition: "total > 8.0 AND primary_score >= 7"
+verdict: "PASS"
+feedback: []
+next_step: 15

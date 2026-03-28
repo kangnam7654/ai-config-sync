@@ -1,0 +1,29 @@
+step: "15"
+agent: "cto"
+status: "PASS"
+timestamp: "2026-03-28T13:14:00+09:00"
+score:
+  total: 8.7
+  criteria:
+    - name: "테이블-엔드포인트 매핑"
+      weight: 0.35
+      score: 9
+      detail: "모든 테이블(users, recipes, recipe_steps, recipe_ingredients, recipe_tags, likes, comments, follows, bookmarks)에 대응하는 CRUD 엔드포인트 존재"
+    - name: "필드-스키마 일치"
+      weight: 0.30
+      score: 9
+      detail: "API 응답 스키마의 필드가 DB 컬럼과 1:1 대응. 계산 필드(recipe_count, follower_count, is_following)는 JOIN/서브쿼리로 도출 가능"
+    - name: "관계 무결성"
+      weight: 0.20
+      score: 8
+      detail: "FK 관계가 API 네스팅(author, ingredients, steps)에 반영됨. 댓글 parent_id 자기참조도 API에서 parent_id 필드로 지원"
+    - name: "인덱스-쿼리 정합"
+      weight: 0.15
+      score: 8
+      detail: "피드(author_id+created_at), 인기순(like_count DESC), 검색(category, tag_name) 등 주요 쿼리에 인덱스 매핑됨"
+  primary_criterion: "테이블-엔드포인트 매핑"
+  primary_score: 9
+pass_condition: "total > 8.0 AND primary_score >= 7"
+verdict: "PASS"
+feedback: []
+next_step: 16

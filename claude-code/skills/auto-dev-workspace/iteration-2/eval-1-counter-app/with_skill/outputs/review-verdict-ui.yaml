@@ -1,0 +1,33 @@
+step: "20"
+agent: "ui-reviewer"
+status: "PASS"
+timestamp: "2026-03-28T12:40:00+09:00"
+score:
+  total: 9.00
+  criteria:
+    - name: "계층"
+      weight: 0.25
+      score: 9
+      detail: "제목-숫자-버튼의 명확한 시각적 계층. 숫자가 가장 크고 눈에 띔."
+    - name: "일관성"
+      weight: 0.25
+      score: 9
+      detail: "CSS 변수 기반 디자인 토큰. 색상/간격/타이포 전체 일관."
+    - name: "트렌드"
+      weight: 0.20
+      score: 9
+      detail: "미니멀 카드 레이아웃, 라운드 코너, 섀도우. 2026 디자인 트렌드 부합."
+    - name: "반응형"
+      weight: 0.15
+      score: 9
+      detail: "375/768/1440px 브레이크포인트 대응. 모바일 우선 설계."
+    - name: "접근성"
+      weight: 0.15
+      score: 9
+      detail: "aria-live, aria-label, focus-visible, prefers-reduced-motion 모두 적용."
+  primary_criterion: "계층"
+  primary_score: 9
+pass_condition: "total > 8.0 AND 계층 >= 7 AND 일관성 >= 7"
+verdict: "PASS"
+feedback: []
+next_step: 21

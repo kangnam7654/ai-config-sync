@@ -1,0 +1,201 @@
+step: "11"
+agent: "data-engineer"
+status: "COMPLETE"
+timestamp: "2026-03-28T12:56:00+09:00"
+database: "PostgreSQL 16"
+erd_mermaid: |
+  erDiagram
+    users {
+      uuid id PK
+      varchar email UK
+      varchar username UK
+      varchar password_hash
+      varchar display_name
+      text bio
+      varchar avatar_url
+      timestamp created_at
+      timestamp updated_at
+    }
+    recipes {
+      uuid id PK
+      uuid author_id FK
+      varchar title
+      text description
+      varchar category
+      int cooking_time_minutes
+      int servings
+      varchar thumbnail_url
+      int like_count
+      int comment_count
+      int bookmark_count
+      timestamp created_at
+      timestamp updated_at
+    }
+    recipe_steps {
+      uuid id PK
+      uuid recipe_id FK
+      int step_number
+      text instruction
+      varchar image_url
+    }
+    recipe_ingredients {
+      uuid id PK
+      uuid recipe_id FK
+      varchar name
+      varchar amount
+      varchar unit
+      int sort_order
+    }
+    recipe_tags {
+      uuid id PK
+      uuid recipe_id FK
+      varchar tag_name
+    }
+    likes {
+      uuid id PK
+      uuid user_id FK
+      uuid recipe_id FK
+      timestamp created_at
+    }
+    comments {
+      uuid id PK
+      uuid user_id FK
+      uuid recipe_id FK
+      uuid parent_id FK
+      text content
+      timestamp created_at
+      timestamp updated_at
+    }
+    follows {
+      uuid id PK
+      uuid follower_id FK
+      uuid following_id FK
+      timestamp created_at
+    }
+    bookmarks {
+      uuid id PK
+      uuid user_id FK
+      uuid recipe_id FK
+      timestamp created_at
+    }
+
+    users ||--o{ recipes : "authors"
+    users ||--o{ likes : "gives"
+    users ||--o{ comments : "writes"
+    users ||--o{ bookmarks : "saves"
+    users ||--o{ follows : "follower"
+    users ||--o{ follows : "following"
+    recipes ||--o{ recipe_steps : "has"
+    recipes ||--o{ recipe_ingredients : "has"
+    recipes ||--o{ recipe_tags : "tagged"
+    recipes ||--o{ likes : "receives"
+    recipes ||--o{ comments : "receives"
+    recipes ||--o{ bookmarks : "receives"
+    comments ||--o{ comments : "parent"
+
+tables:
+  - name: "users"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "email", type: "VARCHAR(255)", constraints: "UNIQUE NOT NULL"}
+      - {name: "username", type: "VARCHAR(50)", constraints: "UNIQUE NOT NULL"}
+      - {name: "password_hash", type: "VARCHAR(255)", constraints: "NOT NULL"}
+      - {name: "display_name", type: "VARCHAR(100)", constraints: "NOT NULL"}
+      - {name: "bio", type: "TEXT", constraints: "DEFAULT ''"}
+      - {name: "avatar_url", type: "VARCHAR(500)", constraints: "NULL"}
+      - {name: "created_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+      - {name: "updated_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+
+  - name: "recipes"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "author_id", type: "UUID", constraints: "FK users(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "title", type: "VARCHAR(200)", constraints: "NOT NULL"}
+      - {name: "description", type: "TEXT", constraints: "DEFAULT ''"}
+      - {name: "category", type: "VARCHAR(50)", constraints: "NOT NULL"}
+      - {name: "cooking_time_minutes", type: "INTEGER", constraints: "NULL"}
+      - {name: "servings", type: "INTEGER", constraints: "NULL"}
+      - {name: "thumbnail_url", type: "VARCHAR(500)", constraints: "NULL"}
+      - {name: "like_count", type: "INTEGER", constraints: "NOT NULL DEFAULT 0"}
+      - {name: "comment_count", type: "INTEGER", constraints: "NOT NULL DEFAULT 0"}
+      - {name: "bookmark_count", type: "INTEGER", constraints: "NOT NULL DEFAULT 0"}
+      - {name: "created_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+      - {name: "updated_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+
+  - name: "recipe_steps"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "recipe_id", type: "UUID", constraints: "FK recipes(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "step_number", type: "INTEGER", constraints: "NOT NULL"}
+      - {name: "instruction", type: "TEXT", constraints: "NOT NULL"}
+      - {name: "image_url", type: "VARCHAR(500)", constraints: "NULL"}
+
+  - name: "recipe_ingredients"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "recipe_id", type: "UUID", constraints: "FK recipes(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "name", type: "VARCHAR(100)", constraints: "NOT NULL"}
+      - {name: "amount", type: "VARCHAR(50)", constraints: "NOT NULL"}
+      - {name: "unit", type: "VARCHAR(30)", constraints: "DEFAULT ''"}
+      - {name: "sort_order", type: "INTEGER", constraints: "NOT NULL DEFAULT 0"}
+
+  - name: "recipe_tags"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "recipe_id", type: "UUID", constraints: "FK recipes(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "tag_name", type: "VARCHAR(50)", constraints: "NOT NULL"}
+
+  - name: "likes"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "user_id", type: "UUID", constraints: "FK users(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "recipe_id", type: "UUID", constraints: "FK recipes(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "created_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+    unique_constraints: ["(user_id, recipe_id)"]
+
+  - name: "comments"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "user_id", type: "UUID", constraints: "FK users(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "recipe_id", type: "UUID", constraints: "FK recipes(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "parent_id", type: "UUID", constraints: "FK comments(id) ON DELETE CASCADE NULL"}
+      - {name: "content", type: "TEXT", constraints: "NOT NULL"}
+      - {name: "created_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+      - {name: "updated_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+
+  - name: "follows"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "follower_id", type: "UUID", constraints: "FK users(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "following_id", type: "UUID", constraints: "FK users(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "created_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+    unique_constraints: ["(follower_id, following_id)"]
+    check_constraints: ["follower_id != following_id"]
+
+  - name: "bookmarks"
+    columns:
+      - {name: "id", type: "UUID", constraints: "PK DEFAULT gen_random_uuid()"}
+      - {name: "user_id", type: "UUID", constraints: "FK users(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "recipe_id", type: "UUID", constraints: "FK recipes(id) ON DELETE CASCADE NOT NULL"}
+      - {name: "created_at", type: "TIMESTAMPTZ", constraints: "NOT NULL DEFAULT NOW()"}
+    unique_constraints: ["(user_id, recipe_id)"]
+
+indexes:
+  - {table: "recipes", columns: ["author_id"], type: "BTREE"}
+  - {table: "recipes", columns: ["category"], type: "BTREE"}
+  - {table: "recipes", columns: ["created_at DESC"], type: "BTREE"}
+  - {table: "recipes", columns: ["like_count DESC"], type: "BTREE"}
+  - {table: "recipe_steps", columns: ["recipe_id", "step_number"], type: "BTREE"}
+  - {table: "recipe_ingredients", columns: ["recipe_id", "sort_order"], type: "BTREE"}
+  - {table: "recipe_tags", columns: ["tag_name"], type: "BTREE"}
+  - {table: "recipe_tags", columns: ["recipe_id"], type: "BTREE"}
+  - {table: "likes", columns: ["recipe_id"], type: "BTREE"}
+  - {table: "likes", columns: ["user_id"], type: "BTREE"}
+  - {table: "comments", columns: ["recipe_id", "created_at"], type: "BTREE"}
+  - {table: "comments", columns: ["parent_id"], type: "BTREE"}
+  - {table: "follows", columns: ["follower_id"], type: "BTREE"}
+  - {table: "follows", columns: ["following_id"], type: "BTREE"}
+  - {table: "bookmarks", columns: ["user_id"], type: "BTREE"}
+  - {table: "bookmarks", columns: ["recipe_id"], type: "BTREE"}
+
+next_step: 12

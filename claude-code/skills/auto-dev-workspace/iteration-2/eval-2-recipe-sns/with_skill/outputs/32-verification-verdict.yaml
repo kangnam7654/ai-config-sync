@@ -1,0 +1,25 @@
+step: "32"
+agent: "simulator"
+status: "PASS"
+timestamp: "2026-03-28T15:08:00+09:00"
+flows_verified:
+  - { flow: "Health check", status: "PASS" }
+  - { flow: "Register user1", status: "PASS" }
+  - { flow: "Register user2", status: "PASS" }
+  - { flow: "Login", status: "PASS" }
+  - { flow: "Create recipe (with ingredients, steps, tags)", status: "PASS" }
+  - { flow: "Get recipe detail", status: "PASS" }
+  - { flow: "Like recipe", status: "PASS" }
+  - { flow: "Comment on recipe", status: "PASS" }
+  - { flow: "Bookmark recipe", status: "PASS" }
+  - { flow: "Follow user", status: "PASS" }
+  - { flow: "Follow feed (shows followed user's recipes)", status: "PASS" }
+  - { flow: "Popular feed", status: "PASS" }
+  - { flow: "Search by keyword", status: "PASS" }
+  - { flow: "User profile (with recipe count)", status: "PASS" }
+  - { flow: "My bookmarks", status: "PASS" }
+total_flows: 15
+passed: 15
+failed: 0
+verdict: "PASS"
+next_step: 33

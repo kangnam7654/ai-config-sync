@@ -1,0 +1,212 @@
+step: "23-24"
+agent: "plan-loop (planner + plan-critic)"
+status: "PASS"
+timestamp: "2026-03-28T13:48:00+09:00"
+rounds: 1
+plan_critic_score: 8.5
+plan_critic_breakdown:
+  clarity: 9
+  completeness: 8
+  feasibility: 9
+  dependencies: 8
+  risk: 8
+  scope: 8
+
+execution_plan:
+  project_root: "/tmp/auto-dev-eval-recipe"
+
+  file_structure:
+    backend:
+      - "backend/pyproject.toml"
+      - "backend/app/__init__.py"
+      - "backend/app/main.py"
+      - "backend/app/config.py"
+      - "backend/app/database.py"
+      - "backend/app/models/__init__.py"
+      - "backend/app/models/user.py"
+      - "backend/app/models/recipe.py"
+      - "backend/app/models/social.py"
+      - "backend/app/schemas/__init__.py"
+      - "backend/app/schemas/auth.py"
+      - "backend/app/schemas/user.py"
+      - "backend/app/schemas/recipe.py"
+      - "backend/app/schemas/social.py"
+      - "backend/app/schemas/feed.py"
+      - "backend/app/routers/__init__.py"
+      - "backend/app/routers/auth.py"
+      - "backend/app/routers/users.py"
+      - "backend/app/routers/recipes.py"
+      - "backend/app/routers/feed.py"
+      - "backend/app/routers/social.py"
+      - "backend/app/services/__init__.py"
+      - "backend/app/services/auth.py"
+      - "backend/app/services/user.py"
+      - "backend/app/services/recipe.py"
+      - "backend/app/services/feed.py"
+      - "backend/app/services/social.py"
+      - "backend/app/core/__init__.py"
+      - "backend/app/core/security.py"
+      - "backend/app/core/dependencies.py"
+      - "backend/app/core/exceptions.py"
+      - "backend/alembic.ini"
+      - "backend/alembic/env.py"
+      - "backend/alembic/versions/"
+      - "backend/tests/__init__.py"
+      - "backend/tests/conftest.py"
+      - "backend/tests/test_auth.py"
+      - "backend/tests/test_recipes.py"
+      - "backend/tests/test_social.py"
+      - "backend/tests/test_feed.py"
+      - "backend/Dockerfile"
+
+    frontend:
+      - "frontend/package.json"
+      - "frontend/vite.config.ts"
+      - "frontend/tsconfig.json"
+      - "frontend/index.html"
+      - "frontend/src/main.tsx"
+      - "frontend/src/App.tsx"
+      - "frontend/src/api/client.ts"
+      - "frontend/src/api/auth.ts"
+      - "frontend/src/api/recipes.ts"
+      - "frontend/src/api/social.ts"
+      - "frontend/src/api/users.ts"
+      - "frontend/src/api/feed.ts"
+      - "frontend/src/store/authStore.ts"
+      - "frontend/src/components/layout/BottomNav.tsx"
+      - "frontend/src/components/layout/Header.tsx"
+      - "frontend/src/components/recipe/RecipeCard.tsx"
+      - "frontend/src/components/recipe/RecipeForm.tsx"
+      - "frontend/src/components/recipe/IngredientList.tsx"
+      - "frontend/src/components/recipe/StepList.tsx"
+      - "frontend/src/components/social/CommentSection.tsx"
+      - "frontend/src/components/social/LikeButton.tsx"
+      - "frontend/src/components/social/BookmarkButton.tsx"
+      - "frontend/src/components/social/FollowButton.tsx"
+      - "frontend/src/components/user/UserAvatar.tsx"
+      - "frontend/src/components/user/UserCard.tsx"
+      - "frontend/src/components/common/Button.tsx"
+      - "frontend/src/components/common/Input.tsx"
+      - "frontend/src/components/common/CategoryChip.tsx"
+      - "frontend/src/pages/HomePage.tsx"
+      - "frontend/src/pages/SearchPage.tsx"
+      - "frontend/src/pages/RecipeDetailPage.tsx"
+      - "frontend/src/pages/RecipeCreatePage.tsx"
+      - "frontend/src/pages/ProfilePage.tsx"
+      - "frontend/src/pages/LoginPage.tsx"
+      - "frontend/src/pages/RegisterPage.tsx"
+      - "frontend/src/styles/globals.css"
+      - "frontend/Dockerfile"
+
+    infra:
+      - "docker-compose.yml"
+      - ".env.example"
+
+  implementation_order:
+    - step: 1
+      track: "infra"
+      description: "프로젝트 초기 설정 — Docker Compose(PostgreSQL + backend + frontend), .env.example"
+      files: ["docker-compose.yml", ".env.example"]
+
+    - step: 2
+      track: "backend"
+      description: "Backend 기반 — pyproject.toml, FastAPI 앱 초기화, config, database(SQLAlchemy async), 에러 핸들러"
+      files: ["backend/pyproject.toml", "backend/app/main.py", "backend/app/config.py", "backend/app/database.py", "backend/app/core/exceptions.py"]
+
+    - step: 3
+      track: "backend"
+      description: "DB 모델 — User, Recipe, RecipeStep, RecipeIngredient, RecipeTag, Like, Comment, Follow, Bookmark + Alembic 마이그레이션"
+      files: ["backend/app/models/*.py", "backend/alembic.ini", "backend/alembic/env.py"]
+      depends_on: [2]
+
+    - step: 4
+      track: "backend"
+      description: "인증 — JWT 토큰 생성/검증, 패스워드 해싱, register/login/refresh 엔드포인트"
+      files: ["backend/app/core/security.py", "backend/app/core/dependencies.py", "backend/app/schemas/auth.py", "backend/app/services/auth.py", "backend/app/routers/auth.py"]
+      depends_on: [3]
+
+    - step: 5
+      track: "backend"
+      description: "사용자 API — 프로필 조회/수정, 유저 레시피 목록"
+      files: ["backend/app/schemas/user.py", "backend/app/services/user.py", "backend/app/routers/users.py"]
+      depends_on: [4]
+
+    - step: 6
+      track: "backend"
+      description: "레시피 API — CRUD(생성/조회/수정/삭제), 재료+단계+태그 포함"
+      files: ["backend/app/schemas/recipe.py", "backend/app/services/recipe.py", "backend/app/routers/recipes.py"]
+      depends_on: [4]
+
+    - step: 7
+      track: "backend"
+      description: "소셜 API — 좋아요, 댓글, 북마크, 팔로우/언팔로우, 카운터 업데이트"
+      files: ["backend/app/schemas/social.py", "backend/app/services/social.py", "backend/app/routers/social.py"]
+      depends_on: [6]
+
+    - step: 8
+      track: "backend"
+      description: "피드 API — 팔로우 피드, 인기 피드, 검색"
+      files: ["backend/app/schemas/feed.py", "backend/app/services/feed.py", "backend/app/routers/feed.py"]
+      depends_on: [7]
+
+    - step: 9
+      track: "frontend"
+      description: "Frontend 기반 — package.json, Vite 설정, 글로벌 스타일, API 클라이언트, 인증 스토어"
+      files: ["frontend/package.json", "frontend/vite.config.ts", "frontend/src/main.tsx", "frontend/src/App.tsx", "frontend/src/api/client.ts", "frontend/src/store/authStore.ts", "frontend/src/styles/globals.css"]
+
+    - step: 10
+      track: "frontend"
+      description: "공통 컴포넌트 — Button, Input, CategoryChip, BottomNav, Header, UserAvatar"
+      files: ["frontend/src/components/common/*.tsx", "frontend/src/components/layout/*.tsx", "frontend/src/components/user/UserAvatar.tsx"]
+      depends_on: [9]
+
+    - step: 11
+      track: "frontend"
+      description: "인증 페이지 — LoginPage, RegisterPage + API 연동"
+      files: ["frontend/src/pages/LoginPage.tsx", "frontend/src/pages/RegisterPage.tsx", "frontend/src/api/auth.ts"]
+      depends_on: [10]
+
+    - step: 12
+      track: "frontend"
+      description: "레시피 관련 컴포넌트 — RecipeCard, RecipeForm, IngredientList, StepList"
+      files: ["frontend/src/components/recipe/*.tsx", "frontend/src/api/recipes.ts"]
+      depends_on: [10]
+
+    - step: 13
+      track: "frontend"
+      description: "소셜 컴포넌트 — LikeButton, BookmarkButton, FollowButton, CommentSection, UserCard"
+      files: ["frontend/src/components/social/*.tsx", "frontend/src/components/user/UserCard.tsx", "frontend/src/api/social.ts", "frontend/src/api/users.ts"]
+      depends_on: [10]
+
+    - step: 14
+      track: "frontend"
+      description: "페이지 조합 — HomePage(피드), SearchPage, RecipeDetailPage, RecipeCreatePage, ProfilePage"
+      files: ["frontend/src/pages/*.tsx", "frontend/src/api/feed.ts"]
+      depends_on: [11, 12, 13]
+
+    - step: 15
+      track: "backend"
+      description: "Backend 테스트 — conftest(DB fixture), 인증/레시피/소셜/피드 테스트"
+      files: ["backend/tests/*.py"]
+      depends_on: [8]
+
+    - step: 16
+      track: "infra"
+      description: "Dockerfile (backend + frontend) + Docker Compose 최종 설정"
+      files: ["backend/Dockerfile", "frontend/Dockerfile", "docker-compose.yml"]
+      depends_on: [8, 14]
+
+  tracks:
+    backend:
+      agent: "backend-dev"
+      steps: [2, 3, 4, 5, 6, 7, 8, 15]
+    frontend:
+      agent: "frontend-dev"
+      steps: [9, 10, 11, 12, 13, 14]
+    infra:
+      agent: "main-model"
+      steps: [1, 16]
+
+  dependency_note: "Backend(steps 2-8)를 먼저 완성한 후 Frontend(steps 9-14)를 구현. Frontend가 Backend API에 의존하기 때문."
+
+next_step: 25

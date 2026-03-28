@@ -1,0 +1,94 @@
+step: "19"
+agent: "product-designer"
+status: "COMPLETE"
+timestamp: "2026-03-28T13:30:00+09:00"
+design_tool: "HTML/CSS 목업"
+
+design_system:
+  colors:
+    primary: "#FF6B35"
+    primary_light: "#FF8F65"
+    primary_dark: "#E05520"
+    secondary: "#2EC4B6"
+    background: "#FAFAFA"
+    surface: "#FFFFFF"
+    text_primary: "#1A1A1A"
+    text_secondary: "#6B7280"
+    text_tertiary: "#9CA3AF"
+    border: "#E5E7EB"
+    error: "#EF4444"
+    success: "#22C55E"
+    like_red: "#EF4444"
+
+  typography:
+    font_family: "'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif"
+    heading_1: "28px / bold / 1.3"
+    heading_2: "22px / bold / 1.3"
+    heading_3: "18px / semibold / 1.4"
+    body: "16px / regular / 1.5"
+    body_small: "14px / regular / 1.5"
+    caption: "12px / regular / 1.4"
+
+  spacing:
+    xs: "4px"
+    sm: "8px"
+    md: "16px"
+    lg: "24px"
+    xl: "32px"
+    xxl: "48px"
+
+  border_radius:
+    sm: "8px"
+    md: "12px"
+    lg: "16px"
+    full: "9999px"
+
+  components:
+    recipe_card:
+      description: "썸네일(16:9, border-radius lg), 하단에 제목(heading3)+작성자(caption)+좋아요 수. 우하단 북마크 아이콘."
+      width: "100%"
+      padding: "0"
+      shadow: "0 1px 3px rgba(0,0,0,0.08)"
+    bottom_nav:
+      description: "4개 아이콘(Home/Search/Plus/Profile). 활성 탭은 primary 색상. 높이 56px."
+      height: "56px"
+      background: "#FFFFFF"
+      border_top: "1px solid #E5E7EB"
+    button_primary:
+      description: "primary 배경, 흰색 텍스트, border-radius full, 패딩 md lg"
+      background: "#FF6B35"
+      text_color: "#FFFFFF"
+    avatar:
+      description: "원형, border-radius full"
+      sizes: ["32px (리스트)", "48px (댓글)", "80px (프로필)"]
+    input_field:
+      description: "border 1px #E5E7EB, border-radius sm, 패딩 sm md, focus 시 border primary"
+
+screens_mockup_approach: "React 컴포넌트로 직접 구현 (HTML/CSS 목업 대신 실제 UI 코드를 작성하여 목업을 겸함)"
+
+screen_layouts:
+  home_feed:
+    layout: "상단 고정 헤더(앱 이름 'Recipick' + 탭: 팔로우/인기) → 레시피 카드 수직 리스트(무한 스크롤) → 하단 네비"
+    key_elements: ["탭 바(팔로우/인기)", "레시피 카드 리스트", "플로팅 '+' 버튼 또는 하단 네비 중앙"]
+
+  recipe_detail:
+    layout: "큰 썸네일(상단, 가로 풀) → 제목+작성자 바(아바타+이름+팔로우) → 메타(시간/인분) → 재료 섹션(체크리스트) → 단계 섹션(번호+텍스트+사진) → 고정 하단 바(좋아요+댓글+북마크)"
+    key_elements: ["작성자 바(팔로우 버튼 포함)", "재료 체크리스트", "단계별 카드", "하단 인터랙션 바"]
+
+  recipe_create:
+    layout: "스크롤 폼 — 썸네일 업로드 → 기본 정보(제목, 설명, 카테고리 드롭다운, 시간, 인분) → 재료 섹션(동적 추가) → 단계 섹션(동적 추가) → 태그 입력 → 게시 버튼"
+    key_elements: ["동적 리스트(+/- 버튼)", "사진 업로드 영역", "게시 버튼(primary)"]
+
+  search:
+    layout: "상단 검색 바 → 카테고리 칩 가로 스크롤 → 검색 결과 2열 그리드"
+    key_elements: ["검색 바(돋보기 아이콘)", "카테고리 칩", "그리드 레시피 카드(작은 버전)"]
+
+  profile:
+    layout: "상단 프로필 영역(아바타 80px+이름+소개+팔로워/팔로잉 수+편집 버튼) → 탭(내 레시피/북마크) → 레시피 그리드"
+    key_elements: ["프로필 카드", "팔로워/팔로잉 수(탭 가능)", "탭 바"]
+
+  auth:
+    layout: "중앙 정렬 — 앱 로고 + 이메일/비밀번호 입력 + 로그인 버튼 + 회원가입 전환 링크"
+    key_elements: ["입력 필드", "primary 버튼", "전환 링크"]
+
+next_step: 20

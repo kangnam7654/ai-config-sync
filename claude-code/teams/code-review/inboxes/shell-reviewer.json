@@ -1,0 +1,15 @@
+[
+  {
+    "from": "team-lead",
+    "text": "너는 \"code-review\" 팀의 셸 스크립트 리뷰어(shell-reviewer)이다.\n\n이 프로젝트는 Ubuntu ↔ MacBook ↔ Windows 간 설정을 동기화하는 프로젝트이다.\n\n너의 태스크: Task #3 — 셸 스크립트 리뷰 (sync.sh, setup-mac.sh, setup-windows.sh)\n\n1. TaskList로 태스크를 확인하고, Task #3을 claim (owner를 \"shell-reviewer\"로 설정)하고 in_progress로 변경하라\n2. sync.sh, setup-mac.sh, setup-windows.sh를 읽고 리뷰하라\n3. 리뷰 항목: 셸 안전성 (quoting, error handling, set -e), 이식성 (bash/zsh 호환), 크론 환경에서의 동작, 경쟁 조건, 에러 복구 로직\n4. 심각도별(Critical/Major/Minor/Suggestion)로 분류하여 보고하라\n5. 리뷰 완료 후 태스크를 completed로 변경하라\n6. 팀 리드에게 SendMessage로 결과를 보고하라",
+    "timestamp": "2026-03-28T02:46:20.712Z",
+    "read": true
+  },
+  {
+    "from": "shell-reviewer",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"3\",\"subject\":\"셸 스크립트 리뷰 (sync.sh, setup-*.sh)\",\"description\":\"sync.sh, setup-mac.sh, setup-windows.sh 셸 스크립트들을 리뷰하라. 포함 항목: 셸 안전성 (quoting, error handling, set -e), 이식성 (bash/zsh 호환), 크론 환경에서의 동작, 경쟁 조건, 에러 복구 로직. 심각도별로 분류하여 보고하라.\",\"assignedBy\":\"shell-reviewer\",\"timestamp\":\"2026-03-28T02:46:32.394Z\"}",
+    "timestamp": "2026-03-28T02:46:32.394Z",
+    "color": "blue",
+    "read": true
+  }
+]

@@ -1,0 +1,92 @@
+project: recipick
+type: auto-improve
+date: "2026-03-28"
+
+improvement_summary:
+  baseline_scores:
+    code_quality: 5
+    security: 4
+    architecture: 6
+    test_coverage: 5
+    ux_ui: 5
+  final_scores:
+    code_quality: 8
+    security: 7
+    architecture: 7
+    test_coverage: 7
+    ux_ui: 6
+  regression_test_result: PASS
+  total_improvements: 13
+  total_findings: 17
+
+phases:
+  audit:
+    status: PROCEED
+    findings: 17
+    priority_p0: 5
+    priority_p1: 5
+    priority_p2: 4
+    priority_p3: 3
+  design:
+    status: PASS
+    cto_gate: PASS
+  build:
+    status: COMPLETE
+    tests_before: 19
+    tests_after: 34
+    tests_added: 15
+    all_passing: true
+  verify:
+    status: PASS
+    regression: PASS
+    release_debate: PASS
+
+changes_summary:
+  files_modified: 10
+  files_created: 3
+  improvements_completed:
+    - "N+1 쿼리 제거: feed.py _to_list_items() 배치 IN 쿼리 (레시피당 2쿼리 → 전체 2쿼리)"
+    - "N+1 쿼리 제거: social.py get_comments() selectinload(Comment.user)"
+    - "N+1 쿼리 제거: social.py get_followers/get_following 배치 User 조회"
+    - "Cursor 페이지네이션 수정: UUID → created_at ISO datetime 기반 (6개 함수)"
+    - "FollowButton 버그 수정: is_liked → false (RecipeDetailPage.tsx)"
+    - "비밀번호 최소 8자 검증 (schemas/auth.py)"
+    - "레시피 입력 길이 제한: ingredients 50, steps 30, tags 20 (schemas/recipe.py)"
+    - "SearchPage 카테고리 자동 검색 (useEffect)"
+    - "ILIKE 와일드카드 이스케이프 (_escape_like 함수)"
+    - "CORS 강화: allow_methods/headers 명시적 목록"
+    - "/health 엔드포인트 DB 연결 확인"
+    - ".gitignore 생성"
+    - "테스트 15건 추가 (프로필 4건, 에지케이스 11건)"
+  improvements_deferred:
+    - "Alembic 마이그레이션 설정 (별도 작업)"
+    - "프런트엔드 에러 핸들링 개선 (P3)"
+    - "Rate limiting (인프라 의존)"
+    - "로딩 상태 스피너/스켈레톤 (P3)"
+
+score_improvements:
+  code_quality:
+    before: 5
+    after: 8
+    delta: "+3"
+    reason: "N+1 제거, cursor 수정, 입력 검증, ILIKE 이스케이프"
+  security:
+    before: 4
+    after: 7
+    delta: "+3"
+    reason: "비밀번호 검증, CORS 강화, 입력 길이 제한"
+  architecture:
+    before: 6
+    after: 7
+    delta: "+1"
+    reason: ".gitignore, 헬스체크 DB 확인"
+  test_coverage:
+    before: 5
+    after: 7
+    delta: "+2"
+    reason: "19건 → 34건, 프로필/에지케이스/보안 테스트 추가"
+  ux_ui:
+    before: 5
+    after: 6
+    delta: "+1"
+    reason: "FollowButton 버그 수정, 카테고리 자동 검색"

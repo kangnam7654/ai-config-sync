@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "eval_name": "recipe-sns-improve",
+  "prompt": "이 레시피 SNS 앱을 점검하고 개선해줘. /tmp/auto-dev-eval-recipe/",
+  "assertions": [
+    {"name": "audit_phase_complete", "description": "Audit Phase (#1~#9) 완료, audit-report.md 생성"},
+    {"name": "step_numbering_correct", "description": "audit #9에서 CTO 판정+문서화 통합. #10 충돌 없음"},
+    {"name": "never_rules_6", "description": "NEVER 규칙 6개 모두 준수 (특히 #4 SKIP 불가, #6 회귀 테스트)"},
+    {"name": "skip_table_used", "description": "SKIP 분류 테이블 참조 (DB 있으므로 #5 실행, UI 있으므로 #8 실행)"},
+    {"name": "loop_table_used", "description": "루프 소진 테이블 인라인 참조"},
+    {"name": "phase_return_format", "description": "Cross-Phase 복귀 발생 시 phase_return YAML 사용"},
+    {"name": "before_after_scores", "description": "completion.yaml에 Before/After 점수 비교 포함"},
+    {"name": "regression_pass", "description": "기존 19개 테스트 모두 통과 (회귀 없음)"}
+  ]
+}

@@ -42,7 +42,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 | Task decomposition, milestone planning | **planner** |
 | Code quality review, security audit | **code-reviewer**, **security-reviewer** |
 | Migration/query optimization review | **dba** |
-| UX/UI design creation | **product-designer** |
+| UX/UI design creation | **designer** |
 
 ---
 
@@ -271,7 +271,7 @@ loop_count: "{현재 루프 횟수, 최대 10}"
 | **plan-critic** | Receives plan-critic's validation results. Escalation target when plan-critic exhausts its loop. |
 | **ux-reviewer / ui-reviewer** | Arbitrates when their design debate fails to reach consensus. |
 | **dba** | DBA reviews migrations and queries in Build Phase. CTO reviews schemas in Design Phase. No overlap. |
-| **product-designer** | Product-designer creates UX/UI designs. CTO validates via design gate, not direct review. |
+| **designer** | Product-designer creates UX/UI designs. CTO validates via design gate, not direct review. |
 
 ---
 

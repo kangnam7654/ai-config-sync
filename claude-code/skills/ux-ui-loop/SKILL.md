@@ -10,11 +10,11 @@ auto-dev 파이프라인 Design Phase의 두 번째 서브-루프. UX 설계 →
 ## 워크플로우
 
 ```
-#17 UX 설계 (product-designer)
+#17 UX 설계 (designer)
   ↓
 #18 UX 검증 (ux-reviewer) ←─ FAIL → #17 (최대 10회)
   ↓ PASS
-#19 UI 디자인 (product-designer)
+#19 UI 디자인 (designer)
   ↓
 #20 UI 검증 (ui-reviewer) ←─ FAIL → #19 (최대 10회)
   ↓ PASS
@@ -25,9 +25,9 @@ auto-dev 파이프라인 Design Phase의 두 번째 서브-루프. UX 설계 →
 
 ---
 
-## #17 UX 설계 (product-designer)
+## #17 UX 설계 (designer)
 
-**product-designer 에이전트**를 호출한다. 입력: idea-brief.md + arch-spec.md (기술 제약).
+**designer 에이전트**를 호출한다. 입력: idea-brief.md + arch-spec.md (기술 제약).
 
 ```
 다음 프로젝트의 UX를 설계하라:
@@ -53,7 +53,7 @@ auto-dev 파이프라인 Design Phase의 두 번째 서브-루프. UX 설계 →
 5기준 채점: 태스크 완료(30%, primary >=7), 인지 부하(25%), 네비게이션(20%), 접근성(15%), 에러 복구(10%).
 
 - **PASS** (total > 8.0 AND 태스크 완료 >= 7) → #19로 진행
-- **FAIL** → ux-reviewer 피드백을 product-designer에게 전달, #17로 복귀
+- **FAIL** → ux-reviewer 피드백을 designer에게 전달, #17로 복귀
 
 **최대 10회 반복**. 10회 소진 시 CTO 판정.
 
@@ -61,9 +61,9 @@ auto-dev 파이프라인 Design Phase의 두 번째 서브-루프. UX 설계 →
 
 ---
 
-## #19 UI 디자인 (product-designer)
+## #19 UI 디자인 (designer)
 
-**product-designer 에이전트**를 호출한다. 입력: #17 UX 설계 (검증 통과) + arch-spec.md.
+**designer 에이전트**를 호출한다. 입력: #17 UX 설계 (검증 통과) + arch-spec.md.
 
 ```
 검증 완료된 UX 설계를 기반으로 UI를 디자인하라:
@@ -88,7 +88,7 @@ UX 설계: {#17 산출물}
 5기준 채점: 계층(25%, primary >=7), 일관성(25%, primary >=7), 트렌드(20%), 반응형(15%), 접근성(15%).
 
 - **PASS** (total > 8.0 AND 계층 >= 7 AND 일관성 >= 7) → #21로 진행
-- **FAIL** → ui-reviewer 피드백을 product-designer에게 전달, #19로 복귀
+- **FAIL** → ui-reviewer 피드백을 designer에게 전달, #19로 복귀
 
 **최대 10회 반복**. 10회 소진 시 CTO 판정.
 
@@ -136,6 +136,6 @@ UX 설계: {#17 산출물}
 
 ## 경계
 
-- 이 스킬은 오케스트레이션만 수행한다. UX/UI 설계는 product-designer, UX 검증은 ux-reviewer, UI 검증은 ui-reviewer가 담당.
+- 이 스킬은 오케스트레이션만 수행한다. UX/UI 설계는 designer, UX 검증은 ux-reviewer, UI 검증은 ui-reviewer가 담당.
 - 아키텍처 설계는 architecture-loop가 담당한다.
 - 디베이트 합의 실패 시 CTO가 판정하지만, CTO 호출은 이 스킬이 메인 모델에 요청한다.

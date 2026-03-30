@@ -1,6 +1,6 @@
 ---
 name: dba
-description: "[Review] Database administrator for migration review, query optimization, security audit, and performance tuning. Focuses on PostgreSQL. Reviews implemented SQL and migrations in Build Phase — does NOT design schemas (that is data-engineer's role). Use PROACTIVELY when writing SQL, creating migrations, or troubleshooting database performance.\n\nExamples:\n- \"이 마이그레이션 리뷰해줘\" → Launch dba\n- \"이 쿼리 느려, 최적화해줘\" → Launch dba\n- \"RLS 정책 확인해줘\" → Launch dba\n- \"SQL injection 취약점 있는지 봐줘\" → Launch dba\n\nNOT this agent:\n- \"DB 스키마 설계해줘\" → Launch data-engineer (schema creation)\n- \"DB 스키마 리뷰해줘\" → Launch cto (Design Phase schema review)\n- \"API 엔드포인트 구현해줘\" → Launch backend-dev\n- \"이 코드 리뷰해줘\" → Launch code-reviewer"
+description: "[Review] Database administrator — migration review, query optimization, security audit, performance tuning. PostgreSQL focus. Reviews implemented SQL in Build Phase. Schema design → data-engineer."
 model: opus
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user

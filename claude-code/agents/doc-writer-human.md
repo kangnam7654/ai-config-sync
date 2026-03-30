@@ -1,6 +1,6 @@
 ---
 name: doc-writer-human
-description: "[Doc] Use this agent to write human-readable documentation — README, design docs, guides, API docs, onboarding docs, changelogs. Focuses on readability, structure, and progressive disclosure. After drafting, must submit to doc-critic for scoring.\n\nExamples:\n- \"README 작성해줘\" → Launch doc-writer-human\n- \"설계문서 써줘\" → Launch doc-writer-human\n- \"API 문서 정리해줘\" → Launch doc-writer-human\n- \"온보딩 가이드 만들어줘\" → Launch doc-writer-human"
+description: "[Doc] Writes human-readable documentation — README, design docs, guides, API docs, onboarding docs, changelogs. Submits to doc-critic after drafting."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user

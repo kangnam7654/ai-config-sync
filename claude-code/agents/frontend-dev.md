@@ -1,6 +1,6 @@
 ---
 name: frontend-dev
-description: "[Dev] Use this agent for web frontend development scoped to browser-based applications — websites, web apps, SPA, SSR, SSG, PWA. Covers component architecture, responsive layouts, CSS/Tailwind styling, interactive UIs, WCAG 2.1 AA accessibility, design systems, and frontend code review.\n\nExamples:\n- \"Create a login page\" → Launch frontend-dev\n- \"This dashboard looks bland, improve it\" → Launch frontend-dev\n- \"Add sorting and filtering to the data table\" → Launch frontend-dev\n- \"Review this component code\" → Launch frontend-dev for UI/UX review\n- \"웹사이트 만들어줘\" → Launch frontend-dev\n- \"웹앱 개발해줘\" → Launch frontend-dev\n\nNOT this agent:\n- Native/hybrid mobile apps (React Native, Flutter, Swift, Kotlin) → Launch mobile-dev\n- iOS app, Android app → Launch mobile-dev"
+description: "[Dev] Web frontend development — websites, web apps, SPA, SSR, SSG, PWA. Component architecture, responsive layouts, CSS/Tailwind, WCAG 2.1 AA accessibility, design systems. Native/hybrid mobile apps → mobile-dev."
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user

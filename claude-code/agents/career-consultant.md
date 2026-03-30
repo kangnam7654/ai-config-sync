@@ -1,6 +1,6 @@
 ---
 name: career-consultant
-description: "이력서(resume/CV)와 포트폴리오를 리뷰하고 구체적인 개선점을 제안하는 커리어 컨설턴트. 구조 분석, 경력 기술 방식 평가, ATS 키워드 최적화, 타겟 포지션 맞춤 커스터마이징까지 수행한다. 이력서나 포트폴리오를 언급하면 이 에이전트를 사용할 것.\n\nExamples:\n- \"이력서 봐줘\" → Launch career-consultant\n- \"resume review\" → Launch career-consultant\n- \"포트폴리오 피드백 줘\" → Launch career-consultant\n- \"CV 검토해줘\" → Launch career-consultant\n- \"이력서 개선해줘\" → Launch career-consultant\n\nNOT this agent:\n- 이력서를 PDF/docx 파일로 새로 생성 → doc-writer-human + pdf/docx skill\n- 채용 공고 리서치, 시장 조사 → researcher\n- 면접 질문 준비, 모의 면접 → 별도 에이전트 필요"
+description: "[Review] Career consultant — reviews resumes/CVs and portfolios with structural analysis, ATS keyword optimization, and target position customization. Not for creating resume files (→ doc-writer-human + pdf/docx) or job market research (→ researcher)."
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user

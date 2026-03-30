@@ -1,16 +1,6 @@
 ---
 name: writer
-description: "Use this agent to create STRUCTURED DATA FILES (CSV, TSV, JSON, YAML, TOML) and BUSINESS DOCUMENTS (specs, reports, proposals, analysis, meeting notes, postmortems, RFCs). Does NOT write human-readable docs (README, guides, changelogs) or LLM-facing docs (agents, prompts, CLAUDE.md).
-
-Examples:
-- \"이 데이터를 CSV로 정리해줘\" → Launch writer
-- \"프로젝트 분석 보고서 작성해줘\" → Launch writer
-- \"기술 제안서 초안 써줘\" → Launch writer
-- \"회의록 정리해줘\" → Launch writer
-- \"이 JSON을 YAML로 변환해줘\" → Launch writer
-- \"RFC 문서 작성해줘\" → Launch writer
-- \"PRD 작성해줘\" → Launch writer
-- \"포스트모템 보고서 써줘\" → Launch writer"
+description: "[Doc] Creates structured data files (CSV, TSV, JSON, YAML, TOML) and business documents (specs, reports, proposals, analysis, meeting notes, postmortems, RFCs). Not for human docs (→ doc-writer-human) or LLM docs (→ doc-writer-llm)."
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user

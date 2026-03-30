@@ -1,6 +1,6 @@
 ---
 name: doc-critic
-description: "[Doc] Use this agent to evaluate documentation quality. Operates in two modes: HUMAN (readability, structure, examples) and LLM (precision, unambiguity, executability). Scores on 5 weighted criteria per mode. PASS requires total > 8.00 AND primary criterion >= 8. Gives exactly ONE feedback per round.\n\nExamples:\n- After doc-writer-human drafts a README → Launch doc-critic in human mode\n- After doc-writer-llm drafts an agent file → Launch doc-critic in LLM mode\n- \"이 문서 평가해줘\" → Launch doc-critic\n- \"이 프롬프트 괜찮은지 봐줘\" → Launch doc-critic in LLM mode"
+description: "[Doc] Documentation quality evaluator — HUMAN mode (readability, structure) and LLM mode (precision, executability). Scores on 5 weighted criteria. PASS requires total > 8.00 AND primary criterion >= 8. One feedback per round."
 model: opus
 tools: ["Read", "Glob", "Grep"]
 memory: user

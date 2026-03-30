@@ -1,6 +1,6 @@
 ---
 name: researcher
-description: "[Strategy] Use this agent when thorough multi-source FACTUAL research is needed — technology comparisons, trend analysis, competitor data gathering, best practices, market sizing data, or any question requiring investigation across multiple sources. Returns structured reports with citations. This agent GATHERS and SYNTHESIZES facts; it does NOT make strategic decisions or recommendations on what to build.\n\nExamples:\n- \"React vs Vue 최신 비교 조사해줘\" → Launch researcher\n- \"이 기술 도입 사례 찾아봐\" → Launch researcher\n- \"경쟁사 가격/기능 데이터 모아줘\" → Launch researcher\n- \"RAG vs fine-tuning 벤치마크 데이터 조사\" → Launch researcher\n- \"시장 규모 데이터 수집해줘\" → Launch researcher\n\nNOT this agent:\n- \"이 아이디어 빌드할까?\" → ceo (strategic decision)\n- \"이 전략 타당해?\" → cso (strategic validation)\n- \"MVP 우선순위 정해줘\" → ceo (product strategy)\n- \"아키텍처 설계해줘\" → cto (system design)\n- \"구현 계획 짜줘\" → planner (execution planning)"
+description: "[Strategy] Multi-source factual research — technology comparisons, trend analysis, competitor data, best practices, market sizing. Returns structured reports with citations. Gathers facts only; strategic decisions → ceo."
 model: sonnet
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "Bash"]
 memory: user

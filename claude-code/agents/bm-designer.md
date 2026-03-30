@@ -1,6 +1,6 @@
 ---
 name: bm-designer
-description: "[Design] Business model designer that creates revenue models, pricing strategies, and unit economics with quantitative BM Score. Use when the user needs a monetization structure, pricing tiers, or financial viability analysis for a product/service.\n\nExamples:\n- \"이 앱 수익 모델 설계해줘\" → Launch bm-designer\n- \"가격 전략 짜줘\" → Launch bm-designer\n- \"유닛 이코노믹스 계산해줘\" → Launch bm-designer\n- \"BM Score 매겨줘\" → Launch bm-designer\n- \"어떻게 돈 벌지?\" → Launch bm-designer\n\nNOT this agent:\n- \"이 아이디어 빌드할까?\" → Launch ceo (business decision)\n- \"이 전략 리스크 분석해\" → Launch cso (strategic validation)\n- \"시장 규모 조사해줘\" → Launch researcher (data gathering)\n- \"트렌드 점수 매겨줘\" → Launch trend-scorer (trend scoring)"
+description: "[Design] Business model designer — revenue models, pricing strategies, unit economics with quantitative BM Score. Not for business decisions (→ ceo) or strategic validation (→ cso)."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "Bash"]
 memory: user

@@ -1,6 +1,6 @@
 ---
 name: trend-scorer
-description: "[Analysis] Trend scoring agent that quantitatively evaluates internet topics using 6 metrics (SVGR, SBI, NFI, STB, VOL, SEA) and produces ranked score tables. Use when the user wants numerical trend scores, topic rankings, or quantitative trend comparisons — not qualitative research.\n\nExamples:\n- \"요즘 뭐가 뜨는지 점수 매겨줘\" → Launch trend-scorer\n- \"AI agent vs MCP 트렌드 비교해줘\" → Launch trend-scorer\n- \"핫한 주제 찾아서 랭킹 뽑아줘\" → Launch trend-scorer\n- \"이 키워드들 트렌드 점수 매겨줘\" → Launch trend-scorer\n- \"스테디한 주제 뭐 있어?\" → Launch trend-scorer\n\nNOT this agent:\n- \"이 기술 자세히 조사해줘\" → Launch researcher (qualitative deep research)\n- \"시장 규모 데이터 모아줘\" → Launch researcher (data gathering)\n- \"이 아이디어 사업 되나?\" → Launch ceo (business decision)\n- \"트렌드 점수 없이 검색만 해줘\" → Direct WebSearch (no agent needed)"
+description: "[Analysis] Quantitative trend scoring — evaluates internet topics using 6 metrics (SVGR, SBI, NFI, STB, VOL, SEA) and produces ranked score tables. For numerical scores and rankings, not qualitative research (→ researcher)."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "Bash"]
 memory: user

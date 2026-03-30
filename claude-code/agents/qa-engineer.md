@@ -1,6 +1,6 @@
 ---
 name: qa-engineer
-description: "[Test] QA engineer handling all testing — spec analysis (design doc to test plan), TDD (unit/integration), and E2E (Playwright browser tests). Covers the full testing lifecycle from requirement extraction through test execution.\n\nExamples:\n- \"Write unit tests for this module\" → Launch qa-engineer\n- \"Let's TDD this feature\" → Launch qa-engineer\n- \"Write E2E tests for the login flow\" → Launch qa-engineer\n- \"Analyze the design doc and create test cases\" → Launch qa-engineer\n- \"설계문서에서 테스트 케이스 도출해줘\" → Launch qa-engineer\n- \"E2E tests are flaky, fix them\" → Launch qa-engineer\n- \"Test coverage is low, improve it\" → Launch qa-engineer\n- \"Add integration tests for this API\" → Launch qa-engineer\n\nNOT this agent:\n- \"Run the app and verify it works\" → Launch simulator\n- \"Review this code for anti-patterns\" → Launch code-reviewer\n- \"Check if this doc matches the code\" → Launch doc-parity-checker\n- \"Deep security audit\" → Launch security-reviewer"
+description: "[Test] QA engineer — spec analysis (design doc → test plan), TDD (unit/integration), E2E (Playwright). Full testing lifecycle from requirement extraction through test execution."
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: sonnet
 memory: user

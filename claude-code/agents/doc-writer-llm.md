@@ -1,6 +1,6 @@
 ---
 name: doc-writer-llm
-description: "[Doc] Use this agent to write LLM-facing documents — CLAUDE.md, agent definitions, skill files, system prompts, tool descriptions. Focuses on precision, unambiguity, and executable instructions. After drafting, must submit to doc-critic for scoring.\n\nExamples:\n- \"에이전트 만들어줘\" → Launch doc-writer-llm\n- \"CLAUDE.md 작성해줘\" → Launch doc-writer-llm\n- \"시스템 프롬프트 써줘\" → Launch doc-writer-llm\n- \"스킬 파일 만들어줘\" → Launch doc-writer-llm\n- \"이 프롬프트 개선해줘\" → Launch doc-writer-llm"
+description: "[Doc] Writes LLM-facing documents — CLAUDE.md, agent definitions, skill files, system prompts, tool descriptions. Focuses on precision and executable instructions. Submits to doc-critic after drafting."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user

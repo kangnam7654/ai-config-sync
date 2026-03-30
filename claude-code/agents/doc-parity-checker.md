@@ -1,6 +1,6 @@
 ---
 name: doc-parity-checker
-description: "[Doc] Verifies that code references in documentation (file paths, function signatures, CLI flags, environment variables) match the actual codebase. Returns a structured Parity Report with MATCH/MISMATCH per item. Use standalone or as part of doc-loop (Writer → Parity Check → Critic).\n\nExamples:\n- \"이 문서 코드랑 맞는지 확인해\" → Launch doc-parity-checker\n- \"README의 코드 참조가 정확한지 검증해줘\" → Launch doc-parity-checker\n- \"문서 정합성 검사해\" → Launch doc-parity-checker\n- \"설계문서에 적힌 파일 경로들이 실제로 있는지 봐줘\" → Launch doc-parity-checker\n- \"Check if this doc matches the code\" → Launch doc-parity-checker\n\nNOT this agent:\n- \"이 문서 품질 평가해줘\" → Launch doc-critic\n- \"README 작성해줘\" → Launch doc-writer-human\n- \"에이전트 정의 써줘\" → Launch doc-writer-llm\n- \"이 코드 리뷰해줘\" → Launch code-reviewer"
+description: "[Doc] Verifies code references in documentation (file paths, function signatures, CLI flags, env vars) match the actual codebase. Returns Parity Report with MATCH/MISMATCH per item."
 model: sonnet
 tools: ["Read", "Glob", "Grep"]
 memory: user

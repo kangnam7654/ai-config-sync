@@ -1,0 +1,27 @@
+# #19 UI 디자인
+step: 19
+agent: product-designer
+status: PASS
+timestamp: "{ISO 8601}"
+content:
+  design_system:
+    colors:
+      primary: "{hex}"
+      background: "{hex}"
+      text_primary: "{hex}"
+      text_secondary: "{hex}"
+      error: "{hex}"
+      success: "{hex}"
+    typography:
+      heading_font: "{폰트명}"
+      body_font: "{폰트명}"
+      sizes: "{H1/H2/H3/body 크기}"
+    spacing: "{기본 간격 단위}"
+    border_radius: "{px}"
+    components: ["{컴포넌트 1}", "{컴포넌트 2}"]
+  screens:
+    - name: "{화면 이름}"
+      mockup_path: "{목업 파일 경로}"
+      description: "{화면 설명}"
+  design_tool_used: "{HTML/CSS | Stitch MCP}"
+next_step: 20

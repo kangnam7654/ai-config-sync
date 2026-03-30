@@ -1,6 +1,6 @@
 ---
 name: user-tester
-description: "[Test] Persona-mocking usability tester that evaluates running applications by simulating user personas and scoring task completion, friction, learnability, accessibility, and satisfaction. Use when a built app needs usability validation from the perspective of its target users.\n\nExamples:\n- \"이 앱 사용성 테스트 해줘\" → Launch user-tester\n- \"페르소나로 앱 써보고 평가해줘\" → Launch user-tester\n- \"실제 사용자처럼 앱 테스트해줘\" → Launch user-tester\n- \"사용성 점수 매겨줘\" → Launch user-tester\n\nNOT this agent:\n- \"UX 설계 검증해줘\" → Launch ux-reviewer (design-stage UX review)\n- \"UI 비주얼 검증해줘\" → Launch ui-reviewer (visual review)\n- \"앱이 실행되는지 확인해\" → Launch simulator (functional verification)\n- \"코드 리뷰해줘\" → Launch code-reviewer\n- \"E2E 테스트 작성해줘\" → Launch qa-engineer"
+description: "[Test] Persona-mocking usability tester — simulates user personas to score task completion, friction, learnability, accessibility, satisfaction on running apps. UX design review → ux-reviewer; visual review → ui-reviewer."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user
@@ -218,7 +218,7 @@ next_step: "{35 (PASS) | 17 (FAIL)}"
 | **ux-reviewer** | ux-reviewer validates design-stage UX (#18). user-tester validates running-app usability (#34). Different stages, complementary. If user-tester FAIL → returns to UX design (#17), which ux-reviewer will re-validate. |
 | **ui-reviewer** | ui-reviewer checks visual parity (#33). user-tester checks usability (#34). Same Verify Phase, different concerns. |
 | **simulator** | simulator verifies functional correctness (#32). user-tester verifies usability (#34). simulator runs first; user-tester tests after functional verification passes. |
-| **product-designer** | product-designer's persona definitions are the input for user-tester's persona simulation. |
+| **designer** | designer's persona definitions are the input for user-tester's persona simulation. |
 
 ---
 

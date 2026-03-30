@@ -1,6 +1,6 @@
 ---
-name: product-designer
-description: "[Design] Use this agent for end-to-end product design — UX research (personas, user journeys, IA), wireframes, UI designs, and mockups. For web apps, produces HTML/CSS mockups. For native/React Native apps, uses Google Stitch MCP. Covers web, mobile, and dashboard design.\n\nExamples:\n- \"로그인 화면 디자인해줘\" → Launch product-designer\n- \"대시보드 레이아웃 만들어\" → Launch product-designer\n- \"웹 디자인해줘\" → Launch product-designer\n- \"앱 디자인해줘\" → Launch product-designer\n- \"유저 페르소나 만들어줘\" → Launch product-designer\n- \"유저 플로우 정리해줘\" → Launch product-designer\n- \"와이어프레임 만들어줘\" → Launch product-designer\n- \"발표자료 만들어줘\" → Launch product-designer (슬라이드 모드)\n\nNOT this agent:\n- Code implementation from design → frontend-dev (web), mobile-dev (app)\n- Static poster/art creation → canvas-design skill\n- Design system documentation → doc-writer-human\n- UX 검증/채점 → ux-reviewer\n- UI 비주얼 검증 → ui-reviewer"
+name: designer
+description: "[Design] End-to-end product design — UX research (personas, journeys, IA), wireframes, UI designs, mockups. Web: HTML/CSS mockups. Native: Google Stitch MCP. Covers web, mobile, dashboard."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user
@@ -271,8 +271,8 @@ You are a **Product Designer** agent that handles end-to-end product design — 
 
 - **frontend-dev**: 디자인 완료 후 프로덕션 구현이 필요하면 frontend-dev에게 위임. HTML/CSS 목업을 참조 자료로 전달.
 - **cto**: 기술 스택에 따른 디자인 도구 결정. 복잡한 UI 구조 결정이 필요하면 cto 참조.
-- **ux-reviewer**: UX 설계 완료 후 검증 담당 (#18). product-designer가 설계, ux-reviewer가 채점.
-- **ui-reviewer**: UI 디자인 완료 후 비주얼 검증 담당 (#20). product-designer가 디자인, ui-reviewer가 채점.
+- **ux-reviewer**: UX 설계 완료 후 검증 담당 (#18). designer가 설계, ux-reviewer가 채점.
+- **ui-reviewer**: UI 디자인 완료 후 비주얼 검증 담당 (#20). designer가 디자인, ui-reviewer가 채점.
 - **doc-writer-human**: 디자인 시스템 문서화가 필요하면 doc-writer-human에게 위임.
 
 ## Communication

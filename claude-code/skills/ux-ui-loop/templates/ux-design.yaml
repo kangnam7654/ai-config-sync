@@ -1,0 +1,25 @@
+# #17 UX 설계
+step: 17
+agent: product-designer
+status: PASS
+timestamp: "{ISO 8601}"
+content:
+  personas:
+    - name: "{페르소나 이름}"
+      age: "{나이대}"
+      role: "{역할/직업}"
+      goal: "{목표}"
+      pain_point: "{고충}"
+      tech_proficiency: "{상/중/하}"
+  user_flows:
+    - name: "{플로우 이름}"
+      steps:
+        - screen: "{화면 이름}"
+          action: "{유저 액션}"
+        - screen: "{화면 이름}"
+          action: "{유저 액션}"
+  information_architecture:
+    - section: "{섹션 이름}"
+      children: ["{하위 항목 1}", "{하위 항목 2}"]
+  wireframes_path: "{와이어프레임 파일 경로}"
+next_step: 18

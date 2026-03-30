@@ -1,6 +1,6 @@
 ---
 name: llm-provider-auth
-description: "LLM 프로바이더 구독 인증 구현 가이드. Codex(ChatGPT), Gemini CLI, Antigravity, GitHub Copilot, Claude의 OAuth/인증 플로우와 API 엔드포인트를 포함. API 키 없이 구독만으로 LLM API를 사용하는 방법. \"프로바이더 연동\", \"OAuth 구현\", \"LLM 인증\", \"구독으로 API 쓰기\" 등의 요청에 트리거."
+description: "LLM provider subscription auth implementation guide. Covers OAuth/auth flows and API endpoints for Codex (ChatGPT), Gemini CLI, Antigravity, GitHub Copilot, and Claude. Using LLM APIs via subscription without API keys."
 ---
 
 # LLM Provider Subscription Auth Guide

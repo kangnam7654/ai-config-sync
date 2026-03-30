@@ -1,6 +1,6 @@
 ---
 name: trend-score
-description: "인터넷 주제(키워드, 트렌드)의 인기도와 지속성을 수학적으로 평가해 점수별 랭킹을 산출하는 스킬. 자동 발굴 + 사용자 지정 주제 모두 지원. '요즘 뭐가 뜨는지 알아봐', '이 주제들 트렌드 점수 매겨줘', '인기 키워드 분석', '트렌드 랭킹', '핫한 주제 찾아줘', '스테디 주제 뭐 있어', '키워드 트렌드 비교' 같은 요청에 트리거. 단순 검색이 아니라 정량적 점수가 필요한 상황에 사용할 것. /loop과 연계하면 주기적 트렌드 모니터링도 가능."
+description: "Quantitative trend scoring — evaluates internet topics using 6 metrics (SVGR, SBI, NFI, STB, VOL, SEA) to produce ranked score tables. For numerical scores and rankings, not qualitative research. Works with /loop for periodic monitoring."
 ---
 
 # Trend Score

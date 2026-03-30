@@ -1,6 +1,6 @@
 ---
 name: veo-shorts-writer
-description: VEO 숏폼 영상 스크립트 생성. 사주팔자/돈/운명/사랑 주제의 유튜브 쇼츠용 VEO 3.1 프롬프트와 대사를 작성한다. "영상 스크립트 만들어", "숏폼 스크립트", "사주 영상 대본", "VEO 프롬프트" 등의 요청에 트리거.
+description: "VEO short-form video script generator. Creates VEO 3.1 prompts and dialogue for YouTube Shorts on fortune/money/destiny/love topics."
 ---
 
 # VEO Shorts Writer

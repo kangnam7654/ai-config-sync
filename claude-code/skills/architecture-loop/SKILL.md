@@ -1,6 +1,6 @@
 ---
 name: architecture-loop
-description: "auto-dev 파이프라인의 Architecture Loop (#10~#16). 기술 스택 결정, DB 스키마 설계/리뷰, API 설계/리뷰, DB-API 정합성 검증, Arch Spec 문서화를 오케스트레이션한다. design-loop 스킬이 호출하며, 독립 실행도 가능하다. '아키텍처 설계해줘', '기술 스택 정하고 DB/API 설계까지', 'architecture loop 실행' 요청에 트리거."
+description: "auto-dev Architecture Loop (#10-#16). Orchestrates tech stack decision, DB schema design/review, API design/review, DB-API consistency check, Arch Spec documentation. Called by design-loop; also runs standalone."
 ---
 
 # Architecture Loop

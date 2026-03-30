@@ -1,6 +1,6 @@
 ---
 name: build-loop
-description: "auto-dev 파이프라인의 Build Loop (#27~#31). 구현(병렬), DBA 마이그레이션 리뷰, 코드/보안 리뷰, 테스트, Build Summary 문서화를 오케스트레이션한다. auto-dev 스킬이 호출하며, 독립 실행도 가능하다. '코드 구현하고 리뷰/테스트까지', 'build loop 실행' 요청에 트리거."
+description: "auto-dev Build Loop (#27-#31). Orchestrates parallel implementation, DBA migration review, code/security review, tests, and Build Summary documentation. Called by auto-dev; also runs standalone."
 ---
 
 # Build Loop

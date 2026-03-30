@@ -1,6 +1,6 @@
 ---
 name: idea-forge
-description: "멀티에이전트 브레인스토밍 파이프라인. 아이디어 발굴부터 검증, BM 설계까지 end-to-end 자동화. auto-dev 파이프라인의 Idea Phase(#1~#9)를 담당한다. 입력 분류 → 브레인스토밍/트렌드 → CEO 방향 결정 → 시장 조사 → CSO 전략 검증 → BM 설계 → CEO 게이트 → Idea Brief 문서화. '아이디어 검증해줘', '사업 아이디어 찾아줘', '이거 사업 되나?', '브레인스토밍 해줘', '아이디어 포지', 'idea forge', '사업화 가능성 검토', '아이디어 발굴', '아이디어 있는데 검증하고 BM까지 만들어줘' 요청에 트리거. 단순 리서치만 필요하면 researcher, BM 설계만 필요하면 bm-design이 담당하므로 idea-forge는 '아이디어 탐색 + 검증 + BM'이 모두 필요한 end-to-end 요청에만 사용할 것."
+description: "Multi-agent brainstorming pipeline. Covers auto-dev Idea Phase (#1-#9): input classification → brainstorming/trends → CEO direction → market research → CSO validation → BM design → CEO gate → Idea Brief."
 ---
 
 # Idea Forge

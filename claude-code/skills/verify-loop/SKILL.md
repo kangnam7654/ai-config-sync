@@ -1,6 +1,6 @@
 ---
 name: verify-loop
-description: "auto-dev 파이프라인의 Verify Loop (#32~#36). 동작 검증, UI 검증(디자인 패리티), 사용성 테스트(페르소나 모킹), C-suite 론칭 디베이트, 완성 보고를 오케스트레이션한다. auto-dev 스킬이 호출하며, 독립 실행도 가능하다. '앱 검증해줘', '동작 테스트하고 론칭 준비 확인', 'verify loop 실행' 요청에 트리거."
+description: "auto-dev Verify Loop (#32-#36). Orchestrates functional testing, UI verification (design parity), usability testing (persona mocking), C-suite launch debate, and completion report. Called by auto-dev; also runs standalone."
 ---
 
 # Verify Loop

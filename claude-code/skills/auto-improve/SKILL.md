@@ -1,6 +1,6 @@
 ---
 name: auto-improve
-description: "기존 서비스/앱 종합 진단 + 개선 전자동 파이프라인. 코드베이스를 진단(코드 품질, 보안, 아키텍처, DB, 테스트, UX/UI)하고 우선순위를 매긴 뒤 설계 → 구현 → 검증까지 자동 실행한다. '점검해줘', '개선해줘', '서비스 진단', 'auto-improve', '코드 점검', '서비스 개선', 'improve this app', 'audit this codebase', '리팩터링해줘', '코드베이스 진단', '코드 리뷰하고 고쳐줘', '이 서비스 개선할 점 찾아줘', '전체 점검', '기술 부채 해결', 'tech debt cleanup' 요청에 트리거. 신규 앱 개발(auto-dev), 단순 버그 1개 수정, 인프라/배포에는 사용하지 않는다 — 기존 코드베이스의 종합 진단+개선이 필요한 요청에만 사용할 것."
+description: "Automated diagnosis and improvement pipeline for existing apps. Audits codebase across code quality, security, architecture, DB, tests, UX/UI, then prioritizes and executes design, implementation, and verification."
 ---
 
 # auto-improve

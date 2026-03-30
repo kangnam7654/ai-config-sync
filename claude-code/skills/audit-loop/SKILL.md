@@ -1,6 +1,6 @@
 ---
 name: audit-loop
-description: "auto-improve 파이프라인의 Audit Phase (#1~#9). 기존 코드베이스를 7개 관점(코드 품질, 보안, 아키텍처, DB, 테스트, Repo Health, UX/UI)에서 병렬 진단하고 CTO가 우선순위를 매겨 Audit Report를 산출한다. auto-improve 스킬이 호출하며, 독립 실행도 가능하다. '코드 진단해줘', '서비스 점검', '코드베이스 감사', 'audit loop 실행', '종합 진단' 요청에 트리거."
+description: "auto-improve Audit Phase (#1-#9). Parallel diagnosis across 7 dimensions (code quality, security, architecture, DB, tests, repo health, UX/UI) with CTO-prioritized Audit Report. Called by auto-improve; also runs standalone."
 ---
 
 # audit-loop

@@ -1,6 +1,6 @@
 ---
 name: plan-loop
-description: "Planner → plan-critic 반복 개선 루프. 사용자가 '계획 세워줘', '플랜 짜줘', '어떻게 구현할지 정리해줘', '리팩터링 플랜', '마이그레이션 전략', '작업 분해해줘', 'implementation plan', 'create a plan', '단계별로 정리해줘', '전략 짜줘' 같은 산출물이 실행 계획인 작업을 요청할 때 사용. 단순 코드 작성, 질문 답변, 문서 작성과는 구분된다 — 단계별 실행 계획이 필요한 경우 반드시 이 스킬을 트리거할 것. planner 에이전트가 초안을 작성하고 plan-critic 에이전트가 6가지 기준으로 채점하여 PASS할 때까지 최대 5라운드 반복 개선한다."
+description: "Planner → plan-critic iterative improvement loop. Use when the output is an execution plan — implementation plans, refactoring plans, migration strategies, task breakdowns. Not for code writing, Q&A, or documentation."
 ---
 
 # Plan Loop

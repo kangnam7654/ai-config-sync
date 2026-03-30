@@ -1,6 +1,6 @@
 ---
 name: design-loop
-description: "auto-dev 파이프라인의 Design Phase (#10~#26) 전체를 오케스트레이션한다. architecture-loop → ux-ui-loop → plan-loop → CTO Design 게이트 → Design Spec 문서화를 순차 실행한다. auto-dev 스킬이 호출하며, 독립 실행도 가능하다. '설계 전체 해줘', '아키텍처부터 UX/UI까지 설계', 'design loop 실행', 'Design Phase 시작' 요청에 트리거."
+description: "auto-dev Design Phase (#10-#26). Orchestrates architecture-loop → ux-ui-loop → plan-loop → CTO Design gate → Design Spec documentation. Called by auto-dev; also runs standalone."
 ---
 
 # Design Loop

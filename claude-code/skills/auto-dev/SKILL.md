@@ -1,6 +1,6 @@
 ---
 name: auto-dev
-description: "전자동 앱 개발 파이프라인. 한 문장 입력('앱 하나 만들어')으로 아이디어 발굴 → 설계 → 구현 → 검증까지 36단계를 자동 실행한다. '앱 만들어', '서비스 개발하자', '프로젝트 시작하자', '앱 하나 만들어줘', '서비스 만들어', '새 프로젝트 셋업', 'build an app', 'develop a service', 'auto-dev', '딸깍' 요청에 트리거. 기존 코드 수정, 버그 픽스, 리팩터링에는 사용하지 않는다 — 처음부터 신규 앱/서비스를 만드는 요청에만 사용할 것. idea-forge로 아이디어를 이미 검증한 경우에도 이 스킬을 사용하여 구현까지 진행한다."
+description: "Fully automated app development pipeline. Runs 36 steps from ideation to design, implementation, and verification from a single sentence input. For new apps/services only — not for modifying existing code, bug fixes, or refactoring."
 ---
 
 # auto-dev

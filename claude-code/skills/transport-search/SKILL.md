@@ -1,6 +1,6 @@
 ---
 name: transport-search
-description: 브라우저를 직접 열어 항공권, 기차, 고속버스, 배편의 교통편을 실시간 검색하고 스크린샷으로 결과를 확인하는 스킬. 출발지/목적지/날짜/인원을 받아 최적 교통편을 찾을 때 사용. 항공권 가격 비교, 열차 시간표, 고속버스 예약, 페리 운항 조회의 교통 관련 검색에 트리거. "비행기 찾아줘", "기차편 알아봐", "배편 있어?", "이동 방법 검색해줘"의 요청에 사용.
+description: "Real-time transport search via browser automation. Searches flights, trains, buses, ferries with screenshots. Takes origin/destination/date/passengers and finds optimal options with price comparison."
 ---
 
 ## Tool Requirements

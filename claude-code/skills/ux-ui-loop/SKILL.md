@@ -1,6 +1,6 @@
 ---
 name: ux-ui-loop
-description: "auto-dev 파이프라인의 UX-UI Loop (#17~#22). UX 설계, UX 검증, UI 디자인, UI 검증, 디자인 디베이트, UX-UI Spec 문서화를 오케스트레이션한다. design-loop 스킬이 호출하며, 독립 실행도 가능하다. 'UX/UI 설계하고 검증해줘', 'UX-UI 루프 실행' 요청에 트리거."
+description: "auto-dev UX-UI Loop (#17-#22). Orchestrates UX design, UX review, UI design, UI review, design debate, UX-UI Spec documentation. Called by design-loop; also runs standalone."
 ---
 
 # UX-UI Loop

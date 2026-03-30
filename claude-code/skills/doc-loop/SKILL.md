@@ -1,6 +1,6 @@
 ---
 name: doc-loop
-description: "문서 작성 통합 스킬. 컨텍스트 수집(협업) → Writer 초안 → Parity Check → doc-critic 채점까지 end-to-end 문서 생산 파이프라인. '설계문서 작성해줘', 'API 문서 만들어줘', 'README 작성해줘', '프롬프트 작성해줘', '온보딩 가이드 써줘', '에이전트 정의 작성해줘', 'write documentation', 'create a design doc', 'write a doc', 'draft a proposal', 'create a spec', 'write up', 'PRD', 'RFC', 'decision doc' 같은 산출물이 문서인 작업을 요청할 때 사용. 단순 코드 작성, 질문 답변, 실행 계획 수립과는 구분된다 — 문서 산출물이 필요한 경우 반드시 이 스킬을 트리거할 것. 사람용 문서는 doc-writer-human + HUMAN 모드 채점, LLM용 문서는 doc-writer-llm + LLM 모드 채점으로 자동 분기한다."
+description: "End-to-end documentation pipeline. Context gathering → Writer draft → Parity Check → doc-critic scoring. Handles design docs, API docs, READMEs, prompts, onboarding guides, agent definitions."
 ---
 
 # Doc Loop

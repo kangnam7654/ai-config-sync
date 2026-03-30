@@ -1,6 +1,6 @@
 ---
 name: bm-design
-description: "비즈니스 모델 설계 스킬. 제품/서비스의 수익 구조, 가격 전략, 유닛 이코노믹스를 체계적으로 설계한다. 'BM 만들어', '수익 모델 설계해줘', '가격 전략 짜줘', '비즈니스 모델 만들어', '유닛 이코노믹스 계산', '수익화 방안', '모네타이제이션', '과금 모델', '프라이싱 전략', 'monetization', 'pricing strategy', 'unit economics' 요청에 트리거. BM 키워드가 직접 언급되지 않더라도 '어떻게 돈 벌지', '과금을 어떻게 하면 좋을까', '무료/유료 구분', '구독 모델 괜찮을까' 같은 수익화 고민이 보이면 적극적으로 트리거할 것."
+description: "Business model design — revenue structures, pricing strategies, unit economics. Triggers on monetization, pricing, or revenue model requests."
 ---
 
 # BM Designer

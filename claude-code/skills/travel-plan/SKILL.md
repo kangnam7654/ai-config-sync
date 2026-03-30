@@ -1,6 +1,6 @@
 ---
 name: travel-plan
-description: 여행 플래너. "여행 가고 싶다", "어디 가면 좋을까", "XX 여행 계획 짜줘"의 요청에 트리거. 목적지/동행/날짜/예산을 파악하고, 날씨·시즌·현지 이벤트·공휴일·교통편·숙박·비용을 종합 조사해 최적의 여행 플랜을 제안. 긍정/부정 이벤트(축제, 골든위크, 장마, 태풍) 체크 포함. transport-search 스킬과 연계해 실제 교통편 가격도 조회.
+description: "Travel planner. Takes destination/companions/dates/budget and researches weather, seasons, local events, holidays, transport, accommodation, costs to propose optimal travel plans. Integrates with transport-search for real pricing."
 ---
 
 ## Tool Requirements

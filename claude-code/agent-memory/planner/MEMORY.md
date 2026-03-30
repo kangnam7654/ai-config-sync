@@ -5,6 +5,7 @@
 - **FlirtIQ MVP**: AI Dating Conversation Coach (Privacy-First), plan at `/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN.md`
 - **FlirtIQ Phase 1 Subscription**: Plan at `/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN_PHASE1_SUBSCRIPTION.md`
 - **Dalgyeol (달결)**: Saju/fortune iOS app, details in [project_dalgyeol.md](project_dalgyeol.md), HomeView UI plan at `/Users/kangnam/projects/saju2/docs/design/PLAN_HOMEVIEW_UI_IMPROVEMENT.md`
+- **Dalgyeol Repositioning**: 4.3(b) 극복 AI 상담 리포지셔닝, [plan](project_dalgyeol_repositioning.md), plan at `/Users/kangnam/projects/lunawave/docs/PLAN_REPOSITIONING_AI_CONSULT.md`
 
 ## Planning Patterns
 - Frontend can always start with mock data (parallel with backend)

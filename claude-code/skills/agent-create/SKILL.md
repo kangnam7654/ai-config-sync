@@ -1,6 +1,6 @@
 ---
 name: agent-create
-description: "Create new Claude Code agents or modify existing ones, with full eval/benchmark infrastructure. Generates properly formatted agent .md files in ~/.claude/agents/ following the doc-writer-llm template, the 5-point instruction check, and doc-critic scoring conventions. After creation, supports test case execution, benchmark grading, and iterative improvement — the same eval flow as skill-create. Use this skill whenever the user wants to create, edit, extend, or refactor a custom agent definition.\n\nExamples:\n- \"새 에이전트 만들어줘\" → Launch agent-create\n- \"QA 테스터 에이전트 추가해\" → Launch agent-create\n- \"Create a code review agent\" → Launch agent-create\n- \"이 에이전트 수정해줘\" → Launch agent-create (modify mode)\n- \"에이전트 두 개가 겹치는 것 같아\" → Launch agent-create (overlap analysis)\n\nNOT this skill:\n- Writing skill SKILL.md files → skill-create\n- Writing CLAUDE.md or system prompts → doc-writer-llm\n- Evaluating an existing agent's quality → doc-critic"
+description: "Create new Claude Code agents or modify existing ones, with full eval/benchmark infrastructure. Generates properly formatted agent .md files following doc-writer-llm template, 5-point instruction check, and doc-critic scoring."
 ---
 
 # Agent Creator

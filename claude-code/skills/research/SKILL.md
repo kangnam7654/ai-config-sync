@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Use when the user needs thorough research on a topic — technology comparisons, trend analysis, competitor research, best practices survey, or any question requiring multiple sources. Produces a structured report with citations.\n\nExamples:\n- \"/research React vs Vue 2025\" → Launch research on framework comparison\n- \"이 기술 스택 조사해줘\" → Launch research\n- \"경쟁사 분석 해줘\" → Launch research"
+description: "Thorough multi-source research on any topic — technology comparisons, trend analysis, competitor research, best practices survey. Produces structured reports with citations."
 ---
 
 # Researcher

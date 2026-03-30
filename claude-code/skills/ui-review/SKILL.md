@@ -1,6 +1,6 @@
 ---
 name: ui-review
-description: "Review and score app/web/slide UI against current design trends using screenshot-based analysis. Use this skill whenever the user wants UI/UX feedback, design critique, trend comparison, or visual quality assessment of any existing interface — screenshots, live URLs, running local apps, iOS Simulator apps, or slide decks. Triggers on: 'UI 리뷰해줘', 'this design looks off', 'compare our UI to competitors', 'is this UI modern enough', 'UI 분석', 'design audit', 'UI 점수 매겨줘', '화면 디자인 괜찮은지 봐줘', '경쟁 앱이랑 비교해줘', '시뮬레이터에서 돌아가는 앱 UI 봐줘', 'review the app running in the simulator', '슬라이드 디자인 봐줘', 'PPT 리뷰해줘', '발표자료 디자인 평가', 'slide design review'. Also trigger when the user shares a screenshot and asks for visual feedback, even without explicitly saying 'review'. When the user mentions an iOS Simulator app without providing a screenshot, this skill requests the main model to spawn simulator agent for screenshot capture before proceeding with review. This skill REVIEWS existing UI — for BUILDING new UI, use frontend-design instead."
+description: "Screenshot-based UI scoring against current design trends. Covers web apps, mobile apps, slides, and any visual interface. Scores hierarchy, consistency, trend fitness, responsiveness, accessibility."
 ---
 
 Evaluate existing app/web interfaces by combining screenshot analysis with current trend research. Produce an actionable scorecard with concrete improvement suggestions — every finding pairs a specific visual problem with an implementable fix including exact values.

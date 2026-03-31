@@ -1,0 +1,64 @@
+Split: 12 train, 7 test (holdout=0.4)
+
+============================================================
+Iteration 1/5
+Description: Measure and reduce token consumption in Claude Code system prompts. Use when the user mentions token optimization, context budget, prompt size reduction, or wants to check how many tokens their agents/skills/CLAUDE.md consume. Triggers on: 'token optimize', 'reduce tokens', 'system prompt too big', 'context budget', 'how many tokens', 'optimize tokens', 'token usage'.
+============================================================
+Train: 18/36 correct, precision=100% recall=0% accuracy=50% (105.2s)
+  [FAIL] rate=0/3 expected=True: how many tokens do my skills consume? can I check the breakd
+  [FAIL] rate=0/3 expected=True: 프로젝트 CLAUDE.md 토큰 좀 줄여봐
+  [FAIL] rate=0/3 expected=True: context budget이 부족해서 대화가 자꾸 잘리는데, 시스템 프롬프트 최적화 방법 알려줘
+  [FAIL] rate=0/3 expected=True: CLAUDE.md가 한국어인데 영어로 바꾸면 토큰 절약된다면서? 해줘
+  [PASS] rate=0/3 expected=False: git log 보여줘. 최근 커밋 10개만
+  [FAIL] rate=0/3 expected=True: system prompt가 너무 큰 것 같은데 줄일 수 있어?
+  [PASS] rate=0/3 expected=False: 메모리에 이 정보 저장해줘: 이 프로젝트는 PostgreSQL 사용
+  [PASS] rate=0/3 expected=False: 새 에이전트 하나 만들어줘. 이름은 code-optimizer로 하고 코드 최적화 전문가 역할이야
+  [FAIL] rate=0/3 expected=True: 토큰 얼마나 쓰고있어? 에이전트랑 스킬 다 합치면 몇 토큰이야?
+  [PASS] rate=0/3 expected=False: 이 API 엔드포인트 성능 최적화해줘. 응답이 2초 넘게 걸려
+  [PASS] rate=0/3 expected=False: 이 Python 코드를 최적화해줘. 함수가 너무 느려
+  [PASS] rate=0/3 expected=False: Docker 컨테이너 사이즈 최적화하는 방법 알려줘
+Test : 12/21 correct, precision=100% recall=0% accuracy=57% (0.0s)
+  [FAIL] rate=0/3 expected=True: reduce tokens in my Claude Code setup, especially the agent 
+  [FAIL] rate=0/3 expected=True: token-optimize --global 실행해줘
+  [PASS] rate=0/3 expected=False: 이 파일 내용 요약해줘. ~/documents/report.pdf
+  [FAIL] rate=0/3 expected=True: 에이전트 description이 너무 verbose한 것 같은데 압축할 수 있어?
+  [PASS] rate=0/3 expected=False: CLAUDE.md 작성해줘. 이 프로젝트는 Next.js 기반 블로그야
+  [PASS] rate=0/3 expected=False: 앱 만들어줘. 할일 관리 앱인데 React로 하고 싶어
+  [PASS] rate=0/3 expected=False: 비용 최적화 전략 짜줘. AWS 월 청구서가 $500 넘어
+
+Improving description...
+Proposed (24.4s): Measure and reduce token consumption in Claude Code system prompts, CLAUDE.md files, agent/skill descriptions, and memory files. Use when the user wants to count tokens, check token breakdown across agents/skills/CLAUDE.md, shrink system prompt size, free up context budget (context window running out), or convert Korean content to English for token savings. Handles: 토큰 측정/최적화, 시스템 프롬프트 줄이기, context budget 부족, CLAUDE.md 토큰 절약. NOT for code performance optimization, API speed, Docker size, or general code refactoring — this skill is exclusively about reducing the token cost of Claude Code's own configuration files.
+
+============================================================
+Iteration 2/5
+Description: Measure and reduce token consumption in Claude Code system prompts, CLAUDE.md files, agent/skill descriptions, and memory files. Use when the user wants to count tokens, check token breakdown across agents/skills/CLAUDE.md, shrink system prompt size, free up context budget (context window running out), or convert Korean content to English for token savings. Handles: 토큰 측정/최적화, 시스템 프롬프트 줄이기, context budget 부족, CLAUDE.md 토큰 절약. NOT for code performance optimization, API speed, Docker size, or general code refactoring — this skill is exclusively about reducing the token cost of Claude Code's own configuration files.
+============================================================
+Train: 18/36 correct, precision=100% recall=0% accuracy=50% (102.4s)
+  [FAIL] rate=0/3 expected=True: how many tokens do my skills consume? can I check the breakd
+  [FAIL] rate=0/3 expected=True: context budget이 부족해서 대화가 자꾸 잘리는데, 시스템 프롬프트 최적화 방법 알려줘
+  [FAIL] rate=0/3 expected=True: 프로젝트 CLAUDE.md 토큰 좀 줄여봐
+  [FAIL] rate=0/3 expected=True: CLAUDE.md가 한국어인데 영어로 바꾸면 토큰 절약된다면서? 해줘
+  [PASS] rate=0/3 expected=False: git log 보여줘. 최근 커밋 10개만
+  [PASS] rate=0/3 expected=False: 메모리에 이 정보 저장해줘: 이 프로젝트는 PostgreSQL 사용
+  [FAIL] rate=0/3 expected=True: system prompt가 너무 큰 것 같은데 줄일 수 있어?
+  [PASS] rate=0/3 expected=False: 새 에이전트 하나 만들어줘. 이름은 code-optimizer로 하고 코드 최적화 전문가 역할이야
+  [FAIL] rate=0/3 expected=True: 토큰 얼마나 쓰고있어? 에이전트랑 스킬 다 합치면 몇 토큰이야?
+  [PASS] rate=0/3 expected=False: 이 API 엔드포인트 성능 최적화해줘. 응답이 2초 넘게 걸려
+  [PASS] rate=0/3 expected=False: 이 Python 코드를 최적화해줘. 함수가 너무 느려
+  [PASS] rate=0/3 expected=False: Docker 컨테이너 사이즈 최적화하는 방법 알려줘
+Test : 12/21 correct, precision=100% recall=0% accuracy=57% (0.0s)
+  [FAIL] rate=0/3 expected=True: reduce tokens in my Claude Code setup, especially the agent 
+  [FAIL] rate=0/3 expected=True: token-optimize --global 실행해줘
+  [FAIL] rate=0/3 expected=True: 에이전트 description이 너무 verbose한 것 같은데 압축할 수 있어?
+  [PASS] rate=0/3 expected=False: 이 파일 내용 요약해줘. ~/documents/report.pdf
+  [PASS] rate=0/3 expected=False: CLAUDE.md 작성해줘. 이 프로젝트는 Next.js 기반 블로그야
+  [PASS] rate=0/3 expected=False: 앱 만들어줘. 할일 관리 앱인데 React로 하고 싶어
+  [PASS] rate=0/3 expected=False: 비용 최적화 전략 짜줘. AWS 월 청구서가 $500 넘어
+
+Improving description...
+Proposed (53.6s): Token counter and optimizer for Claude Code's own configuration. Has a bundled script that measures exact token counts across CLAUDE.md, agent definitions, skill descriptions, and memory files with per-item breakdown tables. Invoke whenever the user asks to count tokens, check token usage or breakdown, shrink system prompt size, free context budget/window, compress agent or skill descriptions, or convert Korean CLAUDE.md to English for token savings. 토큰 몇 개, 토큰 줄여, 토큰 측정, 시스템 프롬프트 줄이기, context budget 부족, CLAUDE.md 최적화. NOT for application code optimization, API speed, or Docker — exclusively about Claude Code config file token costs.
+
+============================================================
+Iteration 3/5
+Description: Token counter and optimizer for Claude Code's own configuration. Has a bundled script that measures exact token counts across CLAUDE.md, agent definitions, skill descriptions, and memory files with per-item breakdown tables. Invoke whenever the user asks to count tokens, check token usage or breakdown, shrink system prompt size, free context budget/window, compress agent or skill descriptions, or convert Korean CLAUDE.md to English for token savings. 토큰 몇 개, 토큰 줄여, 토큰 측정, 시스템 프롬프트 줄이기, context budget 부족, CLAUDE.md 최적화. NOT for application code optimization, API speed, or Docker — exclusively about Claude Code config file token costs.
+============================================================

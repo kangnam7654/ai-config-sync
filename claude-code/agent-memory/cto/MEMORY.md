@@ -11,3 +11,4 @@
 - [project_fitcheck_api_review.md](project_fitcheck_api_review.md) - fit-check API re-review PASS 8.725/10, all 9 prior issues resolved, next: consistency check #15, as of 2026-03-31
 - [project_fitcheck_consistency.md](project_fitcheck_consistency.md) - fit-check consistency check #15 PASS 8.90/10 (3rd round), all 9 mismatches resolved, next_step 16, as of 2026-03-31
 - [project_fitcheck_design_gate.md](project_fitcheck_design_gate.md) - fit-check Design Gate #25 PASS 8.425/10, 1 pricing fix required before Build, next_step 26, as of 2026-03-31
+- [project_fitcheck_launch.md](project_fitcheck_launch.md) - fit-check MVP launch PASS 8.30/10, 4 residual risks non-blocking, post-launch: E2E+Redis, as of 2026-03-31

@@ -44,6 +44,7 @@
 
 ## AgentBridge (Mar 2026)
 - [Competition Update](project_agentbridge_competition_update.md) -- Claude Code Agent Teams, Composio, GitHub Mission Control now cover much of original value prop; BM_REVISION issued 2026-03-31
+- [R2 Decision](project_agentbridge_r2_decision.md) -- Second BM_REVISION: JetBrains ACP + Composio agent-agnostic approach absorbs "heterogeneous bridge" niche; score 4.55/10 WEAK; three alternatives proposed (plugin/MCP server/direction change)
 
 ## Research Patterns
 - SensorTower for Korean app market data

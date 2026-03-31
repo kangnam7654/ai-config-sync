@@ -1,0 +1,11 @@
+{
+  "eval_id": 3,
+  "run_type": "with_skill",
+  "expectations": [
+    {"text": "Response focuses on project CLAUDE.md, does not propose changes to global agents/skills", "passed": true, "evidence": "Only measures/proposes changes for Project CLAUDE.md and Project MEMORY.md"},
+    {"text": "Response shows current token count of project CLAUDE.md", "passed": true, "evidence": "Project CLAUDE.md: 1,105 tokens"},
+    {"text": "Response identifies Korean content as optimization target", "passed": true, "evidence": "Korean-to-English conversion proposed with ~663 token savings"},
+    {"text": "Response proposes English translation of Korean content", "passed": true, "evidence": "Full diff preview showing Korean→English line-by-line changes"},
+    {"text": "Response includes before/after token comparison", "passed": true, "evidence": "1,105 → ~442 tokens (60% reduction)"}
+  ]
+}

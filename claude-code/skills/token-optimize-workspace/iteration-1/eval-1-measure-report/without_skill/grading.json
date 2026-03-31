@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "run_type": "without_skill",
+  "expectations": [
+    {"text": "Response contains a structured table with token counts per category", "passed": true, "evidence": "Multiple tables with category breakdowns"},
+    {"text": "Response includes agent description token count", "passed": false, "evidence": "Mentions '49 skill descriptions ~2,500 tokens' but lumps agent descriptions into system-injected context, does not measure them separately with actual counts"},
+    {"text": "Response includes skill description token count", "passed": true, "evidence": "Skill descriptions (49 skills): ~2,500 tokens (estimated, not measured)"},
+    {"text": "Response includes CLAUDE.md token count", "passed": true, "evidence": "Global CLAUDE.md ~2,400, Project CLAUDE.md ~1,200 (estimates)"},
+    {"text": "Response includes a total token count", "passed": true, "evidence": "Total per conversation start: ~19,000-23,000 tokens"},
+    {"text": "Response identifies at least one optimization opportunity", "passed": true, "evidence": "Identifies pruning unused skills, removing completed memory entries"}
+  ]
+}

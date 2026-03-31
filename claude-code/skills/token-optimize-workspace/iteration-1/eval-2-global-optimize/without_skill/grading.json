@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "run_type": "without_skill",
+  "expectations": [
+    {"text": "Response starts with measurement before proposing changes", "passed": true, "evidence": "Phase 1: Measurement section with token table comes first"},
+    {"text": "Response identifies Korean text as an optimization target", "passed": true, "evidence": "Opportunity 3: Project CLAUDE.md Korean-to-English (~500 tokens)"},
+    {"text": "Response shows before/after or diff preview of proposed changes", "passed": false, "evidence": "Shows tables of proposed changes but no actual diff/before-after text examples"},
+    {"text": "Response includes estimated token savings per change", "passed": true, "evidence": "Per-opportunity savings listed: ~2,000, ~180, ~500, ~300"},
+    {"text": "Response asks for user approval before applying", "passed": false, "evidence": "States 'WOULD make' changes but no explicit approval request"},
+    {"text": "Response covers global items not just project", "passed": true, "evidence": "Covers 29 agents, 38 skills, global CLAUDE.md, project CLAUDE.md, memory"}
+  ]
+}

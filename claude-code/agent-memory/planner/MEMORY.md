@@ -1,6 +1,7 @@
 # Planner Agent Memory
 
 ## Active Projects
+- **fit-check MVP**: AI Career Coach (Gap Analysis + Doc Gen), [details](project_fitcheck.md), plan at `/Users/kangnam/projects/dear-jeongbin/docs/PLAN_FITCHECK_MVP.md`
 - **BuyBuddy MVP**: AI Shopping Agent for IT/Electronics, plan at `/home/kangnam/projects/ai-products/01-buybuddy/docs/PLAN_BUYBUDDY_MVP.md`
 - **FlirtIQ MVP**: AI Dating Conversation Coach (Privacy-First), plan at `/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN.md`
 - **FlirtIQ Phase 1 Subscription**: Plan at `/home/kangnam/projects/ai-products/02-flirtiq/docs/PLAN_PHASE1_SUBSCRIPTION.md`

@@ -51,10 +51,11 @@
 - FlirtIQ uses 5433/6380 to avoid conflicts
 - Always check for port conflicts when adding new projects
 
-## fit-check Project (/Users/kangnam/projects/dear-jeongbin)
+## fit-check Project (/Users/kangnam/projects/dear-jeongbin/fit-check)
 
-See `project_fitcheck.md` for stack, API design doc location, credit rules, file structure.
-- API design doc: `docs/llm/api-design.md` (38 endpoints, DRAFT 2026-03-31)
+See `project_fitcheck.md` for stack, API conventions, credit rules, Prisma 7 + Zod v4 gotchas.
+- Backend fully implemented: 38 API endpoints, 14-table Prisma schema, SSE streaming, credit/payment services
+- Test suite: 34 unit tests passing (Vitest), TypeScript clean
 
 ## Kangnam Client (/Users/kangnam/projects/kangnam-client/kangnam-client)
 

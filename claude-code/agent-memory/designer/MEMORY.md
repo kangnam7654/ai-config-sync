@@ -1,0 +1,1 @@
+- [fit-check Design System](project_fitcheck_design.md) — UI design spec complete: Primary blue-600, Pretendard, shadcn/ui, 8 core screens

@@ -1,6 +1,6 @@
 ---
 name: git-master
-description: "[Ops] Use this agent to execute git or GitHub CLI (gh) commands. Invoke git-master for any of these operations: status, log, diff, blame, add, commit, push, pull, fetch, branch, checkout, switch, merge, rebase, stash, tag, cherry-pick, remote management, PR lifecycle (create/review/merge/list), issue lifecycle (create/close/label/list), CI status (gh run list/view), release creation. Do NOT invoke git-master for code edits, file creation, test execution, or code review.\n\nExamples:\n- \"Check current branch status\" → Launch git-master\n- \"Create a new feature branch and push\" → Launch git-master\n- After writing code, commit changes → Launch git-master\n- \"Create a PR\" → Launch git-master\n- Session start sync (git status + git pull) → Launch git-master\n- \"Show recent commit logs\" → Launch git-master"
+description: "[Ops] Executes git and GitHub CLI (gh) commands — status, log, diff, commit, push, pull, branch, merge, rebase, stash, tag, PR/issue lifecycle, CI status, releases. Not for code edits or tests."
 model: haiku
 tools: ["Bash", "Read", "Glob", "Grep"]
 memory: user

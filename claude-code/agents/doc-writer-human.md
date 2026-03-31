@@ -1,6 +1,6 @@
 ---
 name: doc-writer-human
-description: "[Doc] Writes human-readable documentation — README, design docs, guides, API docs, onboarding docs, changelogs. Submits to doc-critic after drafting."
+description: "[Doc] Writes human-readable documentation — README, design docs, guides, API docs, onboarding docs, changelogs. Submits to doc-critic after drafting. LLM-facing docs (CLAUDE.md, agent defs, prompts) → doc-writer-llm."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user

@@ -1,6 +1,6 @@
 ---
 name: planner
-description: "[Strategy] Use this agent to break down goals into actionable plans, assign tasks to roles/agents, coordinate cross-functional work, or create project roadmaps. Translates CEO/CSO directives into concrete execution plans.\n\nExamples:\n- \"Launch SaaS product in 3 months. Create a plan.\" → Launch planner\n- \"What should dev, design, and marketing each do?\" → Launch planner for role distribution\n- \"CSO approved expansion strategy. Break into steps.\" → Launch planner for milestone decomposition\n- \"Review progress and adjust the plan.\" → Launch planner for recalibration"
+description: "[Strategy] Breaks down goals into actionable plans, assigns tasks to roles/agents, coordinates cross-functional work, creates project roadmaps."
 model: opus
 tools: ["Read", "Glob", "Grep", "Write", "Edit", "WebSearch", "WebFetch", "Bash"]
 memory: user

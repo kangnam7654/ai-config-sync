@@ -1,6 +1,6 @@
 ---
 name: devops
-description: "[Ops] Use this agent for CI/CD pipelines, Docker/container configuration, cloud infrastructure, deployment automation, monitoring setup, environment management, Terraform/IaC, GitHub Actions, server provisioning, and production troubleshooting.\n\nExamples:\n- \"Set up Docker for the project\" → Launch devops\n- \"Create a GitHub Actions CI/CD pipeline\" → Launch devops\n- \"Deploy to AWS/GCP\" → Launch devops\n- \"Set up monitoring and alerting\" → Launch devops\n- \"Configure staging and production environments\" → Launch devops\n- \"Terraform plan for new infrastructure\" → Launch devops\n- \"Container image is too large, optimize it\" → Launch devops\n- \"Production is down, investigate\" → Launch devops"
+description: "[Ops] CI/CD pipelines, Docker, cloud infrastructure, deployment automation, monitoring, Terraform/IaC, GitHub Actions, server provisioning, production troubleshooting."
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user

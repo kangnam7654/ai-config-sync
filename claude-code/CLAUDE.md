@@ -1,190 +1,163 @@
-## 우선순위 규칙
+## Priority Rules
 
-프로젝트 `CLAUDE.md`(프로젝트 루트 또는 하위 디렉토리에 위치)의 규칙이 이 글로벌 `CLAUDE.md`의 규칙과 충돌하는 경우, **프로젝트 CLAUDE.md가 우선한다**. 단, NEVER 규칙은 프로젝트 CLAUDE.md로도 해제할 수 없으며, 사용자의 명시적 확인이 필요하다.
+Project `CLAUDE.md` (in project root or subdirectories) overrides this global `CLAUDE.md` on conflict. Exception: NEVER rules cannot be overridden by project CLAUDE.md — explicit user confirmation is required.
 
-## NEVER 규칙
+## NEVER Rules
 
-아래 규칙은 예외 없이 항상 적용된다. 사용자가 명시적으로 해제를 요청해도 아래 형식의 경고를 출력하고, 사용자가 "예"로 확인한 뒤에만 진행하라:
+These rules apply without exception. If the user asks to override, print the warning below and proceed only after user confirms "yes":
 
 ```
-⚠️ 경고: NEVER 규칙 #N을 해제하려 합니다: "{규칙 내용}". 이 규칙을 해제하면 {구체적 위험}이 발생할 수 있습니다. 계속하시겠습니까? (예/아니오)
+⚠️ Warning: Attempting to override NEVER rule #N: "{rule}". This may cause {specific risk}. Continue? (yes/no)
 ```
 
-예시: `⚠️ 경고: NEVER 규칙 #3을 해제하려 합니다: "시스템 python을 직접 호출하지 마라". 이 규칙을 해제하면 시스템 Python 환경 오염 및 의존성 충돌이 발생할 수 있습니다. 계속하시겠습니까? (예/아니오)`
-
-1. NEVER: `git pull` 을 `--rebase` 플래그 없이 실행하지 마라. 항상 `git pull --rebase origin main` 을 사용하라.
-2. NEVER: remote가 없는 프로젝트에서 `git push`를 시도하지 마라.
-3. NEVER: 시스템 `python` / `python3`를 직접 호출하지 마라. 항상 `uv run python`을 사용하라.
-4. NEVER: `pip install`을 직접 실행하지 마라. `uv add <pkg>` 또는 `uv pip install <pkg>`를 사용하라.
-5. NEVER: 설계문서 작성 완료 + 사용자 승인 이전에 구현 코드를 작성하지 마라.
-6. NEVER: 테스트 없이 코드를 커밋하지 마라.
-7. NEVER: Mermaid 외의 다이어그램 형식을 사용하지 마라.
-8. NEVER: `docs/` 디렉토리 밖에 `.mmd` 또는 다이어그램 `.png` 파일을 두지 마라.
-9. NEVER: WebSearch/WebFetch로 충분한 작업에 agent-browser를 사용하지 마라.
-10. NEVER: 서브에이전트가 다른 서브에이전트를 직접 호출하도록 허용하지 마라. 오케스트레이션은 메인 모델만 수행한다.
+1. NEVER run `git pull` without `--rebase`. Always use `git pull --rebase origin main`.
+2. NEVER `git push` in projects with no remote.
+3. NEVER call system `python`/`python3` directly. Always use `uv run python`.
+4. NEVER run `pip install` directly. Use `uv add <pkg>` or `uv pip install <pkg>`.
+5. NEVER write implementation code before design doc is complete + user-approved.
+6. NEVER commit code without tests.
+7. NEVER use diagram formats other than Mermaid.
+8. NEVER place `.mmd` or diagram `.png` files outside `docs/`.
+9. NEVER use agent-browser when WebSearch/WebFetch suffices.
+10. NEVER let subagents call other subagents directly. Only the main model orchestrates.
 
 ## Agent Orchestration
 
-서브에이전트는 다른 서브에이전트를 직접 호출할 수 없다. 메인 모델이 오케스트레이터로서 아래 루프를 실행한다.
+Subagents cannot call other subagents. The main model orchestrates all loops.
 
-### 트리거 구분
+### Trigger Routing
 
-- **문서 작성 요청** → `doc-loop` 스킬을 트리거하라. 사용자가 "설계문서 작성", "API 문서 작성", "README 작성", "프롬프트 작성" 등 **산출물이 문서인 작업**을 요청한 경우
-- **플랜 수립 요청** → `plan-loop` 스킬을 트리거하라. 사용자가 "계획 세워줘", "어떻게 구현할지 정리해줘", "리팩터링 플랜", "마이그레이션 전략" 등 **산출물이 실행 계획인 작업**을 요청한 경우
-- 요청이 어느 쪽에 해당하는지 불명확하면 사용자에게 "문서 산출물이 필요한가요, 실행 계획이 필요한가요?" 라고 확인하라.
+- **Documentation request** → trigger `doc-loop`. When output is a document (design doc, API doc, README, prompt).
+- **Plan request** → trigger `plan-loop`. When output is an execution plan (implementation plan, refactoring plan, migration strategy).
+- If ambiguous, ask user: "Do you need a document or an execution plan?"
+- **New app/service** → trigger `auto-dev`. For building a new app from scratch. Not for modifying existing code, bug fixes, or refactoring.
+- **Skill creation/modification** → follow `skill-create` workflow.
+- **Agent creation/modification** → follow `agent-create` workflow.
 
-- **신규 앱/서비스 개발 요청** → `auto-dev` 스킬을 트리거하라. 사용자가 "앱 만들어", "서비스 개발하자", "프로젝트 시작", "딸깍" 등 **처음부터 동작하는 앱을 만드는 작업**을 요청한 경우. 기존 코드 수정, 버그 픽스, 리팩터링은 해당하지 않는다.
-- **스킬 생성/수정 요청** → `skill-create` 스킬의 자체 워크플로우를 따르라.
-- **에이전트 생성/수정 요청** → `agent-create` 스킬의 자체 워크플로우를 따르라.
+### Security Agent Routing (ciso vs security-reviewer)
 
-### 보안 에이전트 라우팅 (ciso vs security-reviewer)
+| Request type | Agent | Keywords |
+|---|---|---|
+| Policy, compliance, posture assessment, threat modeling, incident response, vendor security, privacy | **ciso** | policy, compliance, GDPR, PIPA, SOC 2, threat modeling, incident, posture, governance |
+| Code vulnerability scanning, OWASP, dependency audit, PR/diff security review | **security-reviewer** | vulnerability, injection, XSS, CSRF, audit, code review, diff, dependency |
 
-보안 관련 요청은 아래 기준으로 에이전트를 구분하라:
-
-| 요청 유형 | 에이전트 | 판별 키워드 |
-|----------|---------|-----------|
-| 보안 정책 수립, 컴플라이언스 검증, 보안 상태 평가, 위협 모델링, 인시던트 대응 계획, 서드파티 보안 평가, 개인정보보호 검토 | **ciso** | 정책, 수립, 준수, 컴플라이언스, GDPR, PIPA, SOC 2, 위협 모델링, 인시던트, 보안 상태, posture, governance |
-| 코드 취약점 스캔, OWASP 패턴 검사, 의존성 취약점 감사, PR/diff 보안 리뷰 | **security-reviewer** | 취약점, vulnerability, injection, XSS, CSRF, audit, 코드 리뷰, diff, 의존성 |
-
-간단 판별법: "코드를 스캔해야 하는가?" → security-reviewer, "정책/규정/조직 수준 평가인가?" → ciso
+Quick rule: "Need to scan code?" → security-reviewer. "Policy/org-level assessment?" → ciso.
 
 ## Design-First Development
 
-### 게이트 규칙
+### Gate Rule
 
-구현 코드 작성은 아래 두 조건이 모두 충족된 후에만 허용된다:
+Implementation code is allowed only after both conditions are met:
+1. LLM design doc exists at `{project}/docs/llm/{feature-or-topic}.md`
+2. User has reviewed and approved the design doc
 
-1. LLM용 설계문서가 `{project}/docs/{feature-or-topic}/` 경로에 작성 완료됨
-2. 사용자가 설계문서를 확인하고 구현 진행을 승인함
+**Exception: auto-dev pipeline** — CTO agent (#25 Design gate) validates instead of human approval.
 
-이 게이트를 통과하기 전에 구현 코드(프로덕션 코드, 테스트 코드 포함)를 작성하지 마라.
+### Design Docs Are for LLMs
 
-**예외: auto-dev 파이프라인** — auto-dev 스킬 실행 중에는 사람 승인 대신 CTO 에이전트(#25 Design 게이트)가 설계문서를 검증한다. CTO PASS가 사람 승인을 대체한다.
+The primary reader is the implementing LLM. Write with precision, not narrative. Use imperative instructions ("do X", not "X should be done"). When using doc-loop, apply LLM mode (doc-writer-llm + LLM mode scoring). User approval confirms direction, not human readability.
 
-### 설계문서는 LLM용이다
+### Design Doc Location
 
-설계문서의 주요 독자는 구현을 수행하는 LLM(Claude)이다. 구현 중 이 문서를 반복 참조하여 컨텍스트 흔들림 없이 작업을 완료해야 한다. 따라서:
+- LLM design docs: `{project}/docs/llm/{feature-or-topic}.md`
+- Human docs (README etc.): `{project}/docs/{feature-or-topic}/`
+- If a design doc for the same topic exists, update it instead of creating a new file.
 
-- **정밀하고 모호하지 않게** 작성하라. 서사적 설명 대신 정확한 스펙을 기술하라.
-- **실행 가능한 지시** 형태로 작성하라. "~해야 한다"가 아니라 "~하라"로 쓰라.
-- doc-loop 사용 시 **LLM 모드**(doc-writer-llm + LLM 모드 채점)를 적용하라.
-- 사용자 승인은 스펙의 방향성 확인 목적이지, 사람 가독성을 위한 것이 아니다.
+### Required Design Doc Sections
 
-### 설계문서 위치
+| Section | Minimum requirement |
+|---------|-------------------|
+| Purpose | 1-sentence problem statement + verifiable completion criteria |
+| File changes | Full paths of files to create/modify + change summary per file |
+| Implementation order | Numbered steps with target file and function names |
+| Function/API signatures | Exact signatures + parameter types + return types |
+| Constraints | Rules to follow (naming, error handling, consistency with existing code) |
+| Decisions | 1 line for chosen approach + 1 line for rejected alternatives with reasons |
 
-- LLM용 설계문서 경로: `{project}/docs/llm/{feature-or-topic}.md`
-- 사람용 문서(README 등)가 필요한 경우: `{project}/docs/{feature-or-topic}/`
-- 같은 feature-or-topic의 설계문서가 이미 존재하면 새 파일을 만들지 말고 기존 문서를 업데이트하라.
+### DB Schema (only for projects requiring a DB)
 
-### 설계문서 필수 섹션 (모두 포함해야 함)
+Write DB schema first when a design doc requires a DB. Include: ERD (Mermaid erDiagram), table definitions, relationships, indexes.
 
-| 섹션 | 최소 요구사항 |
-|------|-------------|
-| 목적 | 해결하려는 문제 1문장 + 완료 조건(검증 가능한 형태) |
-| 파일 변경 목록 | 생성/수정 대상 파일의 전체 경로 + 각 파일에서 변경할 내용 요약 |
-| 구현 순서 | 번호가 매겨진 단계별 작업 목록. 각 단계에 대상 파일과 함수명 명시 |
-| 함수/API 시그니처 | 새로 추가하거나 변경하는 함수의 정확한 시그니처 + 파라미터 타입 + 반환 타입 |
-| 제약 조건 | 구현 시 지켜야 할 규칙 목록 (네이밍, 에러 처리 패턴, 기존 코드와의 일관성 등) |
-| 의사결정 | 채택한 방안 1줄 + 기각한 대안과 기각 이유 1줄. 서사 불필요 |
+### Diagram Rules
 
-### DB 스키마 설계 (DB가 필요한 프로젝트만 해당)
+- Format: Mermaid `.mmd` files only.
+- Render: `mmdc -i input.mmd -o output.png -b transparent -s 4`
+- On mmdc failure: report error to user, provide `.mmd` file only. Do not halt work.
+- Location: both `.mmd` and `.png` in the relevant `docs/` directory.
 
-DB가 필요한 프로젝트에서는 위 설계문서 작성 시 DB 스키마를 가장 먼저 작성하라. 포함 항목: ERD(Mermaid erDiagram), 테이블 정의, 관계, 인덱스.
+### Design Doc Reference During Implementation
 
-### 다이어그램 규칙
-
-- 형식: Mermaid `.mmd` 파일만 사용하라.
-- 렌더링 명령: `mmdc -i input.mmd -o output.png -b transparent -s 4`
-- **mmdc 실패 시**: 에러 메시지를 사용자에게 보고하고, `.mmd` 원본 파일만 제공하라. PNG 생성 실패를 이유로 작업을 중단하지 마라.
-- 저장 위치: `.mmd` 원본과 `.png` 결과 모두 해당 `docs/` 디렉토리 내에 저장하라.
-- Markdown에서 참조: `![설명](./diagram.png)` 형식을 사용하라.
-
-### 구현 중 설계문서 참조 규칙
-
-- 구현 시작 전 설계문서를 Read 도구로 읽어라.
-- 각 구현 단계 시작 전 해당 섹션을 재참조하라. 기억에 의존하지 마라.
-- 설계문서와 다른 방향으로 구현해야 할 경우, 먼저 설계문서를 업데이트한 뒤 구현하라.
+- Read the design doc before starting implementation.
+- Re-read the relevant section before each step. Do not rely on memory.
+- If deviating from the design doc, update it first, then implement.
 
 ## Testing
 
-### 사전 조건 확인
+### Prerequisites
 
-Python 테스트 실행 전 `uv` 설치 여부를 확인하라 (`which uv`). `uv`가 설치되어 있지 않으면:
-- 사용자에게 "`uv`가 설치되어 있지 않습니다. https://docs.astral.sh/uv/ 에서 설치 후 다시 시도하세요." 라고 알려라.
-- Python 관련 작업(테스트, 패키지 설치, 스크립트 실행)을 진행하지 마라.
+Before running Python tests, verify `uv` is installed (`which uv`). If not installed, inform the user and do not proceed with Python tasks.
 
-### 테스트 실행 규칙
+### Test Execution
 
-- 코드 변경 후 반드시 테스트를 실행하여 전체 통과를 확인하라. 언어별 명령:
+Run tests after every code change. Language-specific commands:
 
-| 언어 | 테스트 명령 | 사전 조건 |
-|------|-----------|----------|
-| Python | `uv run python -m pytest tests/ -q` | `uv` 설치 확인 |
-| Node.js | `npm test` | `package.json`에 test 스크립트 존재 확인 |
-| Go | `go test ./...` | `go.mod` 존재 확인 |
-| Rust | `cargo test` | `Cargo.toml` 존재 확인 |
+| Language | Command | Prerequisite |
+|----------|---------|-------------|
+| Python | `uv run python -m pytest tests/ -q` | `uv` installed |
+| Node.js | `npm test` | test script in `package.json` |
+| Go | `go test ./...` | `go.mod` exists |
+| Rust | `cargo test` | `Cargo.toml` exists |
 
-- **테스트 프레임워크가 설정되어 있지 않은 경우** (예: test 스크립트 미정의, pytest 미설치, 테스트 디렉토리 부재): 테스트를 건너뛰지 마라. 사용자에게 아래와 같이 보고하고 테스트 프레임워크 설정을 먼저 제안하라:
-  ```
-  ℹ️ 테스트 프레임워크가 설정되어 있지 않습니다. 테스트 없이 진행하면 코드 품질을 보장할 수 없습니다.
-  권장 설정: {언어별 프레임워크 제안}. 테스트 프레임워크를 먼저 설정하시겠습니까?
-  ```
-- 새 기능/모듈 추가 시 Unit 테스트와 통합 테스트를 함께 작성하라.
-- Unit 테스트: 외부 의존성(API, DB, 파일시스템, 네트워크)은 반드시 Mock하라.
-- 통합 테스트: 모듈 간 호출은 Mock하지 마라. 외부 I/O(API 호출, 파일시스템 접근, DB 쿼리)만 Mock하라.
+If no test framework is configured, do not skip tests. Report to user and suggest setup first.
 
-### 커버리지 규칙
+- New features: write both unit tests and integration tests.
+- Unit tests: mock all external dependencies (API, DB, filesystem, network).
+- Integration tests: do not mock inter-module calls. Only mock external I/O.
 
-- 목표: 80% 이상. 확인 명령: `uv run python -m pytest --cov --cov-fail-under=80`
-- **기존 코드베이스를 처음 다루는 경우** (inherited codebase): 현재 커버리지가 80% 미만일 수 있다. 이 경우:
-  1. `uv run python -m pytest --cov` 로 현재 커버리지 수치를 측정하여 사용자에게 보고하라.
-  2. 커버리지가 가장 낮은 모듈 상위 3개를 식별하라.
-  3. 80% 달성을 위한 테스트 추가 계획을 사용자에게 제안하라 (모듈별 필요 테스트 수 포함).
-  4. 사용자 승인 후 계획에 따라 테스트를 작성하라.
+### Coverage
+
+Target: 80%+. Check: `uv run python -m pytest --cov --cov-fail-under=80`
+
+For inherited codebases below 80%: measure current coverage, identify top 3 lowest modules, propose a test plan, execute after user approval.
 
 ## Refactoring
 
-### 추상화 기준 (측정 가능한 규칙)
+### Abstraction Rules
 
-아래 조건에 해당하면 추상화하지 마라:
-- 함수가 프로젝트 내에서 1곳에서만 호출되는 경우: 별도 모듈로 추출하지 마라.
-- 클래스의 메서드가 2개 이하인 경우: 클래스 대신 함수로 작성하라.
-- 상속 깊이가 3단계를 초과하는 경우: 컴포지션으로 대체하라.
-- 제네릭/타입 파라미터가 3개를 초과하는 경우: 구체 타입을 사용하라.
+Do NOT abstract when:
+- Function is called from only 1 place → do not extract to a separate module.
+- Class has ≤ 2 methods → use functions instead.
+- Inheritance depth > 3 → use composition.
+- Generic/type parameters > 3 → use concrete types.
 
-### 리팩터링 절차 (순서 필수)
+### Refactoring Procedure (strict order)
 
-1. **테스트 확인**: 리팩터링 대상 코드에 대한 기존 테스트가 있는지 확인하라.
-   - **테스트가 없는 경우**: 리팩터링을 시작하지 마라. 현재 동작을 보존하는 테스트를 먼저 작성하고 커밋하라.
-   - **테스트가 있는 경우**: 모든 테스트가 통과하는지 확인하라.
-2. **현재 상태 커밋**: 리팩터링 시작 전 모든 변경사항이 커밋된 상태인지 확인하라. 커밋되지 않은 변경이 있으면 커밋 또는 stash 후 진행하라.
-3. **리팩터링 계획 작성**: 변경할 항목을 목록으로 작성하여 사용자에게 보고하라.
-4. **리팩터링 실행**: 계획에 따라 코드를 변경하라.
-5. **테스트 실행**: `uv run python -m pytest tests/ -q` 로 모든 테스트가 통과하는지 확인하라. 실패 시 리팩터링을 수정하라.
+1. Verify existing tests exist (if not, write tests first and commit).
+2. Ensure all changes are committed before starting.
+3. Write refactoring plan and report to user.
+4. Execute refactoring.
+5. Run tests. Fix if any fail.
 
-## Memory 확장
+## Memory Extension
 
-### temp 타입
+### temp type
 
-시스템 기본 메모리 타입(user, feedback, project, reference)에 추가로 `temp` 타입을 사용한다.
+Additional memory type beyond system defaults (user, feedback, project, reference).
 
-- **용도**: 특정 구현이 완료되면 삭제해야 하는 임시 결정사항 (에이전트/스킬 구현 전 설계 결정, 임시 기술 선택 등)
-- **필수 필드**: `type: temp`, `expires_when: 삭제 조건` (어떤 구현이 완료되면 삭제할지 명시)
-- **MEMORY.md 표기**: `[TEMP]` 태그 + 만료 조건
-- **삭제 규칙**: `expires_when` 조건이 충족되면 해당 메모리 파일을 삭제하고 MEMORY.md에서도 제거하라
+- **Purpose**: temporary decisions to delete when a specific implementation is complete.
+- **Required fields**: `type: temp`, `expires_when: deletion condition`
+- **MEMORY.md notation**: `[TEMP]` tag + expiry condition
+- **Deletion**: when `expires_when` condition is met, delete the memory file and remove from MEMORY.md.
 
 ## Development Environment
 
 ### Python
 
-- 시스템 `python` / `python3`를 직접 호출하지 마라. 항상 `uv run python`을 사용하라.
-  - 예: `uv run python -m pytest`, `uv run python script.py`
-- 패키지 설치: `uv add <pkg>` (프로젝트 의존성) 또는 `uv pip install <pkg>` (일회성 설치)를 사용하라.
-- **uv 미설치 시**: Python 관련 작업을 진행하지 말고 사용자에게 설치를 요청하라.
+- Never call system `python`/`python3`. Always use `uv run python`.
+- Package install: `uv add <pkg>` (project dependency) or `uv pip install <pkg>` (one-off).
+- If `uv` is not installed, do not proceed with Python tasks.
 
 ### CLI Tools
 
-- **mmdc** (mermaid-cli): Mermaid `.mmd` → PNG 렌더링. 실행 실패 시 에러를 보고하고 `.mmd` 파일만 제공하라.
-- **agent-browser** (v0.10.0): 로그인이 필요한 페이지, 동적 SPA, 브라우저 조작이 필요한 경우에만 사용하라.
-  - WebSearch/WebFetch로 충분한 작업(일반 검색, 정적 페이지 읽기)에는 사용하지 마라.
-  - 명령어: `agent-browser open <url>`, `snapshot`, `screenshot`, `click`, `fill`, `text`, `close`
+- **mmdc** (mermaid-cli): Mermaid `.mmd` → PNG. On failure, report error and provide `.mmd` only.
+- **agent-browser** (v0.10.0): Use only for login-required pages, dynamic SPAs, browser interaction. Do not use when WebSearch/WebFetch suffices. Commands: `agent-browser open <url>`, `snapshot`, `screenshot`, `click`, `fill`, `text`, `close`

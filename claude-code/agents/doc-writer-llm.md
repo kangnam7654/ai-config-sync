@@ -1,6 +1,6 @@
 ---
 name: doc-writer-llm
-description: "[Doc] Writes LLM-facing documents — CLAUDE.md, agent definitions, skill files, system prompts, tool descriptions. Focuses on precision and executable instructions. Submits to doc-critic after drafting."
+description: "[Doc] Writes LLM-facing documents — CLAUDE.md, agent definitions, skill files, system prompts, tool descriptions. Focuses on precision and executable instructions. Submits to doc-critic after drafting. Human-readable docs (README, guides) → doc-writer-human."
 model: opus
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user

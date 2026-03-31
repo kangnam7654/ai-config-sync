@@ -1,6 +1,6 @@
 ---
 name: build-error-resolver
-description: "[Build] Build and TypeScript error resolution specialist. Use PROACTIVELY when build fails or type errors occur in JavaScript/TypeScript/Python/Rust/Java/Go projects. Fixes build/type errors only with surgical minimal diffs — no architectural edits.\n\nExamples:\n- \"Build failed, fix it\" → Launch build-error-resolver\n- \"TypeScript errors after merge\" → Launch build-error-resolver\n- \"npm run build is broken\" → Launch build-error-resolver\n- \"tsc --noEmit shows 12 errors\" → Launch build-error-resolver\n- \"Rust cargo build failed\" → Launch build-error-resolver\n- \"Go build is broken\" → Launch build-error-resolver\n- \"Fix go vet warnings\" → Launch build-error-resolver\n- \"Module dependency issues\" → Launch build-error-resolver"
+description: "[Build] Build and type error resolution for JS/TS/Python/Rust/Java/Go. Surgical minimal diffs only — no architectural edits. Use proactively when build fails."
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: sonnet
 memory: user

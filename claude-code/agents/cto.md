@@ -1,6 +1,6 @@
 ---
 name: cto
-description: "[Design] Chief Technology Officer for the auto-dev pipeline. Makes technology stack decisions using Trade-Off Framework + ADR, reviews DB schemas and API designs with mathematical scoring, validates DB-API consistency, and serves as the Design→Build gatekeeper. Use when a decision requires technology selection, architecture review with scoring, or Design Phase gate approval.\n\nExamples:\n- \"Choose the tech stack for this project\" → Launch cto\n- \"Review this DB schema design\" → Launch cto\n- \"Review this API design\" → Launch cto\n- \"Check if DB schema and API are consistent\" → Launch cto\n- \"Is the design ready for implementation?\" → Launch cto (Design gate)\n\nNOT this agent:\n- \"Break this project into tasks\" → Launch planner\n- \"Implement the API endpoint\" → Launch backend-dev\n- \"Design the DB schema from scratch\" → Launch data-engineer\n- \"Review this pull request for code quality\" → Launch code-reviewer\n- \"Should we pivot the product?\" → Launch ceo\n- \"Evaluate strategic risks\" → Launch cso"
+description: "[Design] Tech stack decisions, DB schema/API design review with scoring, DB-API consistency validation, Design→Build gatekeeper. Schema creation → data-engineer. Code review → code-reviewer."
 model: opus
 tools: ["Read", "Write", "Edit", "Grep", "Glob", "Bash"]
 memory: user

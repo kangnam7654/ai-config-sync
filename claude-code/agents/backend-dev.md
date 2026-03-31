@@ -1,6 +1,6 @@
 ---
 name: backend-dev
-description: "[Dev] Use this agent for backend server development — API endpoint implementation, server-side business logic, authentication/authorization flows, middleware, and external service integration.\n\nExamples:\n- \"Create POST /api/users with email duplicate check\" → Launch backend-dev\n- \"Implement JWT auth with refresh tokens\" → Launch backend-dev\n- \"Integrate Stripe payment webhook\" → Launch backend-dev\n- \"Implement real-time chat with WebSocket\" → Launch backend-dev\n- Frontend needs an API endpoint → Launch backend-dev\n\nNOT this agent:\n- \"Optimize this slow SQL query\" → Launch dba\n- \"Build ETL pipeline for analytics\" → Launch data-engineer\n- \"Set up Docker / CI/CD / deploy\" → Launch devops\n- \"Review this migration for correctness\" → Launch dba"
+description: "[Dev] Backend server development — API endpoints, business logic, auth flows, middleware, external service integration. SQL optimization → dba. ETL/pipelines → data-engineer. CI/CD → devops."
 model: sonnet
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 memory: user

@@ -12,6 +12,13 @@
 - CEO maintains multiple pricing versions across proposal/DB/docs that diverge over time -- always cross-check actual DB migrations + launch docs against proposal claims
 
 ## Key Benchmarks (2025-2026)
+- A2A protocol: 150+ org partners, Linux Foundation (AAIF) governance (as of 2026-03)
+- MCP: 97M installs (2026-03-25), adopted by Anthropic/OpenAI/Google/MS
+- VS Code 1.109 (2026-01): native multi-agent orchestration (Claude+Codex+Copilot)
+- Claude Code Agent Teams: shipped Feb 2026 with Opus 4.6, mailbox inter-agent communication
+- CrewAI: $18M total funding, 100K+ certified devs, Fortune 500 adoption, estimated <$20M ARR
+- AI code tools market: $7.88B (2025), projected $70.55B (2034) — Grand View Research
+- Claude Code market share: 41% of professional developers (2026 Q1), surpassing Copilot 38%
 - East Asia subscription conversion rate: ~2.0% (RevenueCat 2025)
 - Dating app monthly subscription 12-month retention: ~17% (83% churn over 12mo)
 - Korean dating app market: monthly in-app purchase ~$12M (Aug 2025 peak)
@@ -61,6 +68,11 @@
   - Must-fix: legal opinion scope must include 선불전자지급수단 / 전자금융업 registration
   - AI cost is NOT the issue (97%+ margin per credit item) — demand validation IS the issue
 - Dalgyeol BM R1: CONDITIONAL (Score 6.9/10) (2026-03-20) — [project_dalgyeol_bm_review.md](project_dalgyeol_bm_review.md)
+- AgentBridge R1: OPPOSE (Score 2.85/10) (2026-03-31) — [project_agentbridge_review.md](project_agentbridge_review.md)
+  - Fatal: A2A/MCP convergence + VS Code native multi-agent + Claude Code Agent Teams = platform layer absorbing the product
+  - SOM $60-360M overestimated 10-50x; CrewAI (category leader) < $20M ARR
+  - 4th product before any revenue from first 3 = portfolio dilution
+  - Recommended: open-source side project, not product; focus on Dalgyeol launch
 - Dalgyeol BM R2: CONDITIONAL (Score 6.1/10) (2026-03-26) — score DECREASED
   - 4 conditions: legal opinion (carried), pricing unification (worsened to 3 versions), UA strategy (new), competition plan (carried)
   - 3 incompatible pricing schemes: proposal vs DB migrations vs launch-checklist

@@ -42,6 +42,9 @@
 - Free-tier AI costs can eat 85% of MRR if uncontrolled -- model this explicitly
 - TAM should reflect actual addressable segment, not entire adjacent market
 
+## AgentBridge (Mar 2026)
+- [Competition Update](project_agentbridge_competition_update.md) -- Claude Code Agent Teams, Composio, GitHub Mission Control now cover much of original value prop; BM_REVISION issued 2026-03-31
+
 ## Research Patterns
 - SensorTower for Korean app market data
 - Business of Apps for global benchmarks

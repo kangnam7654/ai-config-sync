@@ -40,6 +40,23 @@
 - Korean fortune/divination market TAM: ~1.4조 (혁신의숲), mobile app market ~1,400억+
 - 선불전자지급수단 등록 면제: 발행잔액 30억 미만 AND 연 총발행액 500억 미만
 - Apple Small Business Program: 15% commission for <$1M annual revenue (vs standard 30%)
+- Rezi (AI resume builder): $215K MRR, ~$5M+ ARR, 2.6M users, 11 people, Seoul, 55% margin, bootstrapped
+- Teal: 3.2M users, $20.7M funding (Series A Jan 2025), $4.2M revenue (2024)
+- Jobscan: ~$7.6M revenue, bootstrapped, 60+ employees, $49.95/mo
+- Resume builder SaaS: 15% monthly churn, 3-8% free-to-paid conversion, LTV ~$101
+- Korean 자소서 첨삭 WTP: 1-3만원/회 (session-based, not subscription)
+- 사람인 AI 자소서 코칭: launched Aug 2025, free, includes AI탐지방지 기능
+- Z세대 91% AI 자소서 활용, 20대 69.9% AI 취업서비스 사용 (사람인 2025.3 조사)
+- 2030세대 실업+쉬었음+취준: 158.9만명 (2025.11), 취업준비자 51.1만명
+- SaaS freemium-to-paid average: 3.7% (First Page Sage 2025, 80+ SaaS clients)
+- AI tool freemium-to-paid: GOOD = 6-8%, GREAT = 15-20% (Growth Unhinged 2026)
+- 사람인 AI 자소서 코칭 가격: 10회 4,500원, 30회 7,500원, 60회 12,000원 (30일 만료)
+- 사람인-잡코리아 크롤링 소송: 부정경쟁행위 판결 (잡코리아 승소). robots.txt 무시 + VPN 우회 = 위법
+- 한국 대법원 2022: 데이터 스크래핑 자체는 기술일 뿐 위법 아님, 단 접근 제한 우회 시 위법
+- 한국 2025 경력직 채용 비중: 82%, 순수 신입 채용 2.6%만
+- 2026 채용 트렌드: 4-7년차 중간 경력직 + AI 활용 인재 수요 증가
+- Jobscan 2026: $49.95/mo premium, 무료 5회/월, JD-Resume match score + ATS 최적화
+- Teal 2026: $29/mo, 3.2M users, Job Tracker + Resume Match Score, 한국어 미지원
 
 ## Legal/Regulatory Flags
 - Third-party conversation analysis without consent = high risk under Korean PIPA (개인정보보호법 제15조)
@@ -73,6 +90,18 @@
   - SOM $60-360M overestimated 10-50x; CrewAI (category leader) < $20M ARR
   - 4th product before any revenue from first 3 = portfolio dilution
   - Recommended: open-source side project, not product; focus on Dalgyeol launch
+- fit-apply (맞춤지원) R1: REVISE (Score 5.2/10) (2026-03-31) — [project_fitapply_review.md](project_fitapply_review.md)
+  - 5th product with $0 revenue from any prior product = critical portfolio dilution
+  - Korean incumbents (사람인, 잡코리아) already offer free AI 자소서 features
+  - Resume SaaS structural churn: 15% monthly, LTV ~$101
+  - SOM 60-170억 ARR overestimated 10-30x vs Rezi ($5M ARR, global leader)
+  - Recommended: validate WTP with 50 paid users before building; defer until Dalgyeol revenue
+- fit-check (핏체크) R1: CONDITIONAL GO (2026-03-31) — [project_fitcheck_review.md](project_fitcheck_review.md)
+  - CEO addressed all 3 R1 issues structurally: Gap Analysis positioning, credit model, 93% SOM reduction
+  - Year 1 SOM still 4-20x overestimated (CEO 4,500만 vs realistic 225만-1,125만)
+  - 3 conditions: text-paste MVP (no URL scraping), internal target 500 paying users, 50-person WTP validation
+  - 사람인 pricing confirmed: 10회 4,500원 (same credit model, 핏체크 10-30% more expensive)
+  - SaaS freemium-to-paid average: 3.7% (First Page Sage 2025)
 - Dalgyeol BM R2: CONDITIONAL (Score 6.1/10) (2026-03-26) — score DECREASED
   - 4 conditions: legal opinion (carried), pricing unification (worsened to 3 versions), UA strategy (new), competition plan (carried)
   - 3 incompatible pricing schemes: proposal vs DB migrations vs launch-checklist

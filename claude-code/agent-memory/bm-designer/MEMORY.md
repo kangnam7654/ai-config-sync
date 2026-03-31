@@ -1,2 +1,3 @@
 - [Developer Tools Pricing Benchmarks](devtools_pricing_benchmarks.md) -- Competitor pricing data for AI coding tools and multi-agent platforms (2025-2026)
 - [SaaS Unit Economics Benchmarks](saas_ue_benchmarks.md) -- CAC, LTV, churn, conversion benchmarks for dev tools SaaS
+- [Korea Career Service Benchmarks](kr_career_service_benchmarks.md) -- Saramin pricing, Korean job market data, low-ticket transaction product insights

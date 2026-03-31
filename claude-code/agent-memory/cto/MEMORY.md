@@ -7,4 +7,6 @@
 - [project_dearant_arch.md](project_dearant_arch.md) - Dear,ANT (Next.js 16 + Supabase investment mood analyzer) architecture review, scored 6.13/10, 4 P0 issues, as of 2026-03-25
 - [project_claude_code_hud_arch.md](project_claude_code_hud_arch.md) - claude-code-hud full audit: overall 5.37/10, gate PARTIAL, 24 items (P0 safety + P1 tests + P2 repo), as of 2026-03-30
 - [project_fitcheck_techstack.md](project_fitcheck_techstack.md) - fit-check (AI career gap analyzer) tech stack: Next.js 15 + Supabase + Vercel + Prisma monolith, as of 2026-03-31
-- [project_fitcheck_db_review.md](project_fitcheck_db_review.md) - fit-check DB schema review FAIL 7.45/10, 2 critical RLS issues, needs AI table + payments write restriction, as of 2026-03-31
+- [project_fitcheck_db_review.md](project_fitcheck_db_review.md) - fit-check DB schema re-review PASS 8.63/10, all 4 issues resolved, 3 minor remain, as of 2026-03-31
+- [project_fitcheck_api_review.md](project_fitcheck_api_review.md) - fit-check API re-review PASS 8.725/10, all 9 prior issues resolved, next: consistency check #15, as of 2026-03-31
+- [project_fitcheck_consistency.md](project_fitcheck_consistency.md) - fit-check consistency check #15 FAIL 7.15/10, 5 mismatches (BOTH), next: DB revision #11, as of 2026-03-31

@@ -51,6 +51,11 @@
 - FlirtIQ uses 5433/6380 to avoid conflicts
 - Always check for port conflicts when adding new projects
 
+## fit-check Project (/Users/kangnam/projects/dear-jeongbin)
+
+See `project_fitcheck.md` for stack, API design doc location, credit rules, file structure.
+- API design doc: `docs/llm/api-design.md` (38 endpoints, DRAFT 2026-03-31)
+
 ## Kangnam Client (/Users/kangnam/projects/kangnam-client/kangnam-client)
 
 Tauri 2.x desktop app (Rust + React). See `project_kangnam_client.md` for full structure.

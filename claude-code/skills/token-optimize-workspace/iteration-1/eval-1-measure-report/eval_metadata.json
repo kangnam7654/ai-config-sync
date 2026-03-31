@@ -1,0 +1,37 @@
+{
+  "eval_id": 1,
+  "eval_name": "measure-report",
+  "prompt": "토큰 얼마나 쓰고있어?",
+  "assertions": [
+    {
+      "id": "report_table",
+      "text": "Response contains a structured table or report with token counts per category",
+      "type": "qualitative"
+    },
+    {
+      "id": "mentions_agents",
+      "text": "Response includes agent description token count",
+      "type": "keyword_check"
+    },
+    {
+      "id": "mentions_skills",
+      "text": "Response includes skill description token count",
+      "type": "keyword_check"
+    },
+    {
+      "id": "mentions_claude_md",
+      "text": "Response includes CLAUDE.md token count",
+      "type": "keyword_check"
+    },
+    {
+      "id": "total_count",
+      "text": "Response includes a total token count",
+      "type": "keyword_check"
+    },
+    {
+      "id": "optimization_opportunities",
+      "text": "Response identifies at least one optimization opportunity",
+      "type": "qualitative"
+    }
+  ]
+}

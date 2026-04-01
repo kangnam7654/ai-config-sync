@@ -28,6 +28,11 @@ EXCLUDES: dict[str, list[str]] = {
         "shell-snapshots", "ide", "downloads", ".git",
         "agent-memory/security-reviewer/project_*_credentials*",
         "agent-memory/security-reviewer/project_*_audit*",
+        "skills/paperclip", "skills/paperclip/**",
+        "skills/paperclip-create-agent", "skills/paperclip-create-agent/**",
+        "skills/paperclip-create-plugin", "skills/paperclip-create-plugin/**",
+        "plugins/known_marketplaces.json",
+        "plugins/installed_plugins.json",
     ],
 }
 

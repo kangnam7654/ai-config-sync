@@ -51,15 +51,42 @@
 - FlirtIQ uses 5433/6380 to avoid conflicts
 - Always check for port conflicts when adding new projects
 
-## fit-check Project (/Users/kangnam/projects/dear-jeongbin/fit-check)
+## Dear, 정빈 Project (/Users/kangnam/projects/dear-jeongbin/fit-check)
 
-See `project_fitcheck.md` for stack, API conventions, credit rules, Supabase JS + Zod v4 gotchas.
-- DB layer migrated from Prisma → Supabase JS admin client (service_role). Prisma connection was failing ("Tenant or user not found").
-- All 10 service files + 6 route handlers now use `supabaseAdmin` from `src/lib/supabase/admin.ts`
-- PostgreSQL RPC functions for atomic operations in `supabase/migrations/V008__rpc_functions.sql` (must run in SQL Editor)
-- DB row types defined in `src/lib/supabase/types.ts` — snake_case columns matching actual DB
-- Supabase JS 2.x type gotcha: `createClient<Database>` degrades to `never` when >2 RPC functions are in `Functions` type (LastOf<FnUnion> bug). Workaround: use `any` for Database generic in admin.ts, cast row types explicitly at call sites
-- Unit tests need updating (still mock Prisma) — 87 tests failing, TypeScript clean
+앱명: "Dear, 정빈" — 정빈이를 위한 1인 사용 AI 커리어 코치. package.json name: "dear-jeongbin".
+
+### Stack
+- Next.js 16, TypeScript, Tailwind v4, Zod v4
+- DB: PGlite (embedded PostgreSQL, file-based) — no external DB server needed
+- ORM: Prisma 7 with `@prisma/adapter-pg` — PGlitePool duck-types pg.Pool
+- AI: Claude Haiku SSE via @anthropic-ai/sdk
+- No auth, no credits, no payments — 1인 앱
+
+### Key files
+- DB adapter: `src/lib/db/pglite-adapter.ts` — PGlitePool wraps PGlite as pg.Pool duck-type
+- Prisma client: `src/lib/prisma/client.ts` — uses PGlitePool with `as any` cast
+- Single user: `src/lib/constants/user.ts` — USER_ID = '00000000-0000-0000-0000-000000000001'
+- Auth stub: `src/lib/middleware/auth.ts` — requireAuth() returns hardcoded USER_ID
+- Credits stub: `src/hooks/use-credits.ts` — always returns balance: 9999 (no-op)
+- DB path: `./data/pglite/` (gitignored), env var: DATABASE_PATH
+- Schema init: ensureSchema() in pglite-adapter.ts runs on first PGlite connection
+
+### Prisma 7 gotcha
+- datasource in schema.prisma must NOT have `url` field — Prisma 7 driver adapter mode
+- Use `adapter` passed to PrismaClient constructor instead
+- `prisma.config.ts` datasource url is only for CLI tooling (generate), not runtime
+
+### PGlite adapter pattern
+- PGlite.query() returns `{ rows, affectedRows, fields }` — not pg.QueryResult
+- PGlitePool.connect() → PGliteClient that wraps PGlite.query() with pg.PoolClient interface
+- Cast `pool as any` when passing to PrismaPg() — type mismatch is intentional duck-typing
+
+### Services (Supabase removed, Prisma ORM)
+- resume.service.ts, application.service.ts, gap-analysis.service.ts, document.service.ts, interview.service.ts
+- All use `prisma.*` from `@/lib/prisma/client`
+- No credit deduction anywhere — unlimited use
+
+### Tests: 85 passing, TypeScript clean (0 errors)
 
 ## Kangnam Client (/Users/kangnam/projects/kangnam-client/kangnam-client)
 

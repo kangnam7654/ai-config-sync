@@ -193,29 +193,13 @@ Produce the report using the exact Output Format below. No deviations.
 
 When recommending sanitization, reference the **exact function** for the detected framework. Do NOT say "validate and sanitize everything."
 
-### Python
+Load the reference file matching the detected language from `security-reviewer/references/`. Only load the file for languages present in the audit scope.
 
-| Framework | Input validation | SQL safety | Template escaping |
-|---|---|---|---|
-| Django | `django.core.validators`, `forms.CharField(max_length=...)`, `serializers.Serializer` (DRF) | ORM by default; raw SQL: `cursor.execute(sql, [params])` | Auto-escaped in templates; `mark_safe()` must be audited |
-| Flask | `flask-wtf` validators, `marshmallow.Schema`, `pydantic.BaseModel` | SQLAlchemy `text(:param)`; raw: `db.execute(sql, {"param": val})` | Jinja2 auto-escapes; `|safe` filter must be audited |
-| FastAPI | `pydantic.BaseModel` with field validators, `Query(max_length=...)` | SQLAlchemy `text(:param)` or `asyncpg` `$1` params | N/A (API-only); JSON responses auto-serialized |
-
-### JavaScript/TypeScript
-
-| Framework | Input validation | SQL safety | Output escaping |
-|---|---|---|---|
-| Express | `zod.object({...}).parse(req.body)`, `joi.object({...}).validate()`, `express-validator.body().isEmail()` | `knex('table').where('id', id)`, `pg` with `$1` params, Prisma ORM | `res.json()` auto-serializes; HTML: use `DOMPurify.sanitize()` |
-| Next.js | `zod` in Server Actions / API routes, `next-safe-action` | Prisma ORM, Drizzle ORM | React auto-escapes JSX; `dangerouslySetInnerHTML` must use `DOMPurify.sanitize()` |
-| NestJS | `class-validator` decorators + `ValidationPipe`, `zod` with `ZodValidationPipe` | TypeORM parameterized queries, Prisma ORM | `class-transformer` for response serialization |
-
-### Go
-
-| Framework | Input validation | SQL safety | Output escaping |
-|---|---|---|---|
-| net/http | Custom validation or `go-playground/validator` struct tags | `database/sql` with `db.Query(sql, args...)` placeholder `$1`/`?` | `html/template` auto-escapes; `text/template` does NOT |
-| Gin | `binding:"required,email"` struct tags, `ShouldBindJSON` | Same as net/http | `c.JSON()` auto-serializes; HTML: use `html/template` |
-| Echo | `echo.Bind()` + custom validator | Same as net/http | `c.JSON()` auto-serializes |
+| Language in scope | Reference file to read |
+|---|---|
+| Python (`.py`) | `security-reviewer/references/python-frameworks.md` |
+| JavaScript/TypeScript (`.js`, `.ts`, `.jsx`, `.tsx`) | `security-reviewer/references/js-frameworks.md` |
+| Go (`.go`) | `security-reviewer/references/go-frameworks.md` |
 
 ## Edge Cases
 

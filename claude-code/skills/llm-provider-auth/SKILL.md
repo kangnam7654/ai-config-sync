@@ -103,6 +103,112 @@ await fetch('https://auth.openai.com/oauth/token', {
 })
 ```
 
+### 로컬 토큰 파일 읽기 (`~/.codex/auth.json`)
+
+OAuth 완료 후 Codex CLI가 `~/.codex/auth.json`에 토큰을 저장. 두 가지 포맷 존재:
+
+```typescript
+// Legacy 포맷
+{ "accessToken": "...", "accountId": "..." }
+
+// Modern 포맷
+{
+  "tokens": {
+    "id_token": "eyJ...",
+    "access_token": "eyJ...",
+    "refresh_token": "...",
+    "account_id": "..."
+  },
+  "last_refresh": "2026-04-01T..."
+}
+```
+
+읽기 순서: `legacy.accessToken` → `modern.tokens.access_token` (둘 다 시도)
+
+```typescript
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import os from 'node:os'
+
+function codexHomeDir(): string {
+  return process.env.CODEX_HOME?.trim() || path.join(os.homedir(), '.codex')
+}
+
+async function readCodexAuthInfo() {
+  const raw = await fs.readFile(path.join(codexHomeDir(), 'auth.json'), 'utf8')
+  const obj = JSON.parse(raw)
+  const accessToken = obj.accessToken ?? obj.tokens?.access_token
+  if (!accessToken) return null
+  return {
+    accessToken,
+    accountId: obj.accountId ?? obj.tokens?.account_id ?? null,
+    refreshToken: obj.tokens?.refresh_token ?? null,
+    idToken: obj.tokens?.id_token ?? null,
+  }
+}
+```
+
+### JWT에서 이메일/플랜 추출
+
+`id_token` 또는 `access_token`의 JWT payload를 디코딩하여 사용자 정보 추출:
+
+```typescript
+function decodeJwtPayload(token: string): Record<string, unknown> | null {
+  const parts = token.split('.')
+  if (parts.length < 2) return null
+  const decoded = Buffer.from(parts[1].replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8')
+  return JSON.parse(decoded)
+}
+
+// JWT claim 위치:
+// email: payload.email 또는 payload["https://api.openai.com/profile"].email
+// plan:  payload["https://api.openai.com/auth"].chatgpt_plan_type  ("plus", "pro" 등)
+```
+
+### Quota API (WHAM)
+
+```
+GET https://chatgpt.com/backend-api/wham/usage
+Authorization: Bearer <access_token>
+ChatGPT-Account-Id: <account_id>  (선택, 있으면 포함)
+```
+
+응답:
+```json
+{
+  "plan_type": "plus",
+  "rate_limit": {
+    "primary_window": { "used_percent": 0.15, "limit_window_seconds": 18000, "reset_at": 1743530400 },
+    "secondary_window": { "used_percent": 0.05, "limit_window_seconds": 604800, "reset_at": 1743897600 }
+  },
+  "credits": { "balance": 500, "unlimited": false }
+}
+```
+
+- `primary_window`: 5시간 사용량
+- `secondary_window`: 주간 사용량
+- `credits.balance`: 센트 단위 ($5.00 = 500)
+- `used_percent` 정규화 필요: `rawPct < 1`이면 비율(0-1)이므로 `* 100`, 아니면 이미 퍼센트(0-100). `Math.min(100, Math.round(...))`
+
+### Quota API (RPC) — Codex app-server
+
+`codex app-server` 프로세스를 JSON-RPC로 호출하여 quota 조회:
+
+```typescript
+// codex -s read-only -a untrusted app-server 실행 후 stdin/stdout JSON-RPC
+// 1. initialize → 2. account/rateLimits/read + account/read
+
+const proc = spawn('codex', ['-s', 'read-only', '-a', 'untrusted', 'app-server'])
+proc.stdin.write(JSON.stringify({ id: 1, method: 'initialize', params: { clientInfo: { name: 'myapp', version: '0.0.0' } } }) + '\n')
+// → initialized notification
+proc.stdin.write(JSON.stringify({ method: 'initialized', params: {} }) + '\n')
+// → request rate limits
+proc.stdin.write(JSON.stringify({ id: 2, method: 'account/rateLimits/read', params: {} }) + '\n')
+// → { id: 2, result: { rateLimits: { primary: { usedPercent, resetsAt }, secondary: {...} } } }
+```
+
+Quota 조회 우선순위: **RPC 먼저 → 실패 시 WHAM fallback**. RPC가 더 안정적이므로 우선 시도.
+
 ---
 
 ## 2. Google Gemini CLI (Gemini Pro)
@@ -294,9 +400,54 @@ Header: Authorization: Bearer <token>  (NOT x-api-key — 반드시 Bearer)
 - Anthropic SDK 사용 시: `authToken` 파라미터 사용 (`apiKey` 아님)
 - OAT 토큰은 만료됨 — `expiresAt` 확인 필요
 
-### macOS Keychain에서 OAT 토큰 자동 읽기
+### 로컬 Credential 파일에서 OAT 토큰 읽기
 
-Claude Code가 macOS Keychain에 OAuth credentials를 저장:
+Claude Code는 OAuth credentials를 `~/.claude/.credentials.json` 또는 `~/.claude/credentials.json`에 저장. macOS Keychain보다 파일 읽기가 더 안정적:
+
+```typescript
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import os from 'node:os'
+
+function claudeConfigDir(): string {
+  return process.env.CLAUDE_CONFIG_DIR?.trim() || path.join(os.homedir(), '.claude')
+}
+
+async function readClaudeToken(): Promise<string | null> {
+  const configDir = claudeConfigDir()
+  for (const filename of ['.credentials.json', 'credentials.json']) {
+    try {
+      const raw = await fs.readFile(path.join(configDir, filename), 'utf8')
+      const obj = JSON.parse(raw)
+      const token = obj?.claudeAiOauth?.accessToken
+      if (typeof token === 'string' && token.length > 0) return token
+    } catch { continue }
+  }
+  return null
+}
+```
+
+### Auth 상태 감지 (CLI 활용)
+
+```typescript
+import { execFile } from 'node:child_process'
+import { promisify } from 'node:util'
+const execFileAsync = promisify(execFile)
+
+async function readClaudeAuthStatus() {
+  const { stdout } = await execFileAsync('claude', ['auth', 'status'], { timeout: 5000 })
+  const parsed = JSON.parse(stdout)
+  return {
+    loggedIn: parsed.loggedIn === true,           // boolean
+    authMethod: parsed.authMethod ?? null,         // 'claude.ai' | 'api_key' | null
+    subscriptionType: parsed.subscriptionType ?? null  // 'max' | 'pro' | null
+  }
+}
+```
+
+### macOS Keychain에서 OAT 토큰 읽기 (대안)
+
+Credential 파일이 없을 때 macOS Keychain에서 직접 읽기:
 
 ```typescript
 import { execFileSync } from 'child_process'
@@ -415,6 +566,37 @@ GET https://api.anthropic.com/api/oauth/claude_cli/roles
 Authorization: Bearer <token>
 anthropic-beta: claude-code-20250219,oauth-2025-04-20
 ```
+
+### Quota API 응답 상세
+
+`/api/oauth/usage` 응답 구조:
+
+```json
+{
+  "five_hour": { "utilization": 0.15, "resets_at": "2026-04-01T20:00:00Z" },
+  "seven_day": { "utilization": 0.05, "resets_at": "2026-04-07T00:00:00Z" },
+  "seven_day_sonnet": { "utilization": 0.03, "resets_at": "2026-04-07T00:00:00Z" },
+  "seven_day_opus": { "utilization": 0.08, "resets_at": "2026-04-07T00:00:00Z" },
+  "extra_usage": {
+    "is_enabled": true,
+    "monthly_limit": 100.00,
+    "used_credits": 12.50,
+    "utilization": 0.125,
+    "currency": "USD"
+  }
+}
+```
+
+| 필드 | 설명 |
+|------|------|
+| `five_hour` | 5시간 세션 사용량 (Current session) |
+| `seven_day` | 7일 전체 모델 사용량 |
+| `seven_day_sonnet` | 7일 Sonnet 전용 사용량 |
+| `seven_day_opus` | 7일 Opus 전용 사용량 |
+| `extra_usage` | 추가 사용량 풀 (월간 한도) |
+
+- `utilization`: 0-1 범위 (0.15 = 15% 사용)
+- `extra_usage.is_enabled: false`이면 추가 사용량 미활성화
 
 ### 서비스 이슈 시 Haiku Fallback
 

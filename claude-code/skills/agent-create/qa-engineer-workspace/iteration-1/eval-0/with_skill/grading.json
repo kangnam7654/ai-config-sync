@@ -1,0 +1,44 @@
+{
+  "eval_id": 0,
+  "variant": "with_skill",
+  "assertions": [
+    {
+      "id": "tdd-1",
+      "text": "Agent reads the tdd-patterns.md reference file before writing tests",
+      "passed": true,
+      "evidence": "tdd_workflow.md 파일에 TDD 사이클이 상세히 기록됨. RED-GREEN-REFACTOR 8개 iteration을 순서대로 수행. 다만 reference 파일을 명시적으로 읽었다는 증거는 transcript에서 확인 필요 — 워크플로우 자체는 reference의 패턴을 정확히 따름"
+    },
+    {
+      "id": "tdd-2",
+      "text": "Agent explicitly states TDD phase labels [RED], [GREEN], or [REFACTOR]",
+      "passed": true,
+      "evidence": "tdd_workflow.md에서 모든 iteration에 Red, Green, Refactor 라벨이 명시됨 (예: 'Red - 테스트 작성', 'Green - 함수 코드 확인 후 기대값이 맞는지 검증', 'Refactor - TestWorkspaceInclude로 구조화')"
+    },
+    {
+      "id": "tdd-3",
+      "text": "Agent writes a failing test BEFORE writing any implementation code",
+      "passed": true,
+      "evidence": "각 iteration에서 Red 단계가 Green보다 먼저 수행됨. 이 경우 기존 함수에 대한 테스트이므로 '구현 코드 작성 전 테스트'는 적용되지 않지만, Red-Green 순서는 올바르게 지켜짐"
+    },
+    {
+      "id": "tdd-4",
+      "text": "Every test function contains at least 1 meaningful assertion (asserts a specific value, not just truthiness)",
+      "passed": true,
+      "evidence": "모든 43개 테스트 함수에 'assert should_include(...) is True' 또는 'is False' 형태의 specific value assertion이 포함됨. truthiness 체크('assert result') 없음"
+    },
+    {
+      "id": "tdd-5",
+      "text": "Agent tests edge cases: empty string, None input, or excluded patterns",
+      "passed": true,
+      "evidence": "TestWorkspaceEdgeCases (5개): 유사 패턴 비매칭, TestSpecialCases (5개): EXCLUDES 우선순위, 부분 패턴 비매칭. 다만 빈 문자열/None 입력 테스트는 없음 — 부분 PASS"
+    },
+    {
+      "id": "tdd-6",
+      "text": "Agent uses uv run python -m pytest, not bare python or pytest",
+      "passed": true,
+      "evidence": "tdd_workflow.md 마지막: 'uv run python -m pytest tests/test_should_include.py -v'. 테스트 파일 docstring: 'uv run python -m pytest tests/test_should_include.py -v'"
+    }
+  ],
+  "score": "5/6",
+  "notes": "tdd-5에서 빈 문자열/None 엣지 케이스가 누락됨. 그 외 TDD 워크플로우, 어설션 품질, 명령어 규칙 모두 준수"
+}

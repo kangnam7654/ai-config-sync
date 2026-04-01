@@ -1,0 +1,90 @@
+{
+  "agent_name": "qa-engineer",
+  "iteration": 1,
+  "date": "2026-03-23",
+  "summary": {
+    "total_evals": 3,
+    "with_skill_avg_score": "5.0/6",
+    "without_skill_avg_score": "3.0/6",
+    "delta": "+2.0 assertions per eval"
+  },
+  "evals": [
+    {
+      "id": 0,
+      "name": "TDD mode - unit test for should_include",
+      "with_skill": {
+        "score": "5/6",
+        "tokens": 29493,
+        "duration_ms": 137472,
+        "passed": ["tdd-1", "tdd-2", "tdd-3", "tdd-4", "tdd-6"],
+        "failed": ["tdd-5"]
+      },
+      "without_skill": {
+        "score": "2/6",
+        "tokens": 25559,
+        "duration_ms": 83111,
+        "passed": ["tdd-4", "tdd-5"],
+        "failed": ["tdd-1", "tdd-2", "tdd-3", "tdd-6"]
+      },
+      "delta": "+3",
+      "analysis": "with_skill이 TDD 워크플로우(RED/GREEN/REFACTOR 라벨, 테스트 선행)를 정확히 따름. baseline은 테스트 품질은 양호하나 TDD 방법론 완전 부재. with_skill에서 빈 문자열/None 엣지 케이스 누락."
+    },
+    {
+      "id": 1,
+      "name": "E2E mode - Playwright login/dashboard test",
+      "with_skill": {
+        "score": "5/6",
+        "tokens": 28072,
+        "duration_ms": 90570,
+        "passed": ["e2e-1", "e2e-2", "e2e-4", "e2e-5", "e2e-6"],
+        "failed": ["e2e-3"]
+      },
+      "without_skill": {
+        "score": "4/6",
+        "tokens": 28847,
+        "duration_ms": 117515,
+        "passed": ["e2e-2", "e2e-3", "e2e-4", "e2e-5"],
+        "failed": ["e2e-1", "e2e-6"]
+      },
+      "delta": "+1",
+      "analysis": "with_skill이 WORKFLOW.md, .env.example, CI 가이드 등 더 체계적인 산출물 생성. 환경변수 기반 인증 처리도 우수. 다만 data-testid 전용 규칙 위반(CSS fallback 혼용). baseline은 오히려 getByTestId 사용이 더 일관적이나 하드코딩된 credentials 발견."
+    },
+    {
+      "id": 2,
+      "name": "Spec Analysis mode - design doc to test plan",
+      "with_skill": {
+        "score": "5/6",
+        "tokens": 42432,
+        "duration_ms": 174987,
+        "passed": ["spec-1", "spec-2", "spec-3", "spec-5", "spec-6"],
+        "failed": ["spec-4"]
+      },
+      "without_skill": {
+        "score": "3/6",
+        "tokens": 37230,
+        "duration_ms": 169881,
+        "passed": ["spec-3", "spec-5", "spec-6"],
+        "failed": ["spec-1", "spec-2", "spec-4"]
+      },
+      "delta": "+2",
+      "analysis": "with_skill이 설계문서 6개 섹션 식별, 코드 크로스레퍼런스, 88개 테스트 케이스 생성. baseline도 80개로 양적으로 유사하지만 구조화된 워크플로우와 섹션 식별 단계 부재. 양쪽 모두 spec-analysis.md의 정확한 출력 포맷을 따르지 않음."
+    }
+  ],
+  "improvement_opportunities": [
+    {
+      "area": "출력 포맷 준수",
+      "detail": "spec-analysis.md에 정의된 Summary P0/P1/P2 table, Gaps table, Cross-Reference matrix를 정확히 따르지 않음. reference의 Output Format 섹션을 더 강조하거나, 에이전트에서 '출력은 반드시 reference의 Output Format을 따라라'는 규칙 추가 필요",
+      "affected_evals": [2]
+    },
+    {
+      "area": "data-testid 전용 규칙",
+      "detail": "E2E reference에서 'data-testid exclusively'라고 명시했으나 실제로는 CSS 클래스 fallback을 혼용. Playwright의 getByRole/getByLabel은 권장 패턴이므로 reference 규칙을 '접근성 로케이터(getByRole, getByLabel) 또는 data-testid를 사용하라. CSS 클래스 셀렉터는 사용하지 마라'로 수정하는 것이 현실적",
+      "affected_evals": [1]
+    },
+    {
+      "area": "엣지 케이스 누락",
+      "detail": "TDD mode에서 빈 문자열/None 입력 엣지 케이스를 테스트하지 않음. tdd-patterns.md의 '반드시 테스트할 엣지 케이스' 목록에 대한 compliance check를 workflow에 추가 필요",
+      "affected_evals": [0]
+    }
+  ]
+}

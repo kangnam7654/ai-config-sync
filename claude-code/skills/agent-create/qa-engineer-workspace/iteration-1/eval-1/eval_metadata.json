@@ -1,0 +1,38 @@
+{
+  "id": 1,
+  "name": "E2E mode - Playwright setup and login test",
+  "prompt": "Playwright로 로그인 → 대시보드 접근 E2E 테스트를 작성해줘. 프로젝트에 Playwright가 설치되어 있지 않아. localhost:3000에서 웹앱이 돌아간다고 가정해.",
+  "expected_output": "refs/e2e-playwright.md를 참조하고, Playwright 미설치 상황 처리, data-testid 사용, waitForTimeout 미사용",
+  "assertions": [
+    {
+      "id": "e2e-1",
+      "text": "Agent reads the e2e-playwright.md reference file before writing tests",
+      "type": "workflow"
+    },
+    {
+      "id": "e2e-2",
+      "text": "Agent detects Playwright is not installed and provides setup instructions (npm init playwright@latest or npx playwright install)",
+      "type": "edge_case"
+    },
+    {
+      "id": "e2e-3",
+      "text": "Agent uses data-testid locators, not CSS selectors or XPath",
+      "type": "rule"
+    },
+    {
+      "id": "e2e-4",
+      "text": "Agent does NOT use page.waitForTimeout() anywhere in the test code",
+      "type": "rule"
+    },
+    {
+      "id": "e2e-5",
+      "text": "Agent uses proper waits (waitForResponse, waitForURL, expect().toBeVisible()) instead of arbitrary timeouts",
+      "type": "quality"
+    },
+    {
+      "id": "e2e-6",
+      "text": "Agent does NOT hard-code credentials in the test file",
+      "type": "rule"
+    }
+  ]
+}

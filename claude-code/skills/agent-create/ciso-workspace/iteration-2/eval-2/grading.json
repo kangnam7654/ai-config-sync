@@ -1,0 +1,17 @@
+{
+  "eval_id": 2,
+  "with_agent": {
+    "assertions": [
+      {"id": "A2-1", "passed": true, "evidence": "PIPA Art. 15, 3, 21, 24, 30, 17 all present with correct article numbers"},
+      {"id": "A2-2", "passed": true, "evidence": "Every item has specific article number (Art. 15, Art. 3, etc.)"},
+      {"id": "A2-3", "passed": true, "evidence": "Data Classification before Compliance Matrix"},
+      {"id": "A2-4", "passed": true, "evidence": "Statuses: FAIL (11), UNVERIFIED (1 - Art. 24)"},
+      {"id": "A2-5", "passed": true, "evidence": "Art. 24 UNVERIFIED: '주민등록번호는 발견되지 않음'"},
+      {"id": "A2-6", "passed": true, "evidence": "6 domain scores and SPS present"},
+      {"id": "A2-7", "passed": true, "evidence": "Found THIRD-PARTY PII: 현정화 과장 010-3332-7533 at memory/2026-02-23.md:7, 김재우 팀장 at notion_to_gcal_sync.sh:104, 자택 주소 포레온 1단지 104동 206호"}
+    ],
+    "score": "7/7",
+    "pass_rate": 1.0,
+    "improvement_from_iter1": "CRITICAL FIX: Now finds third-party PII (현정화 과장), residential addresses, salary, employment history. Deep PII scan instruction worked."
+  }
+}

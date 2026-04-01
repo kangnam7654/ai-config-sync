@@ -1,0 +1,1390 @@
+{
+  "exit_reason": "max_iterations (5)",
+  "original_description": "[Review] Chief Information Security Officer for operational security governance. Evaluates security posture across 6 domains: policy compliance, data protection, access control, threat modeling, incident response readiness, and third-party risk. Produces a structured Security Posture Report with domain scores and a composite Security Posture Score (SPS). Use when launching, operating, or auditing any app/service for information security.\\n\\nExamples:\\n- \\\"Review our app's security posture\\\" \\u2192 Launch ciso\\n- \\\"Check GDPR compliance for this service\\\" \\u2192 Launch ciso\\n- \\\"Create an incident response plan\\\" \\u2192 Launch ciso\\n- \\\"Evaluate third-party service security\\\" \\u2192 Launch ciso\\n- \\\"Data protection policy for our app\\\" \\u2192 Launch ciso\\n- \\\"\\ubcf4\\uc548 \\uc815\\ucc45 \\uc218\\ub9bd\\ud574\\uc918\\\" \\u2192 Launch ciso\\n- \\\"\\uac1c\\uc778\\uc815\\ubcf4 \\ubcf4\\ud638 \\uac80\\ud1a0\\ud574\\uc918\\\" \\u2192 Launch ciso\\n- \\\"\\uc704\\ud611 \\ubaa8\\ub378\\ub9c1 \\ud574\\uc918\\\" \\u2192 Launch ciso\\n\\nNOT this agent:\\n- Code-level vulnerability scanning (OWASP pattern scan) \\u2192 security-reviewer\\n- Business strategy risk validation \\u2192 cso\\n- CI/CD pipeline security, firewall rules, IAM config \\u2192 devops\\n- Code quality review \\u2192 code-reviewer\\n- Infrastructure provisioning \\u2192 devops",
+  "best_description": "[Review] Chief Information Security Officer for operational security governance. Evaluates security posture across 6 domains: policy compliance, data protection, access control, threat modeling, incident response readiness, and third-party risk. Produces a structured Security Posture Report with domain scores and a composite Security Posture Score (SPS). Use when launching, operating, or auditing any app/service for information security.\\n\\nExamples:\\n- \\\"Review our app's security posture\\\" \\u2192 Launch ciso\\n- \\\"Check GDPR compliance for this service\\\" \\u2192 Launch ciso\\n- \\\"Create an incident response plan\\\" \\u2192 Launch ciso\\n- \\\"Evaluate third-party service security\\\" \\u2192 Launch ciso\\n- \\\"Data protection policy for our app\\\" \\u2192 Launch ciso\\n- \\\"\\ubcf4\\uc548 \\uc815\\ucc45 \\uc218\\ub9bd\\ud574\\uc918\\\" \\u2192 Launch ciso\\n- \\\"\\uac1c\\uc778\\uc815\\ubcf4 \\ubcf4\\ud638 \\uac80\\ud1a0\\ud574\\uc918\\\" \\u2192 Launch ciso\\n- \\\"\\uc704\\ud611 \\ubaa8\\ub378\\ub9c1 \\ud574\\uc918\\\" \\u2192 Launch ciso\\n\\nNOT this agent:\\n- Code-level vulnerability scanning (OWASP pattern scan) \\u2192 security-reviewer\\n- Business strategy risk validation \\u2192 cso\\n- CI/CD pipeline security, firewall rules, IAM config \\u2192 devops\\n- Code quality review \\u2192 code-reviewer\\n- Infrastructure provisioning \\u2192 devops",
+  "best_score": "4/8",
+  "best_train_score": "6/12",
+  "best_test_score": "4/8",
+  "final_description": "[Review] ALWAYS use this agent for organizational security governance: policy creation (\"\uc815\ucc45 \uc218\ub9bd\"), security assessment (\"\ubcf4\uc548 \ud3c9\uac00\", \"\uc810\uac80\", \"\ud655\uc778\"), threat modeling (\"\uc704\ud611 \ubaa8\ub378\ub9c1\"), compliance evaluation (\"\uc900\uc218\", \"\ucef4\ud50c\ub77c\uc774\uc5b8\uc2a4\"), and third-party security review. Triggers on Korean security terms (\ubcf4\uc548 \uc815\ucc45, \uc218\ub9bd, \ud3c9\uac00, \uc810\uac80, \ud655\uc778, \uc900\uc218, \uc704\ud611 \ubaa8\ub378\ub9c1) and English governance language (policy, audit, compliance, posture, assessment). Produces Security Posture Reports with quantitative scores.\n\nExamples:\n- \"\ubcf4\uc548 \uc815\ucc45 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\uc704\ud611 \ubaa8\ub378\ub9c1 \ud574\uc918\" \u2192 Launch ciso\n- \"\ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918\" \u2192 Launch ciso\n- \"SOC 2 \uc900\ube44 \uc704\ud574 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"GDPR \uc900\uc218 \ud655\uc778\ud574\uc918\" \u2192 Launch ciso\n- \"\uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"Create security policy\" \u2192 Launch ciso\n- \"Security posture assessment\" \u2192 Launch ciso\n\nNOT this agent:\n- Code vulnerabilities, SQL injection, XSS \u2192 security-reviewer\n- Infrastructure setup, firewall rules \u2192 devops\n- Business strategy risks \u2192 cso",
+  "iterations_run": 5,
+  "holdout": 0.4,
+  "train_size": 12,
+  "test_size": 8,
+  "history": [
+    {
+      "iteration": 1,
+      "description": "[Review] Chief Information Security Officer for operational security governance. Evaluates security posture across 6 domains: policy compliance, data protection, access control, threat modeling, incident response readiness, and third-party risk. Produces a structured Security Posture Report with domain scores and a composite Security Posture Score (SPS). Use when launching, operating, or auditing any app/service for information security.\\n\\nExamples:\\n- \\\"Review our app's security posture\\\" \\u2192 Launch ciso\\n- \\\"Check GDPR compliance for this service\\\" \\u2192 Launch ciso\\n- \\\"Create an incident response plan\\\" \\u2192 Launch ciso\\n- \\\"Evaluate third-party service security\\\" \\u2192 Launch ciso\\n- \\\"Data protection policy for our app\\\" \\u2192 Launch ciso\\n- \\\"\\ubcf4\\uc548 \\uc815\\ucc45 \\uc218\\ub9bd\\ud574\\uc918\\\" \\u2192 Launch ciso\\n- \\\"\\uac1c\\uc778\\uc815\\ubcf4 \\ubcf4\\ud638 \\uac80\\ud1a0\\ud574\\uc918\\\" \\u2192 Launch ciso\\n- \\\"\\uc704\\ud611 \\ubaa8\\ub378\\ub9c1 \\ud574\\uc918\\\" \\u2192 Launch ciso\\n\\nNOT this agent:\\n- Code-level vulnerability scanning (OWASP pattern scan) \\u2192 security-reviewer\\n- Business strategy risk validation \\u2192 cso\\n- CI/CD pipeline security, firewall rules, IAM config \\u2192 devops\\n- Code quality review \\u2192 code-reviewer\\n- Infrastructure provisioning \\u2192 devops",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "\uc778\uc2dc\ub358\ud2b8 \ub300\uc751 \uacc4\ud68d\uc744 \ub9cc\ub4e4\uc5b4\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc571 \ucd9c\uc2dc \uc804\uc5d0 \ubcf4\uc548 \uac70\ubc84\ub10c\uc2a4 \ub9ac\ubdf0 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uac1c\uc778\uc815\ubcf4\ubcf4\ud638\ubc95 \uad00\uc810\uc5d0\uc11c \uc774 \ud504\ub85c\uc81d\ud2b8 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc11c\ub4dc\ud30c\ud2f0 \uc11c\ube44\uc2a4 \ubcf4\uc548 \uc810\uac80\ud574\uc918, Stripe\uc774\ub791 SendGrid \uc4f0\uace0 \uc788\uc5b4",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Dockerfile \ubcf4\uc548 \uc124\uc815 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc0ac\uc5c5 \uc804\ub7b5\uc5d0 \ub9ac\uc2a4\ud06c\uac00 \uc788\ub294\uc9c0 \ubd84\uc11d\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 PR\uc758 \ucf54\ub4dc\ub97c \ubcf4\uc548 \uad00\uc810\uc5d0\uc11c \ub9ac\ubdf0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "GitHub Actions CI/CD \ud30c\uc774\ud504\ub77c\uc778\uc5d0 \ubcf4\uc548 \uc2a4\uce94 \ucd94\uac00\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "[Review] Security governance and compliance specialist for organizational-level security assessment and policy creation. Use for security posture evaluation, compliance audits (GDPR, SOC 2, PIPA), threat modeling, data protection policies, and third-party risk assessment. Creates security policies and produces Security Posture Reports with quantitative scores.\n\nExamples:\n- \"\ubcf4\uc548 \uc815\ucc45 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \ub9cc\ub4e4\uc5b4\uc918\" \u2192 Launch ciso  \n- \"\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918\" \u2192 Launch ciso\n- \"\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918\" \u2192 Launch ciso\n- \"GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918\" \u2192 Launch ciso\n- \"SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"\uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"\ubcf4\uc548 \uac10\uc0ac\ud574\uc918\" \u2192 Launch ciso\n- \"Create incident response plan\" \u2192 Launch ciso\n- \"Evaluate third-party security\" \u2192 Launch ciso\n\nNOT this agent:\n- Code vulnerabilities (SQL injection, XSS) \u2192 security-reviewer\n- Infrastructure security (firewall, IAM) \u2192 devops\n- Business risk strategy \u2192 cso",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "\uc778\uc2dc\ub358\ud2b8 \ub300\uc751 \uacc4\ud68d\uc744 \ub9cc\ub4e4\uc5b4\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uac1c\uc778\uc815\ubcf4\ubcf4\ud638\ubc95 \uad00\uc810\uc5d0\uc11c \uc774 \ud504\ub85c\uc81d\ud2b8 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc571 \ucd9c\uc2dc \uc804\uc5d0 \ubcf4\uc548 \uac70\ubc84\ub10c\uc2a4 \ub9ac\ubdf0 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc11c\ub4dc\ud30c\ud2f0 \uc11c\ube44\uc2a4 \ubcf4\uc548 \uc810\uac80\ud574\uc918, Stripe\uc774\ub791 SendGrid \uc4f0\uace0 \uc788\uc5b4",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Dockerfile \ubcf4\uc548 \uc124\uc815 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc0ac\uc5c5 \uc804\ub7b5\uc5d0 \ub9ac\uc2a4\ud06c\uac00 \uc788\ub294\uc9c0 \ubd84\uc11d\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 PR\uc758 \ucf54\ub4dc\ub97c \ubcf4\uc548 \uad00\uc810\uc5d0\uc11c \ub9ac\ubdf0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "GitHub Actions CI/CD \ud30c\uc774\ud504\ub77c\uc778\uc5d0 \ubcf4\uc548 \uc2a4\uce94 \ucd94\uac00\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "description": "[Review] Organizational security posture assessment and policy creation. Use whenever users request security evaluation, audit, compliance checking, or policy drafting. Triggers on assessment language (\"\ud3c9\uac00\", \"\uc810\uac80\", \"\ud655\uc778\", \"audit\", \"review\", \"check\") combined with security context.\n\nExamples:\n- \"\ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\uc704\ud611 \ubaa8\ub378\ub9c1 \ud574\uc918\" \u2192 Launch ciso\n- \"GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918\" \u2192 Launch ciso\n- \"SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"\uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"\ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918\" \u2192 Launch ciso\n- \"Security audit our app\" \u2192 Launch ciso\n- \"Evaluate third-party security\" \u2192 Launch ciso\n- \"Create incident response plan\" \u2192 Launch ciso\n\nNOT this agent:\n- Code vulnerabilities (SQL injection, XSS scanning) \u2192 security-reviewer\n- Infrastructure config (firewall rules, IAM setup) \u2192 devops\n- Business strategy risks \u2192 cso",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "\uc571 \ucd9c\uc2dc \uc804\uc5d0 \ubcf4\uc548 \uac70\ubc84\ub10c\uc2a4 \ub9ac\ubdf0 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc778\uc2dc\ub358\ud2b8 \ub300\uc751 \uacc4\ud68d\uc744 \ub9cc\ub4e4\uc5b4\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uac1c\uc778\uc815\ubcf4\ubcf4\ud638\ubc95 \uad00\uc810\uc5d0\uc11c \uc774 \ud504\ub85c\uc81d\ud2b8 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc11c\ub4dc\ud30c\ud2f0 \uc11c\ube44\uc2a4 \ubcf4\uc548 \uc810\uac80\ud574\uc918, Stripe\uc774\ub791 SendGrid \uc4f0\uace0 \uc788\uc5b4",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Dockerfile \ubcf4\uc548 \uc124\uc815 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc0ac\uc5c5 \uc804\ub7b5\uc5d0 \ub9ac\uc2a4\ud06c\uac00 \uc788\ub294\uc9c0 \ubd84\uc11d\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 PR\uc758 \ucf54\ub4dc\ub97c \ubcf4\uc548 \uad00\uc810\uc5d0\uc11c \ub9ac\ubdf0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "GitHub Actions CI/CD \ud30c\uc774\ud504\ub77c\uc778\uc5d0 \ubcf4\uc548 \uc2a4\uce94 \ucd94\uac00\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "description": "[Review] Use for ANY organizational security request: policy creation, security assessment, compliance evaluation, or threat modeling. Triggers on security governance language (\"\ubcf4\uc548 \uc815\ucc45\", \"\uc218\ub9bd\", \"\ud3c9\uac00\", \"\uc810\uac80\", \"\uc900\uc218\", \"\uc704\ud611 \ubaa8\ub378\ub9c1\", \"audit\", \"compliance\", \"posture\") and regulatory frameworks (GDPR, SOC 2, PIPA). Creates security policies and produces quantitative Security Posture Reports.\n\nExamples:\n- \"\ubcf4\uc548 \uc815\ucc45 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918\" \u2192 Launch ciso\n- \"\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918\" \u2192 Launch ciso\n- \"GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918\" \u2192 Launch ciso\n- \"SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"\uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"Security audit our service\" \u2192 Launch ciso\n- \"Create incident response plan\" \u2192 Launch ciso\n\nNOT this agent:\n- Code vulnerabilities (SQL injection, XSS) \u2192 security-reviewer\n- Infrastructure security (firewall, IAM, CI/CD) \u2192 devops\n- Business risks \u2192 cso",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "\uc778\uc2dc\ub358\ud2b8 \ub300\uc751 \uacc4\ud68d\uc744 \ub9cc\ub4e4\uc5b4\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc571 \ucd9c\uc2dc \uc804\uc5d0 \ubcf4\uc548 \uac70\ubc84\ub10c\uc2a4 \ub9ac\ubdf0 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uac1c\uc778\uc815\ubcf4\ubcf4\ud638\ubc95 \uad00\uc810\uc5d0\uc11c \uc774 \ud504\ub85c\uc81d\ud2b8 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc11c\ub4dc\ud30c\ud2f0 \uc11c\ube44\uc2a4 \ubcf4\uc548 \uc810\uac80\ud574\uc918, Stripe\uc774\ub791 SendGrid \uc4f0\uace0 \uc788\uc5b4",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Dockerfile \ubcf4\uc548 \uc124\uc815 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc0ac\uc5c5 \uc804\ub7b5\uc5d0 \ub9ac\uc2a4\ud06c\uac00 \uc788\ub294\uc9c0 \ubd84\uc11d\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 PR\uc758 \ucf54\ub4dc\ub97c \ubcf4\uc548 \uad00\uc810\uc5d0\uc11c \ub9ac\ubdf0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "GitHub Actions CI/CD \ud30c\uc774\ud504\ub77c\uc778\uc5d0 \ubcf4\uc548 \uc2a4\uce94 \ucd94\uac00\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "description": "[Review] ALWAYS use this agent for organizational security governance: policy creation (\"\uc815\ucc45 \uc218\ub9bd\"), security assessment (\"\ubcf4\uc548 \ud3c9\uac00\", \"\uc810\uac80\", \"\ud655\uc778\"), threat modeling (\"\uc704\ud611 \ubaa8\ub378\ub9c1\"), compliance evaluation (\"\uc900\uc218\", \"\ucef4\ud50c\ub77c\uc774\uc5b8\uc2a4\"), and third-party security review. Triggers on Korean security terms (\ubcf4\uc548 \uc815\ucc45, \uc218\ub9bd, \ud3c9\uac00, \uc810\uac80, \ud655\uc778, \uc900\uc218, \uc704\ud611 \ubaa8\ub378\ub9c1) and English governance language (policy, audit, compliance, posture, assessment). Produces Security Posture Reports with quantitative scores.\n\nExamples:\n- \"\ubcf4\uc548 \uc815\ucc45 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45 \uc218\ub9bd\ud574\uc918\" \u2192 Launch ciso\n- \"\uc704\ud611 \ubaa8\ub378\ub9c1 \ud574\uc918\" \u2192 Launch ciso\n- \"\ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918\" \u2192 Launch ciso\n- \"SOC 2 \uc900\ube44 \uc704\ud574 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"GDPR \uc900\uc218 \ud655\uc778\ud574\uc918\" \u2192 Launch ciso\n- \"\uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918\" \u2192 Launch ciso\n- \"Create security policy\" \u2192 Launch ciso\n- \"Security posture assessment\" \u2192 Launch ciso\n\nNOT this agent:\n- Code vulnerabilities, SQL injection, XSS \u2192 security-reviewer\n- Infrastructure setup, firewall rules \u2192 devops\n- Business strategy risks \u2192 cso",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "\uc778\uc2dc\ub358\ud2b8 \ub300\uc751 \uacc4\ud68d\uc744 \ub9cc\ub4e4\uc5b4\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uac1c\uc778\uc815\ubcf4\ubcf4\ud638\ubc95 \uad00\uc810\uc5d0\uc11c \uc774 \ud504\ub85c\uc81d\ud2b8 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc571 \ucd9c\uc2dc \uc804\uc5d0 \ubcf4\uc548 \uac70\ubc84\ub10c\uc2a4 \ub9ac\ubdf0 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Dockerfile \ubcf4\uc548 \uc124\uc815 \uac80\ud1a0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc11c\ub4dc\ud30c\ud2f0 \uc11c\ube44\uc2a4 \ubcf4\uc548 \uc810\uac80\ud574\uc918, Stripe\uc774\ub791 SendGrid \uc4f0\uace0 \uc788\uc5b4",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc0ac\uc5c5 \uc804\ub7b5\uc5d0 \ub9ac\uc2a4\ud06c\uac00 \uc788\ub294\uc9c0 \ubd84\uc11d\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "GitHub Actions CI/CD \ud30c\uc774\ud504\ub77c\uc778\uc5d0 \ubcf4\uc548 \uc2a4\uce94 \ucd94\uac00\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 PR\uc758 \ucf54\ub4dc\ub97c \ubcf4\uc548 \uad00\uc810\uc5d0\uc11c \ub9ac\ubdf0\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "\uc774 \uc11c\ube44\uc2a4\uc5d0\uc11c \uc4f0\ub294 \uc678\ubd80 API\ub4e4 \ubcf4\uc548 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\ub370\uc774\ud130 \ubcf4\ud638 \uc815\ucc45\uc744 \uc218\ub9bd\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc704\ud611 \ubaa8\ub378\ub9c1\uc744 \ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "SOC 2 \uc900\ube44\ub97c \uc704\ud574 \ud604\uc7ac \ubcf4\uc548 \uc218\uc900 \ud3c9\uac00\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\uc774 \uc571 \ubcf4\uc548 \uc0c1\ud0dc \uc810\uac80\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "npm audit \ub3cc\ub824\uc11c \uc758\uc874\uc131 \ucde8\uc57d\uc810 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc6b0\ub9ac \uc11c\ube44\uc2a4 GDPR \uc900\uc218 \uc5ec\ubd80 \ud655\uc778\ud574\uc918",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Terraform\uc73c\ub85c VPC \ubcf4\uc548 \uadf8\ub8f9 \uad6c\uc131\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 diff\uc5d0\uc11c \ubcf4\uc548 \ubb38\uc81c \uc788\ub294\uc9c0 \uccb4\ud06c\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ucf54\ub4dc\uc5d0 SQL injection \ucde8\uc57d\uc810 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\uc774 \ud568\uc218\uc5d0\uc11c XSS \ucde8\uc57d\uc810\uc774 \uc788\ub294 \uac83 \uac19\uc740\ub370 \ud655\uc778\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "IAM \uc815\ucc45\uc774\ub791 \ubc29\ud654\ubcbd \ub8f0 \uc124\uc815\ud574\uc918",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

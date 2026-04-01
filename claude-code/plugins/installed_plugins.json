@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "plugins": {
+    "cli-anything@cli-anything": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/kangnam",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/cli-anything/cli-anything/f5cfa05ea294",
+        "version": "f5cfa05ea294",
+        "installedAt": "2026-03-13T04:56:22.682Z",
+        "lastUpdated": "2026-03-18T06:43:34.368Z",
+        "gitCommitSha": "f5cfa05ea294ace27291f20811fb12567f427091"
+      }
+    ],
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/kangnam",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
+        "version": "unknown",
+        "installedAt": "2026-03-18T06:43:34.368Z",
+        "lastUpdated": "2026-03-18T06:43:34.368Z"
+      }
+    ],
+    "skill-ref@skill-ref": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/skill-ref/skill-ref/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-03-24T09:56:11.381Z",
+        "lastUpdated": "2026-03-24T09:56:11.381Z",
+        "gitCommitSha": "bcb21790b38aabecf621026ef2096c0fd42948d4"
+      }
+    ]
+  }
+}

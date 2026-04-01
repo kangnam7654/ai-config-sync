@@ -53,9 +53,13 @@
 
 ## fit-check Project (/Users/kangnam/projects/dear-jeongbin/fit-check)
 
-See `project_fitcheck.md` for stack, API conventions, credit rules, Prisma 7 + Zod v4 gotchas.
-- Backend fully implemented: 38 API endpoints, 14-table Prisma schema, SSE streaming, credit/payment services
-- Test suite: 34 unit tests passing (Vitest), TypeScript clean
+See `project_fitcheck.md` for stack, API conventions, credit rules, Supabase JS + Zod v4 gotchas.
+- DB layer migrated from Prisma → Supabase JS admin client (service_role). Prisma connection was failing ("Tenant or user not found").
+- All 10 service files + 6 route handlers now use `supabaseAdmin` from `src/lib/supabase/admin.ts`
+- PostgreSQL RPC functions for atomic operations in `supabase/migrations/V008__rpc_functions.sql` (must run in SQL Editor)
+- DB row types defined in `src/lib/supabase/types.ts` — snake_case columns matching actual DB
+- Supabase JS 2.x type gotcha: `createClient<Database>` degrades to `never` when >2 RPC functions are in `Functions` type (LastOf<FnUnion> bug). Workaround: use `any` for Database generic in admin.ts, cast row types explicitly at call sites
+- Unit tests need updating (still mock Prisma) — 87 tests failing, TypeScript clean
 
 ## Kangnam Client (/Users/kangnam/projects/kangnam-client/kangnam-client)
 

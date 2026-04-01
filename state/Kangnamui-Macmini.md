@@ -1,16 +1,16 @@
 # State: Kangnamui-Macmini
-> Last updated: 2026-04-01 13:53 KST
+> Last updated: 2026-04-01 14:00 KST
 
 ## Environment
 - **OS:** macOS 26.3.1 (arm64)
 - **Hostname:** Kangnamui-Macmini
 
 ## OpenClaw
-- **Version:** OpenClaw 2026.3.13 (61d171a)
-- **Model:** anthropic/claude-opus-4-6
+- **Version:** N/A
+- **Model:** N/A
 
 ## Claude Code
-- **Version:** 2.1.89 (Claude Code)
+- **Version:** N/A
 
 ## Scheduled Jobs
 ```

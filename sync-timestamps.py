@@ -31,8 +31,6 @@ EXCLUDES: dict[str, list[str]] = {
         "skills/paperclip", "skills/paperclip/**",
         "skills/paperclip-create-agent", "skills/paperclip-create-agent/**",
         "skills/paperclip-create-plugin", "skills/paperclip-create-plugin/**",
-        "plugins/known_marketplaces.json",
-        "plugins/installed_plugins.json",
     ],
 }
 
@@ -44,6 +42,33 @@ CLAUDE_INCLUDES: set[str] = {
     "settings.json", "CLAUDE.md", "stop-hook-git-check.sh",
     "agents", "plugins", "skills", "agent-memory", "memory", "todos", "teams",
 }
+
+# ── 플랫폼 경로 치환 (plugins 등 절대경로 포함 파일) ─────────────
+# 이 파일들은 sync 시 피어의 홈 경로를 로컬 홈 경로로 바꿔씀
+PATH_REWRITE_FILES: set[str] = {
+    "plugins/known_marketplaces.json",
+    "plugins/installed_plugins.json",
+}
+
+# kangnam 사용자의 알려진 홈 경로들 (플랫폼별)
+_KNOWN_HOME_PATHS: list[str] = [
+    "/Users/kangnam",   # macOS
+    "/home/kangnam",    # Ubuntu
+    "/c/Users/kangnam", # Windows Git Bash
+]
+
+
+def rewrite_home_paths(content: bytes, section: str, filepath: str) -> bytes:
+    """피어 파일의 홈 경로를 로컬 홈 경로로 치환."""
+    if section != "claude-code" or filepath not in PATH_REWRITE_FILES:
+        return content
+    local_home = str(Path.home())
+    text = content.decode("utf-8")
+    for peer_home in _KNOWN_HOME_PATHS:
+        if peer_home != local_home:
+            text = text.replace(peer_home, local_home)
+    return text.encode("utf-8")
+
 
 # ── 검증 함수 ────────────────────────────────────────────────────
 
@@ -362,8 +387,9 @@ def sync_section(
                 ["show", f"FETCH_HEAD:{repo_subdir}/{filepath}"], sync_dir
             )
             if rc2 == 0:
+                local_bytes = rewrite_home_paths(content_bytes, section, filepath)
                 local_path.parent.mkdir(parents=True, exist_ok=True)
-                local_path.write_bytes(content_bytes)
+                local_path.write_bytes(local_bytes)
                 repo_path.parent.mkdir(parents=True, exist_ok=True)
                 repo_path.write_bytes(content_bytes)
                 applied_from_peer.append(filepath)

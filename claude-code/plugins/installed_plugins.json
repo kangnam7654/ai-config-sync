@@ -12,6 +12,16 @@
         "gitCommitSha": "f5cfa05ea294ace27291f20811fb12567f427091"
       }
     ],
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/kangnam",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
+        "version": "unknown",
+        "installedAt": "2026-03-18T06:43:34.368Z",
+        "lastUpdated": "2026-03-18T06:43:34.368Z"
+      }
+    ],
     "skill-ref@skill-ref": [
       {
         "scope": "user",

@@ -1,6 +1,9 @@
 ---
 name: auto-dev
 description: "Fully automated app development pipeline. Runs 36 steps from ideation to design, implementation, and verification from a single sentence input. For new apps/services only — not for modifying existing code, bug fixes, or refactoring."
+flags:
+  - name: --bm
+    description: "BM(비즈니스 모델) 설계 단계를 활성화한다. 기본은 BM 없이 진행."
 ---
 
 # auto-dev
@@ -59,9 +62,9 @@ Verify Phase: verify-loop (#32~#36)
 
 ## Phase 1: Idea (#1~#9)
 
-**idea-forge 스킬**을 호출한다. 사용자 입력을 그대로 전달.
+**idea-forge 스킬**을 호출한다. 사용자 입력을 그대로 전달. `--bm` 플래그가 있으면 idea-forge에 전달한다.
 
-idea-forge가 입력 분류(#1), 브레인스토밍/트렌드(#2~#3), CEO 방향 결정(#4), 시장 조사(#5), CSO 전략 검증(#6), BM 설계(#7), CEO 게이트(#8), Idea Brief 문서화(#9)를 수행한다.
+idea-forge가 입력 분류(#1), 브레인스토밍/트렌드(#2~#3), CEO 방향 결정(#4), 시장 조사(#5), CSO 전략 검증(#6), BM 설계(#7, `--bm` 시에만), CEO 게이트(#8), Idea Brief 문서화(#9)를 수행한다.
 
 **Phase 전환 조건**: #8 CEO 게이트 PASS (gate-decision.yaml의 decision = "PASS")
 
@@ -178,6 +181,7 @@ auto-dev는 `target_phase`로 라우팅하고, `attempt`와 `same_error_consecut
 | #2 브레인스토밍 | O | 사용자가 구체적 아이디어를 제시한 경우 ("같이 고민" 유형 아닐 때) |
 | #3 트렌드 스코어링 | O | 사용자가 구체적 아이디어를 제시한 경우 + 도구 실패 시 |
 | #5 시장 조사 | O | 도구(WebSearch/WebFetch) 실패 시 경고 출력 후 진행 |
+| #7 BM 설계 | O | `--bm` 플래그가 없을 때 (기본 SKIP) |
 | #28 DBA 리뷰 | O | DB/SQL/마이그레이션 파일이 없을 때 |
 | 그 외 모든 단계 | X | FAIL 시 루프 재시도 또는 에스컬레이션 |
 

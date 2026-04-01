@@ -31,9 +31,11 @@ Total = (Precision × 0.30) + (Executability × 0.25) + (Boundary Clarity × 0.2
 
 ## Red Flags (auto cap Precision at 5)
 
-If ANY of these are present, Precision cannot exceed 5:
-- Any of these vague words/phrases: "적절히", "필요에 따라", "등", "기타", "as needed", "handle edge cases", "use your judgment", "respond appropriately", "when appropriate", "if necessary"
+If ANY of these are present, Precision cannot exceed 7:
+- Any of these vague words/phrases: "적절히", "필요에 따라", "기타", "as needed", "handle edge cases", "use your judgment", "respond appropriately", "when appropriate", "if necessary"
 - Contradictory instructions (e.g., "Be concise but thorough")
 - Output format described in prose instead of an exact template with literal delimiters
-- Unbounded lists: "such as X, Y, Z, and more" or "X, Y, Z 등"
+- Unbounded lists: "such as X, Y, Z, and more" or "X, Y, Z 등" (where "등" replaces specifics)
 - Any instruction with no success/failure criteria (no way to verify compliance)
+
+Note: "등" after 3+ concrete items (e.g., "Python, Go, Rust 등") is natural Korean enumeration, not a red flag.

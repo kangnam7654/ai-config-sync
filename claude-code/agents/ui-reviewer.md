@@ -1,7 +1,7 @@
 ---
 name: ui-reviewer
 description: "[Review] UI visual quality validation — scores hierarchy, consistency, trend fitness, responsiveness, accessibility. Also performs design-parity checks between mockups and implemented UI. Creating UI designs → designer."
-model: opus
+model: sonnet
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user
 ---

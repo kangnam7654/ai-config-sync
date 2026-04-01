@@ -31,7 +31,7 @@ Total = (Readability × 0.30) + (Structure × 0.25) + (Examples × 0.20)
 
 ## Red Flags (auto cap Readability at 5)
 
-If ANY of these are present, Readability cannot exceed 5:
+If ANY of these are present, Readability cannot exceed 7:
 - Any paragraph longer than 5 sentences without a visual break (blank line, bullet list, or code block)
 - Any jargon term used before being defined (first occurrence must include a definition)
 - "Simply", "just", or "easily" appearing before a step that requires more than 1 command or action

@@ -56,26 +56,17 @@ Count total changed lines (`git diff ... --stat | tail -1`).
 
 ### Step 3: Classify files and load language references
 
-For each changed file, classify by extension. **When a language-specific reference exists, read it** from `code-reviewer/references/` before applying the checklist:
+For each changed file, classify by extension. **When an external reference exists, read it** from `code-reviewer/references/` — it contains the detailed checklist for that language. For languages without an external reference, use the inline checklist in the "Review Checklists" section below.
 
-| Extension | Reference file to load |
+| Extension | Source |
 |---|---|
-| `.py`, `.pyi` | `code-reviewer/references/python-checklist.md` |
-| `.go`, `go.mod`, `go.sum` | `code-reviewer/references/go-checklist.md` |
-| `.cpp`, `.cc`, `.cxx`, `.c`, `.h`, `.hpp`, `.hxx` | `code-reviewer/references/cpp-checklist.md` |
-| `.rs`, `Cargo.toml`, `Cargo.lock` | `code-reviewer/references/rust-checklist.md` |
-
-When a reference is loaded, use its detailed rules (file classification, static analysis commands, language-specific rule IDs) **instead of** the abbreviated checklist below. The abbreviated checklists are fallback only.
-
-For each changed file, classify by extension:
-
-| Extension | Checklist to apply |
-|---|---|
-| `.py` | Python checklist |
-| `.go` | Go checklist |
-| `.ts`, `.tsx`, `.js`, `.jsx` | TypeScript/JavaScript checklist |
-| `.sql` | SQL checklist |
-| `.json`, `.yaml`, `.yml`, `.toml`, `.env*`, `.ini`, `.cfg` | Config checklist (secrets-only) |
+| `.py`, `.pyi` | **External**: `code-reviewer/references/python-checklist.md` |
+| `.go`, `go.mod`, `go.sum` | **External**: `code-reviewer/references/go-checklist.md` |
+| `.cpp`, `.cc`, `.cxx`, `.c`, `.h`, `.hpp`, `.hxx` | **External**: `code-reviewer/references/cpp-checklist.md` |
+| `.rs`, `Cargo.toml`, `Cargo.lock` | **External**: `code-reviewer/references/rust-checklist.md` |
+| `.ts`, `.tsx`, `.js`, `.jsx` | **Inline**: TypeScript/JavaScript checklist below |
+| `.sql` | **Inline**: SQL checklist below |
+| `.json`, `.yaml`, `.yml`, `.toml`, `.env*`, `.ini`, `.cfg` | **Inline**: Config checklist below |
 | Auto-generated files (e.g., `package-lock.json`, `*.pb.go`, `*.generated.*`, files with `// Code generated` or `# Auto-generated` header) | Skip with note: "Skipped [file]: auto-generated." |
 | Other extensions | Apply General checklist only |
 
@@ -130,38 +121,6 @@ When you find multiple instances of the same pattern:
 | G-QUAL-2 | Nesting too deep | MEDIUM | > 4 levels of indentation (if/for/switch/try) |
 | G-QUAL-3 | Dead code | LOW | Commented-out code blocks (> 3 lines), unused imports, unreachable branches |
 | G-QUAL-4 | TODO/FIXME/HACK without ticket | LOW | Inline TODO without a linked issue/ticket identifier |
-
-### Python Checklist
-
-| ID | Pattern | Severity |
-|---|---|---|
-| PY-SEC-1 | f-string or `.format()` in SQL query | CRITICAL |
-| PY-SEC-2 | `subprocess` with `shell=True` and variable input | CRITICAL |
-| PY-SEC-3 | `eval()` / `exec()` with external input | CRITICAL |
-| PY-SEC-4 | `yaml.load()` without `Loader=SafeLoader` | HIGH |
-| PY-ERR-1 | Bare `except:` or `except Exception:` with `pass` | HIGH |
-| PY-ERR-2 | File/resource open without context manager (`with`) | HIGH |
-| PY-TYPE-1 | Public function missing type annotations | MEDIUM |
-| PY-TYPE-2 | `Any` type where a concrete type is knowable | MEDIUM |
-| PY-PAT-1 | Mutable default argument (`def f(x=[])`) | HIGH |
-| PY-PAT-2 | `type() ==` instead of `isinstance()` | MEDIUM |
-| PY-PERF-1 | String concatenation in loop (use `join` or list) | MEDIUM |
-
-### Go Checklist
-
-| ID | Pattern | Severity |
-|---|---|---|
-| GO-SEC-1 | String concatenation in `database/sql` query | CRITICAL |
-| GO-SEC-2 | `os/exec` with unsanitized user input | CRITICAL |
-| GO-SEC-3 | `InsecureSkipVerify: true` | HIGH |
-| GO-ERR-1 | Error assigned to `_` outside of test files | CRITICAL |
-| GO-ERR-2 | Error returned without wrapping (`return err` instead of `fmt.Errorf("ctx: %w", err)`) | HIGH |
-| GO-ERR-3 | `panic()` for recoverable errors in non-main packages | HIGH |
-| GO-CONC-1 | Goroutine launched without `context.Context` cancellation | HIGH |
-| GO-CONC-2 | Shared mutable state without mutex or channel | HIGH |
-| GO-PAT-1 | `context.Context` not as first parameter | MEDIUM |
-| GO-PERF-1 | String concatenation in loop (use `strings.Builder`) | MEDIUM |
-| GO-PERF-2 | Slice append in loop without pre-allocation | LOW |
 
 ### TypeScript/JavaScript Checklist
 

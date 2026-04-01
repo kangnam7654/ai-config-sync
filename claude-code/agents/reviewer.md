@@ -8,7 +8,7 @@ Examples:
 - \"Verify the build passes and coverage is sufficient\" → Launch reviewer
 - \"Final review before release\" → Launch reviewer"
 tools: ["Read", "Bash", "Grep", "Glob"]
-model: opus
+model: sonnet
 memory: user
 ---
 

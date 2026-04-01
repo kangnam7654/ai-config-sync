@@ -1,13 +1,53 @@
 ---
 name: auto-improve
 description: "Automated diagnosis and improvement pipeline for existing apps. Audits codebase across code quality, security, architecture, DB, tests, UX/UI, then prioritizes and executes design, implementation, and verification."
+flags:
+  - name: --bm
+    description: "BM(비즈니스 모델) 진단/설계를 활성화한다. 기존 BM이 있으면 진단+개선, 없으면 신규 설계."
+  - name: --design
+    description: "디자인/레이아웃 심화 리뷰를 활성화한다. 기본 UX/UI 진단보다 시각 디자인 품질에 집중."
+  - name: --code
+    description: "코드 품질 진단만 수행. 다른 기본 영역은 SKIP."
+  - name: --security
+    description: "보안 진단만 수행."
+  - name: --arch
+    description: "아키텍처 진단만 수행."
+  - name: --db
+    description: "DB 진단만 수행."
+  - name: --test
+    description: "테스트 진단만 수행."
+  - name: --repo
+    description: "Repo Health 진단만 수행."
+  - name: --ui
+    description: "UX/UI 진단만 수행."
 ---
 
 # auto-improve
 
 "이 서비스 점검해줘" → 종합 진단 → 개선 설계 → 구현 → 검증. 기존 코드베이스를 체계적으로 개선하는 전자동 파이프라인.
 
-36단계, 4 Phase(Audit → Design → Build → Verify)를 오케스트레이션한다.
+4 Phase(Audit → Design → Build → Verify)를 오케스트레이션한다.
+
+## 플래그 동작
+
+### 영역 선택 플래그
+
+`--code`, `--security`, `--arch`, `--db`, `--test`, `--repo`, `--ui` 플래그로 진단 영역을 제한할 수 있다.
+
+| 플래그 사용 | 동작 |
+|---|---|
+| 플래그 없음 | 기본 7개 영역 전체 진단 (현재와 동일, DB/UI는 자동감지) |
+| 특정 플래그만 | 해당 영역만 진단+개선 (나머지 SKIP) |
+
+예: `auto-improve --security --test` → 보안과 테스트만 진단+개선.
+
+### 확장 플래그
+
+`--bm`과 `--design`은 기본 진단에 포함되지 않는 확장 영역이다. 명시적으로 켜야만 실행된다.
+
+- `--bm`: 영역 선택 플래그와 조합 가능. 예: `--security --bm` → 보안 + BM 진단.
+- `--design`: `--ui`의 심화 버전. `--design` 사용 시 `--ui`도 자동 포함.
+- 영역 선택 플래그 없이 `--bm`만 사용 시: 기본 7개 전체 + BM 추가.
 
 ## Scope
 
@@ -43,10 +83,12 @@ auto-improve
 ## 워크플로우
 
 ```
-[사용자 입력: 기존 코드베이스 경로 + 개선 범위(선택)]
+[사용자 입력: 기존 코드베이스 경로 + 플래그(선택)]
   ↓
-Audit Phase: audit-loop (#1~#9)
-  ↓ #9 CTO 게이트 PROCEED + Audit Report 문서화 → audit-report.md 산출
+Audit Phase: audit-loop (#1~#9, 플래그에 따라 영역 선택)
+  ↓ #9 CTO 게이트 PROCEED + audit-report.md 산출
+BM 라우팅 (--bm 시에만): BM 없으면 bm-designer로 신규 설계
+  ↓
 Design Phase: design-loop (#10~#26)
   ↓ #25 CTO 게이트 PASS → design-spec.md 산출
 Build Phase: build-loop (#27~#31)
@@ -60,9 +102,9 @@ Verify Phase: verify-loop (#32~#36)
 
 ## Phase 1: Audit (#1~#9)
 
-**audit-loop 스킬**을 호출한다. 사용자 입력(코드베이스 경로 + 선택적 범위 지정)을 전달.
+**audit-loop 스킬**을 호출한다. 사용자 입력(코드베이스 경로)과 플래그를 전달한다. 영역 선택 플래그가 있으면 해당 영역만, 없으면 기본 전체 진단. `--bm` 플래그 시 BM 진단도 포함. `--design` 플래그 시 심화 디자인 리뷰도 포함.
 
-audit-loop가 대상 분석(#1), 병렬 진단(#2~#8: 코드 품질·보안·아키텍처·DB·테스트·Repo Health·UX/UI), CTO 종합 판정 + Audit Report 문서화(#9)를 수행한다.
+audit-loop가 대상 분석(#1), 병렬 진단(#2~#8: 플래그에 따라 선택적), CTO 종합 판정 + Audit Report 문서화(#9)를 수행한다.
 
 **Phase 전환 조건**: #9 CTO 게이트 PROCEED (개선 대상이 존재하고 우선순위 확정)
 
@@ -75,13 +117,44 @@ audit-loop가 대상 분석(#1), 병렬 진단(#2~#8: 코드 품질·보안·아
 
 ---
 
+## Phase 1.5: BM 라우팅 (`--bm` 시에만)
+
+`--bm` 플래그가 없으면 이 단계를 SKIP하고 Phase 2로 직행한다.
+
+Audit Phase 완료 후, audit-report.md의 BM 진단 결과를 확인하여 라우팅한다:
+
+| audit BM 결과 | 처리 |
+|---|---|
+| BM 존재 + 개선 필요 | BM 개선 항목을 design-loop에 전달 (추가 작업 없음) |
+| BM 존재 + 양호 | BM 관련 추가 작업 없음 |
+| **BM 없음** | **bm-designer 에이전트를 호출하여 BM 신규 설계** |
+
+### BM 신규 설계 (BM 없을 때)
+
+**bm-designer 에이전트**를 호출한다. audit-report.md의 프로젝트 정보를 컨텍스트로 전달:
+
+```
+아래 기존 앱/서비스에 대한 BM을 설계하라:
+
+## 제품 정보
+- 프로젝트: {audit-report.md의 대상 개요}
+- 기술 스택: {tech_stack}
+- 주요 기능: {audit에서 파악된 기능 목록}
+
+수익 모델 선택, 가격 티어 설계, 유닛 이코노믹스(3시나리오), BM Score를 산출하라.
+```
+
+**산출물**: bm-design.yaml → Design Phase에 audit-report.md와 함께 전달
+
+---
+
 ## Phase 2: Design (#10~#26)
 
 **design-loop 스킬**을 호출한다.
 
 ### 입력 문서 매핑
 
-design-loop은 원래 idea-brief.md를 입력으로 기대한다. auto-improve에서는 audit-report.md가 이를 대체한다. design-loop 호출 시 아래 컨텍스트를 함께 전달하라:
+design-loop은 원래 idea-brief.md를 입력으로 기대한다. auto-improve에서는 audit-report.md가 이를 대체한다. `--bm`으로 bm-design.yaml이 산출된 경우 함께 전달한다. design-loop 호출 시 아래 컨텍스트를 함께 전달하라:
 
 ```
 입력 문서: audit-report.md (Audit Phase 산출물)
@@ -168,12 +241,16 @@ improvement_summary:
     architecture: <audit 시점 점수>
     test_coverage: <audit 시점 점수>
     ux_ui: <audit 시점 점수 또는 N/A>
+    bm: <audit 시점 점수 또는 N/A>        # --bm 시에만
+    design: <audit 시점 점수 또는 N/A>    # --design 시에만
   final_scores:
     code_quality: <개선 후 점수>
     security: <개선 후 점수>
     architecture: <개선 후 점수>
     test_coverage: <개선 후 점수>
     ux_ui: <개선 후 점수 또는 N/A>
+    bm: <개선 후 점수 또는 N/A>           # --bm 시에만
+    design: <개선 후 점수 또는 N/A>       # --design 시에만
   regression_test_result: PASS/FAIL
   total_improvements: <개선된 항목 수>
   total_findings: <진단에서 발견된 총 항목 수>

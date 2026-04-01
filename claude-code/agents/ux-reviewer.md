@@ -1,7 +1,7 @@
 ---
 name: ux-reviewer
 description: "[Review] UX quality validation — persona-based scoring on task completion, cognitive load, navigation, accessibility, error recovery. Validates UX designs before UI design begins. Creating UX designs → designer."
-model: opus
+model: sonnet
 tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 memory: user
 ---

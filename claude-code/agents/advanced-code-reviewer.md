@@ -1,5 +1,5 @@
 ---
-name: code-reviewer
+name: advanced-code-reviewer
 description: "[Review] Code-level pattern review on diffs — quality, security flags, maintainability. Language-specific checklists for Python, Go, C++, Rust. Deep security audit → security-reviewer. Architecture → cto. Tests → qa-engineer."
 tools: ["Read", "Grep", "Glob", "Bash"]
 model: sonnet

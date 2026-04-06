@@ -1,0 +1,93 @@
+[
+  {
+    "from": "team-lead",
+    "text": "You are the React frontend developer on the cli-gui-wrapper team. Your job is to implement the GUI components for the CLI wrapper.\n\n## Context\nkangnam-client is a Tauri 2 (Rust + React) desktop app being pivoted to a GUI wrapper for coding agent CLIs. You own all React/TypeScript frontend work.\n\n## Your Tasks (in order)\nYou are assigned tasks T11-T19. Check the team task list for details and dependencies. Most tasks are blocked by T1 (core types) — wait for rust-backend to complete T1 before starting. Work through unblocked tasks in ID order.\n\n## Implementation Plan\nThe full implementation plan is at: `docs/llm/cli-gui-wrapper-plan.md`\nRead it before starting. Each task has exact code and file paths.\n\n## Key Rules\n1. Read the plan task section BEFORE implementing each task\n2. Read existing files before modifying them\n3. Do NOT touch Rust files (src-tauri/) — that's rust-backend's job\n4. Do NOT delete any directories — that's team-lead's T8\n5. After each task: mark it completed via TaskUpdate, then check TaskList for next available work\n6. Commit after each task with a descriptive message\n7. Wait for T1 to be completed before starting T11 (you need the UnifiedMessage types defined)\n\n## Working Directory\n/Users/kangnam/projects/kangnam-client\n\n## Getting Started\n1. Read docs/llm/cli-gui-wrapper-plan.md\n2. Check TaskList — your tasks are blocked by T1. Wait for notification from rust-backend.\n3. When T1 is done, claim T11 (TaskUpdate with owner: \"react-frontend\")\n4. Implement following the plan\n5. Commit and mark complete\n6. Repeat",
+    "timestamp": "2026-04-06T09:14:50.872Z",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "T1 is complete. The Rust CLI types are defined at src-tauri/src/cli/types.rs. The UnifiedMessage enum and supporting types (CliStatus, CliConfig, TokenUsage, SkillInfo, AgentInfo) are ready. You can now start T11 (Update store and create CLI API) — the TypeScript equivalents are defined in docs/llm/cli-gui-wrapper-plan.md under Task 11.",
+    "summary": "T1 done, Rust types ready",
+    "timestamp": "2026-04-06T09:19:40.536Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"11\",\"subject\":\"T11: Update store and create CLI API\",\"description\":\"Update app-store.ts: remove AuthStatus, add CliStatus, UnifiedMessage types, new state fields. Create cli-api.ts with Tauri IPC wrappers. See plan Task 11.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:19:45.882Z\"}",
+    "timestamp": "2026-04-06T09:19:45.882Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "team-lead",
+    "text": "T1 is complete — UnifiedMessage, CliStatus, and all types are defined in src-tauri/src/cli/types.rs. Your tasks T11-T19 are now unblocked. Start with T11 (update app-store.ts + create cli-api.ts). Go!",
+    "summary": "T1 done, start T11 now",
+    "timestamp": "2026-04-06T09:20:00.965Z",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"12\",\"subject\":\"T12: Create MessageRenderer\",\"description\":\"Create src/renderer/components/chat/MessageRenderer.tsx. Render UnifiedMessage variants: TextDelta, ToolUseStart, ToolResult, AgentStart/Progress/End, Error, TurnEnd. See plan Task 12.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:20:59.237Z\"}",
+    "timestamp": "2026-04-06T09:20:59.237Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"13\",\"subject\":\"T13: Create SafetyDialog\",\"description\":\"Create src/renderer/components/chat/SafetyDialog.tsx. Permission request dialog with diff preview, danger level indication, allow/deny buttons. See plan Task 13.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:21:03.103Z\"}",
+    "timestamp": "2026-04-06T09:21:03.103Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"14\",\"subject\":\"T14: Update ChatView and App\",\"description\":\"Update ChatView.tsx: replace SSE with Tauri event listening, use MessageRenderer. Update App.tsx: remove cowork/eval, add SetupWizard. Update InputControls.tsx: use cliApi.sendMessage. See plan Task 14.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:21:50.259Z\"}",
+    "timestamp": "2026-04-06T09:21:50.259Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"15\",\"subject\":\"T15: Create SetupWizard\",\"description\":\"Create SetupWizard.tsx and CliCard.tsx in src/renderer/components/setup/. 3-step wizard: CLI detection → install → login. See plan Task 15.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:24:16.172Z\"}",
+    "timestamp": "2026-04-06T09:24:16.172Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"16\",\"subject\":\"T16: Create WorkdirSelector\",\"description\":\"Create src/renderer/components/chat/WorkdirSelector.tsx. Recent dirs from localStorage, browse button via Tauri dialog. See plan Task 16.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:24:16.484Z\"}",
+    "timestamp": "2026-04-06T09:24:16.484Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"17\",\"subject\":\"T17: Create CommandPalette\",\"description\":\"Create CommandPalette.tsx. Slash command search/select popup. Update InputControls.tsx to detect '/' input. See plan Task 17.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:27:33.907Z\"}",
+    "timestamp": "2026-04-06T09:27:33.907Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"18\",\"subject\":\"T18: Create AgentPanel\",\"description\":\"Create AgentPanel.tsx in sidebar. Track agent_start/progress/end from messages. Update Sidebar.tsx to include AgentPanel. See plan Task 18.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:27:34.368Z\"}",
+    "timestamp": "2026-04-06T09:27:34.368Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"20\",\"subject\":\"T20: Integration test - full build verification\",\"description\":\"cargo check, npm run typecheck, npm run tauri:dev, npm test. Fix all build errors. See plan Task 20.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:28:25.277Z\"}",
+    "timestamp": "2026-04-06T09:28:25.277Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-frontend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"21\",\"subject\":\"T21: Final cleanup - deps and gitignore\",\"description\":\"Add .superpowers/ to .gitignore. Remove unused npm deps (@assistant-ui/*). Remove unused Cargo deps (hyper, sha2, base64, rand if unused). See plan Task 21.\",\"assignedBy\":\"react-frontend\",\"timestamp\":\"2026-04-06T09:29:01.809Z\"}",
+    "timestamp": "2026-04-06T09:29:01.809Z",
+    "color": "green",
+    "read": true
+  }
+]

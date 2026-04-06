@@ -1,0 +1,92 @@
+[
+  {
+    "from": "team-lead",
+    "text": "You are the Rust backend developer on the cli-gui-wrapper team. Your job is to implement the CLI subprocess infrastructure for kangnam-client.\n\n## Context\nkangnam-client is a Tauri 2 (Rust + React) desktop app being pivoted from a direct LLM API client to a GUI wrapper for coding agent CLIs (Claude Code, Codex CLI). You own all Rust backend work.\n\n## Your Tasks (in order)\nYou are assigned tasks T1-T7, T9-T10. Check the team task list for details and dependencies. Work through them in ID order (T1 first, then T2, etc). T8 is handled by team-lead.\n\n## Implementation Plan\nThe full implementation plan is at: `docs/llm/cli-gui-wrapper-plan.md`\nRead it before starting. Each task has exact code and file paths.\n\n## Key Rules\n1. Read the plan task section BEFORE implementing each task\n2. Read existing files before modifying them\n3. Do NOT touch frontend files (src/renderer/) — that's react-frontend's job\n4. Do NOT delete providers/ or auth/ directories — that's team-lead's T8\n5. After each task: mark it completed via TaskUpdate, then check TaskList for next available work\n6. Commit after each task with a descriptive message\n7. When T1 is done, message react-frontend so they can start\n\n## Working Directory\n/Users/kangnam/projects/kangnam-client\n\n## Getting Started\n1. Read docs/llm/cli-gui-wrapper-plan.md\n2. Check TaskList for your first unblocked task\n3. Claim it (TaskUpdate with owner: \"rust-backend\")\n4. Implement following the plan\n5. Commit and mark complete\n6. Repeat",
+    "timestamp": "2026-04-06T09:14:45.174Z",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"1\",\"subject\":\"T1: Define core types (types.rs, cli/mod.rs)\",\"description\":\"Create src-tauri/src/cli/types.rs with UnifiedMessage enum, CliStatus, CliConfig, TokenUsage, SkillInfo, AgentInfo. Create src-tauri/src/cli/mod.rs. See plan Task 1.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:15:02.876Z\"}",
+    "timestamp": "2026-04-06T09:15:02.876Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"2\",\"subject\":\"T2: Define CliAdapter trait (adapter.rs, adapters/mod.rs)\",\"description\":\"Create src-tauri/src/cli/adapter.rs with CliAdapter trait. Create src-tauri/src/cli/adapters/mod.rs. See plan Task 2.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:16:36.475Z\"}",
+    "timestamp": "2026-04-06T09:16:36.475Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"3\",\"subject\":\"T3: Implement Claude Code adapter\",\"description\":\"Create src-tauri/src/cli/adapters/claude.rs. Parse Claude Code NDJSON: system, stream_event, assistant, result, control_request types. See plan Task 3.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:19:12.037Z\"}",
+    "timestamp": "2026-04-06T09:19:12.037Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"4\",\"subject\":\"T4: Implement Codex CLI adapter\",\"description\":\"Create src-tauri/src/cli/adapters/codex.rs. Parse Codex JSONL: thread.started, turn.*, item.*, error types. Non-persistent (one process per prompt). See plan Task 4.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:19:12.298Z\"}",
+    "timestamp": "2026-04-06T09:19:12.298Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"5\",\"subject\":\"T5: Implement CLI Manager\",\"description\":\"Create src-tauri/src/cli/manager.rs. Subprocess spawn/kill, stdin/stdout piping, Tauri event emit. Handle persistent (Claude) and one-shot (Codex) modes. See plan Task 5.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:19:30.039Z\"}",
+    "timestamp": "2026-04-06T09:19:30.039Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"6\",\"subject\":\"T6: Implement CLI Registry\",\"description\":\"Create src-tauri/src/cli/registry.rs. Provider metadata (name, display_name, install_hint). See plan Task 6.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:19:30.420Z\"}",
+    "timestamp": "2026-04-06T09:19:30.420Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"7\",\"subject\":\"T7: Tauri IPC commands\",\"description\":\"Create src-tauri/src/commands/cli.rs. Commands: cli_list_providers, cli_check_installed, cli_install, cli_start_session, cli_send_message, cli_send_permission, cli_stop_session. See plan Task 7.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:19:30.662Z\"}",
+    "timestamp": "2026-04-06T09:19:30.662Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"9\",\"subject\":\"T9: Wire up backend - lib.rs, state.rs, commands/mod.rs\",\"description\":\"Update state.rs (remove provider state, add CliManager), commands/mod.rs (remove old mods, add cli), skills/mod.rs (remove ai), lib.rs (add CLI Manager init, register adapters, register new commands). See plan Task 9.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:20:06.358Z\"}",
+    "timestamp": "2026-04-06T09:20:06.358Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "rust-backend",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"10\",\"subject\":\"T10: DB schema update\",\"description\":\"Update schema.rs (add message_type column), conversations.rs (provider → cli_provider). Add migration logic. See plan Task 10.\",\"assignedBy\":\"rust-backend\",\"timestamp\":\"2026-04-06T09:20:06.938Z\"}",
+    "timestamp": "2026-04-06T09:20:06.938Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "team-lead",
+    "text": "T8 complete — providers/, auth/, cowork/, eval/, and related files all deleted. T9 (wire up backend) is now unblocked. Go ahead.",
+    "summary": "T8 done, start T9 now",
+    "timestamp": "2026-04-06T09:20:24.296Z",
+    "read": true
+  },
+  {
+    "from": "team-lead",
+    "text": "T8 is done and committed. T9 is unblocked — go ahead with wiring up lib.rs, state.rs, commands/mod.rs. Then T10 (DB schema).",
+    "summary": "T8 done, T9 unblocked, proceed",
+    "timestamp": "2026-04-06T09:20:49.876Z",
+    "read": true
+  },
+  {
+    "from": "team-lead",
+    "text": "All your tasks are done. Stand by — I'll call you back if T20 (integration build) surfaces Rust compilation errors that need fixing.",
+    "summary": "Stand by until T20 integration",
+    "timestamp": "2026-04-06T09:26:16.588Z",
+    "read": true
+  }
+]

@@ -129,16 +129,6 @@
         "lastUpdated": "2026-04-01T06:34:01.744Z"
       }
     ],
-    "figma@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/figma/2.0.7",
-        "version": "2.0.7",
-        "installedAt": "2026-04-01T06:45:18.038Z",
-        "lastUpdated": "2026-04-01T06:45:18.038Z",
-        "gitCommitSha": "500e8738438ed1204eaf23e61280d872f47534fd"
-      }
-    ],
     "playground@claude-plugins-official": [
       {
         "scope": "user",

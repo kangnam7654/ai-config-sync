@@ -629,14 +629,14 @@
     "skills/veo-shorts-writer/references/archive.md": 1774076416.5481992
   },
   "claude-code": {
-    "settings.json": 1775028610.2891114,
+    "settings.json": 1775465704.1812036,
     "stop-hook-git-check.sh": 1772631005.3955393,
     "CLAUDE.md": 1775028606.4604867,
     "memory/multi-provider-oauth-architecture.md": 1772631004.907993,
     "plugins/blocklist.json": 1775028609.1842394,
-    "plugins/known_marketplaces.json": 1775463409.9369533,
-    "plugins/installed_plugins.json": 1775263646.5016851,
-    "plugins/install-counts-cache.json": 1775028609.1999705,
+    "plugins/known_marketplaces.json": 1775465889.6419835,
+    "plugins/installed_plugins.json": 1775465704.1900613,
+    "plugins/install-counts-cache.json": 1775465695.4167843,
     "plugins/marketplaces/cli-anything/README.md": 1773377709.5703766,
     "plugins/marketplaces/cli-anything/README_CN.md": 1773377709.5707166,
     "plugins/marketplaces/cli-anything/.gitignore": 1773377709.5702136,

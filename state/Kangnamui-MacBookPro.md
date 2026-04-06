@@ -6,11 +6,11 @@
 - **Hostname:** Kangnamui-MacBookPro
 
 ## OpenClaw
-- **Version:** N/A
-- **Model:** N/A
+- **Version:** OpenClaw 2026.4.2 (d74a122)
+- **Model:** anthropic/claude-sonnet-4-6
 
 ## Claude Code
-- **Version:** N/A
+- **Version:** 2.1.92 (Claude Code)
 
 ## Scheduled Jobs
 ```

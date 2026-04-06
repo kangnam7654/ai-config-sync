@@ -1,16 +1,16 @@
 # State: Kangnamui-MacBookPro
-> Last updated: 2026-04-06 22:00 KST
+> Last updated: 2026-04-06 22:30 KST
 
 ## Environment
 - **OS:** macOS 26.3.1 (arm64)
 - **Hostname:** Kangnamui-MacBookPro
 
 ## OpenClaw
-- **Version:** OpenClaw 2026.4.2 (d74a122)
-- **Model:** anthropic/claude-sonnet-4-6
+- **Version:** N/A
+- **Model:** N/A
 
 ## Claude Code
-- **Version:** 2.1.92 (Claude Code)
+- **Version:** N/A
 
 ## Scheduled Jobs
 ```
@@ -19,14 +19,11 @@
 
 ## Recent Workspace Changes
 ```
-idea-lab/jd-analyzer_pm/PLAN.md
-idea-lab/jd-analyzer_pm/SPEC.md
-analyze_notion.py
-kanazawa-pdf.html
-kanazawa-trip.html
-osaka-trip.html
-todo.json
-cal_sync.py
-video-pipeline/script-001.md
-video-pipeline/tools/01-extract-subtitle.sh
+memory/2026-04-03.md
+memory/2026-04-06.md
+memory/2026-04-02.md
+memory/2026-02-23.md
+memory/2026-04-05.md
+memory/2026-04-04.md
+cal_sync_state.json
 ```

@@ -1,1 +1,2 @@
 - [Dear,ANT Design System](project_dearant_design_system.md) — Green palette, Pretendard font, accessibility contrast rules, emotion/grade color mapping
+- [kangnam-client UI Design](project_kangnam_client_ui.md) — Warm dark/light mode, terracotta accent, Pretendard/Noto Serif KR/JetBrains Mono, 1440x900 desktop

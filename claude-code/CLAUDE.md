@@ -10,28 +10,33 @@ Priority order on conflict (highest → lowest):
 
 When Design-First Development (below) conflicts with `superpowers:writing-plans` or `superpowers:brainstorming`, this file wins — but the superpowers workflow may still be used *inside* the design doc process.
 
+When Design-First Development combines with `superpowers:test-driven-development`, the order is: **design doc → tests → implementation**. Tests are written after the design doc is user-approved, then implementation follows TDD within the design doc's scope.
+
 ## NEVER Rules
 
-These rules apply without exception. If the user asks to override, print the warning below and proceed only after user confirms "yes":
+These rules apply without exception. Violation handling depends on intent:
+
+- **Implicit violation** — user request that would trigger a rule without explicitly asking to override (e.g., "git pull 해줘"): silently apply the safe variant (e.g., automatically add `--rebase`). No warning needed.
+- **Explicit override** — user explicitly asks to bypass the rule ("이번엔 그냥 해", "`--no-verify` 써도 돼", etc.): print the warning below and proceed only after user confirms "yes".
 
 ```
 ⚠️ Warning: Attempting to override NEVER rule #N: "{rule}". This may cause {specific risk}. Continue? (yes/no)
 ```
 
-1. NEVER run `git pull` without `--rebase`. Always use `git pull --rebase origin main`.
-2. NEVER `git push` in projects with no remote.
-3. NEVER call system `python`/`python3` directly. Always use `uv run python`.
-4. NEVER run `pip install` directly. Use `uv add <pkg>` or `uv pip install <pkg>`.
-5. NEVER write implementation code before design doc is complete + user-approved.
-6. NEVER commit code without tests.
+1. NEVER run `git pull` without `--rebase`. Use `git pull --rebase` (defaults to current branch) or `git pull --rebase <remote> <branch>` with explicit args. Do not hardcode `origin main` — the branch and remote depend on project context.
+2. NEVER `git push` without explicit user request. Applies to all push variants including `--force`, `--force-with-lease`, and amended-commit pushes.
+3. NEVER call system `python`/`python3` directly in personal projects — use `uv run python`. For third-party projects with existing non-uv tooling (poetry, pipenv, conda, rye), follow the project's convention.
+4. NEVER install Python packages with `pip install` in personal projects — use `uv add <pkg>` or `uv pip install <pkg>`. For third-party projects, follow the project's tooling.
+5. NEVER write implementation code for new features or significant refactoring before a design doc is complete and user-approved. **"Significant" means**: 3+ files touched, new abstractions/modules, new public API surface, DB schema changes, or new external dependencies. **Exceptions** (design doc NOT required): bug fixes, typo/doc/config/dependency-bump changes, test additions, and single-concept changes under ~30 LOC.
+6. NEVER commit new feature code without tests. **Exceptions**: documentation-only commits, config file changes, test-only commits, infrastructure scripts (shell/Dockerfile/CI), and projects that have no test framework configured (this limitation must be acknowledged in the project's own CLAUDE.md).
 7. NEVER use a non-Mermaid diagram format without explicit user approval (Mermaid is the default).
-8. NEVER place `.mmd` or diagram `.png` files outside `docs/`.
-9. NEVER use agent-browser when WebSearch/WebFetch suffices.
-10. NEVER let subagents call other subagents directly. Only the main model orchestrates.
+8. NEVER place diagram files (Mermaid `.mmd` source and their rendered `.png`) outside `docs/`. Does not apply to other image assets — logos, screenshots, UI resources, and test fixtures have no location constraint.
+9. NEVER use agent-browser when WebSearch/WebFetch suffices. Reserve agent-browser for login-gated pages, dynamic SPAs, and multi-step interactive flows.
+10. NEVER design workflows where subagents call other subagents. Only the main model orchestrates; subagents are leaf nodes.
 
 ## Agent Orchestration
 
-Subagents cannot call other subagents. The main model orchestrates all loops.
+(See NEVER rule #10 for the subagent orchestration constraint.)
 
 ### Trigger Routing
 
@@ -39,6 +44,7 @@ Subagents cannot call other subagents. The main model orchestrates all loops.
 - **Plan request** → trigger `plan-loop`. When output is an execution plan (implementation plan, refactoring plan, migration strategy).
 - If ambiguous, ask user: "Do you need a document or an execution plan?"
 - **New app/service** → trigger `auto-dev`. For building a new app from scratch. Not for modifying existing code, bug fixes, or refactoring.
+- **Improve existing app** → trigger `auto-improve`. For auditing and improving an already-existing codebase across code quality, security, architecture, tests, and UX. Not for new apps (→ `auto-dev`).
 - **Skill creation/modification** → use `skill-creator` skill.
 - **Agent creation/modification** → use `agent-create` skill.
 
@@ -55,11 +61,14 @@ Quick rule: "Need to scan code?" → security-reviewer. "Policy/org-level assess
 
 ### Gate Rule
 
-Implementation code is allowed only after both conditions are met:
-1. LLM design doc exists at `{project}/docs/llm/{feature-or-topic}.md`
-2. User has reviewed and approved the design doc
+See NEVER rule #5 for the authoritative rule and exceptions. Summary: new features or significant refactoring require both:
 
-**Exception: auto-dev pipeline** — CTO agent (#25 Design gate) validates instead of human approval.
+1. LLM design doc at `{project}/docs/llm/{feature-or-topic}.md`
+2. User review and approval
+
+**Exceptions** (per NEVER #5, design doc NOT required): bug fixes, typo/doc/config/dependency-bump changes, test additions, and single-concept changes under ~30 LOC.
+
+**auto-dev pipeline exception**: CTO agent (#25 Design gate) validates instead of human approval.
 
 ### Design Docs Are for LLMs
 
@@ -107,7 +116,7 @@ Before running Python tests, verify `uv` is installed (`which uv`). If not insta
 
 ### Test Execution
 
-Run tests after every code change. Discover the test command from project config (`package.json` scripts, `pyproject.toml`, `Makefile`, `go.mod`, `Cargo.toml`) instead of assuming. Python tests must always be invoked via `uv run` (NEVER rule #3). If no test framework is configured, report to user and suggest setup first — do not skip.
+Run tests after each logical unit of change (not after every single edit — batch mechanically related edits). Discover the test command from project config (`package.json` scripts, `pyproject.toml`, `Makefile`, `go.mod`, `Cargo.toml`) instead of assuming. Python tests in personal projects must be invoked via `uv run` (NEVER rule #3); third-party projects follow their own tooling. If no test framework is configured, report to user and propose setup — acknowledge the gap in the project's CLAUDE.md but do not block work silently.
 
 - New features: write both unit tests and integration tests.
 - Unit tests: mock all external dependencies (API, DB, filesystem, network).
@@ -121,13 +130,17 @@ For inherited codebases below 80%: measure current coverage, identify top 3 lowe
 
 ## Refactoring
 
-### Abstraction Rules
+### Abstraction Heuristics
 
-Do NOT abstract when:
-- Function is called from only 1 place → do not extract to a separate module.
-- Class has ≤ 2 methods → use functions instead.
-- Inheritance depth > 3 → use composition.
-- Generic/type parameters > 3 → use concrete types.
+These are heuristics against premature abstraction, not absolute rules. Follow them by default and deviate with justification.
+
+Avoid abstraction when:
+- Function is called from only 1 place → prefer inline. **Exception**: extraction measurably improves testability (isolates side-effect boundary) or readability of a long caller.
+- Class has ≤ 2 methods → prefer functions. **Exception**: languages (Java, Kotlin, C#, Scala) where standalone functions are awkward or idiomatic code requires a type.
+- Inheritance depth > 3 → prefer composition.
+- Generic/type parameters > 3 → prefer concrete types. **Exception**: library code where polymorphism across those parameters is the primary value.
+
+When unsure, ask the user before abstracting.
 
 ### Refactoring Procedure (strict order)
 
@@ -152,9 +165,9 @@ Additional memory type beyond system defaults (user, feedback, project, referenc
 
 ### Python
 
-- Never call system `python`/`python3`. Always use `uv run python`.
-- Package install: `uv add <pkg>` (project dependency) or `uv pip install <pkg>` (one-off).
-- If `uv` is not installed, do not proceed with Python tasks.
+- `uv` tooling scope and exceptions: see NEVER rules #3 and #4.
+- Package install (personal projects): `uv add <pkg>` for project dependency, `uv pip install <pkg>` for one-off/global.
+- If `uv` is not installed in a personal project: inform the user and do not proceed.
 
 ### CLI Tools
 

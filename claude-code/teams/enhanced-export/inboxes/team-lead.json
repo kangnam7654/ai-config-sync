@@ -175,5 +175,26 @@
     "timestamp": "2026-04-10T03:57:43.959Z",
     "color": "cyan",
     "read": true
+  },
+  {
+    "from": "react-hooks",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"react-hooks\",\"timestamp\":\"2026-04-10T06:48:37.541Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T06:48:37.541Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "react-export-studio",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"react-export-studio\",\"timestamp\":\"2026-04-10T06:52:25.506Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T06:52:25.506Z",
+    "color": "yellow",
+    "read": true
+  },
+  {
+    "from": "rust-final",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"rust-final\",\"timestamp\":\"2026-04-10T06:54:16.911Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T06:54:16.911Z",
+    "color": "blue",
+    "read": true
   }
 ]

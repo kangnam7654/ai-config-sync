@@ -196,5 +196,41 @@
     "timestamp": "2026-04-10T06:54:16.911Z",
     "color": "blue",
     "read": true
+  },
+  {
+    "from": "react-pages",
+    "text": "All 4 file splits complete. `npm run build` passes after each split. No commits made.\n\n## File 1: `my-profile/page.tsx` — 1608 → 302 lines\nNew files in `src/app/(auth)/my-profile/_components/`:\n- `types.ts` (14) — UrlScrapePage, UrlScrapeData\n- `file-type.ts` (19) — formatFileType helper\n- `content-preview.tsx` (57) — ContentPreview\n- `scrape-coverage-preview.tsx` (46) — ScrapeCoveragePreview\n- `resume-card.tsx` (169) — ResumeCard + RESUME_ANALYSIS_STEPS\n- `portfolio-card.tsx` (151) — PortfolioCard + PORTFOLIO_ANALYSIS_STEPS\n- `resume-manager.tsx` (457) — ResumeManager + fetchResumes\n- `portfolio-manager.tsx` (441) — PortfolioManager + fetchPortfolios\n\nNote: resume-manager/portfolio-manager exceed 300 lines due to form UI complexity. Further splitting would fragment cohesive upload/edit flows. Left as-is.\n\n## File 2: `onboarding/page.tsx` — 1091 → 57 lines\nNew files in `src/app/(auth)/onboarding/_components/`:\n- `types.ts` (55) — Step, ACCEPTED_TYPES, JOB_CATEGORIES, ModelOption, ProviderStatusData, ProfileData\n- `header.tsx` (59) — OnboardingHeader + StepIndicator\n- `choice-step.tsx` (59) — ChoiceStep\n- `provider-step.tsx` (304) — ProviderStep + private helpers\n- `upload-step.tsx` (261) — UploadStep + isValidFile\n- `manual-step.tsx` (177) — ManualStep\n\nRemoved dead code: `ConfirmStep` (defined but never rendered) and unused `source` state setter.\n\n## File 3: `settings/page.tsx` — 738 → 281 lines\nNew files in `src/app/(auth)/settings/_components/`:\n- `types.ts` (75) — types + TIER_CATEGORIES, TASK_PROVIDER_OPTIONS, getModelsForProvider, getDefaultModelForProvider\n- `shared.tsx` (69) — StatusIcon, SelectionIndicator, QuotaDisplay\n- `provider-section.tsx` (155) — ProviderSection\n- `model-section.tsx` (74) — ModelSection\n- `tier-section.tsx` (139) — TierSection\n- `link-sections.tsx` (63) — LinkSections\n\nPattern: page.tsx holds all state + handlers, sections are pure-render with explicit prop interfaces.\n\n## File 4: `portfolio-detail-screen.tsx` — 739 → directory\nConverted to directory `src/components/features/portfolios/portfolio-detail-screen/` (Option A). Consumer at `src/app/(auth)/portfolios/result/page.tsx:4` imports by path — unchanged, resolves via `index.tsx`.\n- `types.ts` (35) — ReferenceItem, CompareCategory, CompareResult, SOURCE_COLORS, scoreColor\n- `analysis-section.tsx` (111) — AI analysis block (all states)\n- `content-section.tsx` (87) — Portfolio description + polish flow\n- `reference-section.tsx` (279) — Reference search + comparison (5 states)\n- `index.tsx` (321) — PortfolioDetailScreen orchestrator (data fetching + mutations + layout)\n\nNote: index.tsx slightly over 300 due to extensive handler logic that's inherently coupled to component state (not worth abstracting into a hook mid-refactor — I9 agent handles data fetching).\n\n## Build status\nAll 4 builds pass with no errors or new warnings. No changes outside the 4 targets and their sibling `_components/` dirs (or the new `portfolio-detail-screen/` dir).",
+    "summary": "All 4 file splits complete, build passes",
+    "timestamp": "2026-04-10T07:04:01.125Z",
+    "color": "purple",
+    "read": true
+  },
+  {
+    "from": "react-pages",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"react-pages\",\"timestamp\":\"2026-04-10T07:04:03.737Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T07:04:03.737Z",
+    "color": "purple",
+    "read": true
+  },
+  {
+    "from": "react-pages",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"react-pages\",\"timestamp\":\"2026-04-10T07:04:10.712Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T07:04:10.712Z",
+    "color": "purple",
+    "read": true
+  },
+  {
+    "from": "react-wave2",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"react-wave2\",\"timestamp\":\"2026-04-10T07:14:47.882Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T07:14:47.882Z",
+    "color": "orange",
+    "read": true
+  },
+  {
+    "from": "react-minor",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"react-minor\",\"timestamp\":\"2026-04-10T07:24:34.441Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T07:24:34.441Z",
+    "color": "cyan",
+    "read": true
   }
 ]

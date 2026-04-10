@@ -25,5 +25,12 @@
     "timestamp": "2026-04-10T06:56:59.794Z",
     "color": "purple",
     "read": true
+  },
+  {
+    "from": "react-pages",
+    "text": "{\"type\":\"task_assignment\",\"taskId\":\"11\",\"subject\":\"Split portfolio-detail-screen.tsx (739 lines)\",\"description\":\"Convert to directory with index.tsx + sub-components\",\"assignedBy\":\"react-pages\",\"timestamp\":\"2026-04-10T07:02:01.593Z\"}",
+    "timestamp": "2026-04-10T07:02:01.593Z",
+    "color": "purple",
+    "read": true
   }
 ]

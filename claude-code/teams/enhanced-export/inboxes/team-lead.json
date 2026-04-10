@@ -1,0 +1,54 @@
+[
+  {
+    "from": "backend-verify",
+    "text": "Task #4 완료. 변경 사항:\n\n1. **`src/services/export_verify.rs` 생성** — 3개 함수:\n   - `verify_facts(original_text, generated_json) -> Vec<String>`: regex-lite로 `\"company\"` 필드 추출 → 원본 텍스트 존재 여부 검증\n   - `verify_layout(html) -> anyhow::Result<Vec<String>>`: HTML → 임시파일 → Chrome headless 스크린샷 → Vision AI 검증\n   - `verify_enhanced_export(original_text, generated_json, rendered_html) -> VerifyResult`: 위 두 함수 순차 실행, issues 합산, retry_prompt 생성\n\n2. **`src/services/export_html_pdf.rs`에 `html_to_screenshot` 추가** — `find_chrome()` 재사용, `--headless=new --screenshot` 플래그로 PNG 생성, 30초 타임아웃\n\n3. **`src/services/mod.rs`에 `pub mod export_verify;` 등록**\n\n4. **`Cargo.toml`에 `regex-lite = \"0.1\"` 추가**\n\n`cargo check --bin server` 경고 없이 통과.",
+    "summary": "Task #4 검증 서비스 완료",
+    "timestamp": "2026-04-10T01:55:02.549Z",
+    "color": "yellow",
+    "read": true
+  },
+  {
+    "from": "backend-verify",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-verify\",\"timestamp\":\"2026-04-10T01:55:04.723Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T01:55:04.723Z",
+    "color": "yellow",
+    "read": true
+  },
+  {
+    "from": "backend-verify",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-verify\",\"timestamp\":\"2026-04-10T01:55:08.947Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T01:55:08.947Z",
+    "color": "yellow",
+    "read": true
+  },
+  {
+    "from": "backend-portfolio",
+    "text": "Task #3 완료했습니다.\n\n**변경 내용** (`src-tauri/src/services/export_portfolio.rs`):\n\n1. **`PORTFOLIO_JSON_SCHEMA` 상수 추출**: 기존 `portfolio_json_system_prompt`의 JSON 스키마 블록을 `const PORTFOLIO_JSON_SCHEMA: &str`로 분리. 기존 함수에서 `{schema}` format arg로 참조하도록 교체.\n\n2. **`tailored_portfolio_json_system_prompt` 함수 추가**:\n   - 시그니처: `(enhancement_level, jd_text, strengths, weaknesses, layout_hint) -> String`\n   - enhancement_level별 규칙: light(문장 다듬기만), moderate(원본 근거 확장), aggressive(사실 기반 전면 재작성)\n   - 분석 결과(JD, 강점, 약점) 시스템 프롬프트에 직접 포함\n   - layout_hint별 가이드: keynote, magazine, data, narrative, compact\n   - `PORTFOLIO_JSON_SCHEMA` 상수 참조\n\n3. **`cargo check --bin server` 성공 확인**.",
+    "summary": "Task #3 포트폴리오 시스템 프롬프트 완료",
+    "timestamp": "2026-04-10T01:58:12.381Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "backend-portfolio",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-portfolio\",\"timestamp\":\"2026-04-10T01:58:15.402Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T01:58:15.402Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "backend-resume",
+    "text": "Task #2 완료했습니다.\n\n**변경 내용** (`src-tauri/src/services/export_resume.rs`):\n\n1. **`RESUME_JSON_SCHEMA` 상수 추출**: 기존 `resume_json_system_prompt`의 JSON 스키마 예시 블록(50줄)을 `const RESUME_JSON_SCHEMA: &str`로 분리. 기존 함수에서는 `.replace(\"{layout_hint}\", layout_hint)`로 참조하도록 변경. 기존 함수 동작 변경 없음.\n\n2. **`tailored_resume_json_system_prompt` 함수 추가**: 시그니처 `(enhancement_level, jd_text, strengths, weaknesses, layout_hint) -> String`\n   - enhancement_level별 규칙: `\"light\"` (기존 bullet만 다듬기), `\"moderate\"` (기본, bullet 확장 허용), `\"aggressive\"` (전면 재작성)\n   - 분석 결과(채용공고, 강점, 약점) 시스템 프롬프트에 직접 포함\n   - layout_guide 로직은 기존 함수와 동일 (modern/editorial/bold/minimal/executive 분기)\n   - `RESUME_JSON_SCHEMA` 상수 공유\n   - 공통 규칙: 회사명·날짜·기술명 원문 유지, 창작 금지, JSON만 반환, 한국어 원칙\n\n3. **`cargo check --bin server` 성공 확인**",
+    "summary": "Task #2 완료 - tailored_resume_json_system_prompt 추가",
+    "timestamp": "2026-04-10T01:59:05.400Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "backend-resume",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-resume\",\"timestamp\":\"2026-04-10T01:59:08.142Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T01:59:08.142Z",
+    "color": "blue",
+    "read": true
+  }
+]

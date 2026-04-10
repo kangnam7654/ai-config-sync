@@ -1,0 +1,17 @@
+[
+  {
+    "from": "jszip-agent",
+    "text": "Task #8 (plan Task 13) complete.\n\n**Commit:** `6bc7ae0 feat(export): pptx-preview inline image thumbnails via JSZip`\n\n**What changed:**\n- `src/components/features/export/pptx-preview.tsx` rewritten per plan Task 13. Now builds a `ppt/media/*` → blob object URL map, parses each `slide{N}.xml.rels` for `Target=\"../media/...\"` references, and renders up to 4 thumbnails per slide alongside the extracted text. Slide header shows `미디어 N` badge. Object URLs revoked on unmount.\n- `tests/unit/components/pptx-preview.test.tsx` (new, 139 lines). TDD flow: builds fake PPTX in-memory with JSZip (slide1.xml + slide1.xml.rels + ppt/media/image1.png), stubs `URL.createObjectURL`/`revokeObjectURL` in jsdom, asserts slide text renders, `<img>` appears with mocked `blob:mock-*` src, and `미디어 2` badge shows when 2 media refs exist.\n\n**Test results:**\n- pptx-preview spec: 3/3 passing.\n- Full suite: 34 passed / 21 failed. The 21 failures are pre-existing and unrelated (I verified by stashing my changes and re-running baseline: 31 passed / 21 failed — same set). They are React Router `useNavigate` issues in action-cards/sidebar/jd-input-form/settings-page tests that have no Router wrapper.\n- `npm run build` succeeds (1.41s).\n\n**Note on task description vs. plan:** The task description mentioned \"horizontal scrollable strip + filename caption + skip >5MB + max 20 thumbnails\". The plan's exact code blocks (which team-lead explicitly said to follow for code + commit format) use a different design: per-slide rels-parsed media, rendered inside each slide card at 2-col grid capped at 4 thumbnails per slide. I followed the plan verbatim since it was explicitly flagged as the source of truth. Let me know if you'd prefer the description's strip-style layout instead.\n\nGoing idle.",
+    "summary": "Task 13 complete — commit 6bc7ae0",
+    "timestamp": "2026-04-10T09:56:09.678Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "jszip-agent",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"jszip-agent\",\"timestamp\":\"2026-04-10T09:56:15.939Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T09:56:15.939Z",
+    "color": "blue",
+    "read": true
+  }
+]

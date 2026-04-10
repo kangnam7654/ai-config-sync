@@ -1,0 +1,34 @@
+{
+  "name": "media-006",
+  "description": "Implement design 006 — project media assets. 15 tasks across backend/frontend/python.",
+  "createdAt": 1775814473135,
+  "leadAgentId": "team-lead@media-006",
+  "leadSessionId": "d80729a0-b786-4ecc-bff6-40c5a318db6f",
+  "members": [
+    {
+      "agentId": "team-lead@media-006",
+      "name": "team-lead",
+      "agentType": "team-lead",
+      "model": "claude-opus-4-6[1m]",
+      "joinedAt": 1775814473135,
+      "tmuxPaneId": "",
+      "cwd": "/Volumes/ExtSSD/projects/dear-jeongbin",
+      "subscriptions": []
+    },
+    {
+      "agentId": "jszip-agent@media-006",
+      "name": "jszip-agent",
+      "agentType": "general-purpose",
+      "model": "claude-opus-4-6",
+      "prompt": "You are `jszip-agent` on team `media-006`. Your working directory is `/Volumes/ExtSSD/projects/dear-jeongbin`. You own 1 task: task ID #8 in the team list (plan Task 13).\n\n## Context\n\nWe're implementing design `docs/llm/006-project-media-assets.md`. Full plan at `docs/llm/006-project-media-assets.plan.md` (Task 13 section). The component `src/components/features/export/pptx-preview.tsx` is currently 123 lines and only does text preview via JSZip. Extend it to also extract images from `ppt/media/*` and render them as a thumbnail strip.\n\n## Your task\n\n1. `TaskGet 8` — read description\n2. Read plan Task 13 section for exact code blocks\n3. Read existing `src/components/features/export/pptx-preview.tsx` to understand current JSZip usage\n4. TDD: write Vitest test with a fake blob → fail → implement → pass\n5. `npm test` passes, `npm run build` succeeds\n6. Commit: `feat(export): pptx-preview inline image thumbnails via JSZip`\n7. `TaskUpdate 8` status=completed\n8. Report to team-lead and go idle\n\n## Conventions\n\n- Test: `npm test` (Vitest) — from repo root\n- Build: `npm run build`\n- Commit format per plan\n- Never `--no-verify`\n- Image size limit: skip >5MB files, max 20 thumbnails displayed\n\n## Baseline sanity check\n\n```bash\ncd /Volumes/ExtSSD/projects/dear-jeongbin\ngit log --oneline -3  # expect 2c00169\ngrep -l jszip package.json  # confirm jszip is a dep\n```\n\nStart now.",
+      "color": "blue",
+      "planModeRequired": false,
+      "joinedAt": 1775814779166,
+      "tmuxPaneId": "%0",
+      "cwd": "/Volumes/ExtSSD/projects/dear-jeongbin",
+      "subscriptions": [],
+      "backendType": "tmux",
+      "isActive": false
+    }
+  ]
+}

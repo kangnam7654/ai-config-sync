@@ -377,8 +377,12 @@ def sync_section(
                 removed_from_repo += 1
             continue
 
-        # 우리 타임스탬프: 저장된 값 우선, 없으면 현재 mtime
-        our_file_ts = our_section_ts.get(filepath, local_files.get(filepath, 0.0))
+        # 우리 타임스탬프: 저장된 값과 현재 mtime 중 최대값
+        # (저장된 값만 쓰면 마지막 sync 이후의 로컬 편집이 반영 안 돼
+        #  피어 편집에 덮어씌워지는 race condition 발생)
+        stored_ts = our_section_ts.get(filepath, 0.0)
+        local_ts = local_files.get(filepath, 0.0)
+        our_file_ts = max(stored_ts, local_ts)
         peer_file_ts = peer_best.get(filepath, (0.0, None))[0]
 
         if peer_file_ts > our_file_ts:

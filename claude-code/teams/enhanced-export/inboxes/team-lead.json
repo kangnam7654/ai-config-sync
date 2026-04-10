@@ -50,5 +50,70 @@
     "timestamp": "2026-04-10T01:59:08.142Z",
     "color": "blue",
     "read": true
+  },
+  {
+    "from": "frontend",
+    "text": "Task #6 완료. export-studio.tsx에 다음 변경 적용:\n\n1. `isTailoredExport` — `startMethod.startsWith(\"jd_analyses.export_\")`로 판별\n2. `enhancementLevel` state 추가 (기본값 `\"moderate\"`)\n3. 보강 수준 선택 UI — \"생성 모드\" 아래, \"Preset selection\" 위에 배치. `isTailoredExport`일 때만 표시. 3개 버튼: 표현 강화(light), 내용 보완(moderate), 적극 재작성(aggressive). 기존 grid-cols-3 패턴과 동일한 스타일.\n4. `handleGenerate` params에 `enhancement_level: isTailoredExport ? enhancementLevel : undefined` 추가\n\n`npx tsc --noEmit` 타입 체크 통과 확인.",
+    "summary": "Task 6 completed: enhancement level UI",
+    "timestamp": "2026-04-10T02:01:59.784Z",
+    "color": "purple",
+    "read": true
+  },
+  {
+    "from": "frontend",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"frontend\",\"timestamp\":\"2026-04-10T02:02:04.337Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T02:02:04.337Z",
+    "color": "purple",
+    "read": true
+  },
+  {
+    "from": "backend-resume",
+    "text": "Task #5 완료했습니다. `cargo check --bin server` 경고 없이 통과.\n\n## 변경 요약\n\n### 1. JD 지시문 HTML 주석 제거 (`handlers/jd_analysis.rs`)\n- `build_tailored_resume_content`: `strengths_text`, `weaknesses_suggestions`, `jd_directive` 변수 및 `<!-- JD 최적화 지침 -->` HTML 주석 삭제. 나머지 섹션(이름, 요약, 기술스택, 경력, 프로젝트, 학력) 그대로 유지.\n- `build_tailored_portfolio_content`: 동일 패턴 적용. `strengths_text`, `weaknesses_suggestions`, `jd_summary`, `jd_directive` 및 HTML 주석 삭제.\n\n### 2. 파이프라인 통합 (`services/export.rs`)\n시그니처에 `system_prompt_override: Option<String>`, `enhancement_level: Option<String>` 2개 파라미터 추가한 함수:\n- `start_export_studio_stream`\n- `run_export_studio_to_ws`\n- `run_export_studio_task`\n- `run_custom_mode`\n- `run_resume_template` (+ `Option<&str>` 형태)\n- `run_portfolio_template` (+ `Option<&str>` 형태)\n\n**`run_resume_template` 변경사항:**\n- `system_prompt_override`가 Some이면 기존 `resume_json_system_prompt()` 대신 사용\n- AI 호출 → JSON 파싱 → HTML 렌더링을 `generate_resume_json_and_html` 헬퍼로 추출 (검증 루프 재시도에서 재사용)\n- PDF 렌더링을 `render_resume_pdf` 헬퍼로 추출\n- enhancement_level이 moderate/aggressive이면: `verify_enhanced_export` 호출 → 실패 시 retry_prompt로 AI 재호출 1회 → JSON 재파싱 → HTML 재렌더링\n\n**`run_portfolio_template` 변경사항:**\n- 동일 패턴: system_prompt_override 지원 + PDF 경로에서 verify 루프 (moderate/aggressive)\n\n### 3. 핸들러 수정 (`handlers/jd_analysis.rs`)\n- `export_tailored_resume_start_stream`: `enhancement_level` 읽기, ctx에서 `jd_text`/`strengths`/`weaknesses` 추출, `tailored_resume_json_system_prompt()` 호출, `run_export_studio_to_ws`에 전달\n- `export_tailored_portfolio_start_stream`: 동일 패턴, `tailored_portfolio_json_system_prompt()` 사용\n\n### 4. 기존 호출부 영향 없음\n- `handlers/portfolios.rs` (일반 내보내기): `None, None` 전달\n- `handlers/resumes.rs` (일반 내보내기): `None, None` 전달\n- SSE 레거시 엔드포인트 4곳: `None, None` 전달",
+    "summary": "Task #5 완료 - JD 지시문 제거 + 파이프라인 통합",
+    "timestamp": "2026-04-10T02:06:44.781Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "backend-resume",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-resume\",\"timestamp\":\"2026-04-10T02:06:49.139Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T02:06:49.139Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "backend-resume",
+    "text": "{\"type\":\"idle_notification\",\"from\":\"backend-resume\",\"timestamp\":\"2026-04-10T02:06:56.870Z\",\"idleReason\":\"available\"}",
+    "timestamp": "2026-04-10T02:06:56.870Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "backend-resume",
+    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1775786820842@backend-resume\",\"from\":\"backend-resume\",\"timestamp\":\"2026-04-10T02:07:05.490Z\",\"paneId\":\"%0\",\"backendType\":\"tmux\"}",
+    "timestamp": "2026-04-10T02:07:05.490Z",
+    "color": "blue",
+    "read": true
+  },
+  {
+    "from": "backend-portfolio",
+    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1775786821408@backend-portfolio\",\"from\":\"backend-portfolio\",\"timestamp\":\"2026-04-10T02:07:06.677Z\",\"paneId\":\"%1\",\"backendType\":\"tmux\"}",
+    "timestamp": "2026-04-10T02:07:06.677Z",
+    "color": "green",
+    "read": true
+  },
+  {
+    "from": "frontend",
+    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1775786822380@frontend\",\"from\":\"frontend\",\"timestamp\":\"2026-04-10T02:07:07.994Z\",\"paneId\":\"%3\",\"backendType\":\"tmux\"}",
+    "timestamp": "2026-04-10T02:07:07.994Z",
+    "color": "purple",
+    "read": true
+  },
+  {
+    "from": "backend-verify",
+    "text": "{\"type\":\"shutdown_approved\",\"requestId\":\"shutdown-1775786822324@backend-verify\",\"from\":\"backend-verify\",\"timestamp\":\"2026-04-10T02:07:10.039Z\",\"paneId\":\"%2\",\"backendType\":\"tmux\"}",
+    "timestamp": "2026-04-10T02:07:10.039Z",
+    "color": "yellow",
+    "read": true
   }
 ]

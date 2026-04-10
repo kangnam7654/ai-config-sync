@@ -11,5 +11,11 @@
     "timestamp": "2026-04-10T01:53:37.921Z",
     "color": "yellow",
     "read": true
+  },
+  {
+    "from": "team-lead",
+    "text": "{\"type\":\"shutdown_request\",\"requestId\":\"shutdown-1775786822324@backend-verify\",\"from\":\"team-lead\",\"reason\":\"작업 완료\",\"timestamp\":\"2026-04-10T02:07:02.324Z\"}",
+    "timestamp": "2026-04-10T02:07:02.324Z",
+    "read": true
   }
 ]

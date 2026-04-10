@@ -14,62 +14,6 @@
       "tmuxPaneId": "",
       "cwd": "/Users/kangnam/projects/dear-jeongbin",
       "subscriptions": []
-    },
-    {
-      "agentId": "backend-resume@enhanced-export",
-      "name": "backend-resume",
-      "model": "claude-opus-4-6",
-      "prompt": "당신은 Rust 백엔드 개발자입니다. 아래 작업을 수행하세요.\n\n## 프로젝트 컨텍스트\n- Tauri + Rust(Axum) 기반 데스크톱 앱\n- 작업 디렉터리: /Users/kangnam/projects/dear-jeongbin/src-tauri\n\n## 작업: src-tauri/src/services/export_resume.rs에 tailored_resume_json_system_prompt() 함수 추가\n\n### 상세 요구사항\n\n1. **기존 resume_json_system_prompt 함수**의 JSON 스키마 블록(```로 감싸진 JSON 예시 부분)을 `RESUME_JSON_SCHEMA`라는 상수 문자열로 추출하세요. 기존 함수에서는 이 상수를 참조하도록 교체하세요.\n\n2. **새 함수 추가**: `tailored_resume_json_system_prompt(enhancement_level, jd_text, strengths, weaknesses, layout_hint)` — 시그니처:\n```rust\npub fn tailored_resume_json_system_prompt(\n    enhancement_level: &str,\n    jd_text: &str,\n    strengths: &str,\n    weaknesses: &str,\n    layout_hint: &str,\n) -> String\n```\n\n3. **enhancement_level별 규칙**:\n- \"light\": 기존 bullet 문장만 다듬기. 새 bullet 추가 금지. JD 키워드 자연 반영. 숫자 강조.\n- \"moderate\" (기본): 기존 bullet 다듬기 + 원본 경험에서 JD 관련 세부사항 찾아 새 bullet 분리·확장 허용. 원본 근거 없는 사실 추가 금지.\n- \"aggressive\": 원본 사실 기반 전면 재작성. 섹션 구조·순서·표현 변경. summary/tagline JD 최적화. 근거 없는 사실 창작만 금지.\n\n4. **공통 규칙**: 회사명·날짜·기술명 원문 유지, 없는 회사명·프로젝트명·수치 만들지 않음, JSON만 반환, 한국어 원칙.\n\n5. **분석 결과를 시스템 프롬프트에 직접 포함**:\n```\n# 채용공고 분석 결과\n\n## 채용공고\n{jd_text}\n\n## 강점 (이 부분을 강조하라)\n{strengths}\n\n## 약점 (이 부분을 보완하라)\n{weaknesses}\n```\n\n6. 레이아웃 가이드는 기존 resume_json_system_prompt의 layout_guide 로직과 동일 (modern/editorial/bold/minimal/executive별 분기).\n\n7. JSON 스키마 섹션에서는 추출한 RESUME_JSON_SCHEMA 상수를 참조.\n\n### 검증\n- `cd /Users/kangnam/projects/dear-jeongbin/src-tauri && cargo check --bin server` 성공 확인\n- 기존 resume_json_system_prompt 함수의 동작이 변경되지 않아야 함 (스키마 상수 추출만)\n\n### 완료 후\nTaskUpdate로 Task #2를 completed로 변경하세요.",
-      "color": "blue",
-      "planModeRequired": false,
-      "joinedAt": 1775785955263,
-      "tmuxPaneId": "%0",
-      "cwd": "/Users/kangnam/projects/dear-jeongbin/src-tauri",
-      "subscriptions": [],
-      "backendType": "tmux",
-      "isActive": true
-    },
-    {
-      "agentId": "backend-portfolio@enhanced-export",
-      "name": "backend-portfolio",
-      "model": "claude-opus-4-6",
-      "prompt": "당신은 Rust 백엔드 개발자입니다. 아래 작업을 수행하세요.\n\n## 프로젝트 컨텍스트\n- Tauri + Rust(Axum) 기반 데스크톱 앱\n- 작업 디렉터리: /Users/kangnam/projects/dear-jeongbin/src-tauri\n\n## 작업: src-tauri/src/services/export_portfolio.rs에 tailored_portfolio_json_system_prompt() 함수 추가\n\n### 상세 요구사항\n\n1. **기존 portfolio_json_system_prompt 함수**의 JSON 스키마 블록을 `PORTFOLIO_JSON_SCHEMA`라는 상수 문자열로 추출하세요. 기존 함수에서는 이 상수를 참조하도록 교체하세요.\n\n2. **새 함수 추가**: 시그니처:\n```rust\npub fn tailored_portfolio_json_system_prompt(\n    enhancement_level: &str,\n    jd_text: &str,\n    strengths: &str,\n    weaknesses: &str,\n    layout_hint: &str,\n) -> String\n```\n\n3. **enhancement_level별 규칙** (이력서 버전과 동일):\n- \"light\": 기존 내용 문장만 다듬기. 새 항목 추가 금지. JD 키워드 자연 반영.\n- \"moderate\" (기본): 기존 내용 다듬기 + 원본에서 JD 관련 세부사항 찾아 새 내용 확장 허용. 원본 근거 없는 사실 추가 금지.\n- \"aggressive\": 원본 사실 기반 전면 재작성. 근거 없는 사실 창작만 금지.\n\n4. **공통 규칙**: 회사명·날짜·기술명 원문 유지, JSON만 반환, 한국어 원칙.\n\n5. **분석 결과를 시스템 프롬프트에 직접 포함** (채용공고, 강점, 약점 섹션).\n\n6. **포트폴리오 전용 레이아웃 가이드** — layout_hint에 따라:\n- \"keynote\": 대형 텍스트 + 풀블리드 배경. projects 3-5개.\n- \"magazine\": 매거진 비대칭 그리드. projects 4-6개.\n- \"data\": 다크 배경 + 숫자 강조. stats 필수.\n- \"narrative\": 타임라인 스토리텔링. experience 중심.\n- \"compact\": 정보 밀도 높은 카드형. projects 5개 이상.\n기존 portfolio_json_system_prompt의 레이아웃 가이드를 참고하세요.\n\n7. JSON 스키마 섹션에서는 추출한 PORTFOLIO_JSON_SCHEMA 상수 참조.\n\n### 검증\n- `cd /Users/kangnam/projects/dear-jeongbin/src-tauri && cargo check --bin server` 성공 확인\n\n### 완료 후\nTaskUpdate로 Task #3를 completed로 변경하세요.",
-      "color": "green",
-      "planModeRequired": false,
-      "joinedAt": 1775785966775,
-      "tmuxPaneId": "%1",
-      "cwd": "/Users/kangnam/projects/dear-jeongbin/src-tauri",
-      "subscriptions": [],
-      "backendType": "tmux",
-      "isActive": false
-    },
-    {
-      "agentId": "backend-verify@enhanced-export",
-      "name": "backend-verify",
-      "model": "claude-opus-4-6",
-      "prompt": "당신은 Rust 백엔드 개발자입니다. 아래 작업을 수행하세요.\n\n## 프로젝트 컨텍스트\n- Tauri + Rust(Axum) 기반 데스크톱 앱\n- 작업 디렉터리: /Users/kangnam/projects/dear-jeongbin/src-tauri\n- AI 호출: crate::services::ai 모듈의 generate_completion_with_options 함수 사용\n- Vision 검증 패턴: src-tauri/src/services/export.rs의 verify_export 함수 (line 206~) 참고\n- Chrome headless: src-tauri/src/services/export_html_pdf.rs의 find_chrome(), html_to_pdf() 참고\n\n## 작업: src-tauri/src/services/export_verify.rs 생성\n\n### 1. export_verify.rs 생성\n\n```rust\npub struct VerifyResult {\n    pub passed: bool,\n    pub issues: Vec<String>,\n    pub retry_prompt: Option<String>,\n}\n```\n\n**verify_facts(original_text, generated_json) -> Vec<String>**:\n- generated_json에서 \"company\" 필드 값을 regex로 추출\n- 각 회사명이 original_text에 존재하는지 체크\n- 없으면 issues에 추가\n- regex-lite 크레이트 사용 (Cargo.toml에 `regex-lite = \"0.1\"` 추가 필요)\n\n**verify_layout(html) -> anyhow::Result<Vec<String>>**:\n- HTML → 임시 파일 저장 → Chrome headless로 스크린샷 → Vision API로 검증\n- Chrome 스크린샷: html_to_screenshot 함수 필요 (아래 참조)\n- Vision 프롬프트: \"이 이력서 스크린샷을 검사: 한글 깨짐, 텍스트 잘림/겹침, 빈 섹션, 레이아웃 붕괴. 문제 없으면 PASS, 있으면 한 줄씩 나열.\"\n- generate_completion_with_options 호출 시 image_paths에 스크린샷 경로 전달\n\n**verify_enhanced_export(original_text, generated_json, rendered_html) -> VerifyResult**:\n- verify_facts + verify_layout 순차 실행\n- 모든 issues를 합쳐서 passed 판별\n- issues가 있으면 retry_prompt 생성: \"이전 생성 결과에서 다음 문제가 발견되었습니다. 수정하여 다시 생성하세요:\\n- issue1\\n- issue2...\"\n\n### 2. export_html_pdf.rs에 html_to_screenshot 추가\n\n기존 find_chrome() 함수를 재사용. Chrome headless --screenshot 플래그로 PNG 생성:\n\n```rust\npub async fn html_to_screenshot(html_path: &std::path::Path, output_path: &std::path::Path) -> anyhow::Result<()> {\n    let chrome = find_chrome()?;\n    let status = tokio::process::Command::new(&chrome)\n        .args([\n            \"--headless\", \"--disable-gpu\", \"--no-sandbox\",\n            &format!(\"--screenshot={}\", output_path.display()),\n            \"--window-size=1200,1600\",\n            &format!(\"file://{}\", html_path.display()),\n        ])\n        .status()\n        .await\n        .context(\"Chrome 실행 실패\")?;\n    if !status.success() {\n        anyhow::bail!(\"Chrome 스크린샷 실패: exit {}\", status);\n    }\n    Ok(())\n}\n```\n\n### 3. mod.rs에 등록\n\nsrc-tauri/src/services/mod.rs에 `pub mod export_verify;` 추가.\n\n### 4. Cargo.toml에 regex-lite 추가\n\ndependencies에 `regex-lite = \"0.1\"` 추가.\n\n### 검증\n- `cd /Users/kangnam/projects/dear-jeongbin/src-tauri && cargo check --bin server` 성공 확인\n\n### 중요 참고\n- AiCompletionOptions 구조체의 정확한 필드명은 src-tauri/src/services/ai.rs를 먼저 읽고 확인하세요.\n- generate_completion_with_options의 시그니처도 ai.rs에서 확인하세요.\n- anyhow::Context trait은 `use anyhow::Context;`로 임포트.\n\n### 완료 후\nTaskUpdate로 Task #4를 completed로 변경하세요.",
-      "color": "yellow",
-      "planModeRequired": false,
-      "joinedAt": 1775785990048,
-      "tmuxPaneId": "%2",
-      "cwd": "/Users/kangnam/projects/dear-jeongbin/src-tauri",
-      "subscriptions": [],
-      "backendType": "tmux",
-      "isActive": false
-    },
-    {
-      "agentId": "frontend@enhanced-export",
-      "name": "frontend",
-      "model": "claude-opus-4-6",
-      "prompt": "당신은 React 프론트엔드 개발자입니다. 아래 작업을 수행하세요.\n\n## 프로젝트 컨텍스트\n- React 19 + TailwindCSS v4 + TanStack Query\n- 작업 디렉터리: /Users/kangnam/projects/dear-jeongbin\n\n## 작업: src/components/features/export/export-studio.tsx에 보강 수준 선택 UI 추가\n\n### 요구사항\n\n1. **분석 기반 내보내기 판별**: `startMethod` prop이 `jd_analyses.export_`로 시작하면 `isTailoredExport = true`.\n\n2. **상태 추가**:\n```tsx\nconst [enhancementLevel, setEnhancementLevel] = React.useState<\"light\" | \"moderate\" | \"aggressive\">(\"moderate\");\n```\n\n3. **보강 수준 선택 UI**: `isTailoredExport`일 때만 표시. \"생성 모드\" 선택 아래, \"AI로 포맷 다듬기\" 체크박스 위에 배치.\n\n```tsx\n{isTailoredExport && (\n  <div className=\"flex flex-col gap-2\">\n    <label className=\"flex items-center gap-1.5 text-[12px] font-medium text-foreground\">\n      보강 수준\n      <HelpHint>\n        <div className=\"flex flex-col gap-1\">\n          <div><b>표현 강화</b> — 기존 내용의 문장만 다듬어요. 가장 안전해요.</div>\n          <div><b>내용 보완</b> — 약점을 보완하는 내용을 추가해요. AI가 자동 검증해요.</div>\n          <div><b>적극 재작성</b> — JD에 맞게 전체를 재구성해요. AI가 자동 검증해요.</div>\n        </div>\n      </HelpHint>\n    </label>\n    <div className=\"grid grid-cols-3 gap-2\">\n      {([\n        { id: \"light\" as const, label: \"표현 강화\", desc: \"문장 다듬기\" },\n        { id: \"moderate\" as const, label: \"내용 보완\", desc: \"약점 보완 (검증)\" },\n        { id: \"aggressive\" as const, label: \"적극 재작성\", desc: \"전면 재구성 (검증)\" },\n      ]).map((level) => (\n        <button\n          key={level.id}\n          onClick={() => setEnhancementLevel(level.id)}\n          className={cn(\n            \"flex flex-col items-center gap-0.5 px-2 py-2 rounded-lg text-[12px] transition-colors border\",\n            enhancementLevel === level.id\n              ? \"border-primary bg-primary/5 text-primary\"\n              : \"border-border text-muted-foreground hover:border-primary/30\"\n          )}\n        >\n          <span className=\"font-medium\">{level.label}</span>\n          <span className=\"text-[10px] opacity-70\">{level.desc}</span>\n        </button>\n      ))}\n    </div>\n  </div>\n)}\n```\n\n4. **RPC 호출에 enhancement_level 전달**: handleGenerate 함수 안의 params 객체에 추가:\n\n```tsx\nconst params = {\n  id: resourceId,\n  format,\n  mode: exportMode,\n  preset_id: exportMode === \"preset\" ? presetId : undefined,\n  polish,\n  instructions: instructions.trim() || undefined,\n  template_id: templateId || undefined,\n  layout_id: format === \"pptx\" ? pptxTemplateId : layoutId,\n  palette_id: paletteId,\n  enhancement_level: isTailoredExport ? enhancementLevel : undefined,\n};\n```\n\n5. **기존 UI 패턴 따르기**: 이미 있는 생성 모드(preset/custom/legacy) 선택 UI의 스타일/구조를 따르세요. cn() 유틸, HelpHint 컴포넌트 등은 이미 import되어 있습니다.\n\n### 주의사항\n- `startMethod` prop은 ExportStudioProps 인터페이스에 이미 정의되어 있습니다. 파일을 먼저 읽어서 확인하세요.\n- 기존 코드 스타일과 일관성 유지 (text-[12px], font-medium, border-primary 등 기존 패턴)\n- HelpHint 컴포넌트는 이미 import/사용되고 있으니 동일하게 사용\n\n### 검증\n- `cd /Users/kangnam/projects/dear-jeongbin && npx tsc --noEmit` 또는 `npm run build`로 타입 체크\n\n완료 후 TaskUpdate로 Task #6를 completed로 변경하세요.",
-      "color": "purple",
-      "planModeRequired": false,
-      "joinedAt": 1775786405793,
-      "tmuxPaneId": "%3",
-      "cwd": "/Users/kangnam/projects/dear-jeongbin/src-tauri",
-      "subscriptions": [],
-      "backendType": "tmux",
-      "isActive": true
     }
   ]
 }

@@ -1,6 +1,14 @@
 ## Priority Rules
 
-Project `CLAUDE.md` (in project root or subdirectories) overrides this global `CLAUDE.md` on conflict. Exception: NEVER rules cannot be overridden by project CLAUDE.md — explicit user confirmation is required.
+Priority order on conflict (highest → lowest):
+
+1. **NEVER rules** in this file (require explicit user confirmation to override)
+2. **Project `CLAUDE.md`** (project root or subdirectories)
+3. **This global `CLAUDE.md`**
+4. **Superpowers skills** (e.g., `superpowers:test-driven-development`, `superpowers:brainstorming`, `superpowers:writing-plans`)
+5. **Default system prompt behavior**
+
+When Design-First Development (below) conflicts with `superpowers:writing-plans` or `superpowers:brainstorming`, this file wins — but the superpowers workflow may still be used *inside* the design doc process.
 
 ## NEVER Rules
 
@@ -16,7 +24,7 @@ These rules apply without exception. If the user asks to override, print the war
 4. NEVER run `pip install` directly. Use `uv add <pkg>` or `uv pip install <pkg>`.
 5. NEVER write implementation code before design doc is complete + user-approved.
 6. NEVER commit code without tests.
-7. NEVER use diagram formats other than Mermaid.
+7. NEVER use a non-Mermaid diagram format without explicit user approval (Mermaid is the default).
 8. NEVER place `.mmd` or diagram `.png` files outside `docs/`.
 9. NEVER use agent-browser when WebSearch/WebFetch suffices.
 10. NEVER let subagents call other subagents directly. Only the main model orchestrates.
@@ -31,8 +39,8 @@ Subagents cannot call other subagents. The main model orchestrates all loops.
 - **Plan request** → trigger `plan-loop`. When output is an execution plan (implementation plan, refactoring plan, migration strategy).
 - If ambiguous, ask user: "Do you need a document or an execution plan?"
 - **New app/service** → trigger `auto-dev`. For building a new app from scratch. Not for modifying existing code, bug fixes, or refactoring.
-- **Skill creation/modification** → follow `skill-create` workflow.
-- **Agent creation/modification** → follow `agent-create` workflow.
+- **Skill creation/modification** → use `skill-creator` skill.
+- **Agent creation/modification** → use `agent-create` skill.
 
 ### Security Agent Routing (ciso vs security-reviewer)
 
@@ -80,7 +88,7 @@ Write DB schema first when a design doc requires a DB. Include: ERD (Mermaid erD
 
 ### Diagram Rules
 
-- Format: Mermaid `.mmd` files only.
+- Format: Mermaid `.mmd` by default. Other formats (PlantUML, excalidraw, ASCII) allowed only after explicit user approval.
 - Render: `mmdc -i input.mmd -o output.png -b transparent -s 4`
 - On mmdc failure: report error to user, provide `.mmd` file only. Do not halt work.
 - Location: both `.mmd` and `.png` in the relevant `docs/` directory.
@@ -99,16 +107,7 @@ Before running Python tests, verify `uv` is installed (`which uv`). If not insta
 
 ### Test Execution
 
-Run tests after every code change. Language-specific commands:
-
-| Language | Command | Prerequisite |
-|----------|---------|-------------|
-| Python | `uv run python -m pytest tests/ -q` | `uv` installed |
-| Node.js | `npm test` | test script in `package.json` |
-| Go | `go test ./...` | `go.mod` exists |
-| Rust | `cargo test` | `Cargo.toml` exists |
-
-If no test framework is configured, do not skip tests. Report to user and suggest setup first.
+Run tests after every code change. Discover the test command from project config (`package.json` scripts, `pyproject.toml`, `Makefile`, `go.mod`, `Cargo.toml`) instead of assuming. Python tests must always be invoked via `uv run` (NEVER rule #3). If no test framework is configured, report to user and suggest setup first — do not skip.
 
 - New features: write both unit tests and integration tests.
 - Unit tests: mock all external dependencies (API, DB, filesystem, network).
@@ -144,7 +143,7 @@ Do NOT abstract when:
 
 Additional memory type beyond system defaults (user, feedback, project, reference).
 
-- **Purpose**: temporary decisions to delete when a specific implementation is complete.
+- **Purpose**: multi-session implementation decisions that must persist across sessions but are deleted when the implementation lands. Do NOT use for single-conversation state — use TodoWrite or plans for that. This type does NOT override the system prompt's "do not save ephemeral task details" rule; `temp` is strictly for decisions that outlive a conversation but have a known expiry.
 - **Required fields**: `type: temp`, `expires_when: deletion condition`
 - **MEMORY.md notation**: `[TEMP]` tag + expiry condition
 - **Deletion**: when `expires_when` condition is met, delete the memory file and remove from MEMORY.md.
@@ -160,4 +159,4 @@ Additional memory type beyond system defaults (user, feedback, project, referenc
 ### CLI Tools
 
 - **mmdc** (mermaid-cli): Mermaid `.mmd` → PNG. On failure, report error and provide `.mmd` only.
-- **agent-browser** (v0.10.0): Use only for login-required pages, dynamic SPAs, browser interaction. Do not use when WebSearch/WebFetch suffices. Commands: `agent-browser open <url>`, `snapshot`, `screenshot`, `click`, `fill`, `text`, `close`
+- **agent-browser**: Use only for login-required pages, dynamic SPAs, browser interaction. Do not use when WebSearch/WebFetch suffices. Commands: `agent-browser open <url>`, `snapshot`, `screenshot`, `click`, `fill`, `text`, `close`

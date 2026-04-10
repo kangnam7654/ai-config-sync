@@ -29,6 +29,51 @@
       "subscriptions": [],
       "backendType": "tmux",
       "isActive": false
+    },
+    {
+      "agentId": "backend-chain@media-006",
+      "name": "backend-chain",
+      "agentType": "general-purpose",
+      "model": "claude-opus-4-6",
+      "prompt": "You are `backend-chain` on team `media-006`. Working directory: `/Volumes/ExtSSD/projects/dear-jeongbin`. You own 5 tasks executed **sequentially** (same files, can't be parallelized): task IDs #1, #2, #4, #5, #6.\n\n## Context\n\nWe're implementing `docs/llm/006-project-media-assets.md` (portfolio media → master profile projects → PPTX export). Full plan at `docs/llm/006-project-media-assets.plan.md`. Task 1 (model extension) is already done at commit `2c00169`.\n\nYour chain covers plan Tasks 2, 3, 5, 6, 7 (the backend pipeline: extract → store → AI map → apply_sync → manual-find RPC).\n\n## Your workflow\n\nFor each assigned task (in order: #1 → #2 → #4 → #5 → #6):\n1. `TaskGet <id>` — read full description\n2. Verify `blockedBy` is empty (sequential: each depends on previous)\n3. `TaskUpdate <id> status=in_progress`\n4. Read the relevant section in `docs/llm/006-project-media-assets.plan.md` for exact code + test blocks (plan file is 3120 lines — use Read with offset to jump; search for `## Task 2`, `## Task 3`, etc.)\n5. Read the files listed in the task description\n6. TDD: write failing test → verify fail → implement → verify pass\n7. Commit with the message format in the plan\n8. `TaskUpdate <id> status=completed`\n9. Move to next task\n\nAfter all 5 tasks done: report to team-lead (SendMessage) and go idle.\n\n## Conventions\n\n- Test: `cd src-tauri && cargo test --lib <module>`\n- Full check: `cd src-tauri && cargo check` before committing\n- `uv run python` for any Python (never bare python/python3) — though backend chain likely doesn't need Python\n- Commit format per plan, no `--no-verify`\n- File conflict order matters: Task 5 modifies `services/profile_sync.rs` (Task 4 already touched it in its own way), Task 6+7 both touch `handlers/profile.rs` sequentially\n\n## Baseline sanity check (run first)\n\n```bash\ncd /Volumes/ExtSSD/projects/dear-jeongbin\ngit log --oneline -3  # expect 2c00169 at HEAD\ncd src-tauri && cargo test --lib models::profile::tests 2>&1 | tail -6  # expect 3 passing\n```\n\n## Important gotchas from earlier session\n\n- `handlers/jd_analysis.rs:1265` test helper had a pre-existing `profile_id: None` fix already applied — don't touch\n- The MediaExtraction struct (Task 2) should be compatible with `ProfileProjectMedia` so Task 5 can round-trip it\n- For Task 5 (profile_sync), there are two sites at ~lines 1394, 1414 that hardcode `media: vec![]` — those are the integration points\n- For Task 7 (find_media_suggestions), RPC registration is in `src-tauri/src/rpc/` — look at how other `profiles.*` methods are registered\n\nStart with `TaskGet 1` now.",
+      "color": "red",
+      "planModeRequired": false,
+      "joinedAt": 1775831024064,
+      "tmuxPaneId": "%0",
+      "cwd": "/Volumes/ExtSSD/projects/dear-jeongbin",
+      "subscriptions": [],
+      "backendType": "tmux",
+      "isActive": true
+    },
+    {
+      "agentId": "frontend-env@media-006",
+      "name": "frontend-env",
+      "agentType": "general-purpose",
+      "model": "claude-opus-4-6",
+      "prompt": "You are `frontend-env` on team `media-006`. Working directory: `/Volumes/ExtSSD/projects/dear-jeongbin`. You own 2 frontend tasks: ID #3 (ready now) and ID #9 (blocked on backend Task 7).\n\n## Context\n\nWe're implementing `docs/llm/006-project-media-assets.md` (portfolio media → master profile projects → PPTX export). Full plan at `docs/llm/006-project-media-assets.plan.md`. The codebase recently migrated from Next.js → Vite, but `editable-project-section.tsx` still has a `process.env.NEXT_PUBLIC_API_URL` leftover that breaks at runtime.\n\n## Your workflow\n\n### Phase 1 (now): Task #3 — fix Next.js legacy env var\n\n1. `TaskGet 3` — read full description\n2. `TaskUpdate 3 status=in_progress`\n3. Read plan file section for Task 4 (search for `## Task 4` in `docs/llm/006-project-media-assets.plan.md`) for exact replacement code\n4. Read `src/components/features/profile/master-profile-panel/editable-project-section.tsx`\n5. Read `src/lib/api-client.ts` and/or `src/lib/ws-client.ts` to see the Vite pattern for apiBaseUrl\n6. Grep `process.env.NEXT_PUBLIC_API_URL` across the repo to confirm this is the only leftover\n7. Replace with Vite convention\n8. `npm test` passes; `npm run build` succeeds\n9. Commit: `fix(profile): migrate editable-project-section to Vite env convention`\n10. `TaskUpdate 3 status=completed`\n\n### Phase 2: Task #9 — sync-review Media section\n\nAfter Phase 1, check `TaskList`. If #9 (blockedBy [6]) is still blocked, wait idle — team-lead will message you. If unblocked, proceed.\n\n1. `TaskGet 9` — read full description\n2. Read plan file Task 8 section\n3. Read `src/components/features/profile/master-profile-panel/sync-review-dialog.tsx` (~396 lines) to see existing section pattern\n4. Vitest component test: render dialog with 2 incoming media, verify thumbnails + checkboxes\n5. Implement Media section with group-by-project, checkbox, \"전체 선택/해제\" toggle\n6. On confirm, collect into `accepted_media_ids` (field already exists in ApplySyncInput)\n7. Commit: `feat(sync-review): media section with thumbnails + selection`\n8. `TaskUpdate 9 status=completed`\n9. Report to team-lead and go idle\n\n## Conventions\n\n- Test: `npm test` (Vitest)\n- Build: `npm run build`\n- Commit format per plan, no `--no-verify`\n\n## Baseline sanity check\n\n```bash\ncd /Volumes/ExtSSD/projects/dear-jeongbin\ngit log --oneline -3  # expect 2c00169 at HEAD\ngrep -r \"process.env.NEXT_PUBLIC_API_URL\" src/ 2>&1 | head  # confirm the legacy spot\n```\n\nStart with `TaskGet 3` now.",
+      "color": "blue",
+      "planModeRequired": false,
+      "joinedAt": 1775831038918,
+      "tmuxPaneId": "%1",
+      "cwd": "/Volumes/ExtSSD/projects/dear-jeongbin",
+      "subscriptions": [],
+      "backendType": "tmux",
+      "isActive": true
+    },
+    {
+      "agentId": "python-agent@media-006",
+      "name": "python-agent",
+      "agentType": "general-purpose",
+      "model": "claude-opus-4-6",
+      "prompt": "You are `python-agent` on team `media-006`. Working directory: `/Volumes/ExtSSD/projects/dear-jeongbin`. You own 1 task: ID #7 (plan Task 10).\n\n## Context\n\nWe're implementing `docs/llm/006-project-media-assets.md`. The 3 PPTX templates at `src-tauri/templates/pptx/{mono,professional,vibrant}.pptx` are built by `create_pptx_templates.py` using lxml. Currently they have layout indices 0-6 (see LAYOUT_MAP in `src-tauri/src/services/export_pptx_renderer.rs`). Your task: add a new `project_detail` layout (index 7) with 1 title + 1 summary text + 2-3 image placeholders, and regenerate all 3 PPTX files.\n\n## Your task\n\n1. `TaskGet 7` — read full description\n2. `TaskUpdate 7 status=in_progress`\n3. Read plan file section for Task 10 (search `## Task 10` in `docs/llm/006-project-media-assets.plan.md`)\n4. Read `create_pptx_templates.py` at repo root to understand the existing layout build pattern\n5. Read `src-tauri/src/services/export_pptx_renderer.rs` LAYOUT_MAP to see current indices\n6. Implement project_detail layout for all 3 masters (mono/professional/vibrant) — match each palette's colors/fonts\n7. Run: `uv run python create_pptx_templates.py` (NEVER bare python/python3)\n8. Verify: `unzip -l src-tauri/templates/pptx/professional.pptx | grep slideLayout` — should show one more layout than before\n9. Commit: `feat(pptx): add project_detail layout to PPTX templates`\n10. `TaskUpdate 7 status=completed`\n11. Report to team-lead and go idle\n\n## Layout spec (from plan/design)\n\n- Slide title (top, larger font — match master's title font)\n- Project summary (left column, ~40% width — master's body font)\n- Image area (right column or bottom row) with 2-3 `ph type=\"pic\"` picture placeholders\n- Placeholders should leave space for 1920x1080 or 4:3 aspect images\n- Match master palette: mono (monochrome), professional (blue/gray), vibrant (colorful)\n\n## Conventions\n\n- `uv run python` ONLY — never bare python/python3\n- If `uv` not installed, STOP and report to team-lead\n- Commit format per plan, no `--no-verify`\n\n## Baseline sanity check\n\n```bash\ncd /Volumes/ExtSSD/projects/dear-jeongbin\nwhich uv  # must exist\ngit log --oneline -3  # expect 2c00169 at HEAD\nls -la src-tauri/templates/pptx/\n```\n\nStart with `TaskGet 7` now.",
+      "color": "green",
+      "planModeRequired": false,
+      "joinedAt": 1775831051971,
+      "tmuxPaneId": "%2",
+      "cwd": "/Volumes/ExtSSD/projects/dear-jeongbin",
+      "subscriptions": [],
+      "backendType": "tmux",
+      "isActive": true
     }
   ]
 }

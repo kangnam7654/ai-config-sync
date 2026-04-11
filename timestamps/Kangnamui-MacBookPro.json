@@ -17,7 +17,7 @@
     "BOOTSTRAP.md": 1772631003.4851322,
     "USER.md": 1772631003.6091595,
     "SOUL.md": 1772631003.5768044,
-    "cal_sync_state.json": 1775883110.91725,
+    "cal_sync_state.json": 1775886728.4882677,
     "AGENTS.md": 1772631003.4602757,
     "sync-openclaw.sh": 1772631004.069126,
     "restore-openclaw.sh": 1772631003.8792062,
@@ -637,7 +637,7 @@
     "skills/veo-shorts-writer/references/archive.md": 1774076416.5481992
   },
   "claude-code": {
-    "settings.json": 1775883142.8007643,
+    "settings.json": 1775886881.9668882,
     "stop-hook-git-check.sh": 1772631005.3955393,
     "CLAUDE.md": 1775844008.5988965,
     "memory/multi-provider-oauth-architecture.md": 1772631004.907993,

@@ -36,14 +36,38 @@ auto-dev 파이프라인의 마지막 Phase. 구현된 앱의 동작, UI, 사용
 simulator가 앱을 실행하고 주요 유저 플로우를 동작 확인한다.
 
 - **PASS** → #33으로 진행
-- **FAIL** → #27(구현)로 복귀. 에러 내용을 해당 트랙 에이전트에게 전달.
-  - **2회 연속 동일 에러**: #23(실행 계획)으로 복귀. 실행 계획 자체에 문제가 있을 수 있음.
+- **FAIL** → **3단계 에스컬레이션** 규칙을 적용한다.
+
+### 3단계 에스컬레이션 규칙
+
+| Level | 트리거 | 복귀 대상 | 의미 |
+|-------|--------|----------|------|
+| **L1** | 최초 FAIL | #27 (Build) | 구현 버그. 해당 트랙에 에러 전달 |
+| **L2** | 2회 연속 동일 에러 | #23 (Design/plan-loop) | 실행 계획/아키텍처 결함 가능성 |
+| **L3** | L2 복귀 후에도 동일 계열 실패 | #4 (Idea/CEO 방향) 또는 사용자 보고 | 요구사항 자체가 불완전/모순일 가능성 |
+
+**L3 트리거 조건 (OR)**:
+- L2 복귀(design-loop 재실행) 후 다시 L2 조건이 성립 (같은 계열 에러 반복)
+- L2 복귀 이후 `escalation_level >= 2`인 상태에서 또 다른 동일 계열 에러 발생
+- L1+L2 합산 3회 이상 동일 에러
+
+**L3 처리**:
+- 1순위: `phase_return`의 `target_phase`를 `idea`로 설정하여 auto-dev에게 Idea Phase 복귀 요청
+- 2순위 (Idea Phase에 실패 로그가 충분할 때): 사용자에게 "요구사항 재검토 필요" 보고 후 중단
+- 메인 모델이 L3 판정 시 반드시 이전 2개 복귀의 실패 원인을 포함하여 반환
 
 **최대 10회 반복**. 10회 소진 시 사용자 보고 후 중단.
 
-**이전 에러 추적**: 각 FAIL의 에러 메시지를 기록한다. 이전 에러와 현재 에러가 동일하면 (같은 화면, 같은 에러 타입) "동일 에러"로 판정.
+### 에러 동일성 판정
 
-**산출물**: review-verdict.yaml
+각 FAIL의 에러 메시지를 기록한다. 이전 에러와 현재 에러가 아래 중 **하나라도** 동일하면 "동일 계열 에러"로 판정:
+- 같은 화면 + 같은 에러 타입 (기존 기준)
+- 같은 파일/모듈을 수정한 후에도 재발 (구조적 문제 시사)
+- 같은 design-spec 항목(엔드포인트/컴포넌트/모델) 관련 실패
+
+단순 문자열 일치가 아닌 **근본 원인이 같은지**를 메인 모델이 판정한다.
+
+**산출물**: review-verdict.yaml (escalation_level 포함)
 
 ---
 
@@ -144,13 +168,14 @@ human_escalations: "{사용자 보고 횟수}"
 
 이 스킬의 FAIL 복귀 대상은 다른 Phase의 스킬 범위에 해당한다:
 
-| FAIL 출처 | 복귀 대상 | 대상 Phase | 처리 |
-|----------|----------|-----------|------|
-| #32 → #27 | build-loop #27 | Build | auto-dev에게 build-loop 재실행 요청 |
-| #32 → #23 | plan-loop #23 | Design | auto-dev에게 design-loop/plan-loop 재실행 요청 |
-| #33 → #19 | ux-ui-loop #19 | Design | auto-dev에게 design-loop/ux-ui-loop 재실행 요청 |
-| #34 → #17 | ux-ui-loop #17 | Design | auto-dev에게 design-loop/ux-ui-loop 재실행 요청 |
-| #35 → #27 | build-loop #27 | Build | auto-dev에게 build-loop 재실행 요청 |
+| FAIL 출처 | 복귀 대상 | 대상 Phase | 처리 | Level |
+|----------|----------|-----------|------|-------|
+| #32 → #27 | build-loop #27 | Build | auto-dev에게 build-loop 재실행 요청 | L1 |
+| #32 → #23 | plan-loop #23 | Design | auto-dev에게 design-loop/plan-loop 재실행 요청 | L2 |
+| #32 → #4 | idea-forge #4 | Idea | auto-dev에게 idea-forge 재실행 요청 (CEO 방향부터) | L3 |
+| #33 → #19 | ux-ui-loop #19 | Design | auto-dev에게 design-loop/ux-ui-loop 재실행 요청 | L2 |
+| #34 → #17 | ux-ui-loop #17 | Design | auto-dev에게 design-loop/ux-ui-loop 재실행 요청 | L2 |
+| #35 → #27 | build-loop #27 | Build | auto-dev에게 build-loop 재실행 요청 | L1 |
 
 verify-loop는 자체적으로 다른 Phase의 스킬을 호출하지 않는다. 복귀가 필요하면 auto-dev에게 아래 포맷으로 반환한다:
 
@@ -160,10 +185,18 @@ phase_return:
   source_step: "#32"          # 실패가 발생한 단계
   source_phase: "verify"      # 항상 "verify"
   target_step: "#27"          # 복귀 대상 단계
-  target_phase: "build"       # "build" 또는 "design"
+  target_phase: "build"       # "build", "design", "idea" 중 하나
   reason: "POST /api/todos 500 에러" # 실패 원인 1줄 요약
   attempt: 1                  # 동일 복귀 시도 횟수
-  same_error_consecutive: false # 직전 복귀와 동일 에러인지
+  same_error_consecutive: false # 직전 복귀와 동일 계열 에러인지
+  escalation_level: 1         # 1=Build, 2=Design, 3=Idea
+  prior_failures:             # L3 판정 시 이전 실패 이력 (L1/L2 에서는 비움)
+    - level: 1
+      target: "#27"
+      reason: "POST /api/todos 500 에러"
+    - level: 2
+      target: "#23"
+      reason: "같은 엔드포인트 재실패 (실행 계획 수정 후)"
 ```
 
 auto-dev가 `target_phase`로 라우팅한다.

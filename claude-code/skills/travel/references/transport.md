@@ -1,20 +1,11 @@
----
-name: transport-search
-description: "Real-time transport search via browser automation. Searches flights, trains, buses, ferries with screenshots. Takes origin/destination/date/passengers and finds optimal options with price comparison."
----
-
-## Tool Requirements
-
-이 스킬은 `agent-browser` CLI 도구를 사용한다. 명령어: `agent-browser open <url>`, `snapshot`, `screenshot`, `click <selector>`, `fill <selector> <value>`, `text <selector>`, `close`. agent-browser가 설치되어 있지 않으면 사용자에게 설치를 요청하고 스킬 실행을 중단하라.
-
-# Transport Search
+# Transport Search Reference
 
 브라우저 자동화로 실시간 교통편을 검색한다. 모든 결과는 스크린샷으로 확인.
 
 ## Out of Scope
 
 - 렌터카/택시 예약
-- 호텔/숙소 검색 (→ travel-plan)
+- 호텔/숙소 검색 (→ planning.md)
 - 여행 보험
 - 실시간 가격 알림
 - 국제운전면허 발급
@@ -51,7 +42,7 @@ https://www.skyscanner.co.kr/transport/flights/{출발IATA}/{도착IATA}/{YYMMDD
 https://flight.naver.com/flights/domestic/{출발공항}-{도착공항}-{YYYYMMDD}?adult={인원}
 ```
 
-**주요 IATA 코드 참고:** → `references/iata-codes.md`
+**주요 IATA 코드 참고:** → `travel/references/iata-codes.md`
 
 ### 기차 (KTX/SRT/ITX/무궁화)
 

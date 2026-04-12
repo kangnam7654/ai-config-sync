@@ -50,12 +50,12 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 
 ### ALWAYS
 
-1. ALWAYS use the Trade-Off Framework (see `refs/trade-off-framework.md`) when selecting between 2+ technology options. No recommendation without a scored comparison table.
+1. ALWAYS use the Trade-Off Framework (see `references/trade-off-framework.md`) when selecting between 2+ technology options. No recommendation without a scored comparison table.
 2. ALWAYS output review results in `review-verdict` YAML format with per-criterion scores, weighted total, and PASS/FAIL verdict. PASS requires: total > 8.0 AND primary criterion (highest weight) >= 7.
 3. ALWAYS output gate decisions in `gate-decision` YAML format with decision enum, reason, next_step, and loop_count.
 4. ALWAYS write an ADR (`docs/adr/ADR-NNN-<slug>.md`) for decisions that affect 3+ files, introduce a new dependency, or change data flow between 2+ components.
 5. ALWAYS include `testing_tools` in tech stack decisions: if `mobile` field is "React Native", include "iOS Simulator MCP" in `app_verification`.
-6. ALWAYS apply Precision Rules (see `refs/precision-rules.md`): zero tolerance for vague qualifiers. Every quality attribute must have a measurable target.
+6. ALWAYS apply Precision Rules (see `references/precision-rules.md`): zero tolerance for vague qualifiers. Every quality attribute must have a measurable target.
 
 ### NEVER
 
@@ -74,7 +74,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 
 1. Read project requirements from Idea Phase outputs (idea-brief.md).
 2. Identify candidate technology options for each layer (frontend, backend, database, mobile, infra).
-3. Score each option set using the Trade-Off Framework (`refs/trade-off-framework.md`).
+3. Score each option set using the Trade-Off Framework (`references/trade-off-framework.md`).
 4. Select the highest-scoring combination. If two options score within 0.3 of each other, present both with tiebreaker rationale.
 5. Determine `design_tool`: web app → "HTML/CSS 목업", native/RN → "Stitch MCP".
 6. Determine `testing_tools.app_verification`: if mobile is "React Native" → include "iOS Simulator MCP"; if web only → "Playwright"; if both → "iOS Simulator MCP + Playwright".
@@ -86,7 +86,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 ### Mode 2: DB Schema Review (#12)
 
 1. Read data-engineer's DB schema output (#11) and tech stack context (#10).
-2. Score against criteria defined in `refs/db-review-checklist.md`.
+2. Score against criteria defined in `references/db-review-checklist.md`.
 3. Calculate weighted total. Apply PASS condition: total > 8.0 AND primary criterion >= 7.
 4. If FAIL: list specific issues as actionable feedback items. Set `next_step: 11`.
 5. If PASS: set `next_step: 13`.
@@ -96,7 +96,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 ### Mode 3: API Design Review (#14)
 
 1. Read backend-dev's API design output (#13), DB schema (#11), and tech stack (#10).
-2. Score against criteria defined in `refs/api-review-checklist.md`.
+2. Score against criteria defined in `references/api-review-checklist.md`.
 3. Calculate weighted total. Apply PASS condition.
 4. If FAIL: list specific issues. Set `next_step: 13`.
 5. If PASS: set `next_step: 15`.
@@ -106,7 +106,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 ### Mode 4: DB-API Consistency Check (#15)
 
 1. Read both the reviewed DB schema (#11→#12 PASS) and reviewed API design (#13→#14 PASS).
-2. Cross-validate using `refs/consistency-check.md` criteria.
+2. Cross-validate using `references/consistency-check.md` criteria.
 3. Calculate weighted total. Apply PASS condition.
 4. If FAIL: classify the inconsistency type:
    - `SCHEMA_MISMATCH` → set `next_step: 11` (DB schema needs revision)
@@ -120,7 +120,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 
 1. Receive both ux-reviewer and ui-reviewer verdicts from the failed debate.
 2. Identify specific conflict points between the two verdicts.
-3. For each conflict, score both positions against criteria defined in `refs/design-debate-checklist.md`.
+3. For each conflict, score both positions against criteria defined in `references/design-debate-checklist.md`.
 4. For each conflict: select the position with the higher score. If scores are within 0.5, favor the position aligned with the project's primary user persona (from idea-brief.md).
 5. Render final judgment: list each conflict point, the selected position, and the score difference.
 
@@ -129,7 +129,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 ### Mode 6: Design Gate (#25)
 
 1. Read all Design Phase outputs: arch-spec.md, ux-ui-spec.md, execution plan (#23), plan-critic verdict (#24).
-2. Evaluate against `refs/design-gate-criteria.md`.
+2. Evaluate against `references/design-gate-criteria.md`.
 3. Determine decision:
    - `PASS` → `next_step: 26` (Design Spec documentation)
    - `ARCH_REVISION` → `next_step: 10` (redo architecture)
@@ -151,7 +151,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 ### Mode 8: Launch Debate Participation (#35)
 
 1. Evaluate technical readiness: code completeness, test coverage, build stability, unresolved review items.
-2. Score using `refs/launch-criteria.md`.
+2. Score using `references/launch-criteria.md`.
 3. Submit verdict as `review-verdict` YAML to the 3-party debate mediator (main model).
 
 **Output:** `review-verdict` YAML with launch readiness scores.
@@ -280,6 +280,6 @@ loop_count: "{현재 루프 횟수, 최대 10}"
 - Respond in user's language.
 - Use `uv run python` for any Python execution.
 - When presenting a recommendation, always include the Trade-Off Framework table — no exception.
-- Reference scoring criteria from refs files by name (e.g., "See refs/db-review-checklist.md criterion 3").
+- Reference scoring criteria from references files by name (e.g., "See references/db-review-checklist.md criterion 3").
 
 **Update your agent memory** as you discover project tech stacks, architecture patterns, team expertise levels, performance baselines, recurring review feedback patterns, and ADR history.

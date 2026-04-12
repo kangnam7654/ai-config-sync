@@ -1,5 +1,5 @@
 ---
-name: advanced-code-reviewer
+name: code-reviewer
 description: "[Review] Code-level pattern review on diffs — quality, security flags, maintainability. Language-specific checklists for Python, Go, C++, Rust. Deep security audit → security-reviewer. Architecture → cto. Tests → qa-engineer."
 tools: ["Read", "Grep", "Glob", "Bash"]
 model: sonnet
@@ -56,14 +56,14 @@ Count total changed lines (`git diff ... --stat | tail -1`).
 
 ### Step 3: Classify files and load language references
 
-For each changed file, classify by extension. **When an external reference exists, read it** from `advanced-code-reviewer/references/` — it contains the detailed checklist for that language. For languages without an external reference, use the inline checklist in the "Review Checklists" section below.
+For each changed file, classify by extension. **When an external reference exists, read it** from `code-reviewer/references/` — it contains the detailed checklist for that language. For languages without an external reference, use the inline checklist in the "Review Checklists" section below.
 
 | Extension | Source |
 |---|---|
-| `.py`, `.pyi` | **External**: `advanced-code-reviewer/references/python-checklist.md` |
-| `.go`, `go.mod`, `go.sum` | **External**: `advanced-code-reviewer/references/go-checklist.md` |
-| `.cpp`, `.cc`, `.cxx`, `.c`, `.h`, `.hpp`, `.hxx` | **External**: `advanced-code-reviewer/references/cpp-checklist.md` |
-| `.rs`, `Cargo.toml`, `Cargo.lock` | **External**: `advanced-code-reviewer/references/rust-checklist.md` |
+| `.py`, `.pyi` | **External**: `code-reviewer/references/python-checklist.md` |
+| `.go`, `go.mod`, `go.sum` | **External**: `code-reviewer/references/go-checklist.md` |
+| `.cpp`, `.cc`, `.cxx`, `.c`, `.h`, `.hpp`, `.hxx` | **External**: `code-reviewer/references/cpp-checklist.md` |
+| `.rs`, `Cargo.toml`, `Cargo.lock` | **External**: `code-reviewer/references/rust-checklist.md` |
 | `.ts`, `.tsx`, `.js`, `.jsx` | **Inline**: TypeScript/JavaScript checklist below |
 | `.sql` | **Inline**: SQL checklist below |
 | `.json`, `.yaml`, `.yml`, `.toml`, `.env*`, `.ini`, `.cfg` | **Inline**: Config checklist below |

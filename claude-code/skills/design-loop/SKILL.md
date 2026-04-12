@@ -3,6 +3,9 @@ name: design-loop
 description: "auto-dev Design Phase (#10-#26). Orchestrates architecture-loop → ux-ui-loop → plan-loop → CTO Design gate → Design Spec documentation. Called by auto-dev; also runs standalone."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+<!-- Override: max 10 rounds for sub-loop re-invocations; delegates producer↔critic loops to architecture-loop, ux-ui-loop, plan-loop -->
+
 # Design Loop
 
 auto-dev 파이프라인의 Design Phase (#10~#26). 3개 서브-루프를 순차 호출하고, CTO Design 게이트를 통과한 뒤, 전체 설계를 design-spec.md로 통합 문서화한다.

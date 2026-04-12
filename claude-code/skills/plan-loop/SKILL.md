@@ -3,6 +3,8 @@ name: plan-loop
 description: "Planner → critic iterative improvement loop. Use when the output is an execution plan — implementation plans, refactoring plans, migration strategies, task breakdowns. Not for code writing, Q&A, or documentation."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+
 # Plan Loop
 
 planner와 critic 에이전트를 교대로 호출하여 실행 계획을 반복 개선하는 오케스트레이션 워크플로우.
@@ -72,14 +74,6 @@ critic의 채점 기준 (plan 모드):
 
 - **REJECT**: critic의 피드백을 planner에게 전달하여 수정 요청 → 2단계로 복귀
 - **PASS**: 최종 플랜을 사용자에게 전달하고 루프 종료
-
-## 라운드 보고
-
-매 라운드마다 사용자에게 아래 형식으로 진행 상황을 보고한다:
-
-```
-[라운드 N] 점수: X.XX | 결과: PASS/REJECT | 피드백: (1줄 요약)
-```
 
 ## NEVER 규칙
 

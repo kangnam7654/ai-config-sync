@@ -3,6 +3,9 @@ name: build-loop
 description: "auto-dev Build Loop (#27-#31). Orchestrates parallel implementation, DBA migration review, code/security review, tests, and Build Summary documentation. Called by auto-dev; also runs standalone."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+<!-- Override: max 10 rounds instead of shared default 5 -->
+
 # Build Loop
 
 auto-dev 파이프라인의 Build Phase. design-spec.md를 입력받아 구현 → 리뷰 → 테스트 → 문서화를 오케스트레이션한다.

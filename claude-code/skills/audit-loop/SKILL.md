@@ -3,6 +3,9 @@ name: audit-loop
 description: "auto-improve Audit Phase (#1-#9). Parallel diagnosis across up to 9 dimensions (code quality, security, architecture, DB, tests, repo health, UX/UI + opt-in BM, design) with CTO-prioritized Audit Report. Called by auto-improve; also runs standalone."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+<!-- Override: max 10 rounds instead of shared default 5; parallel diagnosis pattern instead of producer↔critic -->
+
 # audit-loop
 
 기존 코드베이스를 7개 관점에서 병렬 진단 → CTO 종합 판정 → Audit Report 문서화.

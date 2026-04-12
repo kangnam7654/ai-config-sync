@@ -3,6 +3,9 @@ name: architecture-loop
 description: "auto-dev Architecture Loop (#10-#16). Orchestrates tech stack decision, DB schema design/review, API design/review, DB-API consistency check, Arch Spec documentation. Called by design-loop; also runs standalone."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+<!-- Override: max 10 rounds instead of shared default 5 -->
+
 # Architecture Loop
 
 auto-dev 파이프라인 Design Phase의 첫 번째 서브-루프. 기술 스택 결정부터 DB-API 정합성 검증까지 오케스트레이션하고, 검증 통과한 아키텍처를 `arch-spec.md`로 문서화한다.

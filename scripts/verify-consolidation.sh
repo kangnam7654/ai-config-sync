@@ -42,12 +42,12 @@ for a in $PERSONA_AGENTS; do
 done
 
 echo "=== Old name residual check ==="
-FOUND=$(grep -rl "$OLD_NAMES" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" 2>/dev/null | grep -v ".git" | wc -l | tr -d ' ')
+FOUND=$(grep -Erl "$OLD_NAMES" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" 2>/dev/null | grep -v ".git" | wc -l | tr -d ' ')
 if [ "$FOUND" -eq 0 ]; then
   echo "PASS: No old name references"
 else
   echo "FAIL: $FOUND files still reference old names:"
-  grep -rl "$OLD_NAMES" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" 2>/dev/null | grep -v ".git"
+  grep -Erl "$OLD_NAMES" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" 2>/dev/null | grep -v ".git"
 fi
 
 echo "=== Done ==="

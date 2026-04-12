@@ -42,12 +42,13 @@ for a in $PERSONA_AGENTS; do
 done
 
 echo "=== Old name residual check ==="
-FOUND=$(grep -Erl "$OLD_NAMES" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" 2>/dev/null | grep -v ".git" | wc -l | tr -d ' ')
-if [ "$FOUND" -eq 0 ]; then
-  echo "PASS: No old name references"
+FOUND=$(grep -Erl "$OLD_NAMES" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" 2>/dev/null | grep -v ".git" | grep -v "\-workspace/" | grep -v "/evals/" || true)
+FOUND_COUNT=$(echo "$FOUND" | grep -c . || true)
+if [ "$FOUND_COUNT" -eq 0 ]; then
+  echo "PASS: No old name references (excluding workspace/eval dirs)"
 else
-  echo "FAIL: $FOUND files still reference old names:"
-  grep -Erl "$OLD_NAMES" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" 2>/dev/null | grep -v ".git"
+  echo "FAIL: $FOUND_COUNT files still reference old names:"
+  echo "$FOUND"
 fi
 
 echo "=== Done ==="

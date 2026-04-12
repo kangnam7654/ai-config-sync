@@ -19,7 +19,7 @@ document:
     - title: "UX/UI"
       source: "ux-ui-spec.md 흡수"
     - title: "실행 계획"
-      source: "#23 planner + #24 plan-critic"
+      source: "#23 planner + #24 critic (plan mode)"
       content: "파일 구조, 구현 순서, 병렬 트랙"
     - title: "CTO 게이트 승인"
       source: "#25 Design 게이트"

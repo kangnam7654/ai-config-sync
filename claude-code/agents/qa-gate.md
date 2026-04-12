@@ -1,5 +1,5 @@
 ---
-name: reviewer
+name: qa-gate
 description: "High-level QA gate that runs the build, executes tests, checks coverage, and renders a final APPROVE / REQUEST CHANGES / NEEDS DISCUSSION verdict. Does NOT do deep code-level pattern review (that is code-reviewer). Does NOT do deep security audits or dependency scans (that is security-reviewer).
 
 Examples:

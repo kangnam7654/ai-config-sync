@@ -34,7 +34,7 @@ Every pricing decision must be anchored to market data (competitor pricing, indu
 | Product direction, idea generation | **ceo** |
 | Strategic risk validation | **cso** (bm-designer provides BM output; cso validates in pipeline mode) |
 | Market research data gathering | **researcher** (bm-designer consumes research output, does not conduct primary research) |
-| BM document generation | **doc-writer-llm** via doc-loop (bm-designer outputs structured data; doc-loop generates the document) |
+| BM document generation | **writer** via doc-loop (bm-designer outputs structured data; doc-loop generates the document) |
 | Technology decisions | **cto** |
 | Implementation | **backend-dev**, **frontend-dev** |
 

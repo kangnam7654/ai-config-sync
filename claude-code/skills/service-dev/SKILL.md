@@ -94,13 +94,13 @@ Planner → Plan-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트
 
 **목표**: 사용자 중심으로 서비스의 구조와 흐름을 설계한다. CLI, API, 웹, 앱 등 사용자가 존재하는 모든 서비스에 필수다.
 
-product-designer 에이전트를 호출하여 2개 Sub-Phase를 순차 진행한다.
+designer 에이전트를 호출하여 2개 Sub-Phase를 순차 진행한다.
 
 **출력 형식**: Figma MCP가 연결되어 있으면 Figma에 시각화한다. 연결되어 있지 않으면 Mermaid 다이어그램 + 마크다운으로 `docs/{service-name}/ux-research.md`에 저장한다.
 
 ### Phase 2a: 페르소나 + 저니맵
 
-Phase 0의 타겟 사용자 정보를 product-designer에게 전달한다:
+Phase 0의 타겟 사용자 정보를 designer에게 전달한다:
 
 - **유저 페르소나**: 이름, 역할, 목표, 페인포인트, 행동 패턴. 서비스 특성에 따라 1~3개 페르소나를 생성한다.
 - **유저 저니맵**: 핵심 페르소나 기준으로 인지→탐색→결정→사용→재방문 단계별 행동, 감정, 터치포인트, 페인포인트를 정리한다.
@@ -165,7 +165,7 @@ Phase 3a 와이어프레임을 하이파이로 변환한다:
 
 **목표**: AI가 개발 시 참조할 스펙 문서를 작성한다.
 
-Writer → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **LLM 모드**). doc-writer-llm 또는 doc-writer-human을 사용한다.
+Writer → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **LLM 모드**). `writer` 에이전트를 사용한다.
 
 **입력**: Phase 1 산출물 + Phase 2 산출물 + Phase 3 산출물(있는 경우)
 
@@ -268,7 +268,7 @@ Phase 1에서 정의한 구현 순서에 따라 모듈별로 아래 사이클을
 
 **목표**: 사람이 읽을 문서를 작성한다.
 
-doc-writer-human → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **HUMAN 모드**).
+`writer` → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **HUMAN 모드**).
 
 **작성할 문서**:
 - `README.md` — 프로젝트 소개, 사전 준비, 빠른 시작, API 개요, 배포 방법

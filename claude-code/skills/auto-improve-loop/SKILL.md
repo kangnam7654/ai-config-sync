@@ -3,6 +3,9 @@ name: auto-improve-loop
 description: "Continuous improvement pipeline that runs auto-improve in multiple rounds until a target quality score is reached. Each round runs full Audit→Design→Build→Verify, remembering previous results and reprioritizing."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+<!-- Override: Ralph Loop pattern — max rounds configurable (default 5), exit conditions differ (score target + stagnation + regression detection); state persisted via improve-progress.yaml across sessions -->
+
 # auto-improve-loop
 
 코드베이스를 목표 품질에 도달할 때까지 자율적으로 반복 개선하는 파이프라인.

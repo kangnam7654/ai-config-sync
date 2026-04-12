@@ -3,6 +3,9 @@ name: verify-loop
 description: "auto-dev Verify Loop (#32-#36). Orchestrates functional testing, UI verification (design parity), usability testing (persona mocking), C-suite launch debate, and completion report. Called by auto-dev; also runs standalone."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+<!-- Override: max 10 rounds; cross-phase escalation (L1/L2/L3) instead of standard REJECT retry -->
+
 # Verify Loop
 
 auto-dev 파이프라인의 마지막 Phase. 구현된 앱의 동작, UI, 사용성을 검증하고, C-suite 론칭 디베이트를 거쳐 완성 보고를 산출한다.

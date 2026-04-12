@@ -1,9 +1,0 @@
-{
-  "expectations": [
-    {"text": "Phase 0 산출물 4가지(서비스 개요, 핵심 기능, 타겟 사용자, BM 요약)를 사용자에게 제시한다", "passed": false, "evidence": "4가지 항목으로 구조화하지 않음. 요구사항 확인 질문 5개만 제시"},
-    {"text": "사용자에게 산출물 승인을 요청한다", "passed": false, "evidence": "산출물이 없으므로 승인 요청도 없음. 질문에 대한 답변을 요청"},
-    {"text": "서비스 이름을 확인한다", "passed": false, "evidence": "서비스 이름 확인 없음"},
-    {"text": "디자인 불필요를 인지하고 Phase 2 스킵을 명시한다", "passed": false, "evidence": "Phase 구조 자체를 인식하지 않음"},
-    {"text": "idea-forge를 호출하지 않는다", "passed": true, "evidence": "idea-forge 호출 없음"}
-  ]
-}

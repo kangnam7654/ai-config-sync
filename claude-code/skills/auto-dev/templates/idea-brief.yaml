@@ -2,7 +2,7 @@
 # 흡수 대상: 없음 (최초 문서)
 # 흡수 주체: design-spec.md (#26) 생성 시 삭제
 step: 9
-agent: doc-writer-llm
+agent: writer
 status: PASS
 timestamp: "{ISO 8601}"
 document:

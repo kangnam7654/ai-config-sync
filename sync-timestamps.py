@@ -31,6 +31,9 @@ EXCLUDES: dict[str, list[str]] = {
         "skills/paperclip", "skills/paperclip/**",
         "skills/paperclip-create-agent", "skills/paperclip-create-agent/**",
         "skills/paperclip-create-plugin", "skills/paperclip-create-plugin/**",
+        "skills/*-workspace", "skills/*-workspace/**",
+        "skills/agent-create/ciso-workspace", "skills/agent-create/ciso-workspace/**",
+        "skills/agent-create/qa-engineer-workspace", "skills/agent-create/qa-engineer-workspace/**",
     ],
 }
 

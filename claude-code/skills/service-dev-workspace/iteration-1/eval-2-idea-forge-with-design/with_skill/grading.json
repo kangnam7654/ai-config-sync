@@ -1,9 +1,0 @@
-{
-  "expectations": [
-    {"text": "idea-forge 산출물을 찾거나 사용자에게 산출물 위치를 확인한다", "passed": true, "evidence": "'idea-forge 산출물 파일 위치: idea-forge 스킬의 결과물이 저장된 경로를 알려주세요'"},
-    {"text": "Phase 0 산출물 4가지 형식으로 정리한다", "passed": true, "evidence": "4가지 형식 템플릿을 제시하고, 파악 가능한 '서비스 개요'는 초안으로 채움"},
-    {"text": "디자인 필요를 인지하고 Phase 2 포함을 명시한다", "passed": true, "evidence": "Phase 로드맵에서 'Phase 2: Design → Figma UI/UX (모바일 웹 — 실행 예정)' 명시"},
-    {"text": "서비스 이름을 확인한다", "passed": true, "evidence": "'제안: pet-health-saas' + 서비스 이름 확인 요청"},
-    {"text": "사용자 승인 후 Phase 1(Plan)으로 진행할 것임을 안내한다", "passed": true, "evidence": "'위 3가지가 모두 완료되면 Phase 1 (Plan)으로 진행합니다'"}
-  ]
-}

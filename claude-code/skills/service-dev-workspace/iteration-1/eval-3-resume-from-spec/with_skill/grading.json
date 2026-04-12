@@ -1,9 +1,0 @@
-{
-  "expectations": [
-    {"text": "docs/taskflow/ 디렉토리를 확인한다", "passed": true, "evidence": "산출물 존재 여부 확인 테이블로 design.md, spec.md, src/, README.md 존재 여부를 체계적으로 확인"},
-    {"text": "design.md 존재로 Phase 1 완료를 판단한다", "passed": true, "evidence": "'design.md 존재 → Phase 1 (Plan) 완료' 명시"},
-    {"text": "spec.md 존재로 Phase 3 완료를 판단한다", "passed": true, "evidence": "'spec.md 존재 → Phase 3 (Spec) 완료' 명시"},
-    {"text": "spec.md를 읽어 모듈 목록과 구현 순서를 파악한다", "passed": true, "evidence": "spec.md를 읽고 mock 데이터임을 감지, NEVER 규칙 #3 위반 가능성을 경고하며 Phase 3 복귀를 제안"},
-    {"text": "Phase 4(Build)부터 재개한다고 안내한다", "passed": true, "evidence": "'Phase 3까지 완료. Phase 4 (Build)부터 재개해야 합니다' + mock 데이터로 인한 Phase 3 복귀 제안 (적절한 판단)"}
-  ]
-}

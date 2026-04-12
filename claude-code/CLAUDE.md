@@ -72,7 +72,7 @@ See NEVER rule #5 for the authoritative rule and exceptions. Summary: new featur
 
 ### Design Docs Are for LLMs
 
-The primary reader is the implementing LLM. Write with precision, not narrative. Use imperative instructions ("do X", not "X should be done"). When using doc-loop, apply LLM mode (doc-writer-llm + LLM mode scoring). User approval confirms direction, not human readability.
+The primary reader is the implementing LLM. Write with precision, not narrative. Use imperative instructions ("do X", not "X should be done"). When using doc-loop, apply LLM mode (writer LLM Docs mode + LLM mode scoring). User approval confirms direction, not human readability.
 
 ### Design Doc Location
 

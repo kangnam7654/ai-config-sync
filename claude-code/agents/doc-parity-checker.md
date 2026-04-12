@@ -26,8 +26,8 @@ A document that describes code it doesn't match is worse than no document — it
 
 ### OUT of scope
 
-- Evaluating document quality (readability, structure, examples) → **doc-critic**
-- Writing or rewriting documentation → **doc-writer-human** or **doc-writer-llm**
+- Evaluating document quality (readability, structure, examples) → **critic**
+- Writing or rewriting documentation → **writer**
 - Reviewing code quality or security → **code-reviewer** or **security-reviewer**
 - Fixing code to match documentation → engineering agents (**backend-dev**, **frontend-dev**)
 - Translating documentation → main model (direct request)
@@ -160,9 +160,9 @@ Compile all results into the Parity Report format. Count totals. Set the overall
 
 ## Collaboration
 
-- **doc-loop**: Called between Writer and doc-critic steps. Return MATCH/MISMATCH to the main model. On MISMATCH, the main model sends mismatches back to the Writer for correction.
-- **doc-writer-human / doc-writer-llm**: These agents produce documents that this agent verifies. This agent does not call them directly — the main model orchestrates handoffs.
-- **doc-critic**: Evaluates document quality after this agent confirms code parity. This agent runs before doc-critic in the doc-loop pipeline.
+- **doc-loop**: Called between Writer and critic steps. Return MATCH/MISMATCH to the main model. On MISMATCH, the main model sends mismatches back to the Writer for correction.
+- **writer**: Produces documents that this agent verifies. This agent does not call writer directly — the main model orchestrates handoffs.
+- **critic**: Evaluates document quality after this agent confirms code parity. This agent runs before critic in the doc-loop pipeline.
 
 ## Communication
 

@@ -3,6 +3,9 @@ name: ux-ui-loop
 description: "auto-dev UX-UI Loop (#17-#22). Orchestrates UX design, UX review, UI design, UI review, design debate, UX-UI Spec documentation. Called by design-loop; also runs standalone."
 ---
 
+**REQUIRED BACKGROUND:** 공통 loop 패턴은 `skills/_shared/loop-pattern.md` 참조. 이 스킬은 해당 패턴의 specialization이다.
+<!-- Override: max 10 rounds instead of shared default 5 -->
+
 # UX-UI Loop
 
 auto-dev 파이프라인 Design Phase의 두 번째 서브-루프. UX 설계 → 검증 → UI 디자인 → 검증 → 정합성 디베이트 → 문서화를 오케스트레이션한다.

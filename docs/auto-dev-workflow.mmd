@@ -1,0 +1,110 @@
+flowchart TD
+    classDef idea fill:#DBEAFE,stroke:#2563EB,color:#1E3A5F
+    classDef design fill:#D1FAE5,stroke:#059669,color:#064E3B
+    classDef build fill:#FEF3C7,stroke:#D97706,color:#78350F
+    classDef verify fill:#EDE9FE,stroke:#7C3AED,color:#4C1D95
+    classDef gate fill:#FEE2E2,stroke:#DC2626,color:#991B1B
+    classDef debate fill:#FEF9C3,stroke:#CA8A04,color:#713F12
+    classDef human fill:#FCE7F3,stroke:#DB2777,color:#831843
+    classDef done fill:#D1FAE5,stroke:#059669,color:#064E3B,stroke-width:3px
+
+    %% ════════════════════════════
+    %% IDEA PHASE
+    %% ════════════════════════════
+    subgraph IDEA[" IDEA PHASE "]
+        S1["#1 입력 분류"]:::idea
+        S2["#2 브레인스토밍 ⓢ"]:::idea
+        S3["#3 트렌드 스코어링 ⓢ"]:::idea
+        S4["#4 CEO 방향 결정"]:::idea
+        S5["#5 시장 조사"]:::idea
+        S6["#6 CSO 전략 검증"]:::idea
+        S7["#7 BM 설계"]:::idea
+        S8{{"#8 CEO 게이트"}}:::gate
+    end
+
+    S1 -->|"같이 고민"| S2
+    S1 -->|"막연한 요청"| S3
+    S1 -->|"아이디어 있음"| S4
+    S2 --> S4
+    S3 --> S4
+    S4 --> S5 --> S6
+    S6 -->|"No-Go"| S4
+    S6 -->|"Go"| S7 --> S8
+    S8 -->|"BM수정"| S7
+    S8 -->|"변경"| S4
+    S8 ==>|"PASS"| S9
+
+    %% ════════════════════════════
+    %% DESIGN PHASE
+    %% ════════════════════════════
+    subgraph DESIGN[" DESIGN PHASE "]
+        S9["#9 기술 스택 + API 표준 · CTO"]:::design
+        S10["#10 DB 스키마 · data-engineer"]:::design
+        S11["#11 DB 리뷰 · CTO"]:::design
+        S12["#12 API 설계 · backend-dev"]:::design
+        S13["#13 API 리뷰 · CTO"]:::design
+        S14["#14 DB-API 정합성 · CTO"]:::design
+        S15["#15 UX 설계 · product-designer"]:::design
+        S16["#16 UX 검증 · ux-reviewer"]:::design
+        S17["#17 UI 디자인 · product-designer"]:::design
+        S18["#18 UI 검증 · ui-reviewer"]:::design
+        S19["#19 디자인 디베이트 · ux↔ui"]:::debate
+        S20["#20 실행 계획 · planner"]:::design
+        S21["#21 설계+계획 검증 · plan-critic"]:::design
+        S22{{"#22 CTO 게이트"}}:::gate
+    end
+
+    S9 --> S10 --> S11
+    S11 -->|"FAIL"| S10
+    S11 -->|"PASS"| S12 --> S13
+    S13 -->|"FAIL"| S12
+    S13 -->|"PASS"| S14
+    S14 -->|"FAIL"| S10
+    S14 -->|"PASS"| S15 --> S16
+    S16 -->|"FAIL"| S15
+    S16 -->|"PASS"| S17 --> S18
+    S18 -->|"FAIL"| S17
+    S18 -->|"PASS"| S19
+    S19 -->|"합의"| S20 --> S21
+    S21 -->|"FAIL"| S20
+    S21 -->|"PASS"| S22
+    S22 ==>|"PASS"| S23
+
+    %% ════════════════════════════
+    %% BUILD PHASE
+    %% ════════════════════════════
+    subgraph BUILD[" BUILD PHASE "]
+        S23["#23 구현 병렬 · frontend/backend/mobile/ai"]:::build
+        S24["#24 마이그레이션 리뷰 · DBA"]:::build
+        S25["#25 코드 리뷰 · code-reviewer + security"]:::build
+        S26["#26 테스트 · qa-engineer"]:::build
+    end
+
+    S23 --> S24
+    S24 -->|"지적"| S23
+    S24 -->|"PASS"| S25
+    S25 -->|"지적"| S23
+    S25 -->|"PASS"| S26
+    S26 -->|"FAIL"| S23
+    S26 ==>|"PASS"| S27
+
+    %% ════════════════════════════
+    %% VERIFY PHASE
+    %% ════════════════════════════
+    subgraph VERIFY[" VERIFY PHASE "]
+        S27["#27 동작 검증 · simulator"]:::verify
+        S28["#28 UI 검증 · ui-reviewer"]:::verify
+        S29["#29 사용성 테스트 · user-tester"]:::verify
+        S30["#30 론칭 디베이트 · CEO↔CTO↔CSO"]:::debate
+        S31(["#31 완성 보고"]):::done
+    end
+
+    S27 -->|"FAIL"| S23
+    S27 -->|"PASS"| S28
+    S28 -->|"FAIL"| S17
+    S28 -->|"PASS"| S29
+    S29 -->|"FAIL"| S15
+    S29 -->|"PASS"| S30
+    S30 -->|"코드수정"| S23
+    S30 -->|"설계변경"| USER2["사용자 보고"]:::human
+    S30 ==>|"PASS"| S31

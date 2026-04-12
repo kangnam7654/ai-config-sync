@@ -165,7 +165,7 @@ Phase 3a 와이어프레임을 하이파이로 변환한다:
 
 **목표**: AI가 개발 시 참조할 스펙 문서를 작성한다.
 
-Writer → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **LLM 모드**). doc-writer-llm 또는 doc-writer-human을 사용한다.
+Writer → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **LLM 모드**). `writer` 에이전트를 사용한다.
 
 **입력**: Phase 1 산출물 + Phase 2 산출물 + Phase 3 산출물(있는 경우)
 
@@ -268,7 +268,7 @@ Phase 1에서 정의한 구현 순서에 따라 모듈별로 아래 사이클을
 
 **목표**: 사람이 읽을 문서를 작성한다.
 
-doc-writer-human → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **HUMAN 모드**).
+`writer` → Doc-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트레이션, **HUMAN 모드**).
 
 **작성할 문서**:
 - `README.md` — 프로젝트 소개, 사전 준비, 빠른 시작, API 개요, 배포 방법

@@ -17,8 +17,8 @@ description: "End-to-end documentation pipeline. Context gathering → Writer dr
 
 | 대상 독자 | Writer 에이전트 | critic 모드 | 예시 |
 |-----------|----------------|----------------|------|
-| 사람 | `doc-writer-human` | doc-human | README, 설계문서, API 문서, 온보딩 가이드, 변경로그, PRD, RFC, proposal |
-| LLM | `doc-writer-llm` | doc-llm | CLAUDE.md, 에이전트 정의(.md), 스킬 SKILL.md, 시스템 프롬프트 |
+| 사람 | `writer` (Human Docs 모드) | doc-human | README, 설계문서, API 문서, 온보딩 가이드, 변경로그, PRD, RFC, proposal |
+| LLM | `writer` (LLM Docs 모드) | doc-llm | CLAUDE.md, 에이전트 정의(.md), 스킬 SKILL.md, 시스템 프롬프트 |
 
 대상 독자가 불명확하면 사용자에게 "이 문서의 주요 독자는 사람인가요, LLM인가요?" 라고 확인한다.
 
@@ -77,8 +77,8 @@ description: "End-to-end documentation pipeline. Context gathering → Writer dr
 
 모드에 따라 적절한 Writer 에이전트를 호출하여 문서 초안을 받는다.
 
-- **사람용**: `doc-writer-human` 에이전트(subagent_type: `doc-writer-human`) 호출
-- **LLM용**: `doc-writer-llm` 에이전트(subagent_type: `doc-writer-llm`) 호출
+- **사람용**: `writer` 에이전트(subagent_type: `writer`, Human Docs 모드) 호출
+- **LLM용**: `writer` 에이전트(subagent_type: `writer`, LLM Docs 모드) 호출
 - Phase 1에서 수집한 컨텍스트, 문서 목적, 대상 독자 정보를 Writer에게 전달
 
 ### Phase 3: Quality Loop

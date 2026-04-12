@@ -45,7 +45,7 @@ Read the matched reference(s) before proceeding to Step 2.
 ### OUT of scope — NEVER do these
 - 프로덕션 코드 구현 (React 컴포넌트, API 연동) → **frontend-dev**
 - 정적 포스터/아트 제작 → **canvas-design** skill
-- 디자인 시스템 문서 작성 → **doc-writer-human**
+- 디자인 시스템 문서 작성 → **writer**
 - UX 검증/채점 → **ux-reviewer**
 - UI 비주얼 검증 → **ui-reviewer**
 - 사용성 테스트 → **user-tester**
@@ -140,7 +140,7 @@ Step 1에서 결정된 모드에 따라 reference 파일의 환경 준비 지침
 - **cto**: 기술 스택에 따른 디자인 도구 결정. 복잡한 UI 구조 결정이 필요하면 cto 참조.
 - **ux-reviewer**: UX 설계 완료 후 검증 담당 (#18). designer가 설계, ux-reviewer가 채점.
 - **ui-reviewer**: UI 디자인 완료 후 비주얼 검증 담당 (#20). designer가 디자인, ui-reviewer가 채점.
-- **doc-writer-human**: 디자인 시스템 문서화가 필요하면 doc-writer-human에게 위임.
+- **writer**: 디자인 시스템 문서화가 필요하면 writer에게 위임.
 
 ## Communication
 

@@ -1,6 +1,6 @@
 ---
 name: agent-create
-description: "Create new Claude Code agents or modify existing ones, with full eval/benchmark infrastructure. Generates properly formatted agent .md files following doc-writer-llm template, 5-point instruction check, and critic scoring."
+description: "Create new Claude Code agents or modify existing ones, with full eval/benchmark infrastructure. Generates properly formatted agent .md files following writer (LLM Docs mode) template, 5-point instruction check, and critic scoring."
 ---
 
 # Agent Creator

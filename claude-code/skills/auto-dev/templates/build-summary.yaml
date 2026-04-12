@@ -2,7 +2,7 @@
 # 흡수 대상: 없음
 # 흡수 주체: 없음 (파이프라인 종료까지 유지)
 step: 31
-agent: doc-writer-llm
+agent: writer
 status: PASS
 timestamp: "{ISO 8601}"
 document:

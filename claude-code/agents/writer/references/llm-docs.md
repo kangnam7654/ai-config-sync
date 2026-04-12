@@ -1,12 +1,6 @@
----
-name: doc-writer-llm
-description: "[Doc] Writes LLM-facing documents — CLAUDE.md, agent definitions, skill files, system prompts, tool descriptions. Focuses on precision and executable instructions. Submits to critic after drafting. Human-readable docs (README, guides) → doc-writer-human."
-model: opus
-tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
-memory: user
----
+# LLM Docs Reference
 
-You are a **Prompt Engineer** — 5+ years designing LLM instructions that produce reliable, predictable outputs. You've written system prompts, agent definitions, and tool descriptions for production systems. You know that one ambiguous word can derail an entire agent workflow.
+Applies when request involves: CLAUDE.md, agent .md files, skill SKILL.md, system prompts, tool/function descriptions, prompt templates.
 
 ## Core Principle
 
@@ -14,7 +8,7 @@ LLM 문서는 코드다. 모호함은 버그다.
 
 ## Scope
 
-### doc-writer-llm handles (IN scope)
+### IN scope
 
 - CLAUDE.md project instruction files
 - Agent definition `.md` files (frontmatter + instructions)
@@ -22,15 +16,15 @@ LLM 문서는 코드다. 모호함은 버그다.
 - System prompts for LLM APIs
 - Tool/function descriptions for LLM tool-use
 
-### doc-writer-llm does NOT handle (OUT of scope)
+### OUT of scope
 
-- Human-readable documentation (README, guides, API docs, changelogs) → **doc-writer-human**
+- Human-readable documentation (README, guides, API docs, changelogs) → load `human-docs.md` reference
 - Code comments and docstrings → engineering agents (backend-dev, frontend-dev)
 - Commit messages and PR descriptions → **git-master**
 - Planning and task decomposition → **planner**
 - Evaluation of existing prompts → **critic** (LLM mode)
 
-### Target LLM Constraints
+## Target LLM Constraints
 
 All prompts default to **Claude** (Anthropic) unless the user specifies otherwise. When the user specifies a non-Claude target LLM:
 
@@ -42,7 +36,7 @@ All prompts default to **Claude** (Anthropic) unless the user specifies otherwis
    - **All non-Claude models**: Do NOT use `<artifacts>`, `<antThinking>`, or Claude-specific XML conventions.
 3. State the target model in the document header: `<!-- Target: GPT-4o -->` or equivalent comment.
 
-### Multi-Turn Prompt Handling
+## Multi-Turn Prompt Handling
 
 When the user requests a multi-turn prompt (chatbot system prompt, conversational agent):
 
@@ -51,7 +45,7 @@ When the user requests a multi-turn prompt (chatbot system prompt, conversationa
 3. Include state management rules: what the LLM must remember across turns, what it must NOT carry forward.
 4. Define conversation termination conditions explicitly.
 
-### Multimodal Prompt Handling
+## Multimodal Prompt Handling
 
 When the user requests a prompt that handles images, PDFs, or other non-text inputs:
 
@@ -59,7 +53,7 @@ When the user requests a prompt that handles images, PDFs, or other non-text inp
 2. For each modality, define: what the LLM should extract, how to reference the input in instructions (`the attached image`, `the provided PDF`), and what to do if the input is unreadable or missing.
 3. Include a fallback instruction: `IF the [modality] input is missing or unreadable THEN respond with: "[specific error message]"`.
 
-### Constrained Context Window Handling
+## Constrained Context Window Handling
 
 When the target LLM has a small context window (under 16K tokens) or the prompt must fit within a token budget:
 
@@ -69,12 +63,12 @@ When the target LLM has a small context window (under 16K tokens) or the prompt 
 4. Combine related rules into single bullets.
 5. State the token budget in the document header: `<!-- Token budget: 4000 -->`.
 
-### Hybrid Document Handling
+## Hybrid Document Handling
 
 When a document contains both human-readable and LLM-executable sections (e.g., CLAUDE.md with an "Overview" for humans and "Rules" for the LLM):
 
 1. Mark each section with its audience: `<!-- audience: human -->` or `<!-- audience: llm -->`.
-2. Apply doc-writer standards to human sections and doc-writer-llm standards to LLM sections.
+2. Apply human-docs standards to human sections and llm-docs standards to LLM sections.
 3. Score only the LLM sections when submitting to critic.
 
 ## Definition: Instruction
@@ -417,17 +411,3 @@ Before submitting to critic, verify all items. Write the Self-Check Results bloc
 - [ ] Every workflow step has a defined **Output**
 - [ ] NEVER and ALWAYS rules sections are present (for agent/skill definitions)
 - [ ] Scope section defines both IN and OUT of scope
-
-## Collaboration
-
-- **critic**: Submit all drafts for scoring (LLM mode). Fix issues until PASS or 5 REJECTs.
-- **agent-create skill**: Reference when creating new agent files for structural conventions.
-- **code-reviewer**: Consult when prompt changes affect code behavior.
-- **doc-writer-human**: Redirect when user requests human-readable documentation.
-
-## Communication
-
-- Respond in user's language
-- Use `uv run python` for Python execution
-
-**Update your agent memory** as you discover prompt patterns that work well, recurring ambiguity issues, the user's agent/skill conventions, which instruction styles produce the most reliable LLM behavior, and model-specific quirks for non-Claude targets.

@@ -1,7 +1,0 @@
-{
-  "expectations": [
-    {"text": "코레일 사이트(korail.com)를 사용했는가", "passed": false, "evidence": "letskorail.com(구 도메인)을 사용. korail.com이 아닌 레거시 URL 참조"},
-    {"text": "서울역 출발이므로 SRT가 아닌 코레일로 라우팅했는가", "passed": true, "evidence": "코레일을 올바르게 선택. SRT 언급 없음"},
-    {"text": "폼 자동화 단계를 기술했는가", "passed": false, "evidence": "agent-browser 사용 절차 없음. WebFetch/WebSearch 접근만 기술. 폼 자동화 단계 미포함"}
-  ]
-}

@@ -34,6 +34,19 @@ EXCLUDES: dict[str, list[str]] = {
         "skills/*-workspace", "skills/*-workspace/**",
         "skills/agent-create/ciso-workspace", "skills/agent-create/ciso-workspace/**",
         "skills/agent-create/qa-engineer-workspace", "skills/agent-create/qa-engineer-workspace/**",
+        # consolidated agents (2026-04-12) — deleted, exclude to prevent sync restore
+        "agents/go-reviewer.md", "agents/python-reviewer.md",
+        "agents/build-error-resolver.md", "agents/go-build-resolver.md",
+        "agents/trend-scorer.md", "agents/database-reviewer.md",
+        "agents/ui-designer.md", "agents/product-designer.md",
+        "agents/doc-critic.md", "agents/doc-critic/**",
+        "agents/plan-critic.md",
+        "agents/doc-writer-human.md", "agents/doc-writer-llm.md",
+        "agents/advanced-code-reviewer.md", "agents/advanced-code-reviewer/**",
+        "agents/reviewer.md",
+        "agents/cto/refs", "agents/cto/refs/**",
+        "skills/transport-search", "skills/transport-search/**",
+        "skills/travel-plan", "skills/travel-plan/**",
     ],
 }
 

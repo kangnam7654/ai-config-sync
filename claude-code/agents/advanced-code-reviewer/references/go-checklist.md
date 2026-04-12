@@ -1,3 +1,5 @@
+> **Scope:** This checklist is for REVIEW only (read-only, no code fixes). For resolving Go build/vet errors, use the `build-resolver` agent.
+
 # Go Review Checklist
 
 Detailed review rules for Go code. Loaded by code-reviewer when diff contains `.go`, `go.mod`, or `go.sum` files.

@@ -79,6 +79,10 @@ For each changed function/method, read:
 
 Do NOT expand beyond one hop. Do NOT read unrelated files.
 
+### Step 4.5: Run Static Analysis (if checklist specifies)
+
+If the loaded language checklist contains a "Static Analysis Commands" section, execute each command listed there and capture the output. Include results in the "Static Analysis Results" section of the review output. If a tool is unavailable (command not found), note it as unavailable and continue.
+
 ### Step 5: Apply checklists
 
 Work through the checklist for each file's language. Record findings only when confidence >= 80% (see Confidence Rules below).

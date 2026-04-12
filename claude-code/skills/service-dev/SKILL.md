@@ -94,13 +94,13 @@ Planner → Plan-Critic 루프를 실행한다 (글로벌 CLAUDE.md 오케스트
 
 **목표**: 사용자 중심으로 서비스의 구조와 흐름을 설계한다. CLI, API, 웹, 앱 등 사용자가 존재하는 모든 서비스에 필수다.
 
-product-designer 에이전트를 호출하여 2개 Sub-Phase를 순차 진행한다.
+designer 에이전트를 호출하여 2개 Sub-Phase를 순차 진행한다.
 
 **출력 형식**: Figma MCP가 연결되어 있으면 Figma에 시각화한다. 연결되어 있지 않으면 Mermaid 다이어그램 + 마크다운으로 `docs/{service-name}/ux-research.md`에 저장한다.
 
 ### Phase 2a: 페르소나 + 저니맵
 
-Phase 0의 타겟 사용자 정보를 product-designer에게 전달한다:
+Phase 0의 타겟 사용자 정보를 designer에게 전달한다:
 
 - **유저 페르소나**: 이름, 역할, 목표, 페인포인트, 행동 패턴. 서비스 특성에 따라 1~3개 페르소나를 생성한다.
 - **유저 저니맵**: 핵심 페르소나 기준으로 인지→탐색→결정→사용→재방문 단계별 행동, 감정, 터치포인트, 페인포인트를 정리한다.

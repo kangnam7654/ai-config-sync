@@ -1,16 +1,16 @@
 # State: Kangnamui-MacBookPro
-> Last updated: 2026-04-12 12:30 KST
+> Last updated: 2026-04-12 13:32 KST
 
 ## Environment
 - **OS:** macOS 26.3.1 (arm64)
 - **Hostname:** Kangnamui-MacBookPro
 
 ## OpenClaw
-- **Version:** N/A
-- **Model:** N/A
+- **Version:** OpenClaw 2026.4.2 (d74a122)
+- **Model:** anthropic/claude-sonnet-4-6
 
 ## Claude Code
-- **Version:** N/A
+- **Version:** 2.1.104 (Claude Code)
 
 ## Scheduled Jobs
 ```

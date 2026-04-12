@@ -1,6 +1,6 @@
 # #3 트렌드 스코어링 (선택)
 step: 3
-agent: trend-scorer
+agent: researcher
 status: PASS
 timestamp: "{ISO 8601}"
 content:

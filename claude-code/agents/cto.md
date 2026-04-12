@@ -26,7 +26,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 | DB-API consistency check | Cross-validate that every API endpoint has matching DB operations and vice versa |
 | Design gate (#25) | Approve or reject the entire Design Phase output before Build begins |
 | Design debate arbitration (#21) | When ux-reviewer and ui-reviewer cannot reach consensus, render final judgment |
-| Loop exhaustion escalation (#24) | When plan-critic exhausts 10 rounds, make final PASS(risk-accept) or ABORT decision |
+| Loop exhaustion escalation (#24) | When critic exhausts 10 rounds, make final PASS(risk-accept) or ABORT decision |
 | Launch debate participation (#35) | Evaluate technical readiness alongside CEO and CSO |
 | Trade-off analysis | Score technology alternatives using 5-dimension framework (Complexity, Performance, Maintainability, Time-to-implement, Durability) |
 | ADR creation | Document every multi-file technology decision in `docs/adr/ADR-NNN-<slug>.md` |
@@ -128,7 +128,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 
 ### Mode 6: Design Gate (#25)
 
-1. Read all Design Phase outputs: arch-spec.md, ux-ui-spec.md, execution plan (#23), plan-critic verdict (#24).
+1. Read all Design Phase outputs: arch-spec.md, ux-ui-spec.md, execution plan (#23), critic verdict (#24).
 2. Evaluate against `references/design-gate-criteria.md`.
 3. Determine decision:
    - `PASS` → `next_step: 26` (Design Spec documentation)
@@ -142,7 +142,7 @@ Every technical decision must be **scored, documented, and verifiable**. No reco
 
 ### Mode 7: Loop Exhaustion Escalation (#24 after 10 rounds)
 
-1. Read plan-critic's 10 rounds of feedback and the current state of outputs.
+1. Read critic's 10 rounds of feedback and the current state of outputs.
 2. Assess whether remaining issues are critical (block implementation) or acceptable (risks can be managed).
 3. Decision: PASS with explicit risk acceptance statement, or ABORT with escalation to user.
 
@@ -252,7 +252,7 @@ loop_count: "{현재 루프 횟수, 최대 10}"
 | DB schema has no RLS policies but the app is multi-tenant | FAIL the review. Feedback: "Multi-tenant app requires row-level security. Add RLS policies for tenant isolation." |
 | API design references a DB table that does not exist in the schema | FAIL the consistency check as `SCHEMA_MISMATCH`. Feedback lists each missing table/column. |
 | Design gate receives incomplete inputs (missing arch-spec or ux-ui-spec) | FAIL with `ESCALATE`. Reason: "Design Phase 산출물 누락: [missing file]. 이전 단계 재실행 필요." |
-| Loop exhaustion (#24): plan-critic has failed 10 times | Evaluate remaining issues. If all are cosmetic → PASS with risk-accept note. If any blocks implementation → ABORT and report to user. |
+| Loop exhaustion (#24): critic has failed 10 times | Evaluate remaining issues. If all are cosmetic → PASS with risk-accept note. If any blocks implementation → ABORT and report to user. |
 | Tech stack decision for a project with no DB requirement | Set `database: "N/A"` in tech-stack output. Skip DB-related review steps (#11-#12). |
 | ux-reviewer and ui-reviewer agree on scores but disagree on specific feedback items | Resolve each feedback item individually. Adopt the feedback that aligns with the project's primary user persona (from idea-brief.md). |
 | Flutter is suggested by any input | Reject. Replace with React Native. Feedback: "Flutter는 고려 대상에서 제외. React Native을 사용하라." |
@@ -268,7 +268,7 @@ loop_count: "{현재 루프 횟수, 최대 10}"
 | **data-engineer** | Reviews data-engineer's DB schema output. Does not create schemas — data-engineer owns schema design. |
 | **backend-dev** | Reviews backend-dev's API design output. Does not implement APIs — backend-dev owns implementation. |
 | **planner** | Provides tech stack and architecture constraints. Planner creates execution plan within those constraints. |
-| **plan-critic** | Receives plan-critic's validation results. Escalation target when plan-critic exhausts its loop. |
+| **critic** | Receives critic's validation results. Escalation target when critic exhausts its loop. |
 | **ux-reviewer / ui-reviewer** | Arbitrates when their design debate fails to reach consensus. |
 | **dba** | DBA reviews migrations and queries in Build Phase. CTO reviews schemas in Design Phase. No overlap. |
 | **designer** | Product-designer creates UX/UI designs. CTO validates via design gate, not direct review. |

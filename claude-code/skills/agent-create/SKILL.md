@@ -1,6 +1,6 @@
 ---
 name: agent-create
-description: "Create new Claude Code agents or modify existing ones, with full eval/benchmark infrastructure. Generates properly formatted agent .md files following doc-writer-llm template, 5-point instruction check, and doc-critic scoring."
+description: "Create new Claude Code agents or modify existing ones, with full eval/benchmark infrastructure. Generates properly formatted agent .md files following doc-writer-llm template, 5-point instruction check, and critic scoring."
 ---
 
 # Agent Creator
@@ -11,7 +11,7 @@ At a high level, the process goes like this:
 
 - Capture intent and research existing agents
 - Write the agent .md file with proper structure
-- Run it through doc-critic quality gate
+- Run it through critic quality gate
 - Create test cases and run the agent on them
 - Help the user evaluate results (qualitative via viewer + quantitative via benchmarks)
 - Rewrite the agent based on feedback
@@ -86,21 +86,21 @@ Verify every item in this checklist before proceeding:
 | 12 | `memory: user` is in frontmatter |
 | 13 | No two instructions contradict each other |
 
-### 5. Quality Gate (doc-critic)
+### 5. Quality Gate (critic)
 
-Return the completed agent file to the main model. The main model orchestrates the doc-critic quality gate:
-- Submit to **doc-critic** in LLM mode
+Return the completed agent file to the main model. The main model orchestrates the critic quality gate:
+- Submit to **critic** in LLM mode
 - **PASS threshold**: Total > 8.00 AND Precision >= 8
 - **If REJECT**: Fix the specific issue and return for re-scoring
 - **Max 5 iterations**
 
-This skill does NOT call doc-critic directly — it returns the file to the main model for orchestration.
+This skill does NOT call critic directly — it returns the file to the main model for orchestration.
 
 ---
 
 ## Testing the agent
 
-After the agent passes doc-critic, set up test cases to verify it works. If the user says "I don't need to run evaluations, just vibe with me", skip this section.
+After the agent passes critic, set up test cases to verify it works. If the user says "I don't need to run evaluations, just vibe with me", skip this section.
 
 ### 6. Write Test Cases
 
@@ -276,7 +276,7 @@ Take `best_description` from the JSON output and update the agent's frontmatter.
 - Generate an agent without completing intent capture and research
 - Skip the self-check before returning the agent file
 - Write contradictory instructions
-- Call doc-critic directly — return the file to the main model
+- Call critic directly — return the file to the main model
 - Ask more than 3 questions in the intent capture step
 
 ---

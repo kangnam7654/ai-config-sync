@@ -219,7 +219,7 @@ Idea Phase의 전체 산출물을 검토하고 최종 의사결정을 내려라:
 
 **doc-loop 스킬**을 자동(B) 모드 + LLM 모드로 호출한다. #4~#8의 모든 산출물을 컨텍스트로 전달하여 `idea-brief.md`를 생성한다.
 
-doc-loop 내부에서 doc-writer-llm → parity check → doc-critic 루프가 PASS할 때까지 최대 5라운드 반복한다.
+doc-loop 내부에서 doc-writer-llm → parity check → critic 루프가 PASS할 때까지 최대 5라운드 반복한다.
 
 **산출물**: `{project}/docs/llm/idea-brief.md`
 

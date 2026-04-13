@@ -156,6 +156,16 @@
         "installedAt": "2026-04-01T06:56:38.244Z",
         "lastUpdated": "2026-04-01T06:56:38.244Z"
       }
+    ],
+    "codex@openai-codex": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/openai-codex/codex/1.0.3",
+        "version": "1.0.3",
+        "installedAt": "2026-04-13T17:40:15.774Z",
+        "lastUpdated": "2026-04-13T17:40:15.774Z",
+        "gitCommitSha": "6a5c2ba53b734f3cdd8daacbd49f68f3e6c8c167"
+      }
     ]
   }
 }

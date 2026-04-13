@@ -173,3 +173,19 @@ Additional memory type beyond system defaults (user, feedback, project, referenc
 
 - **mmdc** (mermaid-cli): Mermaid `.mmd` → PNG. On failure, report error and provide `.mmd` only.
 - **agent-browser**: Use only for login-required pages, dynamic SPAs, browser interaction. Do not use when WebSearch/WebFetch suffices. Commands: `agent-browser open <url>`, `snapshot`, `screenshot`, `click`, `fill`, `text`, `close`
+
+## Design Systems (awesome-design-md)
+
+`~/.claude/design-md/design-md/` 에 66개 브랜드 DESIGN.md 파일이 있음 (source: https://github.com/VoltAgent/awesome-design-md).
+
+### 사용법
+
+UI 작업 시 사용자가 특정 디자인 스타일을 요청하면:
+1. `~/.claude/design-systems/<brand>/DESIGN.md` 파일을 Read로 읽어서 참고
+2. 또는 프로젝트 루트에 복사: `cp ~/.claude/design-systems/<brand>/DESIGN.md ./DESIGN.md`
+
+### 사용 가능한 브랜드 목록
+
+`airbnb`, `airtable`, `apple`, `bmw`, `cal`, `claude`, `clay`, `clickhouse`, `cohere`, `coinbase`, `composio`, `cursor`, `elevenlabs`, `expo`, `ferrari`, `figma`, `framer`, `hashicorp`, `ibm`, `intercom`, `kraken`, `lamborghini`, `linear.app`, `lovable`, `minimax`, `mintlify`, `miro`, `mistral.ai`, `mongodb`, `notion`, `nvidia`, `ollama`, `opencode.ai`, `pinterest`, `posthog`, `raycast`, `renault`, `replicate`, `resend`, `revolut`, `runwayml`, `sanity`, `semrush`, `sentry`, `spacex`, `spotify`, `stripe`, `supabase`, `superhuman`, `tesla`, `together.ai`, `uber`, `vercel`, `voltagent`, `warp`, `webflow`, `wise`, `x.ai`, `zapier`
+
+업데이트: `git -C ~/.claude/design-md pull --rebase`

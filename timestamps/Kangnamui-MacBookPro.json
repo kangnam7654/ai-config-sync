@@ -642,7 +642,7 @@
     "CLAUDE.md": 1775965888.121771,
     "memory/multi-provider-oauth-architecture.md": 1772631004.907993,
     "plugins/blocklist.json": 1775844012.2896996,
-    "plugins/known_marketplaces.json": 1776038257.4225154,
+    "plugins/known_marketplaces.json": 1776051392.2313173,
     "plugins/installed_plugins.json": 1775964975.8913946,
     "plugins/install-counts-cache.json": 1775958999.8131785,
     "plugins/marketplaces/impeccable/functions/api/download/[type]/[provider]/[id].js": 1775844023.5139248,

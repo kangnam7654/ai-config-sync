@@ -637,12 +637,12 @@
     "skills/veo-shorts-writer/references/archive.md": 1774076416.5481992
   },
   "claude-code": {
-    "settings.json": 1776090257.7439816,
+    "settings.json": 1776095407.6741977,
     "stop-hook-git-check.sh": 1772631005.3955393,
     "CLAUDE.md": 1776089653.970504,
     "memory/multi-provider-oauth-architecture.md": 1772631004.907993,
     "plugins/blocklist.json": 1775844012.2896996,
-    "plugins/known_marketplaces.json": 1776094261.5772557,
+    "plugins/known_marketplaces.json": 1776095978.2494469,
     "plugins/installed_plugins.json": 1775964975.8913946,
     "plugins/install-counts-cache.json": 1775958999.8131785,
     "plugins/marketplaces/impeccable/functions/api/download/[type]/[provider]/[id].js": 1775844023.5139248,

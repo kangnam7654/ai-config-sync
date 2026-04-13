@@ -76,9 +76,9 @@ The primary reader is the implementing LLM. Write with precision, not narrative.
 
 ### Design Doc Location
 
-- LLM design docs: `{project}/docs/llm/{feature-or-topic}.md`
+- LLM design docs: `{project}/docs/llm/{YYYY-MM-DD}-{feature-or-topic}.md` (date = doc creation date, not today's date when editing)
 - Human docs (README etc.): `{project}/docs/{feature-or-topic}/`
-- If a design doc for the same topic exists, update it instead of creating a new file.
+- Before creating a new LLM design doc, glob `{project}/docs/llm/*-{feature-or-topic}.md` to find existing docs for the same topic (match by `{feature-or-topic}` suffix, ignore date prefix). If one exists, update that file in place — do not create a new date-prefixed file.
 
 ### Required Design Doc Sections
 

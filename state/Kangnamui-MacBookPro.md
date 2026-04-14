@@ -1,5 +1,5 @@
 # State: Kangnamui-MacBookPro
-> Last updated: 2026-04-14 14:00 KST
+> Last updated: 2026-04-14 14:30 KST
 
 ## Environment
 - **OS:** macOS 26.3.1 (arm64)
@@ -28,5 +28,5 @@ memory/2026-02-23.md
 memory/2026-04-05.md
 memory/2026-04-10.md
 memory/2026-04-04.md
-cal_sync_state.json
+memory/.dreams/short-term-recall.json
 ```

@@ -113,10 +113,10 @@
     "atlassian@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/atlassian/385c1469c567",
-        "version": "385c1469c567",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/atlassian/9b52fb18e184",
+        "version": "9b52fb18e184",
         "installedAt": "2026-04-01T06:34:00.848Z",
-        "lastUpdated": "2026-04-01T06:34:00.848Z",
+        "lastUpdated": "2026-04-15T04:47:35.055Z",
         "gitCommitSha": "385c1469c567399970e1d3fc23687a0312aa63dc"
       }
     ],

@@ -1,0 +1,1 @@
+- [Stapler E2E patterns](project_stapler_e2e_patterns.md) — URL prefix, company selection, button selectors, GlobalModal quirks

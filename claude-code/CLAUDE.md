@@ -33,6 +33,7 @@ These rules apply without exception. Violation handling depends on intent:
 8. NEVER place diagram files (Mermaid `.mmd` source and their rendered `.png`) outside `docs/`. Does not apply to other image assets — logos, screenshots, UI resources, and test fixtures have no location constraint.
 9. NEVER use agent-browser when WebSearch/WebFetch suffices. Reserve agent-browser for login-gated pages, dynamic SPAs, and multi-step interactive flows.
 10. NEVER design workflows where subagents call other subagents. Only the main model orchestrates; subagents are leaf nodes.
+11. NEVER read or write `~/projects/wikis/` (the personal second-brain wiki) without having pulled in the current session. Run `git -C ~/projects/wikis pull --rebase` once at first wiki access per session. If the wiki has no configured upstream yet, the pull is a no-op and you may proceed. Prevents stale reads and merge conflicts across devices.
 
 ## Agent Orchestration
 
@@ -108,6 +109,86 @@ Write DB schema first when a design doc requires a DB. Include: ERD (Mermaid erD
 - Re-read the relevant section before each step. Do not rely on memory.
 - If deviating from the design doc, update it first, then implement.
 
+### Interaction with the Wiki
+
+Before writing a new design doc, consult the Personal Wiki (see section below):
+
+1. Check the relevant `wiki/Projects/<Name>/MAP.md` for existing philosophy, ADRs, and architectural context.
+2. If the design makes a *strategic* decision (not just local implementation), create or update an ADR in `wiki/Projects/<Name>/Decisions/` or `wiki/Decisions/` *alongside* the design doc.
+3. If existing wiki content conflicts with the proposed design, resolve in the wiki first — do not let the repo design doc silently contradict the wiki.
+
+The wiki holds the "why" (evergreen); the repo design doc holds the "how and when" (execution-scoped).
+
+## Personal Wiki (Second Brain)
+
+Wiki location: `~/projects/wikis/` (git repo). Schema: `~/projects/wikis/SCHEMA.md`.
+
+The wiki is the user's compounding second brain — strategic knowledge that outlives any specific codebase. Follows Andrej Karpathy's LLM Wiki pattern:
+
+- `raw/` — immutable source material (Raw Sources)
+- `wiki/` — AI-maintained interlinked markdown (The Wiki)
+- `SCHEMA.md` — conventions and frontmatter rules (The Schema)
+
+### When to READ
+
+Before answering strategic or conceptual questions, consult the wiki first:
+
+- Product direction, vision, long-term goals
+- Architecture rationale, design decisions (ADRs)
+- Operational philosophy, principles
+- Roadmap, historical context ("why did we decide X?")
+
+Entry points: `wiki/Index.md`, `wiki/Projects/<Name>/MAP.md`. Follow `[[WikiLinks]]`. Prefer the wiki over re-deriving answers from code when the question is about intent, not implementation.
+
+### When to WRITE
+
+Compound knowledge goes into the wiki. Three inbound paths:
+
+1. **Raw Sources** — external material the user drops into `raw/<topic>/`. Summarize and weave into `wiki/` pages. Raw files stay immutable; the wiki is the derived layer.
+2. **Codebase discovery** — when you find load-bearing concepts not yet in the wiki (non-obvious invariants, architectural patterns, cross-cutting design decisions), propose a wiki entry.
+3. **Conversations** — when the user articulates a strategic decision, philosophy, or design rationale in dialogue, capture it as a wiki page or ADR before the context is lost. This is how conversations compound into persistent knowledge.
+
+Do NOT write to the wiki for: code-level details, execution plans, session-level state (use TodoWrite or auto memory instead).
+
+### Wiki vs. Auto Memory vs. Repo docs
+
+| | Wiki | Auto Memory | Repo docs |
+|---|---|---|---|
+| **Scope** | Project compound knowledge | Agent-user interaction context | Code lock-step |
+| **Persists** | Evergreen (git-versioned) | Cross-session | Versioned with code |
+| **Reader** | Human + AI | AI | Human + AI |
+| **Examples** | Philosophy, ADRs, vision, roadmap | User profile, feedback rules | `DEVELOPING.md`, `doc/plans/`, `docs/llm/` |
+| **Rule of thumb** | Survives code rewrites → Wiki | Only matters for this user → Memory | Must change when code changes → Repo |
+
+### Schema Conventions
+
+Follow `~/projects/wikis/SCHEMA.md` exactly:
+
+- YAML frontmatter required: `created`, `updated`, `type`, `status`, `project`
+- `status` values: `seed` / `growing` / `evergreen` / `archived`
+- Each project has `Overview.md`, `MAP.md`, `History.md`
+- Decisions: `wiki/Decisions/` (global/cross-project) or `wiki/Projects/<Name>/Decisions/` (project-scoped)
+- `[[WikiLinks]]` for cross-references
+- Individual pages keep only 1–2 recent change bullets; full changelog in `History.md`
+- Before creating a new page, read the relevant `MAP.md` and follow existing naming
+
+### Multi-device Git Workflow
+
+The wiki is a git repo shared across devices. Maintain discipline:
+
+1. **First wiki access per session** — `git -C ~/projects/wikis pull --rebase` (NEVER rule #11).
+2. **After every wiki write** — commit immediately: `git -C ~/projects/wikis commit -am "<type>(<project>): <summary>"`. Do not batch across multiple logical changes.
+3. **At session end or meaningful completion** — ask the user "Wiki 푸시할까?" (NEVER rule #2 requires explicit push authorization).
+4. **On rebase conflict** — STOP. Report to the user. Do NOT attempt auto-resolve. Wiki content is high-value and hard to reconstruct if merged wrong.
+
+Commit message convention (Conventional Commits):
+
+- `feat(<project>)`: new page or major section
+- `docs(<project>)`: content refinement
+- `chore(<project>)`: frontmatter updates, link fixes
+- `adr(<project>)`: ADR-<id> decision records
+- Scope `wiki` for cross-project or repo-level changes (e.g., `chore(wiki): update SCHEMA.md`)
+
 ## Testing
 
 ### Prerequisites
@@ -151,6 +232,8 @@ When unsure, ask the user before abstracting.
 5. Run tests. Fix if any fail.
 
 ## Memory Extension
+
+> **Scope note**: Auto memory is for agent-user interaction context. Project-level compound knowledge (philosophy, ADRs, architecture) goes in the Personal Wiki (see section above), not memory. Rule of thumb: if a different human teammate reading the project cold would benefit → Wiki; if it only helps calibrate your collaboration with this user → Memory.
 
 ### temp type
 

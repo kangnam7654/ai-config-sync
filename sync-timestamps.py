@@ -18,10 +18,6 @@ from pathlib import Path
 
 # ── 섹션별 포함/제외 규칙 ────────────────────────────────────────
 EXCLUDES: dict[str, list[str]] = {
-    "workspace": [
-        "notion_data_*.json", "tmp_*.json", "*.jsonl", ".git",
-        "tools/flutter", "tools/flutter/**",
-    ],
     "claude-code": [
         "history.jsonl", "usage-log.jsonl", "cache", "debug",
         "backups", "file-history", "telemetry", "session-env",
@@ -271,7 +267,7 @@ def load_timestamps(ts_dir: Path, hostname: str) -> dict[str, dict[str, float]]:
         ts_dir: timestamps/ 디렉토리 경로
         hostname: 현재 호스트명
     Returns:
-        섹션별 타임스탬프 dict. 예: {"workspace": {"file.md": 1711234567.0}, ...}
+        섹션별 타임스탬프 dict. 예: {"claude-code": {"settings.json": 1711234567.0}, ...}
     """
     ts_file = ts_dir / f"{hostname}.json"
     if ts_file.exists():
@@ -313,7 +309,7 @@ def load_peer_timestamps(
         try:
             raw = migrate_ts_keys(json.loads(content))
             # 타임스탬프 값 검증
-            _KNOWN_SECTIONS = {"workspace", "claude-code"}
+            _KNOWN_SECTIONS = {"claude-code"}
             validated: dict[str, dict[str, float]] = {}
             for section_key, files in raw.items():
                 if not isinstance(section_key, str) or section_key not in _KNOWN_SECTIONS or not isinstance(files, dict):
@@ -344,9 +340,9 @@ def sync_section(
     """단일 섹션의 newest-wins 병합 수행.
 
     Args:
-        section: 섹션 키 ("workspace" | "claude-code")
-        local_dir: 로컬 디렉토리 경로 (~/.openclaw/workspace 등)
-        repo_subdir: repo 내 하위 경로 ("openclaw/workspace" 등)
+        section: 섹션 키 ("claude-code")
+        local_dir: 로컬 디렉토리 경로 (~/.claude 등)
+        repo_subdir: repo 내 하위 경로 ("claude-code" 등)
         sync_dir: 동기화 루트 디렉토리
         our_section_ts: 이 섹션의 기존 타임스탬프
         peer_ts_all: 전체 피어 타임스탬프 (load_peer_timestamps 반환값)
@@ -465,7 +461,6 @@ def main() -> None:
     sync_dir, hostname = parse_args()
 
     sections = {
-        "workspace": (Path("~/.openclaw/workspace").expanduser(), "openclaw/workspace"),
         "claude-code": (Path("~/.claude").expanduser(), "claude-code"),
     }
 

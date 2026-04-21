@@ -1,6 +1,6 @@
 #!/bin/bash
 # sync.sh - 양방향 자동 동기화 (Mac ↔ Ubuntu ↔ Windows)
-# OpenClaw 워크스페이스 + Claude Code 설정 동기화 (newest-wins)
+# Claude Code 설정 동기화 (newest-wins)
 # pull-only: Windows 또는 .pull-only 파일 존재 시 수신만
 # 사용법: bash sync.sh
 
@@ -54,8 +54,6 @@ generate_state() {
       OS_INFO="$(lsb_release -ds 2>/dev/null || uname -s) ($(uname -m))" ;;
   esac
 
-  OC_VERSION=$(openclaw --version 2>/dev/null || echo "N/A")
-  OC_MODEL=$(openclaw config get agents.defaults.model.primary 2>/dev/null || echo "N/A")
   CLAUDE_VERSION=$(claude --version 2>/dev/null || echo "N/A")
 
   # 스케줄러 목록 (Unix: cron, Windows: Task Scheduler)
@@ -65,10 +63,6 @@ generate_state() {
     SCHEDULED_JOBS=$(crontab -l 2>/dev/null | grep -v '^#' | grep -v '^$' || echo "(none)")
   fi
 
-  RECENT_FILES=$(find "$HOME/.openclaw/workspace" -type f \
-    -not -path '*/.git/*' -newer "$HOME/.openclaw/workspace/MEMORY.md" 2>/dev/null \
-    | sed "s|$HOME/.openclaw/workspace/||" | head -10 || echo "(none)")
-
   cat > "$STATE_FILE" <<EOF
 # State: $HOSTNAME
 > Last updated: $(date '+%Y-%m-%d %H:%M %Z')
@@ -77,21 +71,12 @@ generate_state() {
 - **OS:** $OS_INFO
 - **Hostname:** $HOSTNAME
 
-## OpenClaw
-- **Version:** $OC_VERSION
-- **Model:** $OC_MODEL
-
 ## Claude Code
 - **Version:** $CLAUDE_VERSION
 
 ## Scheduled Jobs
 \`\`\`
 $SCHEDULED_JOBS
-\`\`\`
-
-## Recent Workspace Changes
-\`\`\`
-$RECENT_FILES
 \`\`\`
 EOF
   echo "  -> state/$HOSTNAME.md"
@@ -122,7 +107,7 @@ if is_pull_only; then
   echo "  -> Pull-only mode (skip push)"
 else
   # 동기화 산출물 경로만 add (의도치 않은 파일 커밋 방지)
-  git add -A openclaw/workspace claude-code timestamps state
+  git add -A claude-code timestamps state
 
   if git diff --cached --quiet; then
     echo "  -> No changes"

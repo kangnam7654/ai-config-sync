@@ -17,16 +17,6 @@
         "lastUpdated": "2026-04-01T06:31:21.728Z"
       }
     ],
-    "superpowers@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7",
-        "version": "5.0.7",
-        "installedAt": "2026-04-01T06:30:44.523Z",
-        "lastUpdated": "2026-04-01T06:30:44.523Z",
-        "gitCommitSha": "dd237283dbfe466e11bd4be55acf14ecb8f6636e"
-      }
-    ],
     "context7@claude-plugins-official": [
       {
         "scope": "user",
@@ -84,10 +74,10 @@
     "supabase@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/supabase/0.1.4",
-        "version": "0.1.4",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/supabase/0.1.5",
+        "version": "0.1.5",
         "installedAt": "2026-04-01T06:33:59.852Z",
-        "lastUpdated": "2026-04-19T16:05:36.895Z"
+        "lastUpdated": "2026-04-24T16:07:35.759Z"
       }
     ],
     "atlassian@claude-plugins-official": [

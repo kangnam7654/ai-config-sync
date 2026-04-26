@@ -1,1 +1,2 @@
 - [Stapler E2E patterns](project_stapler_e2e_patterns.md) — URL prefix, company selection, button selectors, GlobalModal quirks
+- [dear-jeongbin E2E patterns](project_dear_jeongbin_e2e.md) — WS mock via routeWebSocket, test harness at /e2e-zone-test, iframe click via evaluate(), MultiZoneEditPanel locator gotcha

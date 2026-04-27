@@ -1,0 +1,1 @@
+- [dear-jeongbin CI setup](project_dear_jeongbin_ci.md) — GitHub Actions 4-job pipeline; SSH_PRIVATE_KEY secret required for canvas-sdk + llm-router private deps

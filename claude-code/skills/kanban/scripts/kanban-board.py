@@ -16,9 +16,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 from _kanban import (
     BOARD_PATH,
     COLUMNS,
+    KANBAN_ROOT,
     Card,
     ensure_initialized,
+    fail,
     iter_cards,
+    now_iso,
+    write_card,
 )
 
 PRIORITY_ORDER = {"high": 0, "med": 1, "low": 2}
@@ -28,7 +32,65 @@ DONE_LIMIT = 10
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Regenerate BOARD.md.")
     p.add_argument("--project", help="Filter by project")
+    p.add_argument(
+        "--no-sync",
+        action="store_true",
+        help="Skip frontmatter self-heal pass (default: sync column ↔ frontmatter).",
+    )
     return p.parse_args()
+
+
+def sync_card_frontmatter(cards: list[Card]) -> int:
+    """Self-heal pass: make frontmatter consistent with the card's actual column.
+
+    Lets the user mv/cp cards between columns directly without breaking invariants.
+    Returns the number of files rewritten.
+    """
+    fixed = 0
+    for c in cards:
+        fm = dict(c.frontmatter)
+        changed = False
+        if c.column == "Done":
+            if "completed_at" not in fm:
+                try:
+                    mtime = dt.datetime.fromtimestamp(c.path.stat().st_mtime).astimezone()
+                    fm["completed_at"] = mtime.isoformat(timespec="seconds")
+                except OSError:
+                    fm["completed_at"] = now_iso()
+                changed = True
+            if "blocked_by" in fm:
+                fm.pop("blocked_by")
+                changed = True
+        elif c.column == "Blocked":
+            if "completed_at" in fm:
+                fm.pop("completed_at")
+                changed = True
+        else:  # Backlog, InProgress
+            if "completed_at" in fm:
+                fm.pop("completed_at")
+                changed = True
+            if "blocked_by" in fm:
+                fm.pop("blocked_by")
+                changed = True
+        if changed:
+            write_card(c.path, fm, c.body)
+            rel = c.path.relative_to(KANBAN_ROOT)
+            print(f"sync: {rel} ← column={c.column}")
+            fixed += 1
+    return fixed
+
+
+def detect_duplicates(cards: list[Card]) -> list[str]:
+    """Return error lines for any id that lives in multiple active columns."""
+    by_id: dict[str, list[Card]] = {}
+    for c in cards:
+        by_id.setdefault(c.id, []).append(c)
+    errors: list[str] = []
+    for cid, group in by_id.items():
+        if len(group) > 1:
+            locs = ", ".join(f"{g.column}/{g.path.name}" for g in group)
+            errors.append(f"duplicate id '{cid}' in: {locs}")
+    return errors
 
 
 def card_sort_key(c: Card) -> tuple:
@@ -99,8 +161,26 @@ def main() -> None:
     args = parse_args()
     ensure_initialized()
 
+    all_active = [c for c in iter_cards(COLUMNS)]
+
+    dup_errors = detect_duplicates(all_active)
+    if dup_errors:
+        for e in dup_errors:
+            print(f"FAIL {e}", file=sys.stderr)
+        fail(
+            "cross-column duplicates found. Resolve by moving the stale copy to "
+            "Archive/ (or delete it) before regenerating BOARD."
+        )
+
+    if not args.no_sync:
+        n = sync_card_frontmatter(all_active)
+        if n:
+            print(f"synced {n} card(s) to match column state")
+            # Re-read cards so downstream sort sees fresh frontmatter.
+            all_active = [c for c in iter_cards(COLUMNS)]
+
     cards_by_col: dict[str, list[Card]] = {col: [] for col in COLUMNS}
-    for card in iter_cards(COLUMNS):
+    for card in all_active:
         if args.project and card.project != args.project:
             continue
         cards_by_col[card.column].append(card)

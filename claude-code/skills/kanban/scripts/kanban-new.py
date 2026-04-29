@@ -61,18 +61,24 @@ def unique_slug(base: str) -> str:
     return f"{base}-{n}"
 
 
+def unique_id(existing: set[str]) -> str:
+    base = now_id()
+    if base not in existing:
+        return base
+    n = 2
+    while f"{base}-{n}" in existing:
+        n += 1
+    return f"{base}-{n}"
+
+
 def main() -> None:
     args = parse_args()
     ensure_initialized()
 
     project = infer_project(args.project)
+    existing_ids = {c.id for c in iter_cards()}
     slug = unique_slug(args.slug or slugify(args.title))
-    card_id = now_id()
-
-    if any(c.id == card_id for c in iter_cards()):
-        # 같은 분(分)에 두 번째 카드: 초까지 더해 충돌 회피
-        import datetime as dt
-        card_id = dt.datetime.now().strftime("%y%m%d-%H%M%S")
+    card_id = unique_id(existing_ids)
 
     fm: dict = {
         "id": card_id,

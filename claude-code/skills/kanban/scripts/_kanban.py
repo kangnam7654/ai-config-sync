@@ -38,7 +38,7 @@ COLUMN_ALIASES = {
     "archived": "Archive",
 }
 
-ID_PATTERN = re.compile(r"^\d{6}-\d{4}$")
+ID_PATTERN = re.compile(r"^\d{6}-\d{4}(?:-\d+)?$")
 SLUG_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SCHEMA_PATH = KANBAN_ROOT / ".schema.json"
 BOARD_PATH = KANBAN_ROOT / "BOARD.md"

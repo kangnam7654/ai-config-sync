@@ -1262,6 +1262,7 @@
     "skills/kanban/scripts/kanban-rename-project.py": 1777466216.4553432,
     "skills/kanban/scripts/kanban-set.py": 1777466190.9548929,
     "skills/kanban/scripts/kanban-init.py": 1777466170.077113,
+    "skills/kanban/scripts/kanban-serve.py": 1777481677.380925,
     "skills/kanban/scripts/kanban-new.py": 1777477039.4348977,
     "skills/kanban/scripts/kanban-validate.py": 1777466210.4297657,
     "skills/kanban/scripts/kanban-rm.py": 1777466198.2710204,

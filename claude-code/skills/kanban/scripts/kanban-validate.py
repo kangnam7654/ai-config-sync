@@ -65,6 +65,8 @@ def main() -> None:
 
     total = 0
     bad = 0
+    by_id: dict[str, list] = {}
+    by_slug: dict[str, list] = {}
     for card in iter_cards(ALL_FOLDERS):
         total += 1
         errors = validate_card(card.frontmatter, schema)
@@ -73,14 +75,34 @@ def main() -> None:
         if card.column == "Blocked" and "blocked_by" not in card.frontmatter:
             # warn-level: blocked_by is recommended but not required
             print(f"warn: {card.path}: Blocked card missing blocked_by", file=sys.stderr)
+        # Archive holds removed/duplicate cards — exclude from active uniqueness checks.
+        if card.column != "Archive":
+            by_id.setdefault(card.id, []).append(card)
+            by_slug.setdefault(card.slug, []).append(card)
         if errors:
             bad += 1
             rel = card.path.relative_to(KANBAN_ROOT)
             for e in errors:
                 print(f"FAIL {rel}: {e}")
 
-    if bad:
-        print(f"\n{bad}/{total} cards failed validation", file=sys.stderr)
+    # Cross-column duplicate detection: a card id (or slug) must live in exactly one column.
+    dup_count = 0
+    for cid, cards in by_id.items():
+        if len(cards) > 1:
+            dup_count += 1
+            locs = ", ".join(f"{c.column}/{c.path.name}" for c in cards)
+            print(f"FAIL duplicate id '{cid}': {locs}")
+    for slug, cards in by_slug.items():
+        if len(cards) > 1 and len({c.id for c in cards}) > 1:
+            # same slug across cards with different ids — warn (likely a kanban-new collision)
+            locs = ", ".join(f"{c.column}/{c.path.name}[{c.id}]" for c in cards)
+            print(f"warn: slug '{slug}' shared by multiple ids: {locs}", file=sys.stderr)
+
+    if bad or dup_count:
+        if bad:
+            print(f"\n{bad}/{total} cards failed validation", file=sys.stderr)
+        if dup_count:
+            print(f"{dup_count} cross-column duplicate id(s) found", file=sys.stderr)
         sys.exit(1)
     print(f"OK: {total} cards valid")
 

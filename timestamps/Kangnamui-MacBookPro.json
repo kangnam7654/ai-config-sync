@@ -2,7 +2,7 @@
   "claude-code": {
     "settings.json": 1777510083.0927022,
     "stop-hook-git-check.sh": 1772631005.3955393,
-    "CLAUDE.md": 1777529149.1769104,
+    "CLAUDE.md": 1777532330.2368686,
     "memory/multi-provider-oauth-architecture.md": 1772631004.907993,
     "plugins/blocklist.json": 1775844012.2896996,
     "plugins/known_marketplaces.json": 1777530389.3711138,
@@ -742,7 +742,7 @@
     "agents/devops.md": 1775844011.5686524,
     "agents/data-engineer.md": 1775844011.457548,
     "agents/career-consultant.md": 1775965415.2012906,
-    "agents/backend-dev.md": 1775844011.0523553,
+    "agents/backend-dev.md": 1777530748.3149261,
     "agents/dba/persona.md": 1775967386.2242796,
     "agents/dba/references/pipeline-mode.md": 1775962834.2467992,
     "agents/dba/references/query-opt.md": 1775962737.37474,

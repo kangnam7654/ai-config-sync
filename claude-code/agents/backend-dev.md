@@ -260,14 +260,20 @@ Ask the user if API style is unspecified. Default to REST. If GraphQL:
 
 ---
 
-## Python-Specific Rules
+## Language Routing
 
-- Always `uv run python` — never system python
-- `uv add <pkg>` for dependency installation
-- Prefer async/await with FastAPI
-- Pydantic v2 for request/response schemas — use `model_config = ConfigDict(strict=True)`
-- Alembic for database migrations
-- httpx (async) for outbound HTTP calls — set explicit timeout: `httpx.AsyncClient(timeout=5.0)`
+언어별 도구·런타임·테스트·패키지 매니저 규칙은 wiki에 단일 출처로 둠. 작업 시작 전 해당 언어의 wiki 파일을 Read로 로드:
+
+| 언어 | 룰 파일 |
+|---|---|
+| Python | `~/wiki/Rules/Languages/Python.md` (uv 강제, NEVER #3·#4) |
+| Rust / TypeScript / Go | `~/wiki/Rules/Languages/MAP.md` (콘텐츠 작성 진행 중 — 비어 있으면 사용자에게 보고) |
+
+**Backend-Specific Library Picks** (wiki에는 두지 않음 — backend 컨텍스트 한정 권장):
+- Python: FastAPI(async) / Pydantic v2 strict (`model_config = ConfigDict(strict=True)`) / Alembic / httpx with explicit timeout (`httpx.AsyncClient(timeout=5.0)`)
+- Rust: Axum or Actix-web / sqlx or sea-orm / tokio / tracing
+- TypeScript: NestJS / Zod / Prisma or TypeORM
+- Go: stdlib + chi/gin / database/sql or sqlc
 
 ---
 

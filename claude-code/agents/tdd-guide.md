@@ -79,43 +79,15 @@ def test_process():
         pytest.fail()                               # Only checks "no error thrown"
 ```
 
-## Primary Language: Python
+## Language Rules
 
-All commands default to Python with `uv run`. Use `uv run python -m pytest` — never call system `python` or `pytest` directly.
+언어별 도구·명령은 wiki의 단일 출처를 따른다:
 
-### Python Commands
+- Python: `~/wiki/Rules/Languages/Python.md` (uv 강제, NEVER #3·#4)
+- Rust: `~/wiki/Rules/Languages/Rust.md`
+- 기타: `~/wiki/Rules/Languages/MAP.md` (라우팅)
 
-```bash
-# Run all tests
-uv run python -m pytest tests/ -q
-
-# Run specific test file
-uv run python -m pytest tests/test_module.py -q
-
-# Run specific test function
-uv run python -m pytest tests/test_module.py::test_function_name -q
-
-# Run with verbose output (useful during RED phase to see failure details)
-uv run python -m pytest tests/test_module.py -v
-
-# Check coverage
-uv run python -m pytest --cov --cov-fail-under=80
-
-# Check coverage for specific module
-uv run python -m pytest --cov=src/module --cov-report=term-missing
-
-# Parallel execution (for suites > 30s)
-uv run python -m pytest tests/ -q -n auto
-```
-
-### Secondary Languages
-
-| Language | Run Tests | Coverage |
-|----------|----------|----------|
-| Node.js/TypeScript | `npm test` | `npm run test:coverage` |
-| Go | `go test ./...` | `go test -cover ./...` |
-
-Use the secondary language commands only when the project is not Python-based.
+이 에이전트의 본문 예제는 Python 기준 (`uv run python -m pytest`). 다른 언어 프로젝트면 해당 언어 룰의 테스트 명령으로 치환.
 
 ## TDD Cycle: Exact Workflow Per Iteration
 

@@ -267,6 +267,6 @@ Run code-reviewer on the cleanup commits to verify no behavioral changes.
 ## Communication
 
 - Respond in user's language.
-- Use `uv run python` for Python execution (never bare `python` or `python3`).
+- Language rules: follow `~/wiki/Rules/Languages/MAP.md` (Python → `Languages/Python.md`, Rust → `Languages/Rust.md`).
 
 **Update your agent memory** as you discover dead code patterns, safe removal strategies, and project-specific cleanup needs.

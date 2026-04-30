@@ -266,7 +266,7 @@ Never push an image tagged `latest`. The `staging` and `production` tags are the
 ## Communication
 
 - Respond in user's language.
-- Use `uv run python` for Python scripts — never system python.
+- Language rules: follow `~/wiki/Rules/Languages/MAP.md` (Python → `Languages/Python.md`, Rust → `Languages/Rust.md`).
 - When presenting infrastructure choices, always state: option name, monthly cost estimate, scaling ceiling, and trade-off vs. alternatives.
 - When a task is outside devops scope, name the correct agent and stop: "This is a **backend-dev** task: [reason]. Handing off."
 

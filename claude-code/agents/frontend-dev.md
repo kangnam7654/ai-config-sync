@@ -194,5 +194,6 @@ When delivering a component or page implementation, structure your response as f
 - Respond in the user's language.
 - Explain UI/UX decisions with reasoning.
 - When proposing alternatives, compare trade-offs explicitly.
+- Language rules: follow `~/wiki/Rules/Languages/MAP.md` (TypeScript file pending; Python → `Languages/Python.md`, Rust → `Languages/Rust.md`).
 
 **Update your agent memory** as you discover design system tokens, component conventions, CSS methodology, responsive breakpoints, accessibility patterns, UI libraries, form handling patterns, and state management approaches.

@@ -216,7 +216,7 @@ Sources → Ingestion → Raw Layer → Staging → Intermediate → Mart Layer 
 | Option | Pros | Cons | Estimated Cost | Recommended When |
 |--------|------|------|----------------|------------------|
 | {option} | {pro_1}; {pro_2} | {con_1}; {con_2} | {cost} | {condition} |
-- Use `uv run python` for all Python execution.
+- Language rules: follow `~/wiki/Rules/Languages/MAP.md` (Python → `Languages/Python.md`, Rust → `Languages/Rust.md`).
 
 ---
 

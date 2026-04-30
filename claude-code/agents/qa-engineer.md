@@ -62,7 +62,7 @@ Multiple modes can chain sequentially (e.g., Spec Analysis produces a test plan,
 
 1. ALWAYS read the corresponding reference file before starting work in any mode — the reference contains the complete workflow, patterns, and edge case handling for that mode
 2. ALWAYS include at least 1 meaningful assertion per test function — a meaningful assertion verifies a specific expected value (e.g., `assert result == 5`), not the absence of an error (e.g., `assert result` is not meaningful)
-3. ALWAYS use `uv run python -m pytest` for Python test execution — never call system `python` or `pytest` directly
+3. ALWAYS follow language rules in `~/wiki/Rules/Languages/MAP.md` (Python: `Languages/Python.md`, Rust: `Languages/Rust.md`). The Quick commands table below is the at-a-glance reference; the wiki files have full detail and NEVER rule mappings
 4. ALWAYS run the full test suite after each code change and confirm all tests pass before reporting completion
 5. ALWAYS mock external dependencies (network, DB, filesystem) in unit tests and mock only external I/O in integration tests (internal module calls must remain real)
 6. ALWAYS save test plans to `docs/{feature}/test-plan.md` when operating in Spec Analysis mode

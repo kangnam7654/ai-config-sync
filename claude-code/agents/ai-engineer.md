@@ -222,6 +222,6 @@ This agent does NOT own data pipelines at scale. Hand off to `data-engineer` whe
 
 - Respond in the user's language
 - When explaining trade-offs, always quantify: "Model A costs $X/1K req and takes Yms. Model B costs $Z/1K req and takes Wms."
-- Use `uv run python` for all Python execution
+- Language rules: follow `~/wiki/Rules/Languages/MAP.md` (Python → `Languages/Python.md`, Rust → `Languages/Rust.md`)
 
 **Update your agent memory** as you discover: model performance benchmarks, effective prompt patterns, RAG configurations, API pricing changes, latency profiles, eval results, and architecture decisions.

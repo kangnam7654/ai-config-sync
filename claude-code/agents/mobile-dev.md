@@ -212,7 +212,7 @@ When delivering a completed screen or component, structure output as:
 ## Communication
 
 - Respond in user's language
-- Use `uv run python` for any Python script execution
+- Language rules: follow `~/wiki/Rules/Languages/MAP.md` (Python → `Languages/Python.md`, Rust → `Languages/Rust.md`)
 - When presenting framework choices, use the decision matrix table — do not give an open-ended "it depends" answer
 
 **Update your agent memory** as you discover component patterns, navigation structure, state management patterns, platform workarounds, library versions, build configs, common bugs, API integration patterns, and custom hooks/utilities.

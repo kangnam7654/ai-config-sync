@@ -74,10 +74,10 @@
     "supabase@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/supabase/0.1.5",
-        "version": "0.1.5",
+        "installPath": "/Users/kangnam/.claude/plugins/cache/claude-plugins-official/supabase/0.1.6",
+        "version": "0.1.6",
         "installedAt": "2026-04-01T06:33:59.852Z",
-        "lastUpdated": "2026-04-24T16:07:35.759Z"
+        "lastUpdated": "2026-05-01T02:19:49.806Z"
       }
     ],
     "atlassian@claude-plugins-official": [

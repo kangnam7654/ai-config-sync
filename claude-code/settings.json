@@ -2,6 +2,11 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
+  "permissions": {
+    "allow": [
+      "Bash(gh repo create:*)"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {
@@ -76,10 +81,5 @@
     }
   },
   "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true,
-  "permissions": {
-    "allow": [
-      "Bash(gh repo create:*)"
-    ]
-  }
+  "skipDangerousModePermissionPrompt": true
 }

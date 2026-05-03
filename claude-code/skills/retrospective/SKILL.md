@@ -44,6 +44,27 @@ retrospective/
 
 ## Step 1 · 위키 pull + 4L 정의 로드 (메인 모델 직접)
 
+### Step 1-pre · wiki working tree clean 체크 (2026-05-03 추가)
+
+`pull --rebase` 호출 _전에_ wiki가 깨끗한지 확인한다 — unstaged 변경이 있으면 rebase 자체가
+실패하고, `git stash`로 우회하다 다른 stash를 잘못 pop해 BOARD.md merge conflict를 만들 수 있다.
+실제 사례: auto_company 0.0.4 retro 진입 시 stale `Kanban/InProgress/lunawave-v004-...md`
+deletion이 unstaged였고 `git stash pop`이 무관한 WIP를 풀어 BOARD.md 충돌 → 수동 해소 필요.
+
+```bash
+status=$(git -C ~/wiki status --porcelain)
+if [ -n "$status" ]; then
+  # STOP. dirty wiki는 사용자 의사결정 필요.
+  # → 변경의 출처(이전 세션 잔재 / 다른 클라이언트 sync 대기 / 의도적 WIP)를 짧게 보고하고
+  #   commit · stash · 무시 셋 중 하나를 묻는다. 자동으로 stash pop 하지 않는다.
+fi
+```
+
+dirty면 메인 모델이 사용자에게 한 줄 요약 + 처리 방안 1~2개 제시 후 응답을 기다린다.
+(README/메모성 변경처럼 자명하면 "이 변경 commit하고 진행할까요?" 식으로 좁혀 묻는다.)
+
+### Step 1 · pull + 정의 로드
+
 ```bash
 git -C ~/wiki pull --rebase
 ```
